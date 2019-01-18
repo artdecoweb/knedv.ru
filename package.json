@@ -1,0 +1,50 @@
+{
+  "name": "@artdeco/knedv.ru",
+  "version": "0.0.0",
+  "description": "The Realty Corporation 21 Century Website.",
+  "main": "build",
+  "scripts": {
+    "t": "zoroaster -a",
+    "test": "yarn t test/spec",
+    "spec": "yarn t test/spec",
+    "mask": "yarn t test/mask",
+    "test-build": "ALAMODE_ENV=test-build yarn test",
+    "start": "node src",
+    "dev": "node src",
+    "lint": "eslint .",
+    "doc": "NODE_DEBUG=doc doc documentary -o README.md",
+    "build": "alamode src -o build -s -i bin/index.js",
+    "dokku": "git push dokku"
+  },
+  "files": [
+    "build"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/artdecoweb/knedv.ru.git"
+  },
+  "keywords": [
+    "knedv.ru",
+    "artdeco"
+  ],
+  "author": "Anton <anton@adc.sh>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artdecoweb/knedv.ru/issues"
+  },
+  "homepage": "https://github.com/artdecoweb/knedv.ru#readme",
+  "devDependencies": {
+    "alamode": "1.6.1",
+    "documentary": "1.20.1",
+    "eslint-config-artdeco": "1.0.1",
+    "rqt": "3.0.3",
+    "zoroaster": "3.6.6"
+  },
+  "dependencies": {
+    "@demimonde/dotenv": "1.0.0",
+    "@idio/core": "1.1.0",
+    "@idio/facebook": "1.1.0",
+    "@idio/router": "1.2.0",
+    "erte": "1.1.5"
+  }
+}
