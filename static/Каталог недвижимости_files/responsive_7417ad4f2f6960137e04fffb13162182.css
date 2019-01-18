@@ -1,0 +1,478 @@
+
+@media screen and (max-width: 1020px) {
+	#jm-top-bar {
+		position: static;
+		height: auto;
+	}
+	.noheaderblock #jm-top-bar {
+		margin-bottom: 17px;
+	}
+	.topbar #jm-header {
+		padding-top: 0;
+	}
+	.topbar.noheaderblock #jm-midpage {
+		padding-top: 0;
+	}
+    #jm-djmenu .dj-main {
+        display: block;
+    }
+    #jm-djmenu .dj-select {
+        display: none;
+    }
+    #jm-back-top {
+        display: none !important;
+    }
+    input.button, button.validate, button, input#modlgn-remember {
+        -webkit-appearance: none;
+    }
+    input, select, textarea {
+        max-width: 100%;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    #jm-left input.inputbox,
+    #jm-right input.inputbox {
+        width: 100%;
+    }
+    .jm-module-in {
+        height: auto !important;
+    }
+    table:before {
+        content: "Please scroll horizontally to view the whole table";
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        text-decoration: underline;
+    }
+    table {
+        position: relative;
+        width: auto;
+        overflow-x:scroll;
+        display: block;
+    }
+    table.paymentdetails:before,
+    table.paymentdetails table:before,
+    table.mceLayout:before{
+        content: none;
+        display: none;
+    }
+    table.paymentdetails,
+    table.paymentdetails table,
+    table.mceLayout{
+        overflow: auto;
+    }
+    table.mceLayout{
+        max-width: 100%;
+    }
+    #dj-classifieds table.dj-items tbody td.icon,
+    #dj-classifieds table.dj-items tbody td.name {
+        white-space: nowrap;
+    }
+    #dj-classifieds .djcf_items_blog .item_box_right .item_img {
+        width: 100%;
+        text-align: center;
+    }
+    #dj-classifieds .djcf_items_blog .item_img img {
+        margin: 0 0 15px;
+    }
+    #dj-classifieds .djcf_items_blog .item_desc {
+    display: inline-block;
+        width: 100%;
+    }
+    .dj_cf_search .search_price span.label2, .dj_cf_search span.to_class,
+    .dj_cf_search .search_price span.label1, .dj_cf_search span.from_class {
+        display: block;
+        margin: 0 0 5px;
+    }
+    .mod_djclassifieds_items .title img {
+        float: none;
+        margin-right: 0 !important;
+        margin-bottom: 10px;
+    }
+    #dj-classifieds .defaultSimpleSkin table.mceLayout {
+        margin: 0 auto;
+    }
+    #dj-classifieds .dj-item .images_wrap,
+    #dj-classifieds .dj-item .general_det {
+        width: 100% !important;
+    }
+    #dj-classifieds .dj-item button#submit_b {
+        display: block;
+    }
+    .jm-module select#mod_djc2producers_pid {
+        max-width: 100%;
+    }
+    .djf_mod .djf_gal table:before {
+        content: "Please scroll horizontally to view the rest of thumbnails";
+        display: block;
+        margin-bottom: 10px;
+        margin-top: -30px;
+        width: 100%;
+        height: 20px;
+        text-decoration: underline;
+    }
+    .djf_mod .djf_gal table {
+        display: block;
+        overflow-x: scroll;
+        padding: 30px 0 0 !important;
+        margin-bottom: 10px;
+    }
+    .djf_mod .djf_text {
+        clear: both;
+        padding-top: 10px;
+    }
+    .djf_mod .djf_pag {
+        padding: 15px 0 0;
+    }
+}
+
+@media (max-device-width: 960px) {
+    #jm-djmenu .dj-main { display: block; }
+    #jm-djmenu .dj-select { display: none; }
+}
+
+@media screen and (max-width: 1024px) {
+    #jm-header-in {
+        padding: 10px 20px;
+        text-align: center;
+        background: #fff;
+        border-bottom: 1px solid #d5d6d0;
+    }
+    #jm-top-bar {
+        border-bottom: none;
+    }
+    #jm-logo-sitedesc {
+        position: relative;
+        margin: 0 auto;
+        left: 0;
+        top:0;
+        right: 0;
+    }
+    #jm-header-in #jm-logo-sitedesc,
+    #jm-header-in.noheader #jm-logo-sitedesc {
+        margin: 0;
+    }
+    #jm-pathway div.breadcrumbs span.showHere {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+    #jm-left, #jm-right, #jm-content {
+        width: 100%;
+        clear: both;
+    }
+    #jm-djmenu{
+        padding: 15px 0;
+    }
+    #jm-djmenu .dj-main {
+        display: none;
+    }
+    #jm-djmenu .dj-select {
+        display: inline-block;
+        margin: 0;
+    }
+    #jm-djmenu{
+        text-align: center;
+        width: 100%;
+    }
+    #jm-top-bar {
+        float: none;
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+    }
+    #jm-top-bar1,
+    #jm-top-bar2,
+    #jm-top-bar3 {
+        float: none;
+        text-align: center;
+    }
+    #jm-top-bar ul.menu,
+    #jm-bottom-menu ul.menu {
+    	width: 100%;
+    }
+    #jm-top-bar ul.menu li,
+    #jm-bottom-menu ul.menu li {
+        float: none;
+        display: block;
+    }
+    #jm-top-bar ul.menu li a:link,
+    #jm-top-bar ul.menu li a:visited,
+    #jm-bottom-menu ul.menu li a:link,
+    #jm-bottom-menu ul.menu li a:visited {
+        border: none;
+		padding: 5px 0;
+        float: none;
+        display: block;
+    }
+    #jm-top .rowcount_4 .top-in {
+        width: 50%;
+    }
+    #jm-bottom1 .rowcount_4 .bottom1-in {
+        width: 50%;
+    }
+    #jm-bottom .rowcount_4 .box3 {
+        clear: both;
+    }
+    #jm-content-right {
+        width: 100%;
+    }
+    #dj-classifieds .dj-additem .djform_row {
+        text-align: center;
+    }
+    #dj-classifieds table.paymentdetails .payment_td {
+        border: none;
+        padding-bottom: 10px;
+    }
+    #dj-classifieds table.paymentdetails td.table_payment table td {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+    #dj-classifieds table.paymentdetails {
+        display: table;
+    }
+    #dj-classifieds table.paymentdetails td.table_payment table td.td2 {
+        border: none;
+        padding: 0;
+    }
+    #dj-classifieds table.paymentdetails td.table_payment table td.td2 h2 {
+        margin-top: 5px;
+    }
+    #dj-classifieds .dj-additem .djform_row .label,
+    #dj-classifieds .dj-additem .djform_row .djform_field,
+    #dj-classifieds .dj-additem .prom_rows .djform_prom_v,
+    #dj-classifieds .dj-additem .prom_rows .djform_prom_img,
+    #dj-classifieds .dj-additem .prom_rows .djform_prom_desc,
+    #dj-classifieds .classifieds_buttons {
+        width: 100% !important;
+        float: none !important;
+        margin: 0 !important;
+        text-align: center;
+        display:block;
+    }
+    #dj-classifieds .dj-additem .djform_row .label{
+        margin: 8px 0 !important;
+    }
+    .djslider .slide-desc-text .slide-title,
+    .djslider .slide-desc-text .slide-title a,
+    .djslider .slide-desc-text .slide-text,
+    .djslider .slide-desc-text .slide-text p {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .djf_mod .djf_img,
+    .djf_mod .djf_left {
+        width: 100%;
+        margin: 0;
+    }
+    .djf_mod .djf_img img,
+    #djcatalog .djc_items .djc_image img, 
+    #djcatalog .djc_related_items .djc_image img {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+    .djf_mod .djf_gal {
+        float: none
+    }
+}
+
+@media screen and (max-width: 368px) {
+    html {
+        -webkit-text-size-adjust: none;
+    }
+    #jm-top-bar {
+        text-align: center;
+    }
+    #jm-copyrights {
+        float: none;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    #jm-poweredby-stylearea {
+        float: none;
+        text-align: center;
+    }
+    #jm-stylearea {
+        text-align: center;
+    }
+    #jm-bottom1 .rowcount_2 .bottom1-in,
+    #jm-bottom1 .rowcount_3 .bottom1-in,
+    #jm-bottom1 .rowcount_4 .bottom1-in,
+    #jm-top .rowcount_2 .top-in,
+    #jm-top .rowcount_3 .top-in,
+    #jm-top .rowcount_4 .top-in,
+    #jm-content-top1 .rowcount_2 .content-top1-in,
+    #jm-content-bottom2 .rowcount_2 .content-bottom2-in{
+        float: none;
+        width: 100%;
+    }
+    #jm-left,
+    #jm-right{
+        float: none !important;
+        width: 100% !important;
+    }
+    #jm-main.scheme_3 #jm-content-right,
+    #jm-main.scheme_2 #jm-content-right,
+    #jm-main.scheme_3 #jm-content,
+    #jm-main.scheme_2 #jm-content,
+    .jm-mobile #jm-main #jm-content {
+        float: none !important;
+        width: 100% !important;
+    }
+    .cols-2 .column-1 {
+        float: none;
+        width: 100%;
+    }
+    .cols-2 .column-2 {
+        float: none;
+        width: 100%;
+    }
+    .cols-3 .column-1,
+    .cols-3 .column-2,
+    .cols-3 .column-3 {
+        float: none;
+        width: 100%;
+    }
+    .cols-3 .column-2 {
+        padding: 0;
+    }
+    .cols-4 .column-1,
+    .cols-4 .column-2,
+    .cols-4 .column-3,
+    .cols-4 .column-4 {
+        float: none;
+        width: 100%;
+    }
+    .cols-4 .column-2 {
+        padding: 0;
+    }
+    .cols-4 .column-3 {
+        padding: 0;
+    }
+    .item-separator {
+    	margin: 17px 0 0;
+    	clear: both;
+    	display: inline-block;
+    	width: 100%;
+    }
+    .row-separator {
+    	display: none;
+    }
+    #jm-content-top1 .rowcount_2 .content-top1-in,
+    #jm-content-bottom2 .rowcount_2 .content-bottom2-in {
+        width: 100%;
+    }
+    .djslider .slide-desc-text .slide-title {
+        font-size: 1em;
+    }
+    .djslider .slide-desc-text {
+        padding: 5px;
+    }
+    #dj-classifieds .dj-category .cat_col {
+        width: 100%;
+    }
+    #dj-classifieds .djcf_items_blog .item_box {
+        width: 100% !important;
+    }
+    #dj-classifieds .dj-cattree-box .dj-cattree {
+        width: 100% !important;
+    }
+    #dj-classifieds .dj-item .general_det .added,
+    #dj-classifieds .dj-item .general_det .user_name,
+    #dj-classifieds .dj-item .custom_det,
+    #dj-classifieds .dj-item .localization_det {
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    #dj-classifieds .dj-item .title_top .sb_top {
+        float: none;
+    }
+    .mod_djclassifieds_items .items-col {
+        width: 100% !important;
+        float: none;
+    }
+    #djcatalog .djc_filter_list li,
+    #djcatalog .djc_filter_search li,
+    #djcatalog .djc_order_buttons li {
+        float: none;
+    }
+    #djcatalog .djc_filter_list input.button,
+    #djcatalog .djc_filter_search input.button,
+    #djcatalog .djc_order_buttons input.button {
+        margin: 3px 0;
+    }
+    #djcatalog .djc_items .djc_item,
+    #djcatalog .djc_related_items .djc_item,
+    #djcatalog .djc_subcategories_grid .djc_subcategory {
+        float: none;
+        width: 100% !important;
+    }
+    #djcatalog h2.djc_title {
+        clear: both;
+    }
+    #djcatalog .djc_images {
+        float: left;
+        margin: 0 0 20px;
+        width: 100%;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    #djcatalog ul.djc_filter_search li input#djcatsearch {
+        width: 115px;
+    }
+    .djf_mod .djf_gal table:before {
+        height: 30px;
+        font-size: 0.9em;
+    }
+    #djcatalog .djc_filter_list input.button,
+    #djcatalog .djc_filter_search input.button,
+    #djcatalog .djc_order_buttons input.button{
+        margin: 0;
+    }
+    #djcatalog .djc_filter_list{
+        margin: 0;
+    }
+    #djcatalog .djc_filter_list li,
+    #djcatalog .djc_filter_search li,
+    #djcatalog .djc_order_buttons li{
+        margin: 10px 0 0;
+    }
+    #djcatalog .djc_filter_list li:first-child {
+        margin: 0;
+    }
+    #dj-classifieds table.paymentdetails td.td_pdetails div span,
+    #dj-classifieds table.paymentdetails td.td_pdetails div span.price{
+        float: none;
+        text-align: center;
+        display: block;
+    }
+    .djslider .navigation-container-custom {
+    	display: none;
+    }
+}
+/*
+     FILE ARCHIVED ON 01:27:08 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:31 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 169.358 (3)
+  esindex: 0.006
+  captures_list: 184.399
+  CDXLines.iter: 10.873 (3)
+  PetaboxLoader3.datanode: 196.467 (5)
+  exclusion.robots: 0.136
+  exclusion.robots.policy: 0.126
+  RedisCDXSource: 1.708
+  PetaboxLoader3.resolve: 63.712 (3)
+  load_resource: 109.267
+*/

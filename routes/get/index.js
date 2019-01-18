@@ -4,4 +4,4 @@ const route = async (ctx) => {
 }
 export default route
 
-export const aliases = ['/']
+// export const aliases = ['/']

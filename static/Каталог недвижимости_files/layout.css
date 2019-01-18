@@ -1,0 +1,260 @@
+/*--------------------------------------------------------------
+# Copyright (C) joomla-monster.com
+# License: http://www.joomla-monster.com/license.html Joomla-Monster Proprietary Use License
+# Website: http://www.joomla-monster.com
+# Support: info@joomla-monster.com
+---------------------------------------------------------------*/
+
+/*********************** LAYOUT STYLES ***********************/
+
+body {
+    padding: 0;
+    background: url('/web/20180309032301im_/http://www.knedv.ru//templates/dj-real-estate02/images/bg.png');
+    line-height: 1.5em;
+  }
+
+/** top-bar **/
+#jm-top-bar {
+    border-bottom: 0px solid #d5d6d0;
+    background: ;
+    padding: 5px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    height: 28px;
+}
+
+.topbar #jm-header {
+  padding-top: 38px;
+}
+
+.topbar.noheaderblock #jm-midpage {
+  padding-top: 55px;
+}
+
+#jm-top-bar-in {
+    margin: 0 auto;
+    padding: 0 20px;
+    color: #767676;
+}
+
+#jm-top-bar1 {
+    float: left;
+}
+
+#jm-top-bar2,
+#jm-top-bar3 {
+    float: right;
+}
+
+
+/** header **/
+
+#jm-header-in {
+    margin: 0 auto;
+    position: relative;
+}
+
+#jm-logo-sitedesc {
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    z-index: 999;
+}
+
+.noheader#jm-header-in #jm-logo-sitedesc {
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 40px 0 40px 20px;
+}
+
+/** midpage **/
+
+#jm-midpage {
+    margin-bottom: 17px;
+}
+
+#jm-midpage-in {
+    margin: 0 auto;
+    padding: 0 20px 17px;
+}
+
+#jm-midpage-space {
+    margin: 0 auto;
+    position: relative;
+    z-index: 999;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#jm-left .jm-left-in,
+#jm-right .jm-right-in,
+#jm-content .jm-content-in {
+    margin-left: 17px;
+}
+
+.nodjmenu#jm-midpage-in #jm-main {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+#jm-main-in {
+    margin-left: -17px;
+    padding: 17px 17px 0 17px;
+}
+
+#jm-maincontent {
+    padding: 0 0 17px;
+}
+
+#jm-left,
+#jm-right {
+    float: left;
+}
+
+#jm-main.scheme_3 #jm-content-right,
+#jm-main.scheme_2 #jm-content-right,
+#jm-main.scheme_3 #jm-content,
+#jm-main.scheme_2 #jm-content {
+    float: left;
+}
+
+#jm-pathway-font-switcher {
+    margin-left: 17px;
+    padding: 0 0 17px;
+}
+
+#jm-pathway {
+    float: left;
+    width: 85%;
+}
+
+#jm-pathway-font-switcher.nofontsw #jm-pathway {
+    width: 100%;
+}
+
+#jm-font-switcher {
+    float: right;
+    width: 15%;
+    text-align: right;
+}
+
+/** bottompage **/
+
+#jm-bottompage-in {
+    margin: 0 auto;
+}
+
+#jm-bottom1,
+#jm-bottom2 {
+    padding: 0 17px 0 0;
+}
+
+#jm-footer-in {
+    padding: 0 20px;
+    margin: 0 auto;
+    color: #FFFFFF;
+}
+
+#jm-bottom-menu {
+  margin-bottom: 17px;
+}
+
+#jm-top-bar a:link,
+#jm-top-bar a:visited,
+#jm-footer-in a:link,
+#jm-footer-in a:visited {
+    color: #FFFFFF;
+}
+
+#jm-copyrights {
+    float: left;
+}
+
+#jm-poweredby-stylearea {
+    float: right;
+}
+
+#jm-stylearea {
+    padding-top: 10px;
+    text-align: right;
+}
+
+#jm-back-top {
+    position: fixed;
+    bottom: 50px;
+    right: 0;
+    margin-right: 50px;
+    z-index: 1000
+}
+
+/** ismobile **/
+  
+.ismobile #jm-content-right {
+    width: 100% !important;
+}
+
+.ismobile #jm-maincontent,
+.ismobile #jm-content-bottom1 {
+  margin-left: 17px;
+}
+
+.ismobile #jm-content-bottom2 {
+  margin: 0;
+}
+
+.ismobile #jm-left, .ismobile #jm-right {
+  float: none;
+  width: 100% !important;
+}
+
+/** clearing **/
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    min-width: 0;
+    display: inline-block; /* \*/
+    display: block;
+}
+
+/* trigger hasLayout for IE7. Hide from IE Mac */
+* html .clearfix {
+    height: 1%;
+}
+
+/* Hide from IE Mac */
+
+.clr, .clear {
+    clear: both;
+}
+
+/* end clearing */
+/*
+     FILE ARCHIVED ON 03:23:01 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:30 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 224.068 (3)
+  esindex: 0.007
+  captures_list: 238.242
+  CDXLines.iter: 9.881 (3)
+  PetaboxLoader3.datanode: 341.042 (5)
+  exclusion.robots: 0.205
+  exclusion.robots.policy: 0.189
+  RedisCDXSource: 1.636
+  PetaboxLoader3.resolve: 60.945 (2)
+  load_resource: 382.11
+*/

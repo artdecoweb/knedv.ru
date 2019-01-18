@@ -1,0 +1,158 @@
+/**
+** This file assume the good working conditions
+** No styling (color, background,...) should be made here, only positionning and management
+**/
+
+
+div.maximenuckh ul.maximenuck {
+    clear:both;
+    position : relative;
+    z-index:999;
+}
+
+
+div.maximenuckh ul.maximenuck > ul {
+    clear:both;
+    padding : 0;
+    margin : 0;
+}
+
+div.maximenuckh ul.maximenuck .moduletable {
+
+}
+
+div.maximenuckh ul.maximenuck li.maximenuck {
+    /*float:left;*/
+    display: inline-block !important;
+    float: none !important;
+    position:relative;
+    text-align : left;
+    padding : 0;
+    margin : 0;
+}
+
+div.maximenuckh ul.maximenuck li.maximenuck img {
+
+}
+
+div.maximenuckh ul.maximenuck li.maximenuck a,
+div.maximenuckh ul.maximenuck li.maximenuck span.separator {
+    display:block;
+    float : none !important;
+    float : left;
+    position:relative;
+}
+
+div.maximenuckh ul.maximenuck2 li.maximenuck a,
+div.maximenuckh ul.maximenuck2 li.maximenuck span.separator {
+    float : none !important;
+}
+
+div.maximenuckh ul.maximenuck li ul.maximenuck2 {
+    display:block;
+    z-index:11000;
+    clear:left;
+    margin:0;
+    padding:0;
+    text-align : left;
+    position : static;
+}
+
+div.maximenuckh ul.maximenuck li ul li.maximenuck {
+    text-align : left;
+    position : relative;
+    z-index : 11001;
+    padding:0;
+    display: block !important;
+}
+
+div.maximenuckh ul.maximenuck li li.maximenuck a {
+    display: block;
+    padding : 0;
+    margin : 0;
+}
+
+div.maximenuckh div.maximenuck2 {
+    float : left;
+    margin : 0;
+    padding : 0;
+    /*width : 180px;*/ /* A TESTER */
+}
+
+div.maximenuckh div.clr {
+    clear : both;
+    visibility : hidden;
+}
+
+/* child items */
+div.maximenuckh ul.maximenuck li div.floatck {
+    position : absolute;
+    left: -999em; /* a supprimer pour effet slide */
+    padding : 0;
+    margin : 0;
+    background : url(/web/20180309075806im_/http://knedv.ru/modules/mod_maximenuck/themes/css3megamenu/images/transparent.gif); /* important for hover to work good under IE7 */
+}
+
+div.maximenuckh div.floatck ul, div.maximenuckh div.floatck ul li {
+    position : static;
+    /*height : 100%;*/
+}
+
+div.maximenuckh ul.maximenuck li.maximenuck div.floatck.fixRight  {
+right:0;
+}
+
+div.maximenuckh ul.maximenuck li.maximenuck div.floatck div.floatck.fixRight  {
+right:0;
+}
+
+
+/**
+** fancy parameters
+**/
+div.maximenuckh li.maxiFancybackground {
+    z-index: 8;
+    position: absolute;
+    top : 0;
+}
+
+
+
+/**
+** Show sub menu if mootools is off - horizontal style
+**/
+div.maximenuckh ul.maximenuck li.maximenuck:hover div.floatck div.floatck, div.maximenuckh ul.maximenuck li.maximenuck:hover div.floatck:hover div.floatck div.floatck, div.maximenuckh ul.maximenuck li.maximenuck:hover div.floatck:hover div.floatck:hover div.floatck div.floatck,
+div.maximenuckh ul.maximenuck li.sfhover div.floatck div.floatck, div.maximenuckh ul.maximenuck li.sfhover div.floatck.sfhover div.floatck div.floatck, div.maximenuckh ul.maximenuck li.sfhover div.floatck.sfhover div.floatck.sfhover div.floatck div.floatck {
+left: -999em;
+}
+
+div.maximenuckh ul.maximenuck li.maximenuck:hover > div.floatck, div.maximenuckh ul.maximenuck li.maximenuck:hover > div.floatck li.maximenuck:hover > div.floatck, div.maximenuckh ul.maximenuck li.maximenuck:hover>  div.floatck li.maximenuck:hover > div.floatck li.maximenuck:hover > div.floatck, div.maximenuckh ul.maximenuck li.maximenuck:hover > div.floatck li.maximenuck:hover > div.floatck li.maximenuck:hover > div.floatck li.maximenuck:hover > div.floatck,
+div.maximenuckh ul.maximenuck li.sfhover > div.floatck, div.maximenuckh ul.maximenuck li.sfhover > div.floatck li.sfhover > div.floatck, div.maximenuckh ul.maximenuck li.sfhover > div.floatck li.sfhover > div.floatck li.sfhover > div.floatck, div.maximenuckh ul.maximenuck li.sfhover > div.floatck li.sfhover > div.floatck li.sfhover > div.floatck li.sfhover > div.floatck {
+left: auto;
+}
+
+div.maximenuckh div.maximenuck_mod ul {
+left : auto;
+}
+
+/*
+     FILE ARCHIVED ON 07:58:06 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:29 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 67.129 (3)
+  esindex: 0.019
+  captures_list: 84.985
+  CDXLines.iter: 12.083 (3)
+  PetaboxLoader3.datanode: 160.158 (5)
+  exclusion.robots: 0.172
+  exclusion.robots.policy: 0.149
+  RedisCDXSource: 2.933
+  PetaboxLoader3.resolve: 55.047 (2)
+  load_resource: 168.741
+*/

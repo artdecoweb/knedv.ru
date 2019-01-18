@@ -1,0 +1,862 @@
+/*--------------------------------------------------------------
+# Copyright (C) joomla-monster.com
+# License: http://www.joomla-monster.com/license.html Joomla-Monster Proprietary Use License
+# Website: http://www.joomla-monster.com
+# Support: info@joomla-monster.com
+---------------------------------------------------------------*/
+
+/*********************** #767676 ***********************/
+
+body {
+    color: #000000;
+}
+
+/** djmenu **/
+
+.dj-main li a {
+    color: #fff;
+}
+
+.dj-main li:hover ul.dj-submenu, .dj-main li.hover ul.dj-submenu, .dj-main li ul.dj-submenu, .dj-main li ul {
+    background: url('/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/bg-djmenu.png');
+    background: #ff0000;
+    background: rgba(242, 101, 34, 0.9);
+    border-color: #ff0000;
+}
+
+.dj-main li:hover ul.dj-submenu:after,
+.dj-main li.hover ul.dj-submenu:after {
+    background-image: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/dj-main-li-active.png);
+}
+
+.dj-main li.active a.dj-up_a span {
+    border-color: #ff0000
+}
+
+.dj-main li a.dj-up_a {
+    color: #ff0000;
+    background-image: url('/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/br-djmenu.png');
+}
+
+.dj-main li.active a.dj-up_a span {
+    background-image: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/dj-main-li-active.png);
+}
+
+.dj-main li ul.dj-submenu li a {
+    border-color: #ff0000 !important;
+}
+
+.dj-main li.hover a.dj-up_a,
+.dj-main li:hover a.dj-up_a {
+    color: #ff0000;
+}
+
+.dj-main li.hover ul.dj-submenu li a:hover,
+.dj-main li:hover ul.dj-submenu li a:hover,
+.dj-main li ul.dj-submenu li a.active,
+.dj-main li ul.dj-submenu li li a.active,
+.dj-main li ul.dj-submenu li li li a.active {
+    color: #ff0000;
+}
+
+.dj-main li.hover ul.dj-submenu li a.dj-more-active,
+.dj-main li:hover ul.dj-submenu li a.dj-more-active {
+    color: #ff0000;
+}
+
+.dj-main li.hover li.hover a.dj-more,
+.dj-main li.hover li.hover li.hover a.dj-more,
+.dj-main li.hover li.hover li.hover li.hover a.dj-more,
+.dj-main li.hover li.hover li.hover li.hover li.hover a.dj-more,
+.dj-main li:hover li:hover a.dj-more,
+.dj-main li:hover li:hover li:hover a.dj-more,
+.dj-main li:hover li:hover li:hover li:hover a.dj-more,
+.dj-main li:hover li:hover li:hover li:hover li:hover a.dj-more {
+    color: #ff0000;
+}
+
+.dj-main li.hover li.hover ul,
+.dj-main li.hover li.hover li.hover ul,
+.dj-main li.hover li.hover li.hover li.hover ul,
+.dj-main li.hover li.hover li.hover li.hover li.hover ul,
+.dj-main li.hover li.hover li.hover li.hover li.hover li.hover ul,
+.dj-main li:hover li:hover ul,
+.dj-main li:hover li:hover li:hover ul,
+.dj-main li:hover li:hover li:hover li:hover ul,
+.dj-main li:hover li:hover li:hover li:hover li:hover ul,
+.dj-main li:hover li:hover li:hover li:hover li:hover li:hover ul {
+    border-top-color: #ff854c;
+}
+
+/** layout **/
+#jm-midpage-space {
+    background: #edeee8;
+}
+
+#jm-main {
+    background: url('/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/bg-main.png') repeat-x;
+}
+
+/** menus **/
+  
+.jm-module ul.menu li a:link, 
+.jm-module ul.menu li a:visited {
+  color: #000000;
+}
+
+.jm-module ul.menu li.active > a:link,
+.jm-module ul.menu li.active > a:visited,
+.jm-module ul.menu li a:hover {
+    color: #ff0000;
+}
+
+.jm-module.border-ms ul.menu > li.active > a:link,
+.jm-module.border-ms ul.menu > li.active > a:visited,
+.jm-module.border-ms ul.menu > li > a:hover {
+    background: #767676;
+    color: #fff;
+}
+
+.jm-module.white-ms,
+.jm-module.white-ms ul.menu li a:link, 
+.jm-module.white-ms ul.menu li a:visited {
+  color: #767676;
+}
+
+.jm-module.white-ms ul.menu li.active > a:link,
+.jm-module.white-ms ul.menu li.active > a:visited,
+.jm-module.white-ms ul.menu li a:hover {
+    color: #ff0000;
+}
+
+.jm-module.white-ms ul.menu > li.active > a:link,
+.jm-module.white-ms ul.menu > li.active > a:visited,
+.jm-module.white-ms ul.menu > li > a:hover {
+    background: #ff0000;
+    color: #fff;
+}
+
+/** modules **/
+
+.jm-module .jm-title-wrap,
+.jm-module.border-ms .jm-module-in {
+    border-color: #767676;
+}
+
+.jm-module .jm-title-wrap:after{
+    background-image: url('/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/ar-module.png');
+}
+
+.jm-module.white-ms div.jm-title-wrap {
+    background: #f0f2f2; /* Old browsers */
+    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+    background: -moz-linear-gradient(top, #ffffff 0%, #f0f2f2 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f0f2f2)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ffffff 0%, #f0f2f2 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ffffff 0%, #f0f2f2 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ffffff 0%, #f0f2f2 100%); /* IE10+ */
+    background: linear-gradient(to bottom, #ffffff 0%, #f0f2f2 100%); /* W3C */
+}
+
+.jm-module.white-ms .jm-title-wrap:after {
+    background-image: url('/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/ar-module-default.png');
+}
+
+/** template **/
+
+div.pagination ul li span{
+    background: #858585;
+    color: #767676;
+}
+
+div.pagination ul li a:link,
+div.pagination ul li a:visited{
+    color: #767676;
+}
+
+div.pagination ul li span.pagenav{
+    color: #fff;
+}
+
+div.pagination ul li.pagination-start span,
+div.pagination ul li.pagination-prev span,
+div.pagination ul li.pagination-next span,
+div.pagination ul li.pagination-end span{
+    color: #767676;
+}
+
+ul.pagenav li a:link,
+ul.pagenav li a:visited,
+div.pagination li:first-child,
+div.pagination li{
+    border-color: #767676;
+}
+
+ul.pagenav li a:hover,
+div.pagination ul li a:hover {
+    background: #858585;
+    color: #fff;
+}
+
+table.category th {
+    color: #fff;
+    background: #858585;
+}
+
+table.category td{
+    border-color: #9AA6A9;
+}
+
+table.category th a:link,
+table.category th a:visited{
+    color: #fff;
+}
+
+.article-info{
+    color: #ff0000;
+}
+
+div.blog-featured h2,
+div.blog-featured h2 a:link,
+div.blog-featured h2 a:visited,
+div.blog h2,
+div.blog h2 a:link,
+div.blog h2 a:visited,
+div-item-page h2,
+div.item-page h2 a:link,
+div.item-page h2 a:visited,
+ul#archive-items li.row0 h2,
+ul#archive-items li.row0 h2 a:link,
+ul#archive-items li.row0 h2 a:visited {
+    color: #767676;
+}
+
+.row-separator,
+.items-leading .item-separator {
+    background: #cacaca;
+}
+
+input.button, button.validate, button {
+    background: #858585;
+}
+
+input.button:hover, button.validate:hover, button:hover {
+    background: #8f8f8f;
+}
+
+input.button:active, button.validate:active, button:active {
+    background: #858585;
+}
+
+p.readmore a:link,
+p.readmore a:visited,
+a.readmore:link,
+a.readmore:visited,
+a.readon:link,
+a.readon:visited,
+.djc_readon a:link,
+.djc_readon a:visited,
+.see_details_box a.see_details:link,
+.see_details_box a.see_details:visited,
+#dj-classifieds .djcf_items_blog  .see_details_box a.see_details:link,
+#dj-classifieds .djcf_items_blog  .see_details_box a.see_details:visited,
+.djcf_menu .newad_link_bottom a:link,
+.djcf_menu .newad_link_bottom a:visited,
+.dj_cf_search a.button:link,
+.dj_cf_search a.button:visited,
+.classifieds_buttons a.button:link,
+.classifieds_buttons a.button:visited{
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+p.readmore a:hover,
+a.readmore:hover,
+a.readon:hover,
+.djc_readon a:hover,
+#dj-classifieds .djcf_items_blog .see_details_box a.see_details:hover,
+.djcf_menu .newad_link_bottom a:hover,
+.dj_cf_search a.button:hover,
+.classifieds_buttons a.button:hover{
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+p.readmore a:active,
+a.readmore:active,
+a.readon:active,
+.djc_readon a:active,
+#dj-classifieds .djcf_items_blog .see_details_box a.see_details:active,
+.djcf_menu .newad_link_bottom a:active,
+.dj_cf_search a.button:active,
+.classifieds_buttons a.button:active {
+    background-color: #ff0000;
+    border-color: #ff0000;
+}
+
+.pane-sliders div.panel h3.title {
+    background: #767676;
+}
+
+.pane-sliders div.panel h3.title.pane-toggler-down,
+.pane-sliders div.panel h3.title.pane-toggler-down:hover,
+.pane-sliders div.panel h3.title:hover {
+    background: #535353;
+}
+
+div#article-index {
+    border-color: #767676
+}
+
+div.pagenavcounter {
+    background: #767676;
+    border-color: #767676;
+    color: #fff;
+}
+
+dl.tabs dt.tabs.closed h3 a:hover {
+    color: #ff0000;
+}
+
+dl.tabs dt.open {
+    border-bottom: 1px solid #edeee8
+}
+
+dl.tabs dt.tabs,
+dl.tabs dt.tabs.closed,
+dl.tabs dt.tabs.closed:hover {
+    border-top-color: #767676;
+    border-right-color: #767676;
+    border-left-color: #767676;
+}
+
+dd.tabs {
+    border-color: #767676
+}
+
+dl.tabs dt.tabs.open h3 a:link,
+dl.tabs dt.tabs.open h3 a:visited {
+    color: #767676;
+}
+
+/** reset **/
+
+fieldset legend{
+    color: #898a84;
+}
+
+a:link, a:visited {
+    color: #ff0000;
+}
+
+/** DJ-IMAGESLIDER **/
+
+.slide-desc-text .slide-title,
+.slide-desc-text .slide-title a{
+    color: #535353;
+}
+
+.djslider a.readmore:link,
+.djslider a.readmore:visited,
+.jm-module.white-ms a.readmore:link,
+.jm-module.white-ms a.readmore:visited{
+    color: #ff0000;
+}
+
+.djslider .navigation-container-custom span.load-button {
+  background: #767676;
+}
+
+.djslider .navigation-container-custom span.load-button-active {
+  background: #ff0000;
+}
+
+/** DJ-CLASSIFIEDS**/
+
+#dj-classifieds .djcf_items_blog .item_box_in2 {
+    border-color: #969696;
+    color: #767676;
+}
+
+#dj-classifieds .djcf_items_blog .item_box_in2 a:link,
+#dj-classifieds .djcf_items_blog .item_box_in2 a:visited{
+  color: #767676;
+}
+
+#dj-classifieds .djcf_items_blog .promotion.p_bg .item_box_in2,
+#dj-classifieds .djcf_items_blog .promotion.p_bg .item_box_in2 h2 a:link,
+#dj-classifieds .djcf_items_blog .promotion.p_bg .item_box_in2 h2 a:visited{
+  color: #767676;
+}
+
+#dj-classifieds .djcf_items_blog .item_box_in2 h2 a:link,
+#dj-classifieds .djcf_items_blog .item_box_in2 h2 a:visited,
+#dj-classifieds .dj-category h2 a:link,
+#dj-classifieds .dj-category h2 a:visited {
+  color: #767676;
+}
+
+#dj-classifieds .dj-category .cat_row_title,
+#dj-classifieds .dj-item .title_top h2,
+#dj-classifieds .dj-item .general_det span.row_label,
+#dj-classifieds .dj-item .description h2,
+#dj-classifieds .dj-item .custom_det h2,
+#dj-classifieds .dj-item .localization_det h2,
+#dj-classifieds .dj-item .additional h2,
+#dj-classifieds table.dj-items tr.promotion.p_special td,
+#dj-classifieds .dj-additem .title_top,
+#dj-classifieds .dj-additem .djform_row .label span,
+#dj-classifieds .dj-additem .djform_row.extra_fields label,
+#dj-classifieds .dj-cattree-box .title_top,
+#dj-classifieds .dj-item .localization_det .map_info,
+#dj-classifieds #ask_form label,
+#dj-classifieds .dj-item .general_det .price_wrap,
+#dj-classifieds table.paymentdetails td.td_title h2,
+#dj-classifieds .title_top h1,
+.djcf .tip-text .row_title,
+.djcf .tip-title,
+.djcf .tip-text,
+.djcf .tip-text .title,
+.mod_djclassifieds_items .date_cat,
+.mod_djclassifieds_items .date_cat span.price{
+    color:#767676;
+}
+
+#dj-classifieds .dj-additem .djform_row.extra_fields label{
+    color: #767676;
+}
+
+.jm-module.white-ms .mod_djclassifieds_items .date_cat,
+.jm-module.white-ms .mod_djclassifieds_items .date_cat span.price{
+    color: #767676
+}
+
+#dj-classifieds .dj-item .general_det .price_wrap,
+#dj-classifieds table.paymentdetails td.td_pdetails div.pd_row_total{
+    background: #fefff7;
+    border-color: #fefff7
+}
+
+#dj-classifieds .dj-additem .title_top,
+#dj-classifieds .dj-additem .djform_row,
+#dj-classifieds .dj-cattree-box .title_top,
+#dj-classifieds .dj-item .general_det span.row_label,
+#dj-classifieds .dj-item .description h2,
+#dj-classifieds .dj-item .custom_det h2,
+#dj-classifieds .dj-item .localization_det h2,
+#dj-classifieds .dj-item .additional h2,
+#dj-classifieds .dj-item .title_top,
+#dj-classifieds .djcf_items_blog .title,
+#dj-classifieds .djcf_items_blog .promotion.p_bg .title,
+#dj-classifieds .djcf_items_blog .item_box_right span.desc_info,
+#dj-classifieds .djcf_items_blog .item_img img,
+#dj-classifieds .djcf_items_blog .p_special .blog_det .item_box_bottom .item_desc,
+#dj-classifieds .djcf_items_blog .p_special .blog_det .price,
+#dj-classifieds .djcf_items_blog .p_special .blog_det .region,
+#dj-classifieds .djcf_items_blog .blog_det .item_box_bottom .item_desc,
+#dj-classifieds .djcf_items_blog .blog_det .region,
+#dj-classifieds .djcf_items_blog .blog_det .price,
+#dj-classifieds .promotion.p_bg .blog_det .item_box_bottom .item_desc,
+#dj-classifieds .promotion.p_bg .blog_det .price,
+#dj-classifieds .promotion.p_bg .blog_det .region,
+#dj-classifieds .dj-category .cat_row_title,
+#dj-classifieds .dj-category .title img,
+#dj-classifieds table.paymentdetails td.td_pdetails div.pd_row,
+#dj-classifieds table.paymentdetails td.td_title h2,
+#dj-classifieds table.paymentdetails td.table_payment table td.td2,
+#dj-classifieds table.paymentdetails .payment_td,
+#dj-classifieds table.dj-items tr td:last-child,
+#dj-classifieds table.dj-items tr.promotion.p_bg td,
+#dj-classifieds table.dj-items tr td,
+#dj-classifieds table.dj-items tr td.first,
+#dj-classifieds table.dj-items tr.promotion.p_bg td.first,
+#dj-classifieds table.dj-items tr td.last,
+#dj-classifieds table.dj-items tr.promotion.p_bg td.last,
+#dj-classifieds .title_top h1,
+#dj-classifieds table.dj-items .icon img,
+.mod_djclassifieds_items .title img,
+.mod_djclassifieds_items .item,
+.djcf .tip-text .row_title,
+.tip-text .row_title, .tip-text .title{
+    border-color: #767676;
+}
+
+#dj-classifieds .djcf_items_blog .promotion.p_border .item_box_in2,
+#dj-classifieds table.dj-items tr.promotion.p_border td:last-child,
+#dj-classifieds table.dj-items tr.promotion.p_border td,
+#dj-classifieds table.dj-items tr.promotion.p_border td.first,
+#dj-classifieds table.dj-items tr.promotion.p_border td.last {
+  border-color: #20B1D5;
+}
+
+#dj-classifieds .dj-additem .title_top:after,
+#dj-classifieds .dj-cattree-box .title_top:after,
+#dj-classifieds .dj-item .title_top:after,
+#dj-classifieds .dj-category .cat_row_title:after,
+#dj-classifieds table.paymentdetails td.td_title h2:after,
+#dj-classifieds .title_top h1:after{
+    background-image: url('/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/ar-module.png');
+}
+
+#dj-classifieds .dj-item .general_det .price_wrap span.row_label {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/badge_small.png) no-repeat left top;
+}
+
+#dj-classifieds .dj-item .general_det .contact span.row_label {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/mail_small.png) left top no-repeat;
+}
+
+#dj-classifieds .dj-item .general_det .added span.row_label {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/calendar_small.png) left top no-repeat;
+}
+
+#dj-classifieds .dj-item .general_det .user_name span.row_label {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/people_small.png) left top no-repeat;
+}
+
+#dj-classifieds .dj-item .description h2 {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/info_small.png) left top no-repeat;
+}
+
+#dj-classifieds .dj-item .custom_det h2 {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/list_small.png) left top no-repeat;
+}
+
+#dj-classifieds .dj-item .localization_det h2 {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/flag_small.png) left top no-repeat;
+}
+
+#dj-classifieds .dj-item .additional h2 {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/list_small.png) left top no-repeat;
+}
+
+#dj-classifieds .dj-additem  .djform_field a.add_another_image {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/plus_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .item_desc .label_title,
+#dj-classifieds .djcf_items_blog .promotion.p_special .region .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/info_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .region .label_title,
+#dj-classifieds .djcf_items_blog .promotion.p_special .region .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/direction_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .price .label_title,
+#dj-classifieds .djcf_items_blog .promotion.p_special .price .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/badge_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .date_start .label_title,
+#dj-classifieds .djcf_items_blog .promotion.p_special .date_start .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/calendar_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .promotion.p_bg .item_desc .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/icons/info_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .promotion.p_special.p_bg .region .label_title,
+#dj-classifieds .djcf_items_blog .promotion.p_bg .region .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/icons/direction_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .promotion.p_special.p_bg .price .label_title,
+#dj-classifieds .djcf_items_blog .promotion.p_bg .price .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/icons/badge_small.png) left top no-repeat;
+}
+
+#dj-classifieds .djcf_items_blog .promotion.p_special.p_bg .date_start .label_title,
+#dj-classifieds .djcf_items_blog .promotion.p_bg .date_start .label_title {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/icons/calendar_small.png) left top no-repeat;
+}
+
+#dj-classifieds table.dj-items a.edit{
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/cl_edit.png) no-repeat left center
+}
+
+#dj-classifieds table.dj-items a.renew{
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/cl_renew.png) no-repeat left center
+}
+
+#dj-classifieds table.dj-items a.delete{
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/cl_delete.png) no-repeat left center
+}
+
+#dj-classifieds .useritems .dj-items td.date_exp span {
+    color: #559D01 !important;
+}
+
+#dj-classifieds table.dj-items .main_title th {
+    color: #fff;
+    background: #ff0000;
+}
+
+#dj-classifieds table.dj-items .main_title th.active {
+    background: #a1a1a1;
+}
+
+#dj-classifieds table.dj-items tr.promotion.p_bg td {
+  color: #767676;
+}
+
+#dj-classifieds table.dj-items tr.promotion.p_border .icon img{
+    background: #20B1D5;
+}
+
+#dj-classifieds table.dj-items td a:link,
+#dj-classifieds table.dj-items td a:visited{
+    color: #ff0000 !important;
+}
+
+#dj-classifieds table.dj-items td.name a:link,
+#dj-classifieds table.dj-items td.name a:visited {
+    color: #767676 !important;
+}
+
+.djcf .tip-title,
+.djcf .tip-text {
+    background: #EDEEE8
+}
+
+.mod_djclassifieds_items div.title a.title:link,
+.mod_djclassifieds_items div.title a.title:visited,
+.jm-module.white-ms .mod_djclassifieds_items div.title a.title:link,
+.jm-module.white-ms .mod_djclassifieds_items div.title a.title:visited {
+  color: #767676;
+}
+
+/** dj-catalog **/
+  
+.djf_mod .djf_text h3 a:link,
+.djf_mod .djf_text h3 a:visited,
+#djcatalog .djc_subcategories .djc_title h3 a:link,
+#djcatalog .djc_subcategories .djc_title h3 a:visited,
+#djcatalog .djc_items .djc_title h3 a:link, 
+#djcatalog .djc_items .djc_title h3 a:visited, 
+#djcatalog .djc_related_items .djc_title h3 a:link,
+#djcatalog .djc_related_items .djc_title h3 a:visited,
+#djcatalog .djc_items .featured_item .djc_title h3 a:link, 
+#djcatalog .djc_items .featured_item .djc_title h3 a:visited, 
+#djcatalog .djc_related_items .featured_item .djc_title h3 a:link,
+#djcatalog .djc_related_items .featured_item .djc_title h3 a:visited,
+.mod_djc_items h4 a:link,
+.mod_djc_items h4 a:visited,
+.jm-module.white-ms .mod_djc_items h4 a:link,
+.jm-module.white-ms .mod_djc_items h4 a:visited,
+#djcatalog .djc_items_table td.djc_td_title a:link,
+#djcatalog .djc_items_table td.djc_td_title a:visited,
+#djcatalog .djc_items_table .featured_item td.djc_td_title a:link,
+#djcatalog .djc_items_table .featured_item td.djc_td_title a:visited {
+  color: #767676;
+}
+
+#djcatalog .djc_subcategories h2.djc_title,
+#djcatalog h3.djc_related_title{
+    color:#767676;
+}
+
+#djcatalog .djc_item.featured_item .djc_item_in,
+#djcatalog.djc_list table.djc_items_table tr.featured_item{
+    color: #767676;
+}
+
+#djcatalog .djc_subcategories h2.djc_title:after,
+#djcatalog h3.djc_related_title:after{
+    background-image: url('/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/ar-module.png');
+}
+
+#djcatalog .djc_subcategories h2.djc_title,
+#djcatalog h3.djc_related_title,
+#djcatalog .djc_items .djc_item_bg,
+#djcatalog .djc_subcategories_grid .djc_image img,
+#djcatalog span.djc_litab,
+#djcatalog div.djc_ultab,
+#djcatalog .djc_filters .djc_filters_in,
+#djcatalog .djc_order .djc_order_in{
+    border-color: #767676;
+}
+
+#djcatalog span.djc_litab {
+  color: #aaaaaa;
+}
+
+#djcatalog span.djc_litab_active{
+    background: #EDEEE8;
+    border-bottom-color: #EDEEE8;
+    color: #767676;
+}
+
+#djcatalog span.djc_litab:hover {
+    background: #767676;
+    border: 1px solid #767676;
+}
+
+#djcatalog h3.djc_h3acc {
+    background: #767676;
+    color: #fff;
+}
+
+#djcatalog h3.djc_h3acc:hover,
+#djcatalog h3.djc_h3acc.djc_h3acc_active,
+#djcatalog h3.djc_h3acc.djc_h3acc_active:hover {
+    background: #535353;
+}
+
+.djf_mod .djf_pag span{
+    background: #767676;
+}
+
+.djf_mod .djf_pag span.active,
+.djf_mod .djf_pag span:hover{
+    background: #F26522;
+}
+
+/** typography **/
+
+.jm-code{
+    background: #FEFFF7;
+    border-color: #767676;
+}
+
+.jm-block span{
+    background: #FEFFF7;
+    color: #767676;
+}
+
+.jm-block.second span{
+    background: #767676;
+    color: #fff;
+}
+
+h3.jm-typo-title{
+    border-color: #767676;
+}
+
+.quote-left{
+    background-image: url("/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/quote-left.png");
+}
+
+.quote-right{
+    background-image: url("/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/style1/quote-right.png");
+}
+
+ul.jm-light li, ul.jm-light ul li{
+    color: #c6c7c1;
+}
+
+ul.jm-gray li, ul.jm-gray ul li{
+    color: #999999;
+}
+
+.border_img1{
+    border-color: #767676;
+}
+
+.border_img2{
+    background: #FEFFF7;
+}
+
+p.badge {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/badge.png) no-repeat left top;
+}
+
+p.calendar {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/calendar.png) no-repeat left top;
+}
+
+p.chat {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/chat.png) no-repeat left top;
+}
+
+p.check {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/check.png) no-repeat left top;
+}
+
+p.cloud {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/cloud.png) no-repeat left top;
+}
+
+p.direction {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/direction.png) no-repeat left top;
+}
+
+p.divide {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/divide.png) no-repeat left top;
+}
+
+p.error {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/error.png) no-repeat left top;
+}
+
+p.fire {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/fire.png) no-repeat left top;
+}
+
+p.flag {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/flag.png) no-repeat left top;
+}
+
+p.heart {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/heart.png) no-repeat left top;
+}
+
+p.home {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/home.png) no-repeat left top;
+}
+
+p.info {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/info.png) no-repeat left top;
+}
+
+p.list {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/list.png) no-repeat left top;
+}
+
+p.mail {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/mail.png) no-repeat left top;
+}
+
+p.people {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/people.png) no-repeat left top;
+}
+
+p.star {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/star.png) no-repeat left top;
+}
+
+p.stat {
+    background: url(/web/20180309071052im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons_dark/stat.png) no-repeat left top;
+}
+
+.view .mask h2 a:link,
+.view .mask h2 a:visited{
+    color: #767676;
+}
+
+.view .mask p{
+    color: #767676;
+}
+/*
+     FILE ARCHIVED ON 07:10:52 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:31 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 948.176 (3)
+  esindex: 0.006
+  captures_list: 964.563
+  CDXLines.iter: 12.21 (3)
+  PetaboxLoader3.datanode: 967.907 (5)
+  exclusion.robots: 0.121
+  exclusion.robots.policy: 0.112
+  RedisCDXSource: 1.477
+  PetaboxLoader3.resolve: 57.736 (2)
+  load_resource: 121.191
+*/

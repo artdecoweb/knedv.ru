@@ -1,0 +1,66 @@
+/*---------------------------------------------
+---	 Responsive design behavior         ---
+---         Maximenu CK                     ---
+----------------------------------------------*/
+
+@media screen and (max-width: 524px) {
+    div.maximenuckh {
+        height: auto !important;
+    }
+
+    div.maximenuckh ul {
+        height: auto !important;
+        padding-left: 0 !important;
+        /*padding-right: 0 !important;*/
+    }
+
+    div.maximenuckh li {
+        float :none !important;
+        width: 100% !important;
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    div.maximenuckh div.floatck {
+        width: 100% !important;
+    }
+
+    div.maximenuckh div.floatck div.maximenuck2 {
+        width: 100% !important;
+    }
+
+    div.maximenuckh div.floatck div.floatck {
+        width: 100% !important;
+        margin: 20px 0 0 0 !important;
+    }
+
+    div.maximenuckh li.maximenucklogo img {
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+    }
+}
+
+
+/*
+     FILE ARCHIVED ON 06:17:43 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:29 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 29.093 (3)
+  esindex: 0.009
+  captures_list: 51.887
+  CDXLines.iter: 9.842 (3)
+  PetaboxLoader3.datanode: 71.433 (5)
+  exclusion.robots: 0.209
+  exclusion.robots.policy: 0.195
+  RedisCDXSource: 9.771
+  PetaboxLoader3.resolve: 49.194 (2)
+  load_resource: 134.01
+*/

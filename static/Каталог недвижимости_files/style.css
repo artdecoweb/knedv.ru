@@ -1,0 +1,41 @@
+/* General */
+
+a:active, a:focus { outline:0; }
+.gkHighlighterGK4 { overflow:hidden; position:relative; height:21px; line-height:21px; width: 100%; }
+/* Interface */
+
+.gkHighlighterInterface { float:left; width:auto; height:21px; margin:0 21px 0 0; padding: 0 7px; }
+.gkHighlighterInterface span.text { display:block; float:left; margin:0 6px 0 7px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+.gkHighlighterInterface div { float:left; width:auto; }
+.gkHighlighterInterface div a { display:block; float:left; height:13px; width:13px; margin: 4px 0 0 2px; background:transparent url('/web/20180309003623im_/http://www.knedv.ru/modules/mod_highlighter_gk4/interface/images/interface.png') no-repeat 0 0; cursor:pointer; }
+.gkHighlighterInterface div a.prev { }
+.gkHighlighterInterface div a.next { background-position: right 0; }
+.gkHighlighterInterface div a.prev:hover { background-position: 0 bottom; }
+.gkHighlighterInterface div a.next:hover { background-position: right bottom; }
+/* Items */
+
+.gkHighlighterWrapper { float:left; height:21px; position:relative; overflow: hidden; }
+.gkHighlighterWrapper .nowrap { width: 100000px; position: absolute; left: -99999em; }
+.gkHighlighterWrapper .gkHighlighterItem { position: absolute; top:0; width:100%; left:0; }
+
+/*
+     FILE ARCHIVED ON 00:36:23 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:29 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 47.945 (3)
+  esindex: 0.012
+  captures_list: 67.187
+  CDXLines.iter: 11.419 (3)
+  PetaboxLoader3.datanode: 133.753 (5)
+  exclusion.robots: 0.282
+  exclusion.robots.policy: 0.26
+  RedisCDXSource: 0.951
+  PetaboxLoader3.resolve: 179.564 (2)
+  load_resource: 341.589
+*/

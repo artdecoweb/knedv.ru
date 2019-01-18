@@ -1,0 +1,61 @@
+/*---------------------------------------------
+---	 	compatibility layer 				---
+---		for native template 				---
+---		Beez20 and Beez5					---
+----------------------------------------------*/
+
+
+#header {
+    overflow:visible !important;
+	z-index:1000 !important;
+}
+
+#header ul.menu.maximenuck li a:link,
+#header ul.menu.maximenuck li a:visited {
+	display: block !important;
+}
+
+#header ul.menu.maximenuck li ul li ul li ul {
+	border:none !important;
+	padding-top:0px !important;
+	padding-bottom:0px !important;
+	background:transparent !important;
+}
+
+#header ul.menu.maximenuck li ul li ul {
+	border:0 !important;
+	background:transparent !important;
+	padding-bottom:0;
+}
+
+#header ul.menu.maximenuck li.maximenuck.active a:link,
+#header ul.menu.maximenuck li.maximenuck.active a:visited {
+	border-right:none !important;
+	background:transparent;
+}
+
+#header ul.menu.maximenuck {
+	margin-top:0px !important;
+}
+
+/*
+     FILE ARCHIVED ON 02:59:57 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:30 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 176.741 (3)
+  esindex: 0.01
+  captures_list: 191.603
+  CDXLines.iter: 9.975 (3)
+  PetaboxLoader3.datanode: 198.837 (5)
+  exclusion.robots: 0.25
+  exclusion.robots.policy: 0.236
+  RedisCDXSource: 1.588
+  PetaboxLoader3.resolve: 102.082 (3)
+  load_resource: 157.008
+*/

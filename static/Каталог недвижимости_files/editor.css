@@ -1,0 +1,726 @@
+/*--------------------------------------------------------------
+# Copyright (C) joomla-monster.com
+# License: http://www.joomla-monster.com/license.html Joomla-Monster Proprietary Use License
+# Website: http://www.joomla-monster.com
+# Support: info@joomla-monster.com
+---------------------------------------------------------------*/
+
+/*********************** FOR CUSTOM EDITOR SELECTOR ************************/
+
+/** typography article **/
+
+h3.jm-typo-title {
+    border-bottom: 1px dotted #dddddd;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.jm-code {
+    border-left: 5px solid #dddddd;
+    padding: 10px;
+    background: #f5f5f5;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/** image borders **/
+
+.border_img1 {
+    background: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 3px;
+}
+
+.border_img2 {
+    padding: 3px;
+    background: #f5f5f5;
+}
+
+.border_img3 {
+    border: 1px solid #dddddd;
+}
+
+/** social icons **/
+
+.jm-icons {
+    margin: 0;
+    text-align: center;
+}
+
+.jm-icons a {
+    display: inline-block;
+}
+
+.jm-icons a:hover {
+    text-decoration: none;
+}
+
+.jm-icons span {
+    display: block;
+    height: 16px;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+.jm-icons .jm-facebook {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/facebook.png);
+    width: 8px;
+}
+
+.jm-icons .jm-facebook:hover {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/facebook_hover.png);
+}
+
+.jm-icons .jm-twitter {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/twitter.png);
+    width: 15px;
+}
+
+.jm-icons .jm-twitter:hover {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/twitter_hover.png);
+}
+
+.jm-icons .jm-pinterest {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/pinterest.png);
+    width: 16px;
+}
+
+.jm-icons .jm-pinterest:hover {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/pinterest_hover.png);
+}
+
+.jm-icons .jm-google {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/google.png);
+    width: 15px;
+}
+
+.jm-icons .jm-google:hover {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/google_hover.png);
+}
+
+.jm-icons .jm-rss {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/rss.png);
+    width: 15px;
+}
+
+.jm-icons .jm-rss:hover {
+    background-image: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/rss_hover.png);
+}
+
+/** numered blocks **/
+
+.jm-block {
+    margin: 10px 0;
+    padding: 0 0 0 60px;
+    position: relative;
+    min-height: 40px;
+}
+
+.jm-block span {
+    background: #dddddd;
+    display: block;
+    position: absolute;
+    top: 3px;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.jm-block.second span {
+    background: #2e2e2e;
+}
+
+/** colored blocks **/
+
+p.blue {
+    border-left: 3px solid #BCE8F1;
+    padding: 0 0 0 10px;
+}
+
+p.green {
+    border-left: 3px solid #D6E9C6;
+    padding: 0 0 0 10px;
+}
+
+p.red {
+    border-left: 3px solid #EED3D7;
+    padding: 0 0 0 10px;
+}
+
+p.bluefill {
+    background: #D9EDF7;
+    border: 1px solid #BCE8F1;
+    display: block;
+    padding: 10px;
+    text-align: justify;
+    color: #3A87AD;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+p.greenfill {
+    background: #DFF0D8;
+    border: 1px solid #D6E9C6;
+    display: block;
+    padding: 10px;
+    text-align: justify;
+    color: #468847;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+p.redfill {
+    background: #F2DEDE;
+    border: 1px solid #EED3D7;
+    display: block;
+    padding: 10px;
+    text-align: justify;
+    color: #B94A48;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+/** quote blocks **/
+
+.quote-left {
+    display: block;
+    font-style: italic;
+    padding: 10px 10px 10px 50px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/quote-left.png) no-repeat left top;
+    text-align: left;
+}
+
+.quote-right {
+    display: block;
+    font-style: italic;
+    padding: 10px 50px 10px 10px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/quote-right.png) no-repeat right bottom;
+    text-align: right;
+}
+
+/** icon blocks **/
+
+p.badge {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/badge.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.calendar {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/calendar.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.chat {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/chat.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.check {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/check.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.cloud {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/cloud.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.direction {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/direction.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.divide {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/divide.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.error {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/error.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.fire {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/fire.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.flag {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/flag.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.heart {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/heart.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.home {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/home.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.info {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/info.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.list {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/list.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.mail {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/mail.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.people {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/people.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.star {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/star.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+p.stat {
+    padding-left: 60px;
+    background: url(/web/20180309022231im_/http://www.knedv.ru//templates/dj-real-estate02/images/icons/stat.png) no-repeat left top;
+    min-height: 40px;
+    margin: 5px 0 15px;
+}
+
+/** unordered lists **/
+
+ul.jm-gray li,
+ul.jm-gray ul li {
+}
+
+ul.jm-light li,
+ul.jm-light ul li {
+}
+
+/** ordered lists **/
+
+ol.jm-roman,
+ol.jm-roman ol {
+    list-style-type: upper-roman;
+}
+
+ol.jm-alpha,
+ol.jm-alpha ol {
+    list-style-type: lower-alpha;
+}
+
+/** image hover effects **/
+
+.dj-image-hover {
+    display: inline-block;
+    width: 100%;
+}
+
+.view {
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    max-width: 100%;
+}
+
+.view .mask,
+.view .content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+}
+
+.view img {
+    display: block;
+    position: relative;
+}
+
+.view h2 {
+    text-align: center;
+    position: relative;
+    padding: 5px 10px !important;
+    background: rgba(255, 255, 255, 0.7);
+    margin: 10px 0 0 0 !important;
+}
+
+.view h2 a:link,
+.view h2 a:visited {
+    color: #424242;
+}
+
+.view p {
+    position: relative;
+    padding: 10px;
+    text-align: center;
+}
+
+.view a.readmore:link,
+.view a.readmore:visited {
+    float: none;
+    display: inline-block;
+}
+
+/* first */
+
+.view-first img {
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+}
+
+.view-first .mask {
+    background-color: rgba(221, 221, 221, 0.9);
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    -webkit-transform: translate(460px, -100px) rotate(180deg);
+    -moz-transform: translate(460px, -100px) rotate(180deg);
+    -o-transform: translate(460px, -100px) rotate(180deg);
+    -ms-transform: translate(460px, -100px) rotate(180deg);
+    transform: translate(460px, -100px) rotate(180deg);
+    -webkit-transition: all 0.2s 0.4s ease-in-out;
+    -moz-transition: all 0.2s 0.4s ease-in-out;
+    -o-transition: all 0.2s 0.4s ease-in-out;
+    -ms-transition: all 0.2s 0.4s ease-in-out;
+    transition: all 0.2s 0.4s ease-in-out;
+}
+
+.view-first h2 {
+    -webkit-transform: translateY(-100px);
+    -moz-transform: translateY(-100px);
+    -o-transform: translateY(-100px);
+    -ms-transform: translateY(-100px);
+    transform: translateY(-100px);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-first p {
+    -webkit-transform: translateX(300px) rotate(90deg);
+    -moz-transform: translateX(300px) rotate(90deg);
+    -o-transform: translateX(300px) rotate(90deg);
+    -ms-transform: translateX(300px) rotate(90deg);
+    transform: translateX(300px) rotate(90deg);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-first a.info {
+    -webkit-transform: translateY(-200px);
+    -moz-transform: translateY(-200px);
+    -o-transform: translateY(-200px);
+    -ms-transform: translateY(-200px);
+    transform: translateY(-200px);
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+.view-first:hover .mask {
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity = 100);
+    opacity: 1;
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    transition-delay: 0s;
+    -webkit-transform: translate(0px, 0px);
+    -moz-transform: translate(0px, 0px);
+    -o-transform: translate(0px, 0px);
+    -ms-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+}
+
+.view-first:hover h2 {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition-delay: 0.5s;
+    -moz-transition-delay: 0.5s;
+    -o-transition-delay: 0.5s;
+    -ms-transition-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+.view-first:hover p {
+    -webkit-transform: translateX(0px) rotate(0deg);
+    -moz-transform: translateX(0px) rotate(0deg);
+    -o-transform: translateX(0px) rotate(0deg);
+    -ms-transform: translateX(0px) rotate(0deg);
+    transform: translateX(0px) rotate(0deg);
+    -webkit-transition-delay: 0.4s;
+    -moz-transition-delay: 0.4s;
+    -o-transition-delay: 0.4s;
+    -ms-transition-delay: 0.4s;
+    transition-delay: 0.4s;
+}
+
+.view-first:hover a.info {
+    -webkit-transform: translateY(0px);
+    -moz-transform: translateY(0px);
+    -o-transform: translateY(0px);
+    -ms-transform: translateY(0px);
+    transform: translateY(0px);
+    -webkit-transition-delay: 0.3s;
+    -moz-transition-delay: 0.3s;
+    -o-transition-delay: 0.3s;
+    -ms-transition-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+/* second */
+
+.view-second img {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.view-second .mask {
+    background-color: rgba(221, 221, 221, 0.7);
+    -webkit-transform: translateX(-300px);
+    -moz-transform: translateX(-300px);
+    -o-transform: translateX(-300px);
+    -ms-transform: translateX(-300px);
+    transform: translateX(-300px);
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity = 100);
+    opacity: 1;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.view-second h2 {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.view-second p {
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    -ms-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.view-second:hover .mask {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    -o-transform: translateX(0px);
+    -ms-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+.view-second:hover img {
+    -webkit-transform: translateX(300px);
+    -moz-transform: translateX(300px);
+    -o-transform: translateX(300px);
+    -ms-transform: translateX(300px);
+    transform: translateX(300px);
+}
+
+.view-second:hover p {
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity = 100);
+    opacity: 1;
+}
+
+/** third **/
+
+.view-third img {
+    -webkit-transform: scaleY(1);
+    -moz-transform: scaleY(1);
+    -o-transform: scaleY(1);
+    -ms-transform: scaleY(1);
+    transform: scaleY(1);
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+    transition: all 0.7s ease-in-out;
+}
+
+.view-third .mask {
+    background-color: rgba(221, 221, 221, 0.7);
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+}
+
+.view-third h2 {
+    background: rgba(255, 255, 255, 0.5);
+    margin: 20px 40px 0px 40px;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+}
+
+.view-third p {
+    color: #333;
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+.view-third a.info {
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -o-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+
+.view-third:hover img {
+    -webkit-transform: scale(10);
+    -moz-transform: scale(10);
+    -o-transform: scale(10);
+    -ms-transform: scale(10);
+    transform: scale(10);
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0;
+}
+
+.view-third:hover .mask {
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity = 100);
+    opacity: 1;
+}
+
+.view-third:hover h2, .view-third:hover p, .view-third:hover a.info {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    -ms-filter: "progid: DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity = 100);
+    opacity: 1;
+}
+/*
+     FILE ARCHIVED ON 02:22:31 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:33 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 3181.141 (3)
+  esindex: 0.007
+  captures_list: 3196.516
+  CDXLines.iter: 12.003 (3)
+  PetaboxLoader3.datanode: 3240.064 (5)
+  exclusion.robots: 0.18
+  exclusion.robots.policy: 0.167
+  RedisCDXSource: 0.422
+  PetaboxLoader3.resolve: 15.714
+  load_resource: 111.061
+*/

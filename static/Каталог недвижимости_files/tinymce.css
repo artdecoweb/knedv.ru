@@ -1,0 +1,60 @@
+/**
+ * @copyright	Copyright (C) 2005 - 2014 Open Source Matters, Inc. All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+/* Unpublished */
+.items-body.system-unpublished {
+	background: #e8edf1;
+	border-top: 4px solid #c4d3df;
+	border-bottom: 4px solid #c4d3df;
+}
+
+.items-body span.highlight {
+	background-color:#FFFFCC;
+	font-weight:bold;
+	padding:1px 4px;
+}
+
+.items-body.img-fulltext-float-right {
+	float: right;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+.items-body.img-fulltext-float-left {
+	float: left;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.items-body.element {	
+	display:none;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	
+}
+
+.items-body.img-fulltext-float-none {
+}
+
+/*
+     FILE ARCHIVED ON 03:28:25 Mar 09, 2018 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 11:57:29 Jan 18, 2019.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  LoadShardBlock: 86.308 (3)
+  esindex: 0.009
+  captures_list: 102.333
+  CDXLines.iter: 10.844 (3)
+  PetaboxLoader3.datanode: 69.356 (5)
+  exclusion.robots: 0.223
+  exclusion.robots.policy: 0.208
+  RedisCDXSource: 2.271
+  PetaboxLoader3.resolve: 175.735 (2)
+  load_resource: 285.238
+*/
