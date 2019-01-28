@@ -29,7 +29,7 @@
       "env": {
         "PORT": "5000",
       },
-      "program": "${workspaceFolder}/src/bin/index.js",
+      "program": "${workspaceFolder}/src/index.js",
       "console": "integratedTerminal",
       "skipFiles": [
         "<node_internals>/**/*.js"

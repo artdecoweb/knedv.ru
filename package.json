@@ -34,17 +34,20 @@
   },
   "homepage": "https://github.com/artdecoweb/knedv.ru#readme",
   "devDependencies": {
-    "alamode": "1.6.1",
-    "documentary": "1.20.1",
+    "alamode": "1.7.0",
+    "documentary": "1.21.1",
     "eslint-config-artdeco": "1.0.1",
-    "rqt": "3.0.3",
+    "rqt": "3.0.4",
     "zoroaster": "3.6.6"
   },
   "dependencies": {
     "@demimonde/dotenv": "1.0.0",
-    "@idio/core": "1.1.0",
+    "@idio/core": "1.2.0",
     "@idio/facebook": "1.1.0",
+    "@idio/frontend": "../../idiocc/frontend/",
     "@idio/router": "1.2.0",
-    "erte": "1.1.5"
+    "erte": "1.1.6",
+    "preact": "8.4.2",
+    "preact-render-to-string": "4.1.0"
   }
 }

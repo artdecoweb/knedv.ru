@@ -1,7 +1,8 @@
 /** @type {import('koa').Middleware} */
 const route = async (ctx) => {
-  ctx.body = 'hello world'
+  debugger
+  ctx.body = 'test'
 }
 export default route
 
-// export const aliases = ['/']
+export const aliases = ['/t']

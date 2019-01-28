@@ -1,0 +1,36 @@
+.Offer {
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+}
+.Offer span {
+  background: red;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+.TopMenu {
+  background: linear-gradient(red, #880000);
+  border-radius: 0.5rem;
+  color: white;
+  font-size: larger;
+  text-align: center;
+  border: 1px solid #721c24;
+  text-shadow: 1px 1px #3a060c;
+}
+.TopMenu {
+  cursor: pointer;
+}
+.TopMenuCol {
+  border-radius: 0.5rem;
+}
+.TopMenuCol:hover, .TopMenuCol.Active {
+  color: #3a060c;
+  text-shadow: 1px 1px white;
+  background: lightgrey;
+  /* border: 1px solid; */
+}
+#Content {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
