@@ -1,5 +1,4 @@
 import render from 'preact-render-to-string'
-import { TopMenuCol, Row } from './components/Bootstrap'
 
 const Html = ({ title, App }) => <html>
   <head lang="ru">
@@ -8,6 +7,7 @@ const Html = ({ title, App }) => <html>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous"/>
     <link rel="stylesheet" href="website/App.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet"/>
   </head>
   <body>
     <div className="container-fluid">
@@ -17,18 +17,7 @@ const Html = ({ title, App }) => <html>
         </div>
       </div>
     </div>
-    <div id="Content">
-      <div className="container-fluid TopMenu">
-        <Row className="d-flex justify-content-center">
-          <TopMenuCol>Каталог Недвижимости</TopMenuCol>
-          <TopMenuCol>О Компании</TopMenuCol>
-          <TopMenuCol>Справочная</TopMenuCol>
-          <TopMenuCol>Новости</TopMenuCol>
-          <TopMenuCol>Партнеры</TopMenuCol>
-          <TopMenuCol>Акции</TopMenuCol>
-          <TopMenuCol>Контакты</TopMenuCol>
-        </Row>
-      </div>
+    <div id="App">
       {App}
     </div>
     <script type="module" src="frontend"></script>

@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/artdecoweb/knedv.ru#readme",
   "devDependencies": {
-    "alamode": "1.7.0",
+    "alamode": "1.7.1",
     "documentary": "1.21.1",
     "eslint-config-artdeco": "1.0.1",
     "rqt": "3.0.4",

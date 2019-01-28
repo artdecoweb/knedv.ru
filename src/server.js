@@ -1,6 +1,7 @@
 import idio from '@idio/core'
 import initRoutes, { watchRoutes } from '@idio/router'
 import frontend from '@idio/frontend'
+import read from '@wrote/read'
 
 const PROD = process.env.NODE_ENV == 'production'
 const FRONT_END = process.env.FRONT_END || 'https://knedv.ru'
@@ -16,6 +17,13 @@ export default async ({
     static: { use: true, root: 'static', config: {
       maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
     } },
+    /** @type {import('koa').Middleware} */
+    async database(ctx, next) {
+      if (!ctx.path.startsWith('/database/')) return await next()
+      const r = await read(ctx.path.replace('/', ''))
+      ctx.type = 'application/javascript'
+      ctx.body = `export default ${r}`
+    },
     ...(!PROD ? { frontend: {
       use: true,
       middlewareConstructor: (_, conf) => frontend(conf),

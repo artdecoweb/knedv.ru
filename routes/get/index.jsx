@@ -3,7 +3,7 @@ import App from '../../frontend/App'
 
 /** @type {import('koa').Middleware} */
 const route = async (ctx) => {
-  const app = <App />
+  const app = <App activeMenu="index"/>
   ctx.body = Layout({
     title: 'Корпорация Недвижимости',
     App: app,

@@ -15,7 +15,7 @@
   color: white;
   font-size: larger;
   text-align: center;
-  border: 1px solid #721c24;
+  border: 1px solid hsl(354, 61%, 28%);
   text-shadow: 1px 1px #3a060c;
 }
 .TopMenu {
@@ -27,10 +27,46 @@
 .TopMenuCol:hover, .TopMenuCol.Active {
   color: #3a060c;
   text-shadow: 1px 1px white;
-  background: lightgrey;
+  background: #edeee8;
   /* border: 1px solid; */
 }
 #Content {
   margin-left: 2rem;
   margin-right: 2rem;
+}
+.SpecialBanner {
+  background: linear-gradient(red, #880000);
+  border-radius: 0.5rem;
+  color: white;
+  border: 1px solid #721c24
+}
+.SpecialBanner img {
+  display: block;
+  /* border: 2px solid white; */
+  border-radius: 5px;
+}
+.SpecialBanner h4 {
+  text-decoration: underline;
+}
+.LeftMenu {
+  background: #dce0dc;
+}
+.LeftMenu ul {
+  font-weight: bold;
+  padding-left: 1rem;
+}
+.LeftMenu li a {
+  color: #222529 !important;
+}
+.LeftMenu li:hover a {
+  color: #880000 !important;
+}
+.IndexItem h3 {
+  display: inline;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Noto Serif', serif;
+}
+h1 {
+  text-align: center;
 }

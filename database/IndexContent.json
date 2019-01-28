@@ -1,0 +1,74 @@
+[
+  {
+    "image": "apartments.jpeg",
+    "title": "Апартаменты"
+  },
+  {
+    "image": "moscow-new.jpg",
+    "title": "Москва Новостройки"
+  },
+  {
+    "image": "moscow-elite.jpg",
+    "title": "Москва элитная"
+  },
+  {
+    "image": "moscow-second.jpg",
+    "title": "Москва вторичное жильё"
+  },
+  {
+    "image": "moscow-new-out.jpg",
+    "title": "Москва и Новая Москва Загородная"
+  },
+  {
+    "image": "moscow-service.jpg",
+    "title": "Москва нежилая"
+  },
+  {
+    "image": "moscow-rooms.jpg",
+    "title": "Москва комнаты"
+  },
+  {
+    "image": "moscow-cars.jpg",
+    "title": "Москва машино-места"
+  },
+  {
+    "image": "mo-rent.JPG",
+    "title": "МО Аренда: комнат, квартир, таунхаусов, дуплексов,  коттеджей, особняков, ресторанов, складов и др."
+  },
+  {
+    "image": "mo-elite.jpg",
+    "title": "Московская область элитная"
+  },
+  {
+    "image": "mo-new.jpg",
+    "title": "Московская область новостройки"
+  },
+  {
+    "image": "mo-second.jpg",
+    "title": "Московская область Вторичное жилье"
+  },
+  {
+    "image": "mo-service.jpeg",
+    "title": "Московская область Нежилая"
+  },
+  {
+    "image": "mo-cottage.jpg",
+    "title": "Московская область Коттеджи"
+  },
+  {
+    "image": "mo-area.jpeg",
+    "title": "Московская область Участки"
+  },
+  {
+    "image": "moscow-rent.jpg",
+    "title": "Москва Аренда: комнат, квартир, таунхаусов, дуплексов,  коттеджей, особняков, ресторанов, складов и др."
+  },
+  {
+    "image": "outside.jpg",
+    "title": "Заграница"
+  },
+  {
+    "image": "black-sea.jpg",
+    "title": "Черноморское побережье"
+  }
+]
