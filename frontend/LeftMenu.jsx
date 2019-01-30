@@ -30,7 +30,10 @@ export const LeftMenu = () => {
     <em>28 Января 2019</em>
     <img className="img-fluid" src="website/keys.jpg" title="Где купить новую квартиру"/>
     <p>В этом блог-посте наш эксперт Надежда рассказывает, где лучше всего покупать новую квартиру с учетом текущих трендов на рынке жилья, и как Корпорация Недвижимости 21 век будет Вашим надежным сотрудником в этом деле.
-      <a className="mt-2 btn btn-dark" href="blog/latest">Читать...</a> <a className="btn btn-light mt-2" href="blog">Весь Блог</a>
     </p>
+
+    <a className="my-2 btn btn-dark" href="blog/latest">Читать...</a>
+    <a className="btn btn-light my-2" href="blog">Весь Блог</a>
+
   </Col>
 }

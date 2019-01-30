@@ -44,7 +44,7 @@
     "@demimonde/dotenv": "1.0.0",
     "@idio/core": "1.2.0",
     "@idio/facebook": "1.1.0",
-    "@idio/frontend": "../../idiocc/frontend/",
+    "@idio/frontend": "1.1.0",
     "@idio/router": "1.2.0",
     "erte": "1.1.6",
     "preact": "8.4.2",

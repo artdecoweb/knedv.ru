@@ -64,9 +64,52 @@
 .IndexItem h3 {
   display: inline;
 }
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6,.Corp {
   font-family: 'Noto Serif', serif;
 }
 h1 {
   text-align: center;
+}
+.TopLetters {
+  text-align-last: justify;
+  color: red;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: bold;
+}
+.IndexItem h3 {
+  text-decoration: underline;
+}
+.SearchBox {
+  border-radius: 5px;
+  border: 0px;
+  padding: 0.4rem;
+  background: #ffffffc9;
+  font-size: 1.2rem;
+}
+.SearchBox:focus {
+  outline-color: #e75642;
+}
+.SearchBox::placeholder {
+  font-style: italic;
+  color: rgb(203, 100, 100);
+}
+.TopBanner {
+  background-image:url('/website/stone3.jpg');
+  height: 250px;
+  background-size:cover;
+  background-position:right;
+}
+@media (max-width: 600px) {
+  .TopBanner {
+    background-position-x: -600px;
+  }
+}
+.Phone {
+  top:5px;
+  right:5px;
+  font-size:2rem;
+  font-weight:bold;
+  color: brown;
+  text-shadow: 2px 2px #f7cb89;
 }

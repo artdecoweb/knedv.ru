@@ -92,21 +92,12 @@
   dependencies:
     "@demimonde/graph" "1.0.2"
 
-"@idio/frontend@../../idiocc/frontend/":
-  version "1.0.0"
+"@idio/frontend@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@idio/frontend/-/frontend-1.1.0.tgz#d1850fc6defa1398816b7f9a63fc8629b68882ce"
+  integrity sha512-KGvNWEcDYAxd/0TsIj1XfmAdDz2QkMT7u2+xHxTzA1FfKsoMxQnaPrHL99UekSRRp8sY8pBhFld8SpUNSKNqGQ==
   dependencies:
     "@a-la/jsx" "1.2.3"
-    "@wrote/exists" "1.0.1"
-    "@wrote/read" "1.0.2"
-    catchment "3.2.2"
-    restream "3.5.0"
-
-"@idio/frontend@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@idio/frontend/-/frontend-1.0.0.tgz#2d94e48defae01eaaed76380ccd5f252611efbfe"
-  integrity sha512-7WG9I2cAWPYLAP0Sur+GAXwo5hEnoU2e6eQ+OoZqS24XqoHdMbR9bikqJF64XsFwcumCKQ2AjZvtlytvwl6dXQ==
-  dependencies:
-    "@a-la/jsx" "1.2.2"
     "@wrote/exists" "1.0.1"
     "@wrote/read" "1.0.2"
     catchment "3.2.2"
