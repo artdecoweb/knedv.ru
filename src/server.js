@@ -1,6 +1,7 @@
 import idio from '@idio/core'
 import initRoutes, { watchRoutes } from '@idio/router'
 import frontend from '@idio/frontend'
+import mailru from '@idio/mailru'
 import read from '@wrote/read'
 
 const PROD = process.env.NODE_ENV == 'production'
@@ -35,6 +36,26 @@ export default async ({
     middleware,
   })
   if (watch) watchRoutes(w)
+  mailru(router, {
+    client_id: process.env.APP_ID,
+    client_secret: process.env.SECRET_KEY,
+    session: middleware.session,
+    async finish(ctx, token, user) {
+      const [{ email }] = user
+      if (!process.env.ADMIN_EMAIL) {
+        ctx.status = 500
+        ctx.body = 'Server is not configured: ADMIN_EMAIL is missing.'
+        return
+      }
+      if (email != process.env.ADMIN_EMAIL) {
+        ctx.status = 500
+        ctx.body = 'Неверный e-mail. Убедитесь, что Вы входите с почтового ящика компании, а не собственного.'
+        return
+      }
+      ctx.session.admin = 1
+      ctx.redirect('/admin')
+    },
+  })
   app.use(router.routes())
   return { app, url }
 }

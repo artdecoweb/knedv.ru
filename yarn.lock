@@ -103,6 +103,13 @@
     catchment "3.2.2"
     restream "3.5.0"
 
+"@idio/mailru@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@idio/mailru/-/mailru-1.0.0.tgz#965714f8d134d722d32bbb201fe635ef9e6dac2d"
+  integrity sha512-+iUi1na+8S/hLhT5Ij7IiGpZIKfHy91+zyhIYzLtQ+Q5pYq7paP/jR/USpCjEL3bfjXqaS4u3GrZ+v/TSpEW+g==
+  dependencies:
+    rqt "3.0.4"
+
 "@idio/router@1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@idio/router/-/router-1.2.0.tgz#072cc49cbe5af44ee59b3ea5947975a141c759d1"
