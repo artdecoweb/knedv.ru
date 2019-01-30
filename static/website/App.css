@@ -1,9 +1,16 @@
 .Offer {
   white-space: nowrap;
   max-width: 100%;
+  position: relative;
   overflow: hidden;
 }
-.Offer span {
+.OfferHolder {
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+.OfferTitle {
   background: red;
   border-radius: 5px;
   color: white;

@@ -3,15 +3,7 @@ import { LeftMenu } from './LeftMenu'
 import { SpecialBanner } from './SpecialBanner'
 import IndexContent from './content/Index'
 import TopMenu from './TopMenu'
-
-const Offer = ({ children }) => {
-  return <div className="Offer">
-    <span>АКЦИЯ</span>
-    <div style="white-space: nowrap; display: inline-block;">
-      {children}
-    </div>
-  </div>
-}
+import Offer from './components/Offer'
 
 const App = ({ activeMenu }) => {
   return <div id="Content">
