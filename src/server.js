@@ -40,9 +40,17 @@ export default async ({
     } : {}),
     session: { keys: [process.env.SESSION_KEY] },
     bodyparser: {},
+    multer: { config: {
+      dest: 'upload',
+    } },
   }, { port })
   const w = await initRoutes(router, 'routes', {
     middleware,
+    middlewareConfig: {
+      post(route) {
+        return [middleware.multer.single(), route]
+      },
+    },
   })
   if (watch) watchRoutes(w)
   mailru(router, {
@@ -68,6 +76,7 @@ export default async ({
   app.use(router.routes())
   const database = new Database()
   await database.connect(database_url)
+  Object.assign(app.context, { database })
   console.log('Connected to %s', b('Mongo', 'green'))
   return { app, url }
 }

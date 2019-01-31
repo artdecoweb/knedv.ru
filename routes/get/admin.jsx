@@ -1,4 +1,5 @@
 import AdminLayout from '../../src/AdminLayout'
+import App from '../../frontend-admin/App'
 
 /** @type {import('koa').Middleware} */
 const route = async (ctx) => {
@@ -13,10 +14,13 @@ const route = async (ctx) => {
     return
   }
   ctx.body = AdminLayout({
+    App: <App></App>,
     title: 'Главная',
     loggedIn: 1,
   })
 }
 export default route
+
+export const aliases = ['/admin/categories']
 
 export const middleware = r => ['session', r]

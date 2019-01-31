@@ -49,6 +49,7 @@
     "erte": "1.1.6",
     "mongoose": "5.4.8",
     "preact": "8.4.2",
-    "preact-render-to-string": "4.1.0"
+    "preact-render-to-string": "4.1.0",
+    "unfetch": "4.0.1"
   }
 }
