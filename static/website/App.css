@@ -120,3 +120,13 @@ h1 {
   color: brown;
   text-shadow: 2px 2px #f7cb89;
 }
+.IndexItem {
+  z-index: 100;
+  transition: all 0.5s;
+  position: relative;
+}
+.IndexItem:hover {
+  z-index: 101;
+  box-shadow: 5px 5px 10px #bbbbbb;
+  transform: translate(-10px, -10px);
+}

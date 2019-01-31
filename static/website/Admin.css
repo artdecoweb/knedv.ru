@@ -9,4 +9,24 @@
 }
 .Banner {
   padding: 0;
+  padding-bottom: 1rem;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Noto Serif', serif;
+}
+.nav-link.active {
+  background: brown;
+  color: white !important;
+}
+.nav-link {
+  border-radius: 0.5rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 0.2rem;
+  color: #4d5b62;
+  transition: all .5s;
+}
+.nav-link:hover {
+  color: brown;
+  box-shadow: 2px 2px 5px #721c2461;
 }

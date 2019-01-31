@@ -20,7 +20,7 @@ const IndexContent = () => {
           title={title}
           key={title}
           description={description}
-          style={even ? 'background:white;' : undefined}
+          style={`background:${!even ? '#edeee8' : 'white'};`}
         />
       }
       )}

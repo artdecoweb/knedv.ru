@@ -27,15 +27,17 @@ export default async ({
       ctx.type = 'application/javascript'
       ctx.body = `export default ${r}`
     },
-    ...(!PROD ? { frontend: {
-      use: true,
-      middlewareConstructor: (_, conf) => frontend(conf),
-    } } : {}),
-    ...(!PROD ? { frontend: {
-      use: true,
-      middlewareConstructor: (_, conf) => frontend(conf),
-      config: { directory: 'frontend-admin' },
-    } } : {}),
+    ...(!PROD ? {
+      frontend: {
+        use: true,
+        middlewareConstructor: (_, conf) => frontend(conf),
+      },
+      frontendAdmin: {
+        use: true,
+        middlewareConstructor: (_, conf) => frontend(conf),
+        config: { directory: 'frontend-admin' },
+      },
+    } : {}),
     session: { keys: [process.env.SESSION_KEY] },
     bodyparser: {},
   }, { port })
