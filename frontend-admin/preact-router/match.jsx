@@ -29,7 +29,7 @@ export class Match extends Component {
   }
 }
 
-export const Link = ({ activeClassName, path, ...props }) => (
+export const Link = ({ activeClassName = 'active', path, ...props }) => (
   <Match path={path || props.href}>
     { ({ matches }) => (
       <StaticLink {...props} class={[props.class || props.className, matches && activeClassName].filter(Boolean).join(' ')} />

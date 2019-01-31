@@ -5,6 +5,7 @@ const data = async (ctx) => {
   if ('categories' in ctx.query) {
     const model = database.getModel('Category')
     console.log(ctx.req.body)
+    await new Promise(r => setTimeout(r, 5000))
     // await model.
   }
   ctx.body = ['test']

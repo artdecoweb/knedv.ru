@@ -1,20 +1,32 @@
 import { Link } from './preact-router/match'
 
-const Menu = () =>
+const Menu = ({ editorActive }) =>
   <nav className="nav flex-column">
-    <Link className="nav-link" activeClassName="active" href="/admin">
-      Главная
+    <Link className="nav-link" href="/admin">
+      <i className="fab fa-kickstarter-k"></i> Главная
     </Link>
-    <Link className="nav-link" activeClassName="active" href="/admin/add">
-      <i className="fas fa-home"></i> Добавить Объект
+    <Link className="nav-link" href="/admin/objects">
+      <i className="fas fa-map-marked-alt"></i> Управление Объектами
     </Link>
-    <Link className="nav-link" activeClassName="active" href="/admin/categories">
-      <i className="far fa-list-alt"></i> Категории
+    <Link className="nav-link" href="/admin/add-object" style="margin-left:2rem">
+      <i className="fas fa-home"></i> Новая Недвижимость
     </Link>
-    <Link className="nav-link" activeClassName="active" href="/admin/special">
+    <Link className="nav-link" href="/admin/categories">
+      <i className="far fa-list-alt"></i> Категории Каталога
+    </Link>
+    <Link className="nav-link" href="/admin/add-category" style="margin-left:2rem">
+      <i className="fas fa-folder-plus"></i> Добавить
+    </Link>
+    <Link className="nav-link" href="/admin/articles">
+      <i className="fas fa-font"></i> Статьи
+    </Link>
+    <a className={`nav-link${editorActive ? ' active' : ''}`} href="/admin/editor" native style="margin-left:2rem;">
+      <i className="fas fa-pen-nib"></i> Редактор Статей
+    </a>
+    <Link className="nav-link" href="/admin/special">
       <i className="fas fa-bolt"></i> Специальные Предложения
     </Link>
-    <Link className="nav-link" activeClassName="active" href="/admin/offers">
+    <Link className="nav-link" href="/admin/offers">
       <i className="fas fa-grip-lines"></i> Акции
     </Link>
     <a className="nav-link" href="#">Link</a>

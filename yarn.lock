@@ -1919,6 +1919,11 @@ toidentifier@1.0.0:
   resolved "https://registry.yarnpkg.com/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha512-yaOH/Pk/VEhBWWTlhI+qXxDFXlejDGcQipMlyxda9nthulaxLZUNcUqFxokp0vcYnvteJln5FNQDRrxj3YcbVw==
 
+trumbowyg@2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.14.0.tgz#22a383836b42f4ae988318f9c4fc89171cf02281"
+  integrity sha512-eBOqF54WFoPYCdmuqq00+1fSw8bmWTWLHjXVQ42046RCVKBdWB0MyaxDPk9Q7vTKyI7HBvvmPBO1marCcTraAA==
+
 tsscmp@1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/tsscmp/-/tsscmp-1.0.5.tgz#7dc4a33af71581ab4337da91d85ca5427ebd9a97"

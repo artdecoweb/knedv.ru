@@ -4,6 +4,7 @@ import Router from './preact-router'
 import { Row, Col } from '../frontend/components/Bootstrap'
 import Menu from './Menu'
 import Categories from './pages/Categories'
+import AddCategory from './pages/AddCategory';
 
 const Home = () => {
   return <Col>
@@ -19,13 +20,14 @@ const Add = () => {
 
 const App = () =>
   <Row id="App">
-    <Col className="col-md-3">
+    <Col className="col-md-4">
       <Menu />
     </Col>
     <Router>
       <Home path="/admin" />
       <Add path="/admin/add" />
       <Categories path="/admin/categories" />
+      <AddCategory path="/admin/add-category" />
     </Router>
   </Row>
 

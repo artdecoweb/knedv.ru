@@ -57,7 +57,7 @@ export default async ({
     multerSingle: {
       middlewareConstructor() {
         return async (...args) => {
-          const mw = middleware.multer.single()
+          const mw = middleware.multer.single('image')
           await mw(...args)
         }
       },
