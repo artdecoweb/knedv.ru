@@ -31,10 +31,8 @@ const AdminLayout = ({
         </Col>
       </Row>
     </div>
-    <div id="App">
-      {App}
-    </div>
-    <script type="module" src="admin"></script>
+    <div id="App"></div>
+    <script type="module" src="frontend-admin"></script>
   </body>
 </html>)
 

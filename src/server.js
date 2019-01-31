@@ -3,12 +3,14 @@ import initRoutes, { watchRoutes } from '@idio/router'
 import frontend from '@idio/frontend'
 import mailru from '@idio/mailru'
 import read from '@wrote/read'
+import { b } from 'erte'
+import Database from './database'
 
 const PROD = process.env.NODE_ENV == 'production'
 const FRONT_END = process.env.FRONT_END || 'https://knedv.ru'
 
 export default async ({
-  port, watch = !PROD,
+  port, watch = !PROD, database_url,
 }) => {
   const { router, middleware, app, url } = await idio({
     cors: { use: true,
@@ -28,6 +30,11 @@ export default async ({
     ...(!PROD ? { frontend: {
       use: true,
       middlewareConstructor: (_, conf) => frontend(conf),
+    } } : {}),
+    ...(!PROD ? { frontend: {
+      use: true,
+      middlewareConstructor: (_, conf) => frontend(conf),
+      config: { directory: 'frontend-admin' },
     } } : {}),
     session: { keys: [process.env.SESSION_KEY] },
     bodyparser: {},
@@ -57,5 +64,8 @@ export default async ({
     },
   })
   app.use(router.routes())
+  const database = new Database()
+  await database.connect(database_url)
+  console.log('Connected to %s', b('Mongo', 'green'))
   return { app, url }
 }
