@@ -1,9 +1,9 @@
 /**
  * The Bootstrap row.
  */
-export const Row = ({ children, className, style }) => {
+export const Row = ({ children, className, ...props }) => {
   const cl = `row${className ? ` ${className}` : ''}`
-  return <div className={cl} style={style}>{children}</div>
+  return <div className={cl} {...props}>{children}</div>
 }
 
 /**

@@ -33,8 +33,12 @@ const AdminLayout = ({
         </Col>
       </Row>
     </div>
-    <div className="container" id="App"></div>
-    <script type="module" src="/frontend-admin"></script>
+    <div className="container" id="AppContainer">
+      {App}
+    </div>
+    {loggedIn &&
+      <script type="module" src="/frontend-admin"></script>
+    }
   </body>
 </html>)
 

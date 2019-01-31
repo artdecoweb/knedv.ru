@@ -14,7 +14,7 @@ const route = async (ctx) => {
     return
   }
   ctx.body = AdminLayout({
-    App: <App></App>,
+    App: <App/>,
     title: 'Главная',
     loggedIn: 1,
   })

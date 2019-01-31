@@ -10,6 +10,6 @@ const data = async (ctx) => {
   ctx.body = ['test']
 }
 
-// export const middleware = r => ['multer', r]
+export const middleware = r => ['session', 'checkAdmin', 'multerSingle', r]
 
 export default data

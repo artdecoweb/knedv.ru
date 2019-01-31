@@ -43,14 +43,28 @@ export default async ({
     multer: { config: {
       dest: 'upload',
     } },
+    checkAdmin: {
+      middlewareConstructor() {
+        return async (ctx, next) => {
+          if (!ctx.session.admin) {
+            ctx.body = 'Доступ запрещен.'
+          } else {
+            await next()
+          }
+        }
+      },
+    },
+    multerSingle: {
+      middlewareConstructor() {
+        return async (...args) => {
+          const mw = middleware.multer.single()
+          await mw(...args)
+        }
+      },
+    },
   }, { port })
   const w = await initRoutes(router, 'routes', {
     middleware,
-    middlewareConfig: {
-      post(route) {
-        return [middleware.multer.single(), route]
-      },
-    },
   })
   if (watch) watchRoutes(w)
   mailru(router, {
