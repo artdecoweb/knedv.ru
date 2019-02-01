@@ -1,7 +1,7 @@
 const ArticleEditor = ({ article, onSave }) => {
   return <div className="form-group">
     <label>Статья</label>
-    <div dangerouslySetInnerHTML={{ __html: article }}/>
+    <div style="background: #edeee8;" className="mb-3" dangerouslySetInnerHTML={{ __html: article }}/>
     <a className="btn btn-outline-success" href="#" onClick={(e) => {
       e.preventDefault()
       window.editorCallback = (html) => {

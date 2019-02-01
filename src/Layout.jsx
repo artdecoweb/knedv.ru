@@ -9,6 +9,11 @@ const Html = ({ title, App }) => <html>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous"/>
     <link rel="stylesheet" href="/website/App.css"/>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+    <link rel="manifest" href="/site.webmanifest"/>
   </head>
   <body>
     <div className="container-fluid" style="background:#edeee8; border: 2px dashed brown;">

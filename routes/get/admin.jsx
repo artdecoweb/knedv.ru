@@ -25,6 +25,7 @@ export const aliases = [
   '/admin/categories',
   '/admin/add-category', '/admin/add-category/:id*',
   '/admin/objects', '/admin/add-category', '/admin/add-object/:id*',
+  '/admin/pages', '/admin/add-page', '/admin/add-page/:id*',
 ]
 
 export const middleware = r => ['session', r]

@@ -20,7 +20,13 @@ const getData = async (ctx) => {
       return { ..._doc, categorySeo: cat.seo }
     })
     return mo
-  } else {
+  } else if ('pages' in ctx.query) {
+    const model = database.getModel('Page')
+    const objects = await model.find({
+      ...(ctx.query.id ? { _id: ctx.query.id }: {}),
+    })
+    return objects.map(({ _doc }) => _doc)
+  }else {
     return { error: 'unknown path' }
   }
 }

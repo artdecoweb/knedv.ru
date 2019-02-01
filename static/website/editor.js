@@ -16,6 +16,7 @@ $('#trumbowyg').trumbowyg({
     ['undo', 'redo'], // Only supported in Blink browsers
     ['formatting'],
     ['strong', 'em', 'del'],
+    ['superscript', 'subscript'],
     ['link'],
     ['insertImage'],
     ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],

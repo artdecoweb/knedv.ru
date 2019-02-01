@@ -1,6 +1,6 @@
 import { Link } from './preact-router/match'
 
-const Menu = ({ editorActive }) =>
+const Menu = () =>
   <nav className="nav flex-column">
     <Link className="nav-link" href="/admin">
       <i className="fab fa-kickstarter-k"></i> Главная
@@ -17,21 +17,18 @@ const Menu = ({ editorActive }) =>
     <Link className="nav-link" href="/admin/add-category" style="margin-left:2rem">
       <i className="fas fa-folder-plus"></i> Добавить
     </Link>
-    <Link className="nav-link" href="/admin/articles">
+    <Link className="nav-link" href="/admin/pages">
       <i className="fas fa-font"></i> Статьи
     </Link>
-    <a className={`nav-link${editorActive ? ' active' : ''}`} href="/admin/editor" native style="margin-left:2rem;">
-      <i className="fas fa-pen-nib"></i> Редактор Метериалов
-    </a>
+    <Link className="nav-link" href="/admin/add-page" style="margin-left:2rem">
+      <i className="fas fa-pen-nib"></i> Добавить Страницу
+    </Link>
     <Link className="nav-link" href="/admin/special">
       <i className="fas fa-bolt"></i> Специальные Предложения
     </Link>
     <Link className="nav-link" href="/admin/offers">
       <i className="fas fa-grip-lines"></i> Акции
     </Link>
-    <a className="nav-link" href="#">Link</a>
-    <a className="nav-link" href="#">Link</a>
-    <a className="nav-link disabled" href="#" aria-disabled="true">Disabled</a>
   </nav>
 
 export default Menu

@@ -1,5 +1,3 @@
-// import { Component } from 'preact'
-// import fetch from 'unfetch'
 import Router from './preact-router'
 import { Row, Col } from '../frontend/components/Bootstrap'
 import Menu from './Menu'
@@ -7,16 +5,12 @@ import Categories from './pages/Categories'
 import AddCategory from './pages/AddCategory'
 import Objects from './pages/Objects'
 import AddObject from './pages/AddObject'
+import Pages from './pages/Pages'
+import AddPage from './pages/AddPage'
 
 const Home = () => {
   return <Col>
     <h1>Добро Пожаловать!</h1>
-  </Col>
-}
-const Add = () => {
-  return <Col>
-    <h1>Добавить Объект Недвижимости</h1>
-    Form
   </Col>
 }
 
@@ -35,6 +29,8 @@ const App = () =>
       <AddObject path="/admin/add-object/:id?" title="Добавить Объект" />
       <Categories path="/admin/categories" title="Категории Каталога" />
       <AddCategory path="/admin/add-category/:id?" title="Добавить Категорию" />
+      <Pages path="/admin/pages" title="Статьи" />
+      <AddPage path="/admin/add-page/:id?" title="Добавить Страницу" />
     </Router>
   </Row>
 

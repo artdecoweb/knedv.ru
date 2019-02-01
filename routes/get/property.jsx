@@ -15,6 +15,7 @@ const Content = ({ offers, categories, property }) => {
       </Col>}
       {property && <Col style="padding-bottom:1rem;">
         <h1>{property.title}</h1>
+        <img src={property.cdnImage} className="image-float"/>
         <p>{property.description}</p>
         <div dangerouslySetInnerHTML={{ __html: property.article }}/>
       </Col>}

@@ -4,12 +4,12 @@ const TopMenu = ({ activeMenu }) => {
   return <div className="container-fluid TopMenu mb-2">
     <Row className="d-flex justify-content-center">
       <TopMenuCol active={activeMenu} name="index">Каталог Недвижимости</TopMenuCol>
-      <TopMenuCol active={activeMenu} name="about">О Компании</TopMenuCol>
-      <TopMenuCol active={activeMenu} name="info">Справочная</TopMenuCol>
-      <TopMenuCol active={activeMenu} name="news">Новости</TopMenuCol>
-      <TopMenuCol active={activeMenu} name="partners">Партнеры</TopMenuCol>
-      <TopMenuCol active={activeMenu} name="offers">Акции</TopMenuCol>
-      <TopMenuCol active={activeMenu} name="contacts">Контакты</TopMenuCol>
+      <TopMenuCol active={activeMenu} name="о-компании">О Компании</TopMenuCol>
+      <TopMenuCol active={activeMenu} name="справочная">Справочная</TopMenuCol>
+      <TopMenuCol active={activeMenu} name="новости">Новости</TopMenuCol>
+      <TopMenuCol active={activeMenu} name="партнеры">Партнеры</TopMenuCol>
+      <TopMenuCol active={activeMenu} name="акции">Акции</TopMenuCol>
+      <TopMenuCol active={activeMenu} name="контакты">Контакты</TopMenuCol>
     </Row>
   </div>
 }

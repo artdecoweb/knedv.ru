@@ -21,5 +21,12 @@ export const _Object = {
   category: String,
   article: String,
 }
+export const _Page = {
+  seo: String,
+  article: String,
+  title: String,
+  description: String,
+}
 export const Category = new Schema(_Category)
 export const Obj = new Schema(_Object)
+export const Page = new Schema(_Page)

@@ -15,7 +15,7 @@ const objects = async (ctx, database) => {
     mimetype, path,
   } = {} } = ctx.req
   const seo = getSeo(_seo)
-  const img = handleImage(ctx.cdn, ctx.storage, path, seo, mimetype)
+  const img = await handleImage(ctx.cdn, ctx.storage, path, seo, mimetype)
   /** @type {import('../../../src/database/schema')._Object} */
   const d = {
     description,
