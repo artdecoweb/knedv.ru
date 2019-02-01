@@ -41,12 +41,15 @@ const route = async (ctx) => {
   const selectedCategory = categories.find(({ seo }) => {
     return seo == ctx.params.category
   })
-  let items = [], article
-  if (selectedCategory) {
-    const Objects = database.getModel('Object')
-    ;([{ article }] = (await Categories.find({ _id: selectedCategory.id }, 'article')))
+  let items = [], article, property
+  const Objects = database.getModel('Object')
+  if (ctx.params.property) {
+    const props = await Objects.find({ seo: ctx.params.property })
+  } else if (selectedCategory) {
+    ([{ article }] = (await Categories.find({ _id: selectedCategory.id }, 'article')))
     items = await Objects.find({ category: selectedCategory.id })
   }
+
   const content = <Content categories={categories} offers={[]} selectedCategory={selectedCategory} items={items} article={article}/>
   const app = <App activeMenu="index" Content={content} />
   ctx.body = Layout({
@@ -57,4 +60,4 @@ const route = async (ctx) => {
 }
 export default route
 
-export const aliases = [`/${encodeURIComponent('каталог')}/:category/:property*`]
+export const aliases = [`/${encodeURIComponent('каталог')}/:category/`]

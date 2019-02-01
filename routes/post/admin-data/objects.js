@@ -1,5 +1,4 @@
-import { resize, file, checkExtension } from '../../../src/images'
-import { getSeo } from '../../../src/lib'
+import { getSeo, handleImage } from '../../../src/lib'
 
 /**
  * @param {import('koa').Context} ctx
@@ -11,31 +10,20 @@ const objects = async (ctx, database) => {
     await Obj.deleteOne({ _id: ctx.query.id })
     return ctx.query.id
   }
-  const { description, title, seo: _seo, id, category } = ctx.req.body
+  const { description, title, seo: _seo, id, category, article } = ctx.req.body
   const { file: {
     mimetype, path,
   } = {} } = ctx.req
   const seo = getSeo(_seo)
-  checkExtension(mimetype)
-  const buffer = await resize(path, 250)
-  const blob = `objects/${seo}.jpg`
-  const container = 'images'
-  const thumb_url = await file({
-    storage: ctx.storage,
-    text: buffer,
-    container, blob, contentType: 'image/jpeg',
-  })
-  const location = `${container}/${blob}`
+  const img = handleImage(ctx.cdn, ctx.storage, path, seo, mimetype)
   /** @type {import('../../../src/database/schema')._Object} */
   const d = {
     description,
     title,
     seo,
-    image: thumb_url,
-    imageLocation: location,
-    imageContainer: container,
-    cdnImage: `${ctx.cdn}/${location}`,
+    ...img,
     category,
+    article,
   }
   if (id) {
     const res = await Obj.updateOne({ _id: id }, d)

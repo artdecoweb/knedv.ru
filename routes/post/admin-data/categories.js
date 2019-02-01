@@ -1,5 +1,4 @@
-import { resize, file, checkExtension } from '../../../src/images'
-import { getSeo } from '../../../src/lib'
+import { getSeo, handleImage } from '../../../src/lib'
 
 /**
  * @param {import('koa').Context} ctx
@@ -16,35 +15,14 @@ const categories = async (ctx, database) => {
     mimetype, path,
   } = {} } = ctx.req
   const seo = getSeo(_seo)
-  let image, imageLocation, imageContainer, cdnImage
-  let imageUpdated = false
-  if (path) {
-    imageUpdated = true
-    checkExtension(mimetype)
-    const buffer = await resize(path, 250)
-    const blob = `catalog/${seo}.jpg`
-    imageContainer = 'images'
-    image = await file({
-      storage: ctx.storage,
-      text: buffer,
-      container: imageContainer,
-      blob, contentType: 'image/jpeg',
-    })
-    imageLocation = `${imageContainer}/${blob}`
-    cdnImage = `${ctx.cdn}/${imageLocation}`
-  }
+  const img = handleImage(ctx.cdn, ctx.storage, path, seo, mimetype)
 
   /** @type {import('../../src/database/schema')._Category} */
   const d = {
     description,
     title,
     seo,
-    ...(imageUpdated ? {
-      image,
-      imageLocation,
-      imageContainer,
-      cdnImage,
-    } : {}),
+    ...img,
     article,
   }
   if (id) {

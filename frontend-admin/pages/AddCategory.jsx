@@ -13,9 +13,6 @@ export default class AddCategory extends Component {
       article: '',
     }
   }
-  componentWillUnmount() {
-    console.log('will unmount')
-  }
   async componentDidMount() {
     const editing = !!this.props.id
     if (!editing) return
