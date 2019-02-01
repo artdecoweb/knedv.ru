@@ -9,6 +9,6 @@ export const SpecialBanner = ({
     {contact}
     <br/><br/>
     <button type="button" className="btn btn-light mb-2">Подробности</button>
-    <button type="button" className="btn btn-light mb-2">Позвонить</button>
+    <a className="btn btn-light mb-2" href="tel:7-495-749-29-15">Позвонить</a>
   </div>
 }

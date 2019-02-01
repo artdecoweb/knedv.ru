@@ -2,7 +2,7 @@
 import { Col, Row } from '../components/Bootstrap.jsx'
 
 const IndexContent = ({ categories }) => {
-  return <Col className="order-2 order-lg-1 col-md-12 col-lg-6">
+  return <Col className="order-2 order-lg-1 col-md-12 col-lg-6 pb-3">
     <h1>
       Корпорация Недвижимости 21 Век
     </h1>
