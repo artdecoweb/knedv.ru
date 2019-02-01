@@ -22,16 +22,32 @@ const Input = ({ textarea, required, name, placeholder, id, hid, type, file, val
 
 export const FormRow = ({
   label, type = 'text', placeholder, name, help, textarea,
-  required, file, value,
+  required, file, value, options, selectedOption,
 }) => {
   const id = `i${Math.random() * 100000}`
   const hid = `h${id}`
 
+  const commonProps = {
+    hid, id, value, name, required,
+  }
+  const I = options ? <Select options={options} selectedOption={selectedOption} {...commonProps} /> : <Input textarea={textarea} placeholder={placeholder} type={type} file={file} {...commonProps}/>
+
   return <div className="form-group">
     <label htmlFor={id}>{label}</label>
-    <Input textarea={textarea} placeholder={placeholder} name={name} type={type} required={required} id={id} hid={hid} file={file} {...(value ? { value } : {})}/>
+    {I}
     {help && <small id={hid} className="form-text text-muted" dangerouslySetInnerHTML={{ __html: help }}/>}
   </div>
+}
+
+const Select = ({ options, name, value, required, id, hid }) => {
+  return <select name={name} value={value} className="custom-select" required={required} id={id} aria-describedby={hid}>
+    <option></option>
+    {options.map(({ value: v, title }) => {
+      return <option key={v} value={v} selected={v==value}>
+        {title}
+      </option>
+    })}
+  </select>
 }
 
 export const Icon = ({ icon }) =>

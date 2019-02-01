@@ -7,6 +7,16 @@ export const resize = async (path, size) => {
   return res
 }
 
+const mimes = {
+  'image/jpeg': 'jpg',
+  'image/png': 'png',
+}
+export const checkExtension = (mimetype) => {
+  const mime = mimes[mimetype]
+  if (!mime) throw new Error('Image type not supported')
+  return mime
+}
+
 const getUrl = (storage, container, blob) => {
   return [
     'https://',

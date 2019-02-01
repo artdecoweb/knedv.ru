@@ -5,6 +5,8 @@ import { Row, Col } from '../frontend/components/Bootstrap'
 import Menu from './Menu'
 import Categories from './pages/Categories'
 import AddCategory from './pages/AddCategory'
+import Objects from './pages/Objects'
+import AddObject from './pages/AddObject'
 
 const Home = () => {
   return <Col>
@@ -25,6 +27,8 @@ const App = () =>
     </Col>
     <Router>
       <Home path="/admin" />
+      <Objects path="/admin/objects" />
+      <AddObject path="/admin/add-object/:id?" />
       <Add path="/admin/add/:id?" />
       <Categories path="/admin/categories" />
       <AddCategory path="/admin/add-category/:id?" />

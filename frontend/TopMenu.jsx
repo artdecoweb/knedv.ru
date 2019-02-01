@@ -1,7 +1,7 @@
 import { Row } from "./components/Bootstrap"
 
 const TopMenu = ({ activeMenu }) => {
-  return <div className="container-fluid TopMenu mb-3">
+  return <div className="container-fluid TopMenu mb-2">
     <Row className="d-flex justify-content-center">
       <TopMenuCol active={activeMenu} name="index">Каталог Недвижимости</TopMenuCol>
       <TopMenuCol active={activeMenu} name="about">О Компании</TopMenuCol>

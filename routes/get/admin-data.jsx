@@ -8,19 +8,23 @@ const getData = async (ctx) => {
       ...(ctx.query.id ? { _id: ctx.query.id }: {}),
     })
     return categories
+  } else if ('objects' in ctx.query) {
+    const catModel = database.getModel('Category')
+    const categories = await catModel.find()
+    const model = database.getModel('Object')
+    const objects = await model.find({
+      ...(ctx.query.id ? { _id: ctx.query.id }: {}),
+    })
+    const mo = objects.map(({ _doc }) => {
+      const cat = categories.find(({ id }) => _doc.category == id)
+      return { ..._doc, categorySeo: cat.seo }
+    })
+    return mo
   } else {
     return { error: 'unknown path' }
   }
 }
 
-export const middleware = r => ['session', 'checkAdmin', async (ctx) => {
-  try {
-    const data = await r(ctx)
-    ctx.body = { data }
-  } catch({ message: error }) {
-    ctx.status = 500
-    ctx.body = { error }
-  }
-}]
+export const middleware = r => ['session', 'checkAdmin', 'ajaxAdmin', r]
 
 export default getData

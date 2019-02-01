@@ -3,7 +3,7 @@ import fetch from 'unfetch'
 import { Col, Row, Icon } from '../../frontend/components/Bootstrap'
 import DeleteModal from '../DeleteModal'
 
-export default class Categories extends Component {
+export default class Objects extends Component {
   constructor() {
     super()
     this.state = {
@@ -17,7 +17,7 @@ export default class Categories extends Component {
   async load() {
     this.setState({ loading: true })
     try {
-      const res = await fetch('/admin-data?categories')
+      const res = await fetch('/admin-data?objects')
       const { error, data } = await res.json()
       if (error) this.setState({ error })
       else this.setState({ data })
@@ -29,9 +29,9 @@ export default class Categories extends Component {
   }
   render() {
     return <Col>
-      <h1>Категории Каталога</h1>
+      <h1>Объекты Недвижимости</h1>
       <p>
-        В каталоге невдижимости содержатся следующие разделы:
+        На сайт добалены следующие объекты:
       </p>
       {this.state.loading && <span className="echo-loader">Loading…</span>}
       {this.state.data.map(({ _id, ...item }) => {
@@ -49,25 +49,25 @@ class ItemRow extends Component {
     }
   }
   render() {
-    const { title, image, description, seo, id, onDelete } = this.props
+    const { title, image, description, seo, id, onDelete, categorySeo } = this.props
     return <Row className="CategoryRow">
       <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid"/></Col>
       <Col>
         <h2>{title}</h2>
-        <em>knedv.ru/{seo}</em>
+        <em>knedv.ru/{categorySeo}/{seo}</em>
         <p>{description}</p>
       </Col>
       <Col className="col-1 CategoryMeta">
-        <a style="color:brown;" href={`/admin/add-category/${id}`}><Icon icon="fas fa-pen"/></a>
+        <a style="color:brown;" href={`/admin/add-object/${id}`}><Icon icon="fas fa-pen"/></a>
         <br/>
         <a style="color:brown;" href="#" onClick={(e) => {
           e.preventDefault()
           this.setState({
             modal: {
-              text: <span>Вы действительно хотите удалить категорию <strong>{title}</strong>?</span>,
+              text: <span>Вы действительно хотите удалить объект <strong>{title}</strong>?</span>,
               confirmText: 'Удалить',
-              title: 'Удаление Категории',
-              path: `categories&id=${id}&delete`,
+              title: 'Удаление Объекта',
+              path: `objects&id=${id}&delete`,
             },
           })
           return false

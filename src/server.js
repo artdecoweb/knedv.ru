@@ -63,6 +63,19 @@ export default async ({
         }
       },
     },
+    ajaxAdmin: {
+      middlewareConstructor() {
+        return async (ctx, next) => {
+          try {
+            const data = await next(ctx)
+            ctx.body = { data }
+          } catch({ message: error }) {
+            ctx.status = 500
+            ctx.body = { error }
+          }
+        }
+      },
+    },
   }, { port })
   const w = await initRoutes(router, 'routes', {
     middleware,

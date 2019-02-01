@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { Category } from './schema'
+import { Category, Obj } from './schema'
 
 function setupModels(connection, models) {
   Object.keys(models).forEach((key) => {
@@ -15,6 +15,7 @@ export default class Database {
   constructor() {
     this._models = {
       Category,
+      Object: Obj,
     }
   }
   /**
