@@ -51,7 +51,7 @@ class ItemRow extends Component {
   render() {
     const { title, image, description, seo, id, onDelete, categorySeo } = this.props
     return <Row className="CategoryRow">
-      <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid"/></Col>
+      <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid p-1"/></Col>
       <Col>
         <h2>{title}</h2>
         <em>knedv.ru/{categorySeo}/{seo}</em>

@@ -25,13 +25,16 @@ const App = () =>
     <Col className="col-md-4">
       <Menu />
     </Col>
-    <Router>
-      <Home path="/admin" />
-      <Objects path="/admin/objects" />
-      <AddObject path="/admin/add-object/:id?" />
-      <Add path="/admin/add/:id?" />
-      <Categories path="/admin/categories" />
-      <AddCategory path="/admin/add-category/:id?" />
+    <Router onChange={(e) => {
+      if (e.current && e.current.attributes.title) {
+        document.title = e.current.attributes.title
+      }
+    }}>
+      <Home path="/admin" title="Главная" />
+      <Objects path="/admin/objects" title="Объекты Недвижимости" />
+      <AddObject path="/admin/add-object/:id?" title="Добавить Объект" />
+      <Categories path="/admin/categories" title="Категории Каталога" />
+      <AddCategory path="/admin/add-category/:id?" title="Добавить Категорию" />
     </Router>
   </Row>
 

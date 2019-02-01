@@ -1,5 +1,5 @@
 import objects from './admin-data/objects'
-import categories from './admin-data/objects'
+import categories from './admin-data/categories'
 
 /** @type {import('koa').Middleware} */
 const postData = async (ctx) => {

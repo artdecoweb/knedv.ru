@@ -11,7 +11,7 @@ const categories = async (ctx, database) => {
     await Category.deleteOne({ _id: ctx.query.id })
     return ctx.query.id
   }
-  const { description, title, seo: _seo, id } = ctx.req.body
+  const { description, title, seo: _seo, id, article } = ctx.req.body
   const { file: {
     mimetype, path,
   } = {} } = ctx.req
@@ -35,6 +35,7 @@ const categories = async (ctx, database) => {
     imageLocation: location,
     imageContainer: container,
     cdnImage: `${ctx.cdn}/${location}`,
+    article,
   }
   if (id) {
     const res = await Category.updateOne({ _id: id }, d)

@@ -7,7 +7,7 @@ const Html = ({ title, App }) => <html>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous"/>
-    <link rel="stylesheet" href="website/App.css"/>
+    <link rel="stylesheet" href="/website/App.css"/>
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet"/>
   </head>
   <body>
@@ -16,7 +16,7 @@ const Html = ({ title, App }) => <html>
         <Col className="TopLetters">
           <span className="Corp" style="    text-shadow: 1px 1px brown;">КОРПОРАЦИЯ НЕДВИЖИМОСТИ 21 ВЕК</span>
           <span className="Phone">
-            <img src="website/phone_android.svg" style="height: 2rem; margin-top: -0.25rem;"/>
+            <img src="/website/phone_android.svg" style="height: 2rem; margin-top: -0.25rem;"/>
             +7 (495) 749-29-15
           </span>
         </Col>

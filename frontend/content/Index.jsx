@@ -16,7 +16,7 @@ const IndexContent = ({ categories }) => {
       {categories.map(({ cdnImage, title, description, seo }, i) => {
         const even = i % 2 == 0
         return <Item
-          link={`/${seo}`}
+          link={`/каталог/${seo}`}
           img={cdnImage}
           title={title}
           key={title}

@@ -8,6 +8,7 @@ export const _Category = {
   imageLocation: String,
   imageContainer: String,
   cdnImage: String,
+  article: String,
 }
 export const _Object = {
   title: String,
@@ -18,6 +19,7 @@ export const _Object = {
   imageContainer: String,
   cdnImage: String,
   category: String,
+  article: String,
 }
 export const Category = new Schema(_Category)
 export const Obj = new Schema(_Object)

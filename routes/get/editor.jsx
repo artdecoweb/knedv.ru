@@ -1,33 +1,38 @@
-import AdminLayout from '../../src/AdminLayout'
-import Menu from '../../frontend-admin/Menu'
-import { Row, Col } from '../../frontend/components/Bootstrap'
+import render from 'preact-render-to-string'
 
-const App = () => <div>
-  <Row>
-    <Col className="col-md-3">
-      <Menu editorActive="1"/>
-    </Col>
-    <Col>
-      <h1>Редактор Статей</h1>
-      <div id="trumbowyg"/>
-    </Col>
-
-  </Row>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-  <script src="/node_modules/trumbowyg/dist/trumbowyg.js"></script>
-  <script>
-    $('#trumbowyg').trumbowyg();
-  </script>
-</div>
+const App = () => <html lang="ru" style="height: 100%;">
+  <head>
+    <title>Редактор Статей</title>
+    <link rel="stylesheet" href="/website/trumbowyg.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous"/>
+    <style>
+      {
+        `.trumbowyg-box {
+          margin-top: 0;
+          height: 90%;
+          background: white;
+        }
+        body { background: #efefef; }
+        `
+      }
+    </style>
+  </head>
+  <body style="height: 100%">
+    <div id="trumbowyg"/>
+    <a id="Save" href="#" className="btn btn-success ml-2">Сохранить</a>
+    <a id="Close" href="#" className="btn btn-light mr-2" style="float:right;">Закрыть</a>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
+    <script src="/node_modules/trumbowyg/dist/trumbowyg.js"></script>
+    <script>
+      $('#trumbowyg').trumbowyg();
+    </script>
+    <script src="/website/editor.js"></script>
+  </body>
+</html>
 
 /** @type {import('koa').Middleware} */
 const route = async (ctx) => {
-  ctx.body = AdminLayout({
-    App: <App/>,
-    title: 'Редактор',
-    loggedIn: 1,
-    noPreact: true,
-  })
+  ctx.body = '<!doctype html>' + render(<App/>)
 }
 export default route
 

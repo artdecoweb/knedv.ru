@@ -21,7 +21,7 @@ const TopMenuCol = ({ children, active, name = '' }) => {
   const ac = active == name ? ' Active' : ''
   const cl = `TopMenuCol h-100 p-2 px-2 mx-1${ac}`
   return <div className={cl}>
-    <a href={name}>{children}</a>
+    <a href={`/${name}`}>{children}</a>
   </div>
 }
 
