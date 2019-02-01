@@ -33,7 +33,7 @@ const Content = ({ offers, categories }) => {
 const route = async (ctx) => {
   const database = ctx.database
   const Categories = database.getModel('Category')
-  const categories = await Categories.find()
+  const categories = await Categories.find({}, 'title seo description cdnImage')
   const content = <Content categories={categories} offers={[]}/>
   const app = <App activeMenu="index" Content={content} />
   ctx.body = Layout({

@@ -16,25 +16,35 @@ const categories = async (ctx, database) => {
     mimetype, path,
   } = {} } = ctx.req
   const seo = getSeo(_seo)
-  checkExtension(mimetype)
-  const buffer = await resize(path, 250)
-  const blob = `catalog/${seo}.jpg`
-  const container = 'images'
-  const thumb_url = await file({
-    storage: ctx.storage,
-    text: buffer,
-    container, blob, contentType: 'image/jpeg',
-  })
-  const location = `${container}/${blob}`
+  let image, imageLocation, imageContainer, cdnImage
+  let imageUpdated = false
+  if (path) {
+    imageUpdated = true
+    checkExtension(mimetype)
+    const buffer = await resize(path, 250)
+    const blob = `catalog/${seo}.jpg`
+    imageContainer = 'images'
+    image = await file({
+      storage: ctx.storage,
+      text: buffer,
+      container: imageContainer,
+      blob, contentType: 'image/jpeg',
+    })
+    imageLocation = `${imageContainer}/${blob}`
+    cdnImage = `${ctx.cdn}/${imageLocation}`
+  }
+
   /** @type {import('../../src/database/schema')._Category} */
   const d = {
     description,
     title,
     seo,
-    image: thumb_url,
-    imageLocation: location,
-    imageContainer: container,
-    cdnImage: `${ctx.cdn}/${location}`,
+    ...(imageUpdated ? {
+      image,
+      imageLocation,
+      imageContainer,
+      cdnImage,
+    } : {}),
     article,
   }
   if (id) {

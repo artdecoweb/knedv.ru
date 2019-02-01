@@ -5,7 +5,7 @@ export const LeftMenu = ({ categories }) => {
     <h2><img src="/website/bookmark.svg" style="height:2rem;"/>Каталог Недви\u00ADжи\u00ADмо\u00ADсти</h2>
     <ul>
       {categories.map(({ seo, title }) => {
-        return <li><a href={`/каталог/${seo}`}>{title}</a></li>
+        return <li><a href={`/каталог/${seo}/`}>{title}</a></li>
       })}
     </ul>
     <hr/>

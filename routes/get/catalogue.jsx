@@ -4,7 +4,7 @@ import { Row, Col } from '../../frontend/components/Bootstrap'
 import { LeftMenu } from '../../frontend/LeftMenu'
 import Offer from '../../frontend/components/Offer'
 
-const Content = ({ offers, categories, selectedCategory, items }) => {
+const Content = ({ offers, categories, selectedCategory, items, article }) => {
   return <div className="container-fluid">
     {offers.map(({ text }) => <Offer>{text}</Offer>)}
     <Row>
@@ -13,9 +13,11 @@ const Content = ({ offers, categories, selectedCategory, items }) => {
         <h1>Каталог Недвижимости</h1>
         <p>Запрашиваемая категория не найдена. Выберите категорию из меню слева.</p>
       </Col>}
-      {selectedCategory && <Col>
+      {selectedCategory && <Col style="padding-bottom:1rem;">
         <h1>{selectedCategory.title}</h1>
         <p>{selectedCategory.description}</p>
+        <div dangerouslySetInnerHTML={{ __html: article }}/>
+        <hr/>
         <Row>
           {items.map(({ title, seo, description, cdnImage }) => {
             return <Col key={title}>
@@ -35,16 +37,17 @@ const Content = ({ offers, categories, selectedCategory, items }) => {
 const route = async (ctx) => {
   const database = ctx.database
   const Categories = database.getModel('Category')
-  const categories = await Categories.find()
+  const categories = await Categories.find({}, 'title seo description cdnImage')
   const selectedCategory = categories.find(({ seo }) => {
     return seo == ctx.params.category
   })
-  let items = []
+  let items = [], article
   if (selectedCategory) {
     const Objects = database.getModel('Object')
+    ;([{ article }] = (await Categories.find({ _id: selectedCategory.id }, 'article')))
     items = await Objects.find({ category: selectedCategory.id })
   }
-  const content = <Content categories={categories} offers={[]} selectedCategory={selectedCategory} items={items}/>
+  const content = <Content categories={categories} offers={[]} selectedCategory={selectedCategory} items={items} article={article}/>
   const app = <App activeMenu="index" Content={content} />
   ctx.body = Layout({
     title: selectedCategory ? selectedCategory.title : 'Каталог',
