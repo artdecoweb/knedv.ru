@@ -4,7 +4,9 @@ const getData = async (ctx) => {
   const database = ctx.database
   if ('categories' in ctx.query) {
     const model = database.getModel('Category')
-    const categories = await model.find()
+    const categories = await model.find({
+      ...(ctx.query.id ? { _id: ctx.query.id }: {}),
+    })
     return categories
   } else {
     return { error: 'unknown path' }

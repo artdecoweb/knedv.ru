@@ -1,4 +1,4 @@
-import { resize, file } from '../../src/images';
+import { resize, file } from '../../src/images'
 
 const mimes = {
   'image/jpeg': 'jpg',
@@ -16,7 +16,7 @@ const getExtension = (mimetype) => {
 const getSeo = (seo) => {
   const s = seo.toLowerCase()
   const [m] = /[^a-zа-я0-9-_]/.exec(s) || []
-  if (m) throw new Error(`СЕО содержит недопустимый символ: ${m}`)
+  if (m) throw new Error(`СЕО содержит недопустимый символ: "${m}"`)
   return s
 }
 
@@ -25,7 +25,12 @@ const getSeo = (seo) => {
  * @param {import('../../src/database').default} database
  */
 const categories = async (ctx, database) => {
-  const { description, title, seo: _seo } = ctx.req.body
+  const Category = database.getModel('Category')
+  if ('delete' in ctx.query && ctx.query.id) {
+    await Category.deleteOne({ _id: ctx.query.id })
+    return ctx.query.id
+  }
+  const { description, title, seo: _seo, id } = ctx.req.body
   const { file: {
     mimetype, path,
   } = {} } = ctx.req
@@ -48,10 +53,14 @@ const categories = async (ctx, database) => {
     imageContainer: 'images',
     cdnImage: `${ctx.cdn}/${blob}`,
   }
-  const Category = database.getModel('Category')
-  const c = new Category(d)
-  const res = await c.save()
-  return res._doc
+  if (id) {
+    const res = await Category.updateOne({ _id: id }, d)
+    return res._doc
+  } else {
+    const c = new Category(d)
+    const res = await c.save()
+    return res._doc
+  }
 }
 
 /** @type {import('koa').Middleware} */

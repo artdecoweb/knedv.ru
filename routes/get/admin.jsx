@@ -21,6 +21,9 @@ const route = async (ctx) => {
 }
 export default route
 
-export const aliases = ['/admin/categories', '/admin/add-category']
+export const aliases = [
+  '/admin/categories',
+  '/admin/add-category', '/admin/add-category/:id*',
+]
 
 export const middleware = r => ['session', r]

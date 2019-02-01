@@ -37,3 +37,9 @@ nav {
   border-radius: 1rem;
   background: #efefef;
 }
+.CategoryRow .CategoryMeta {
+  opacity: 0;
+}
+.CategoryRow:hover .CategoryMeta {
+  opacity: 1;
+}

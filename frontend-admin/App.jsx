@@ -25,9 +25,9 @@ const App = () =>
     </Col>
     <Router>
       <Home path="/admin" />
-      <Add path="/admin/add" />
+      <Add path="/admin/add/:id?" />
       <Categories path="/admin/categories" />
-      <AddCategory path="/admin/add-category" />
+      <AddCategory path="/admin/add-category/:id?" />
     </Router>
   </Row>
 
