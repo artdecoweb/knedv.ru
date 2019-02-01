@@ -6,5 +6,8 @@ export const _Category = {
   description: String,
   image: String,
   imageCdn: String,
+  imageLocation: String,
+  imageContainer: String,
+  cdnImage: String,
 }
 export const Category = new Schema(_Category)

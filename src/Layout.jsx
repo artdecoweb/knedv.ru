@@ -30,13 +30,27 @@ const Html = ({ title, App }) => <html>
         </Col>
       </Row>
     </div>
-    <div id="App">
+
+    <div id="AppContainer">
       {App}
     </div>
-    <script type="module" src="frontend"></script>
+
+    <div className="container-fluid">
+      <Row className="Footer mt-3">
+        <Col>
+          © 2019, Корпорация Недвижимости 21 Век
+          <p>
+            +7 (495) 749-29-15, +7 (499) 130-30-80<br/>
+            г. Москва, Крымский вал, д. 3, стр. 2, подъезд 2, офис 213
+          </p>
+        </Col>
+      </Row>
+    </div>
   </body>
 </html>
-          // <span className="Phone">+7 (499) 130-30-80</span>
+  {/* <script type="module" src="frontend"></script> */}
+
+// <span className="Phone"></span>
 
 //
 {/* <img src="" className="img-fluid rounded"/> */}

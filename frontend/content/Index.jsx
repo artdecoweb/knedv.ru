@@ -1,7 +1,7 @@
-import content from '../../database/IndexContent.json'
+// import content from '../../database/IndexContent.json'
 import { Col, Row } from '../components/Bootstrap.jsx'
 
-const IndexContent = () => {
+const IndexContent = ({ categories }) => {
   return <Col className="order-2 order-lg-1 col-md-12 col-lg-6">
     <h1>
       Корпорация Недвижимости 21 Век
@@ -13,10 +13,11 @@ const IndexContent = () => {
       Выберите интересующий Вас раздел из перечисленных ниже:
     </p>
     <div className="IndexTable">
-      {content.map(({ image, title, description }, i) => {
+      {categories.map(({ cdnImage, title, description, seo }, i) => {
         const even = i % 2 == 0
         return <Item
-          img={`/website/index/${image}`}
+          link={`/${seo}`}
+          img={cdnImage}
           title={title}
           key={title}
           description={description}
@@ -28,14 +29,18 @@ const IndexContent = () => {
   </Col>
 }
 
-const Item = ({ img, title, description, style }) => {
+const Item = ({ img, title, description, style, link }) => {
   return <Row className="d-flex align-items-center IndexItem my-1" style={style}>
     <Col className="IndexItemImage col-12 col-md-4">
-      {img && <img className="img-fluid p-1" src={img}/>}
+      <a href={link} title={title}>
+        <img className="img-fluid p-1" src={img}/>
+      </a>
     </Col>
     <Col>
-      <h3>{title}</h3>
-      {description && <p>{description}</p>}
+      <a href={link} title={title}>
+        <h3>{title}</h3>
+        {description && <p>{description}</p>}
+      </a>
     </Col>
   </Row>
 }
