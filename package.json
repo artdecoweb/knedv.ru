@@ -46,10 +46,12 @@
     "@idio/frontend": "^1.2.1",
     "@idio/mailru": "1.0.0",
     "@idio/router": "1.2.0",
+    "azure-storage": "2.10.2",
     "erte": "1.1.6",
     "mongoose": "5.4.8",
     "preact": "8.4.2",
     "preact-render-to-string": "4.1.0",
+    "sharp": "0.21.3",
     "trumbowyg": "2.14.0",
     "unfetch": "4.0.1"
   }

@@ -21,7 +21,7 @@ const Menu = ({ editorActive }) =>
       <i className="fas fa-font"></i> Статьи
     </Link>
     <a className={`nav-link${editorActive ? ' active' : ''}`} href="/admin/editor" native style="margin-left:2rem;">
-      <i className="fas fa-pen-nib"></i> Редактор Статей
+      <i className="fas fa-pen-nib"></i> Редактор Метериалов
     </a>
     <Link className="nav-link" href="/admin/special">
       <i className="fas fa-bolt"></i> Специальные Предложения

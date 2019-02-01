@@ -34,3 +34,6 @@ export const FormRow = ({
     {help && <small id={hid} className="form-text text-muted" dangerouslySetInnerHTML={{ __html: help }}/>}
   </div>
 }
+
+export const Icon = ({ icon }) =>
+  <span><i className={icon}></i> </span>

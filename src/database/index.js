@@ -35,7 +35,7 @@ export default class Database {
   /**
    * Return a model for a particular schema.
    * @param {String} name name of the model
-   * @returns {Model} A mongoose model.
+   * @returns {import('mongoose').Model} A mongoose model.
    */
   getModel(name) {
     return mongoose.connection.model(name)

@@ -1,17 +1,24 @@
 /** @type {import('koa').Middleware} */
-const data = async (ctx) => {
+const getData = async (ctx) => {
   /** @type {import('../../src/database').default} */
   const database = ctx.database
-  await new Promise(r => setTimeout(r, 5000))
   if ('categories' in ctx.query) {
     const model = database.getModel('Category')
     const categories = await model.find()
-    // console.log(categories)
-    ctx.body = categories
+    return categories
+  } else {
+    return { error: 'unknown path' }
   }
-  ctx.body = ['test']
 }
 
-export const middleware = r => ['session', 'checkAdmin', r]
+export const middleware = r => ['session', 'checkAdmin', async (ctx) => {
+  try {
+    const data = await r(ctx)
+    ctx.body = { data }
+  } catch({ message: error }) {
+    ctx.status = 500
+    ctx.body = { error }
+  }
+}]
 
-export default data
+export default getData

@@ -10,7 +10,8 @@ const PROD = process.env.NODE_ENV == 'production'
 const FRONT_END = process.env.FRONT_END || 'https://knedv.ru'
 
 export default async ({
-  port, watch = !PROD, database_url,
+  port, watch = !PROD, database_url, storage, storageDomain,
+  client_id, client_secret, cdn,
 }) => {
   const { router, middleware, app, url } = await idio({
     cors: { use: true,
@@ -68,8 +69,8 @@ export default async ({
   })
   if (watch) watchRoutes(w)
   mailru(router, {
-    client_id: process.env.APP_ID,
-    client_secret: process.env.SECRET_KEY,
+    client_id,
+    client_secret,
     session: middleware.session,
     async finish(ctx, token, user) {
       const [{ email }] = user
@@ -90,7 +91,7 @@ export default async ({
   app.use(router.routes())
   const database = new Database()
   await database.connect(database_url)
-  Object.assign(app.context, { database })
+  Object.assign(app.context, { database, storage, storageDomain, cdn })
   console.log('Connected to %s', b('Mongo', 'green'))
   return { app, url }
 }

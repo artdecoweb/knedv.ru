@@ -4,7 +4,7 @@ import Router from './preact-router'
 import { Row, Col } from '../frontend/components/Bootstrap'
 import Menu from './Menu'
 import Categories from './pages/Categories'
-import AddCategory from './pages/AddCategory';
+import AddCategory from './pages/AddCategory'
 
 const Home = () => {
   return <Col>
