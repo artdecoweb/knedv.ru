@@ -2,7 +2,7 @@ import render from 'preact-render-to-string'
 import { Row, Col } from '../frontend/components/Bootstrap'
 
 const AdminLayout = ({
-  title, App, loggedIn, noPreact,
+  title, App, loggedIn, PROD,
 }) => '<!doctype html>' + render(<html>
   <head lang="ru" className="h-100">
     <title>{title}</title>
@@ -42,8 +42,11 @@ const AdminLayout = ({
       </div>
     </footer>
 
-    {loggedIn && !noPreact &&
+    {loggedIn && !PROD &&
       <script type="module" src="/frontend-admin"></script>
+    }
+    {loggedIn && PROD &&
+      <script src="/admin.js"></script>
     }
   </body>
 </html>)

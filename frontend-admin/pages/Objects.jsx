@@ -17,6 +17,7 @@ export default class Objects extends Component {
   async load() {
     this.setState({ loading: true })
     try {
+      /** @type {{ json: function(): Promise<{ error: string, data: Array<Property> }> }} */
       const res = await fetch('/admin-data?objects')
       const { error, data } = await res.json()
       if (error) this.setState({ error })

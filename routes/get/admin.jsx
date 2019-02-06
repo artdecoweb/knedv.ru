@@ -1,5 +1,4 @@
 import AdminLayout from '../../src/AdminLayout'
-import App from '../../frontend-admin/App'
 
 /** @type {import('koa').Middleware} */
 const route = async (ctx) => {
@@ -14,7 +13,7 @@ const route = async (ctx) => {
     return
   }
   ctx.body = AdminLayout({
-    App: <App/>,
+    PROD: ctx.PROD,
     title: 'Главная',
     loggedIn: 1,
   })

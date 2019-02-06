@@ -17,6 +17,7 @@ export default class Categories extends Component {
   async load() {
     this.setState({ loading: true })
     try {
+      /** @type {{ json: function(): Promise<{ error: string, data: Array<Category> }> }} */
       const res = await fetch('/admin-data?categories')
       const { error, data } = await res.json()
       if (error) this.setState({ error })
@@ -49,7 +50,9 @@ class ItemRow extends Component {
     }
   }
   render() {
-    const { title, image, description, seo, id, onDelete } = this.props
+    /** @type {CategoryProps} */
+    const props = this.props
+    const { title, image, description, seo, id, onDelete } = props
     return <Row className="CategoryRow">
       <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid p-1"/></Col>
       <Col>

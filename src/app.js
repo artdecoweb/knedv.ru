@@ -19,6 +19,8 @@ import Server from './server'
     storage: STORAGE,
     storageDomain: process.env.STORAGE_DOMAIN,
     cdn: process.env.CDN_ENDPOINT,
+    PROD: process.env.NODE_ENV == 'production',
+    frontendUrl: process.env.FRONT_END || 'https://knedv.ru',
   })
   console.log('Started on %s', c(url, 'green'))
 })()

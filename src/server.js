@@ -5,21 +5,21 @@ import mailru from '@idio/mailru'
 import { b } from 'erte'
 import Database from './database'
 
-const PROD = process.env.NODE_ENV == 'production'
-const FRONT_END = process.env.FRONT_END || 'https://knedv.ru'
-
 export default async ({
-  port, watch = !PROD, database_url, storage, storageDomain,
-  client_id, client_secret, cdn,
+  port, PROD, watch = !PROD, database_url, storage, storageDomain,
+  client_id, client_secret, cdn, frontendUrl,
 }) => {
   const { router, middleware, app, url } = await idio({
     cors: { use: true,
-      origin: PROD && [FRONT_END],
+      origin: PROD && [frontendUrl],
       config: { credentials: true } },
     compress: { use: true },
-    static: { use: true, root: 'static', config: {
+    static: [{ use: true, root: 'static', config: {
       maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
     } },
+    { use: true, root: 'build', config: {
+      maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
+    } }],
     ...(!PROD ? {
       frontend: {
         use: true,
@@ -96,7 +96,10 @@ export default async ({
   app.use(router.routes())
   const database = new Database()
   await database.connect(database_url)
-  Object.assign(app.context, { database, storage, storageDomain, cdn })
+  Object.assign(app.context, {
+    database, storage, storageDomain, cdn,
+    PROD: PROD || process.env.NODE_ENV == 'emulate-prod',
+  })
   console.log('Connected to %s', b('Mongo', 'green'))
   return { app, url }
 }

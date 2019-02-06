@@ -15,8 +15,8 @@ export const Col = ({ children, className, ...props }) => {
 }
 
 const Input = ({ textarea, required, name, placeholder, id, hid, type, file, value }) => {
-  const props = { required, name, placeholder, className: `form-control${file ? '-file' : ''}`, id, 'aria-describedby': hid }
-  const input = textarea ? <textarea rows={typeof textarea == 'number' ? textarea : 3} {...props}>{value}</textarea> : <input type={type} {...props} {...(value ? { value } : {})}/>
+  const props = { 'required': required, 'name': name, 'placeholder': placeholder, 'className': `form-control${file ? '-file' : ''}`, 'id': id, 'aria-describedby': hid }
+  const input = textarea ? <textarea rows={typeof textarea == 'number' ? textarea : 3} {...props}>{value}</textarea> : <input type={type} {...props} {...(value ? { 'value': value } : {})}/>
   return input
 }
 

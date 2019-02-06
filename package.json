@@ -15,7 +15,8 @@
     "lint": "eslint .",
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "build": "alamode src -o build -s -i bin/index.js",
-    "depack": "depack-dev frontend-admin/index.jsx -o build/admin.js -I 2018 -a -H --charset=UTF-8 -w -p",
+    "depack": "depack-dev frontend-admin/index.jsx -o build/admin.js -I 2018 -a -H --charset=UTF-8 -p --externs frontend-admin/externs/index.js -w",
+    "t": "depack-dev t.js -o tt.js -a -p",
     "dokku": "git push dokku"
   },
   "files": [

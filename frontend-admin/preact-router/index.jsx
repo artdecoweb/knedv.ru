@@ -1,4 +1,4 @@
-import { cloneElement, h, Component } from 'preact'
+import { cloneElement, Component } from 'preact'
 import { exec, prepareVNodeForRanking, assign, pathRankSort } from './util'
 
 let customHistory = null
@@ -10,7 +10,7 @@ const subscribers = []
 const EMPTY = {}
 
 function isPreactElement(node) {
-  return node.__preactattr_!=null || typeof Symbol!=='undefined' && node[Symbol.for('preactattr')]!=null
+  return node['__preactattr_']!=null || typeof Symbol!=='undefined' && node[Symbol.for('preactattr')]!=null
 }
 
 function setUrl(url, type='push') {
@@ -92,7 +92,9 @@ function routeFromLink(node) {
   return route(href)
 }
 
-
+/**
+ * @param {MouseEvent} e
+ */
 function handleLinkClick(e) {
   if (e.button==0) {
     routeFromLink(e.currentTarget || e.target || this)
@@ -251,9 +253,9 @@ class Router extends Component {
   }
 }
 
-const Link = (props) => (
-  h('a', assign({ onClick: handleLinkClick }, props))
-)
+const Link = (props) => {
+  return <a {...props} onClick={handleLinkClick} />
+}
 
 const Route = props => h(props.component, props)
 
