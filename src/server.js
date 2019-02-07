@@ -1,6 +1,5 @@
 import idio from '@idio/core'
 import initRoutes, { watchRoutes } from '@idio/router'
-import frontend from '@idio/frontend'
 import mailru from '@idio/mailru'
 import { b } from 'erte'
 import Database from './database'
@@ -22,13 +21,7 @@ export default async ({
     } }],
     ...(!PROD ? {
       frontend: {
-        use: true,
-        middlewareConstructor: (_, conf) => frontend(conf),
-      },
-      frontendAdmin: {
-        use: true,
-        middlewareConstructor: (_, conf) => frontend(conf),
-        config: { directory: 'frontend-admin' },
+        directory: ['frontend', 'frontend-admin'],
       },
     } : {}),
     session: { keys: [process.env.SESSION_KEY] },

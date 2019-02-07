@@ -1,4 +1,4 @@
-import { Link } from './preact-router/Match'
+import { Link } from '@depack/router'
 
 const Menu = () =>
   <nav className="nav flex-column">

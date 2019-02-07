@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
 import { Col, FormRow } from '../../frontend/components/Bootstrap'
-import ArticleEditor from '../ArticleEditor';
+import ArticleEditor from '../ArticleEditor'
 
 export default class AddCategory extends Component {
   constructor() {

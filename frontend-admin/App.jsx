@@ -1,4 +1,4 @@
-import Router from './preact-router'
+import Router from '@depack/router'
 import { Row, Col } from '../frontend/components/Bootstrap'
 import Menu from './Menu'
 import Categories from './pages/Categories'
