@@ -17,6 +17,7 @@ const getData = async (ctx) => {
     })
     const mo = objects.map(({ _doc }) => {
       const cat = categories.find(({ id }) => _doc.category == id)
+      if (!cat) return _doc
       return { ..._doc, categorySeo: cat.seo }
     })
     return mo
@@ -26,7 +27,13 @@ const getData = async (ctx) => {
       ...(ctx.query.id ? { _id: ctx.query.id }: {}),
     })
     return objects.map(({ _doc }) => _doc)
-  }else {
+  } else if ('specials' in ctx.query) {
+    const model = database.getModel('Special')
+    const objects = await model.find({
+      ...(ctx.query.id ? { _id: ctx.query.id }: {}),
+    })
+    return objects.map(({ _doc }) => _doc)
+  } else {
     return { error: 'unknown path' }
   }
 }

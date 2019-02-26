@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { Category, Obj, Page } from './schema'
+import { Category, Obj, Page, Special } from './schema'
 
 function setupModels(connection, models) {
   Object.keys(models).forEach((key) => {
@@ -17,6 +17,7 @@ export default class Database {
       Category,
       Object: Obj,
       Page: Page,
+      Special: Special,
     }
   }
   /**

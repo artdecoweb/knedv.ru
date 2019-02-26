@@ -1,6 +1,7 @@
 import objects from './admin-data/objects'
 import categories from './admin-data/categories'
 import pages from './admin-data/pages'
+import specials from './admin-data/specials'
 
 /** @type {import('koa').Middleware} */
 const postData = async (ctx) => {
@@ -13,6 +14,9 @@ const postData = async (ctx) => {
   }
   if ('pages' in ctx.query) {
     return await pages(ctx, database)
+  }
+  if ('specials' in ctx.query) {
+    return await specials(ctx, database)
   }
 }
 

@@ -7,6 +7,7 @@ import Objects from './pages/Objects'
 import AddObject from './pages/AddObject'
 import Pages from './pages/Pages'
 import AddPage from './pages/AddPage'
+import Special from './pages/Special'
 
 const Home = () => {
   return <Col>
@@ -31,6 +32,7 @@ const App = () =>
       <AddCategory path="/admin/add-category/:id?" title="Добавить Категорию" />
       <Pages path="/admin/pages" title="Статьи" />
       <AddPage path="/admin/add-page/:id?" title="Добавить Страницу" />
+      <Special path="/admin/special" title="Специальные Предложения" />
     </Router>
   </Row>
 

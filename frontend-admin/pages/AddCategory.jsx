@@ -76,13 +76,13 @@ export default class AddCategory extends Component {
         >
           <FormGroup label="Название" help="Название для меню слева.">
             <Input name="title" placeholder="Москва Новостройки"
-              value={this.state.data.title} required="1" />
+              value={this.state.data.title} required={true} />
           </FormGroup>
           <FormGroup label="СЕО Название" help={hint}>
-            <Input required="1" name="seo" placeholder="москва-новостройки" value={this.state.data.seo}/>
+            <Input required={true} name="seo" placeholder="москва-новостройки" value={this.state.data.seo}/>
           </FormGroup>
           <FormGroup label="Описание" help="Краткое описание для главной страницы.">
-            <TextArea rows="3" required name="description" placeholder="Новая недвижиость в столице России -- это привлекательное предложения для тех, кто собирается строить свое будущее в центре событий.">
+            <TextArea rows="3" required={true} name="description" placeholder="Новая недвижиость в столице России -- это привлекательное предложения для тех, кто собирается строить свое будущее в центре событий.">
               {this.state.data.description}
             </TextArea>
           </FormGroup>
@@ -97,7 +97,7 @@ export default class AddCategory extends Component {
           </FormGroup>
           }
           {(!editing || resetImage) && <FormGroup label="Изображение" help="Картинка, отображаемая на главной странице.">
-            <Input name="image" type="file" file="1" required />
+            <Input name="image" type="file" file="1" required={true}  />
           </FormGroup>}
           <ArticleEditor article={this.state.article} onSave={(html) => {
             this.setState({ article: html })

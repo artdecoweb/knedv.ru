@@ -72,9 +72,9 @@ export default async ({
           try {
             const data = await next(ctx)
             ctx.body = { data }
-          } catch({ message: error }) {
+          } catch({ message: error, stack }) {
             ctx.status = 500
-            ctx.body = { error }
+            ctx.body = { error, stack }
           }
         }
       },

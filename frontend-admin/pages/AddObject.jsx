@@ -99,13 +99,13 @@ export default class AddCategory extends Component {
       {!(editing && this.state.loading) &&
       <Form formRef={r => this.form = r} onSubmit={this.submit.bind(this)}>
         <FormGroup help="Название для каталога недвижимости." label="Название">
-          <Input name="title" required placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={this.state.data.title} />
+          <Input name="title" required={true} placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={this.state.data.title} />
         </FormGroup>
         <FormGroup help={hint} label="СЕО Название">
-          <Input name="seo" required placeholder="1-комнатные-апартаменты-воскресенское" value={this.state.data.seo} />
+          <Input name="seo" required={true} placeholder="1-комнатные-апартаменты-воскресенское" value={this.state.data.seo} />
         </FormGroup>
         <FormGroup help="Описание объекта." label="Описание">
-          <TextArea rows={10} name="description" required placeholder="Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично).">
+          <TextArea rows={10} name="description" required={true}  placeholder="Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично).">
             {this.state.data.description}
           </TextArea>
         </FormGroup>
@@ -121,14 +121,14 @@ export default class AddCategory extends Component {
         </div>
         }
         {(!editing || resetImage) && <FormGroup label="Изображение" help="Картинка, отображаемая на главной странице.">
-          <Input name="image" file="1" type="file" required />
+          <Input name="image" file="1" type="file" required={true} />
         </FormGroup>}
         <ArticleEditor article={this.state.article} onSave={(html) => {
           this.setState({ article: html })
         }}/>
         {editing && <input type="hidden" name="id" value={this.props.id}/>}
         <FormGroup label="Раздел" help="Категория в каталоге">
-          <Select name="category" options={categories} required value={this.state.data.category} />
+          <Select name="category" options={categories} required={true} value={this.state.data.category} />
         </FormGroup>
         <button type="submit" className="btn btn-primary" disabled={this.state.formLoading}>{this.state.formLoading ? 'Загрузка...' : `${editing ? 'Сохранить' : 'Добавить'}`}</button>
         <Error error={this.state.error} />

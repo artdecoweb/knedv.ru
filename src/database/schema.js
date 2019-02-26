@@ -27,6 +27,20 @@ export const _Page = {
   title: String,
   description: String,
 }
+export const _Special = {
+  seo: String,
+  article: String,
+  title: String,
+  description: String,
+  href: String,
+  price: String,
+
+  image: String,
+  imageLocation: String,
+  imageContainer: String,
+  cdnImage: String,
+}
 export const Category = new Schema(_Category)
 export const Obj = new Schema(_Object)
 export const Page = new Schema(_Page)
+export const Special = new Schema(_Special)
