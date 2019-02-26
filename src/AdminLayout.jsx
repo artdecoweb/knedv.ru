@@ -46,7 +46,7 @@ const AdminLayout = ({
     </footer>
 
     {loggedIn && !PROD &&
-      <script type="module" src="/frontend-admin"></script>
+      <script type="module" src="/frontend-admin/"></script>
     }
     {loggedIn && PROD &&
       <script src="/admin.js"></script>

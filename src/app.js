@@ -21,6 +21,7 @@ import Server from './server'
     cdn: process.env.CDN_ENDPOINT,
     PROD: process.env.NODE_ENV == 'production',
     frontendUrl: process.env.FRONT_END || 'https://knedv.ru',
+    elastic: process.env.ELASTIC_SEARCH,
   })
   console.log('Started on %s', c(url, 'green'))
 })()
