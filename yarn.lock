@@ -63,10 +63,10 @@
   resolved "https://registry.yarnpkg.com/@demimonde/dotenv/-/dotenv-1.0.0.tgz#73d745a6189011a1493761d2f68833436d7e69ca"
   integrity sha512-cUC9gtaGpvv6BM1BoT6cUaOfL50J9rPK8vGjLdWbJUSdx+XQNY0uXXK4oJ6ILmIfYjgcj1LfJLL7fPw0JOzI7A==
 
-"@depack/form@1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@depack/form/-/form-1.0.0.tgz#3c213d2ed540be2fbe377abe92b4d17a07edea57"
-  integrity sha512-/KkI34rFl05PaFNIbFvEHVcT+12VpS+ncE+OF0DEgaVnHfSakoXL1kbfmA5Yr3a0QTtbZ4yzPT/xXX2TAwHSkg==
+"@depack/form@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@depack/form/-/form-1.1.0.tgz#b829088e3fd2e4c1b2ecc065a9a517c54ffb6d85"
+  integrity sha512-+uFuT+o0xfGGggmbQjpNHoHj+2QjN4YmHu3eUKAxtY0qODhjtUArpOyB6xHelSYXeQUIAnynHNIpdvED8gkAIA==
 
 "@depack/router@1.0.3":
   version "1.0.3"

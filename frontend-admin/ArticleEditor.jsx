@@ -4,11 +4,11 @@ const ArticleEditor = ({ article, onSave }) => {
     <div style="background: #edeee8;" className="mb-3" dangerouslySetInnerHTML={{ __html: article }}/>
     <a className="btn btn-outline-success" href="#" onClick={(e) => {
       e.preventDefault()
-      window.editorCallback = (html) => {
+      window['editorCallback'] = (html) => {
         editor.close()
         onSave(html)
       }
-      window.editorGetData = () => article
+      window['editorGetData'] = () => article
       const editor = popup('/admin/editor', 'Редактор Статей', 900, 650)
       return false
     }}>Редактировать</a>

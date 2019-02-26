@@ -69,7 +69,9 @@ export default class AddCategory extends Component {
         <Form onChange={(values) => {
           console.log(values)
           console.log(values.seo)
-        }} ref={r => this.form = r}
+        }} formRef={r => {
+          this.form = r
+        }}
         onSubmit={this.submit.bind(this)}
         >
           <FormGroup label="Название" help="Название для меню слева.">

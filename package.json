@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "@demimonde/dotenv": "1.0.0",
-    "@depack/form": "1.0.0",
+    "@depack/form": "1.1.0",
     "@depack/router": "1.0.3",
     "@idio/core": "1.3.4",
     "@idio/mailru": "1.0.0",
