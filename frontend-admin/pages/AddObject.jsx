@@ -1,7 +1,8 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
-import { Col, FormRow } from '../../frontend/components/Bootstrap'
-import ArticleEditor from '../ArticleEditor';
+import { Col } from '../../frontend/components/Bootstrap'
+import ArticleEditor from '../ArticleEditor'
+import Form, { FormGroup, Input, TextArea, Select } from '@depack/form'
 
 export default class AddCategory extends Component {
   constructor() {
@@ -86,17 +87,28 @@ export default class AddCategory extends Component {
   }
   render() {
     const hint = this.getHint()
-    const { editing, resetImage } = this.state
+    const { editing, resetImage, categories } = this.state
+    if (this.state.loading) {
+      return <Col>
+        <h1>{this.state.editing ? 'Редактировать' : 'Добавить'} Объект</h1>
+        <span className="echo-loader">Loading…</span>
+      </Col>
+    }
     return <Col>
       <h1>{this.state.editing ? 'Редактировать' : 'Добавить'} Объект</h1>
-      {editing && this.state.loading && <span className="echo-loader">Loading…</span>}
       {!(editing && this.state.loading) &&
-      <form
-        ref={r => this.form = r}
-        onSubmit={this.submit.bind(this)}>
-        <FormRow name="title" placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" label="Название" help="Название для каталога недвижимости." required="1" { ...(editing ? { value: this.state.data.title } : {})} />
-        <FormRow name="seo" placeholder="1-комнатные-апартаменты-воскресенское" label="СЕО Название" help={hint} required="1" { ...(editing ? { value: this.state.data.seo } : {})} />
-        <FormRow name="description" placeholder="Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично)." label="Описание" help="Описание объекта." textarea={10} required="1" value={this.state.data.description}/>
+      <Form formRef={r => this.form = r} onSubmit={this.submit.bind(this)}>
+        <FormGroup help="Название для каталога недвижимости." label="Название">
+          <Input name="title" required placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={this.state.data.title} />
+        </FormGroup>
+        <FormGroup help={hint} label="СЕО Название">
+          <Input name="seo" required placeholder="1-комнатные-апартаменты-воскресенское" value={this.state.data.seo} />
+        </FormGroup>
+        <FormGroup help="Описание объекта." label="Описание">
+          <TextArea rows={10} name="description" required placeholder="Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично).">
+            {this.state.data.description}
+          </TextArea>
+        </FormGroup>
 
         {editing && !resetImage && <div className="form-group">
           <label>Изображение</label><br/>
@@ -108,17 +120,26 @@ export default class AddCategory extends Component {
           }}>Изменить</a>
         </div>
         }
-        {(!editing || resetImage) && <FormRow name="image" label="Изображение" help="Картинка, отображаемая на главной странице." file="1" type="file" required="1"/>}
+        {(!editing || resetImage) && <FormGroup label="Изображение" help="Картинка, отображаемая на главной странице.">
+          <Input name="image" file="1" type="file" required />
+        </FormGroup>}
         <ArticleEditor article={this.state.article} onSave={(html) => {
           this.setState({ article: html })
         }}/>
         {editing && <input type="hidden" name="id" value={this.props.id}/>}
-        <FormRow name="category" label="Раздел" help="Категория в каталоге" options={this.state.categories} required="1" value={this.state.data.category}/>
-        <button type="submit" className="btn btn-primary" disabled={this.state.formLoading}>{ this.state.formLoading ? 'Загрузка...' : `${editing ? 'Сохранить' : 'Добавить'}`}</button>
-        {this.state.error && <div className="alert alert-danger mt-3" role="alert">{this.state.error}</div>}
+        <FormGroup label="Раздел" help="Категория в каталоге">
+          <Select name="category" options={categories} required value={this.state.data.category} />
+        </FormGroup>
+        <button type="submit" className="btn btn-primary" disabled={this.state.formLoading}>{this.state.formLoading ? 'Загрузка...' : `${editing ? 'Сохранить' : 'Добавить'}`}</button>
+        <Error error={this.state.error} />
         {this.state.success && <div className="alert alert-success mt-3" role="alert">Объект успешно {editing ? 'сохранен' : 'создан'}!</div>}
-      </form>
+      </Form>
       }
     </Col>
   }
+}
+
+const Error = ({ error }) => {
+  if (!error) return null
+  return <div className="alert alert-danger mt-3" role="alert">{error}</div>
 }

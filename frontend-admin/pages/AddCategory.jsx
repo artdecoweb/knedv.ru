@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
 import Form, { FormGroup, Input, TextArea } from '@depack/form'
-import { Col, FormRow } from '../../frontend/components/Bootstrap'
+import { Col } from '../../frontend/components/Bootstrap'
 import ArticleEditor from '../ArticleEditor'
 
 export default class AddCategory extends Component {
