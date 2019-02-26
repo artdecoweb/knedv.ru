@@ -37,8 +37,9 @@ export default async ({
     ...(elastic ? { logarithm: {
       middlewareConstructor() {
         const l = logarithm({
-          app: 'knedv.ru',
+          app: process.env.APP_NAME || '<unknown/>',
           url: elastic,
+          index: 'knedv.ru',
         })
         return l
       },
