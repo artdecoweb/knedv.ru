@@ -24,7 +24,9 @@ export default class Database {
    * @param {string} uri the url of the database to connect to
    */
   async connect(uri) {
-    await mongoose.connect(uri)
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+    })
     setupModels(mongoose.connection, this._models)
   }
   /**

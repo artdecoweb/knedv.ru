@@ -2,11 +2,12 @@ import idio from '@idio/core'
 import initRoutes, { watchRoutes } from '@idio/router'
 import mailru from '@idio/mailru'
 import { b } from 'erte'
+import logarithm, { ping } from 'logarithm'
 import Database from './database'
 
 export default async ({
   port, PROD, watch = !PROD, database_url, storage, storageDomain,
-  client_id, client_secret, cdn, frontendUrl,
+  client_id, client_secret, cdn, frontendUrl, elastic,
 }) => {
   const { router, middleware, app, url } = await idio({
     cors: { use: true,
@@ -29,6 +30,16 @@ export default async ({
     multer: { config: {
       dest: 'upload',
     } },
+    ...(elastic ? { logarithm: {
+      middlewareConstructor() {
+        const l = logarithm({
+          app: 'knedv.ru',
+          url: elastic,
+        })
+        return l
+      },
+      use: true,
+    } } : {}),
     checkAdmin: {
       middlewareConstructor() {
         return async (ctx, next) => {
@@ -93,6 +104,10 @@ export default async ({
     database, storage, storageDomain, cdn,
     PROD: PROD || process.env.NODE_ENV == 'emulate-prod',
   })
+  if (elastic) {
+    await ping(elastic)
+    console.log('Pinged %s', b(elastic, 'cyan'))
+  }
   console.log('Connected to %s', b('Mongo', 'green'))
   return { app, url }
 }
