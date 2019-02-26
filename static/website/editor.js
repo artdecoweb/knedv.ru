@@ -18,7 +18,7 @@ $('#trumbowyg').trumbowyg({
     ['strong', 'em', 'del'],
     ['superscript', 'subscript'],
     ['link'],
-    ['insertImage'],
+    ['insertImage', 'upload'],
     ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
     ['unorderedList', 'orderedList'],
     ['horizontalRule'],
@@ -26,6 +26,12 @@ $('#trumbowyg').trumbowyg({
     ['fullscreen'],
     ['foreColor', 'backColor'],
   ],
+  plugins: {
+    upload: {
+      serverPath: '/upload-asset',
+      fileFieldName: 'image',
+    },
+  },
 })
 
 const data = window.opener.editorGetData()

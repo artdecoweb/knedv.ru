@@ -2,7 +2,8 @@ import { createBlobService } from 'azure-storage'
 import sharp from 'sharp'
 
 export const resize = async (path, size) => {
-  const res = await sharp(path).rotate().resize(size)
+  const res = await sharp(path).rotate()
+    .withoutEnlargement().resize(size)
     .jpeg({ quality: 90 }).toBuffer()
   return res
 }

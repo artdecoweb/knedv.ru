@@ -26,6 +26,7 @@ const App = () => <html lang="ru" style="height: 100%;">
     <script src="/node_modules/trumbowyg/dist/trumbowyg.js"></script>
     <script type="text/javascript" src="/node_modules/trumbowyg/dist/langs/ru.min.js"></script>
     <script src="/node_modules/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
+    <script src="/node_modules/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js"></script>
     <script src="/website/editor.js"></script>
   </body>
 </html>

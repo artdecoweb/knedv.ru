@@ -1,4 +1,4 @@
-import { resize, file, checkExtension } from "../images";
+import { resize, file, checkExtension } from '../images'
 
 /**
  * Returns the lower-case SEO string or throws an error.
@@ -11,13 +11,20 @@ export const getSeo = (seo) => {
   return s
 }
 
-export const handleImage = async (cdn, storage, path, seo, mimetype) => {
+/**
+ * @param {string} cdn The CDN config.
+ * @param {string} storage The Storage config.
+ * @param {string} path The path to the uploaded file.
+ * @param {string} seo The name of how to save the file.
+ * @param {string} mimetype The mimetype.
+ */
+export const handleImage = async (cdn, storage, path, seo, mimetype, { folder = 'catalog', resize: r = 250 } = {}) => {
   if (!path) {
     return {}
   }
   checkExtension(mimetype)
-  const buffer = await resize(path, 250)
-  const blob = `catalog/${seo}.jpg`
+  const buffer = await resize(path, r)
+  const blob = `${folder}/${seo}.jpg`
   const imageContainer = 'images'
   const image = await file({
     storage,
