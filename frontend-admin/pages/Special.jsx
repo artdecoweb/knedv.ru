@@ -59,7 +59,7 @@ export default class Special extends Component {
     }
     const f = <details>
       <summary>
-        <h3 style="display: inline-block;vertical-align: middle;">Создать Новую Акцию</h3>
+        <h3 style="display: inline-block;vertical-align: middle;">Создать Новое Предложение</h3>
       </summary>
       <AddForm formLoading={this.state.formLoading} onSubmit={this.submit.bind(this)} formRef={r => { this.form = r }} />
     </details>
