@@ -5,6 +5,8 @@ import { b } from 'erte'
 import logarithm, { ping } from 'logarithm'
 import Database from './database'
 
+const maxage = PROD => PROD ? 1000 * 60 * 60 * 60 * 24 : 0
+
 export default async ({
   port, PROD, watch = !PROD, database_url, storage, storageDomain,
   client_id, client_secret, cdn, frontendUrl, elastic,
@@ -15,14 +17,14 @@ export default async ({
       config: { credentials: true } },
     compress: { use: true },
     static: [{ use: true, root: 'static', config: {
-      maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
+      maxage: maxage(),
     } },
     { use: true, root: 'build', config: {
-      maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
+      maxage: maxage(),
     } },
     { use: true, root: 'node_modules/trumbowyg',
       mount: '/trumbowyg', config: {
-        maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
+        maxage: maxage(),
       } } ],
     ...(!PROD ? {
       frontend: {

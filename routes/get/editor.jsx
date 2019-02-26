@@ -23,7 +23,7 @@ const App = ({ prod }) => <html lang="ru" style="height: 100%;">
     <a id="Save" href="#" className="btn btn-success ml-2">Сохранить</a>
     <a id="Close" href="#" className="btn btn-light mr-2" style="float:right;">Закрыть</a>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
-    <script src="/node_modules/trumbowyg/dist/trumbowyg.js"></script>
+    <script src="/trumbowyg/dist/trumbowyg.js"></script>
     <script type="text/javascript" src="/trumbowyg/dist/langs/ru.min.js"></script>
     <script src="/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
     <script src="/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js"></script>
