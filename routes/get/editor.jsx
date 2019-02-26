@@ -1,6 +1,6 @@
-import render from 'preact-render-to-string'
+import render from '@depack/render'
 
-const App = () => <html lang="ru" style="height: 100%;">
+const App = ({ prod }) => <html lang="ru" style="height: 100%;">
   <head>
     <title>Редактор Статей</title>
     <link rel="stylesheet" href="/website/trumbowyg.min.css"/>
@@ -24,16 +24,17 @@ const App = () => <html lang="ru" style="height: 100%;">
     <a id="Close" href="#" className="btn btn-light mr-2" style="float:right;">Закрыть</a>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"/>
     <script src="/node_modules/trumbowyg/dist/trumbowyg.js"></script>
-    <script type="text/javascript" src="/node_modules/trumbowyg/dist/langs/ru.min.js"></script>
-    <script src="/node_modules/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
-    <script src="/node_modules/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js"></script>
+    <script type="text/javascript" src="/trumbowyg/dist/langs/ru.min.js"></script>
+    <script src="/trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js"></script>
+    <script src="/trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js"></script>
     <script src="/website/editor.js"></script>
   </body>
 </html>
 
 /** @type {import('koa').Middleware} */
 const route = async (ctx) => {
-  ctx.body = '<!doctype html>' + render(<App/>)
+  const { PROD } = ctx
+  ctx.body = '<!doctype html>' + render(<App prod={PROD}/>)
 }
 export default route
 

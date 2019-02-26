@@ -19,7 +19,11 @@ export default async ({
     } },
     { use: true, root: 'build', config: {
       maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
-    } }],
+    } },
+    { use: true, root: 'node_modules/trumbowyg',
+      mount: '/trumbowyg', config: {
+        maxage: PROD ? 1000 * 60 * 60 * 60 * 24 : 0,
+      } } ],
     ...(!PROD ? {
       frontend: {
         directory: ['frontend', 'frontend-admin'],

@@ -1,4 +1,4 @@
-import render from 'preact-render-to-string'
+import render from '@depack/render'
 import { Row, Col } from '../frontend/components/Bootstrap'
 
 const AdminLayout = ({
