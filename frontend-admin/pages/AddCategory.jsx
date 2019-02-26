@@ -96,7 +96,9 @@ export default class AddCategory extends Component {
             }}>Изменить</a>
           </FormGroup>
           }
-          {(!editing || resetImage) && <FormRow name="image" label="Изображение" help="Картинка, отображаемая на главной странице." file="1" type="file" required="1"/>}
+          {(!editing || resetImage) && <FormGroup label="Изображение" help="Картинка, отображаемая на главной странице.">
+            <Input name="image" type="file" file="1" required />
+          </FormGroup>}
           <ArticleEditor article={this.state.article} onSave={(html) => {
             this.setState({ article: html })
           }}/>
