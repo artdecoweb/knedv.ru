@@ -7,7 +7,7 @@ export const SpecialBanner = ({
     <em>{children}</em><br/>
     <strong>Цена: {price}</strong><br/>
     {contact}
-    <br/><br/>
+    <br/>
     <a className="btn btn-light mb-2" href={href}>
       Подробности
     </a>
