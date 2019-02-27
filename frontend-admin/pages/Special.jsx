@@ -84,11 +84,12 @@ const List = ({ data, openModal, openEdit, loading }) => {
 
 
 const Item = ({ item, openModal, openEdit }) => {
-  const { _id, title, cdnImage, description, price } = item
-  return (<div style="border-bottom:1px solid brown;border-top:1px solid lightcoral;">
-    <h4>{title}</h4>
+  const { _id, title, cdnImage, description, price, show_on_main } = item
+  const shownOnMain = show_on_main == 'on'
+  return (<div style="border-bottom:1px solid brown;border-top:1px solid lightcoral;" className={shownOnMain ? 'IsShownOnMain' : ''}>
+    <h4>{title} {shownOnMain && <span className="badge badge-danger">На главной</span>}</h4>
     <p>
-      <img src={cdnImage} />
+      <img style="display:block;" src={cdnImage} />
       {description}
       <span style="font-weight: bold;"> {price}</span>
     </p>
@@ -136,6 +137,10 @@ class SpecialsForm extends SpecialForm {
 
       <FormGroup label="Переход" help="Ссылка на страницу каталога, или сайта.">
         <Input name="href" placeholder="/каталог/москва-элитная/лениниский-проспект-дом-114" value={i.href} />
+      </FormGroup>
+
+      <FormGroup help="Добавить в специальные предложения на главной.">
+        <Switch value={i.show_on_main} label="Отображать на главной" name="show_on_main"></Switch>
       </FormGroup>
 
       {item && <input type="hidden" name="id" value={i._id} />}

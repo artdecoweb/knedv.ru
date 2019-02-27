@@ -12,6 +12,7 @@ const specials = async (ctx, database) => {
   }
   const {
     description, title, id, article, price, href,
+    show_on_main,
   } = ctx.req.body
 
   const { file: {
@@ -19,11 +20,12 @@ const specials = async (ctx, database) => {
   } = {} } = ctx.req
   const img = await handleImage(ctx.cdn, ctx.storage, path, filename, mimetype, { folder: 'specials' })
 
-  /** @type {import('../../src/database/schema')._Category} */
+  /** @type {import('../../../src/database/schema')._Special} */
   const d = {
     price, href,
     description,
     title,
+    show_on_main,
     ...img,
     article,
   }

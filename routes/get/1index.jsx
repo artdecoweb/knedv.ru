@@ -36,8 +36,9 @@ const route = async (ctx) => {
   const Categories = database.getModel('Category')
   const categories = await Categories.find({}, 'title seo description cdnImage')
   const Special = database.getModel('Special')
-  const special = await Special.findOne({}, 'title description price href cdnImage')
-  const content = <Content categories={categories} offers={[]} special={special}/>
+  const special = await Special.find({ show_on_main: 'on' }, 'title description price href cdnImage show_on_main')
+  const s = pickRandom(special)
+  const content = <Content categories={categories} offers={[]} special={s}/>
   const app = <App activeMenu="index" Content={content} />
   ctx.body = Layout({
     title: 'Корпорация Недвижимости 21 Век',
@@ -45,5 +46,12 @@ const route = async (ctx) => {
   })
 }
 export default route
+
+const pickRandom = arr => {
+  if (!arr.length) return undefined
+  const i = Math.floor(Math.random() * arr.length + 1)
+  const r = arr[i - 1]
+  return r
+}
 
 export const aliases = ['/']

@@ -34,6 +34,7 @@ export const _Special = {
   description: String,
   href: String,
   price: String,
+  show_on_main: String,
 
   image: String,
   imageLocation: String,

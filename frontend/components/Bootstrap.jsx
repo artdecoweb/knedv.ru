@@ -1,3 +1,5 @@
+import { Component } from 'preact'
+
 /**
  * The Bootstrap row.
  */
@@ -53,10 +55,32 @@ const Select = ({ options, name, value, required, id, hid }) => {
 export const Icon = ({ icon }) =>
   <span><i className={icon}></i> </span>
 
-export const Switch = ({ label }) => {
-  const id = 'i' + Math.floor(Math.random() * 100000)
-  return (<div className="custom-control custom-switch">
-    <input type="checkbox" className="custom-control-input" id={id}/>
-    <label className="custom-control-label" htmlFor={id}>{label}</label>
-  </div>)
+export class Switch extends Component {
+  shouldComponentUpdate(_, __, newContext) {
+    const { name } = this.props
+    return this.context.values[name] != newContext.values[name]
+  }
+  componentDidMount() {
+    const { value, name } = this.props
+    const { onChange } = this.context
+    if (value !== undefined) onChange(name, value)
+  }
+  render({ name, label, value, required }) {
+    const  { id, onChange, hid, values = {} } = this.context
+    const rendered = name in values // for SSR
+    return (<div className="custom-control custom-switch">
+      <input
+        required={required !== undefined}
+        name={name}
+        checked={rendered ? values[name] : value}
+        type="checkbox"
+        className="custom-control-input"
+        id={id}
+        aria-described-by={hid}
+        onChange={(e) => {
+          onChange(name, e.currentTarget.checked)
+        }}/>
+      <label className="custom-control-label" htmlFor={id}>{label}</label>
+    </div>)
+  }
 }
