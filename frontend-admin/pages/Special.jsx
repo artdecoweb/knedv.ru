@@ -1,8 +1,10 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
-import { Col, Row, Icon } from '../../frontend/components/Bootstrap'
+import { Col, Icon, Switch } from '../../frontend/components/Bootstrap'
 import DeleteModal from '../DeleteModal'
 import Form, { FormGroup, Input, TextArea } from '@depack/form'
+import FormImage from '../Components/FormImage'
+import SpecialForm from '../Components/SpecialForm'
 
 export default class Special extends Component {
   constructor() {
@@ -29,154 +31,128 @@ export default class Special extends Component {
       this.setState({ loading: false })
     }
   }
-  async submit(e) {
-    this.setState({ error: null })
-    e.preventDefault()
-    const data = new FormData(this.form)
-    this.setState({ formLoading: true })
-    try {
-      const res = await fetch('/admin-data?specials', {
-        method: 'POST',
-        body: data,
-      })
-      const { error } = await res.json()
-      if (error) this.setState({ error })
-      else this.setState({ success: 1 })
-    } catch (error) {
-      this.setState({ error })
-    } finally {
-      this.setState({ formLoading: false })
-    }
-    return false
+  openModal(modal) {
+    this.setState({ modal })
+  }
+  openEdit(edit) {
+    this.setState({ edit })
   }
   render() {
-    if (this.state.loading) {
-      return (<Col>
-        <h1>Специальные Предложения</h1>
-        <span className="echo-loader">Loading…</span>
-        {}
-      </Col>)
-    }
     const f = <details>
       <summary>
         <h3 style="display: inline-block;vertical-align: middle;">Создать Новое Предложение</h3>
       </summary>
-      <AddForm formLoading={this.state.formLoading} onSubmit={this.submit.bind(this)} formRef={r => { this.form = r }} />
+      <SpecialsForm path="/admin-data?specials" submitFinish={() => {
+        this.load()
+      }} />
     </details>
-    if (!this.state.data.length) {
-      return (<Col>
-        <h1>Специальные Предложения</h1>
-        Нет специальных предложений.
-        <hr/>
-        {f}
-      </Col>)
-    }
     return <Col>
       <h1>Специальные Предложения</h1>
-      <div style="max-height:25rem;overflow:scroll;background:wheat; padding:0.5rem;">
-        {this.state.data.map((Item, i) => {
-          return (<div key={i} style="border-bottom:1px solid brown;border-top:1px solid lightcoral;">
-            <h4>{Item.title}</h4>
-            <p>
-              <img src={Item.cdnImage} />
-              {Item.description}
-              <span style="font-weight: bold;"> {Item.price}</span>
-            </p>
-            <a style="color:brown;" href="#" onClick={(e) => {
-              e.preventDefault()
-              this.setState({
-                modal: {
-                  text: <span>Вы действительно хотите удалить предложение <strong>{Item.title}</strong>?</span>,
-                  confirmText: 'Удалить',
-                  title: 'Удаление Предложения',
-                  path: `specials&id=${Item._id}&delete`,
-                },
-              })
-              return false
-            }}><Icon icon="far fa-trash-alt"/></a>
-            {this.state.modal &&
-              <DeleteModal {...this.state.modal} btnClass="danger" onClose={() => {
-                this.setState({ modal: null })
-              }} onComplete={this.load.bind(this)}/>
-            }
-          </div>)
-        })}
-      </div>
+      <List data={this.state.data} loading={this.state.loading}
+        openModal={this.openModal.bind(this)}
+        openEdit={this.openEdit.bind(this)}
+      />
       <hr/>
       {f}
+      {this.state.modal &&
+        <DeleteModal {...this.state.modal} btnClass="danger" onClose={this.openModal.bind(this, null)} onComplete={this.load.bind(this)}/>
+      }
+      {this.state.edit &&
+        <DeleteModal {...this.state.edit} btnClass="danger" onClose={this.openEdit.bind(this, null)} onComplete={this.load.bind(this)}/>
+      }
     </Col>
   }
 }
 
-const AddForm = ({ formLoading, onSubmit, formRef }) => {
-  return (<Form onSubmit={onSubmit} formRef={formRef}>
-    <FormGroup label="Название" help="Заголовок для главной страницы, напр., Ленинский проспект, дом 114">
-      <Input placeholder="Название акции" name="title" required/>
-    </FormGroup>
-    <FormGroup label="Описание" help="Введите описание акции...">
-      <TextArea name="description" required={true} placeholder="Описание акции"></TextArea>
-    </FormGroup>
-    <FormGroup label="Изображение" help="Выберите изображение...">
-      <Input name="image" type="file" required={true} file="1"/>
-    </FormGroup>
-    <FormGroup label="Цена" help="Задайте цену...">
-      <Input name="price" placeholder="55 000 000 руб." />
-    </FormGroup>
-    <FormGroup label="Переход" help="Ссылка на страницу каталога, или сайта.">
-      <Input name="href" placeholder="/каталог/москва-элитная/лениниский-проспект-дом-114" />
-    </FormGroup>
-    <button type="submit" className="btn btn-primary" disabled={formLoading}>{formLoading ? 'Загрузка...' : 'Добавить'}</button>
-  </Form>)
+const List = ({ data, openModal, openEdit, loading }) => {
+  if (loading) return <span className="echo-loader">Loading…</span>
+  if (!data.length) return 'Нет Специальных Предложений.'
+  return (<div style="max-height:25rem;overflow:scroll;background:wheat; padding:0.5rem;">
+    {data.map((item) => {
+      return <Item item={item} key={item._id}
+        openModal={openModal}
+        openEdit={openEdit}
+      />
+    })}
+  </div>)
 }
 
-{/* <h1>Категории Каталога</h1>
-<p>
-  В каталоге невдижимости содержатся следующие разделы:
-</p>
-{this.state.loading && <span className="echo-loader">Loading…</span>}
-{this.state.data.map(({ _id, ...item }) => {
-  return <ItemRow key={_id} {...item} id={_id} onDelete={() => this.load()} />
-})} */}
+const EditModal = () => {
 
-class ItemRow extends Component {
-  constructor() {
-    super()
-    this.state = {
-      modal: null,
-    }
+}
+
+
+const Item = ({ item, openModal, openEdit }) => {
+  const { _id, title, cdnImage, description, price } = item
+  return (<div style="border-bottom:1px solid brown;border-top:1px solid lightcoral;">
+    <h4>{title}</h4>
+    <p>
+      <img src={cdnImage} />
+      {description}
+      <span style="font-weight: bold;"> {price}</span>
+    </p>
+    <a style="color:brown;" href="#" onClick={(e) => {
+      e.preventDefault()
+      openModal({
+        text: <span>Вы действительно хотите удалить предложение <strong>{title}</strong>?</span>,
+        confirmText: 'Удалить',
+        title: 'Удаление Предложения',
+        path: `specials&id=${_id}&delete`,
+      })
+      return false
+    }}>
+      <Icon icon="far fa-trash-alt"/>
+    </a>
+    <a style="color:brown;" href="#" onClick={(e) => {
+      e.preventDefault()
+      openEdit(item)
+      return e
+    }}>
+      <Icon icon="fas fa-pen"/>
+    </a>
+  </div>)
+}
+
+class SpecialsForm extends SpecialForm {
+  render({ item }) {
+    const i = item || {}
+    const { formLoading } = this.state
+    return (<Form onSubmit={this.submit.bind(this)} onChange={() => {
+      this.setState({ error: null, success: null })
+    }}>
+      <FormGroup label="Название" help="Заголовок для главной страницы, напр., Ленинский проспект, дом 114">
+        <Input placeholder="Название акции" name="title" required value={i.name}/>
+      </FormGroup>
+      <FormGroup label="Описание" help="Введите описание акции...">
+        <TextArea name="description" required={true} placeholder="Описание акции">{i.description}</TextArea>
+      </FormGroup>
+
+      <FormImage help="Картинка, отображаемая на главной странице." required editing={item} image={i.cdnImage} />
+
+      <FormGroup label="Цена" help="Задайте цену...">
+        <Input name="price" placeholder="55 000 000 руб." value={i.price} />
+      </FormGroup>
+
+      <FormGroup label="Переход" help="Ссылка на страницу каталога, или сайта.">
+        <Input name="href" placeholder="/каталог/москва-элитная/лениниский-проспект-дом-114" value={i.href} />
+      </FormGroup>
+
+      {item && <input type="hidden" name="id" value={i.id} />}
+
+      <button type="submit" className="btn btn-primary" disabled={formLoading}>{formLoading ? 'Загрузка...' : 'Добавить'}</button>
+
+      <Error error={this.state.error}/>
+      <Success success={this.state.success} message="Предложение успешно создано!"/>
+    </Form>)
   }
-  render() {
-    /** @type {CategoryProps} */
-    const props = this.props
-    const { title, image, description, seo, id, onDelete } = props
-    return <Row className="CategoryRow">
-      <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid p-1"/></Col>
-      <Col>
-        <h2>{title}</h2>
-        <em>knedv.ru/{seo}</em>
-        <p>{description}</p>
-      </Col>
-      <Col className="col-1 CategoryMeta">
-        <a style="color:brown;" href={`/admin/add-category/${id}`}><Icon icon="fas fa-pen"/></a>
-        <br/>
-        <a style="color:brown;" href="#" onClick={(e) => {
-          e.preventDefault()
-          this.setState({
-            modal: {
-              text: <span>Вы действительно хотите удалить категорию <strong>{title}</strong>?</span>,
-              confirmText: 'Удалить',
-              title: 'Удаление Категории',
-              path: `categories&id=${id}&delete`,
-            },
-          })
-          return false
-        }}><Icon icon="far fa-trash-alt"/></a>
-      </Col>
-      {this.state.modal &&
-        <DeleteModal {...this.state.modal} btnClass="danger" onClose={() => {
-          this.setState({ modal: null })
-        }} onComplete={onDelete}/>
-      }
-    </Row>
-  }
+}
+
+const Error = ({ error }) => {
+  if (!error) return null
+  return (<div className="alert alert-danger mt-3" role="alert">{this.state.error}</div>)
+}
+
+const Success = ({ success, message }) => {
+  if (!success) return null
+  return (<div className="alert alert-success mt-3" role="alert">{message || success}</div>)
 }

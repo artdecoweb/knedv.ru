@@ -23,8 +23,7 @@ export default class DeleteModal extends Component {
       this.setState({ loading: false })
     }
   }
-  render() {
-    const { text, title, onClose, btnClass = 'primary', confirmText, closeText = 'Отмена' } = this.props
+  render({ text, title, onClose, btnClass = 'primary', confirmText, closeText = 'Отмена' }) {
     return <div className="modal" tabIndex="-1" role="dialog" style="display: block;">
       <div className="modal-dialog" role="document">
         <div className="modal-content">

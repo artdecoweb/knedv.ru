@@ -24,7 +24,7 @@ const Menu = () =>
       <i className="fas fa-pen-nib"></i> Добавить Страницу
     </Link>
     <Link className="nav-link" href="/admin/special">
-      <i className="fas fa-bolt"></i> Специальные Предложения
+      <i className="fas fa-bolt"></i> Спец. Предложения
     </Link>
     <Link className="nav-link" href="/admin/offers">
       <i className="fas fa-grip-lines"></i> Акции

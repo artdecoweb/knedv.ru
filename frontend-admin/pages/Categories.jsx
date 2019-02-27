@@ -53,7 +53,7 @@ class ItemRow extends Component {
     /** @type {CategoryProps} */
     const props = this.props
     const { title, image, description, seo, id, onDelete } = props
-    return <Row className="CategoryRow">
+    return (<Row className="CategoryRow">
       <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid p-1"/></Col>
       <Col>
         <h2>{title}</h2>
@@ -81,7 +81,7 @@ class ItemRow extends Component {
           this.setState({ modal: null })
         }} onComplete={onDelete}/>
       }
-    </Row>
+    </Row>)
   }
 }
 

@@ -52,3 +52,11 @@ const Select = ({ options, name, value, required, id, hid }) => {
 
 export const Icon = ({ icon }) =>
   <span><i className={icon}></i> </span>
+
+export const Switch = ({ label }) => {
+  const id = 'i' + Math.floor(Math.random() * 100000)
+  return (<div className="custom-control custom-switch">
+    <input type="checkbox" className="custom-control-input" id={id}/>
+    <label className="custom-control-label" htmlFor={id}>{label}</label>
+  </div>)
+}
