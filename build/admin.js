@@ -87,7 +87,7 @@ function v(a, b) {
       }
     }
   }
-  a.cb = b.prototype;
+  a.bb = b.prototype;
 }
 function na(a, b) {
   if (b) {
@@ -202,7 +202,7 @@ na("Promise", function(a) {
       this.v(m);
       return;
     }
-    "function" == typeof b ? this.Sa(b, a) : this.J(a);
+    "function" == typeof b ? this.Ra(b, a) : this.J(a);
   };
   b.prototype.v = function(a) {
     this.K(2, a);
@@ -231,7 +231,7 @@ na("Promise", function(a) {
     var b = this.j();
     a.X(b.resolve, b.reject);
   };
-  b.prototype.Sa = function(a, b) {
+  b.prototype.Ra = function(a, b) {
     var c = this.j();
     try {
       a.call(b, c.resolve, c.reject);
@@ -514,7 +514,7 @@ function J(a, b) {
   g.children = c;
   g.attributes = null == b ? void 0 : b;
   g.key = null == b ? void 0 : b.key;
-  void 0 !== I.Ta && I.Ta(g);
+  void 0 !== I.Sa && I.Sa(g);
   return g;
 }
 function K(a, b) {
@@ -532,7 +532,7 @@ function Ea(a, b) {
 }
 var Fa = /acit|ex(?:s|g|n|p|$)|rph|ows|mnc|ntw|ine[ch]|zoo|^ord/i, Ga = [];
 function Ha(a) {
-  !a.U && (a.U = !0) && 1 == Ga.push(a) && (I.Wa || Da)(Ia);
+  !a.U && (a.U = !0) && 1 == Ga.push(a) && (I.Va || Da)(Ia);
 }
 function Ia() {
   for (var a; a = Ga.pop();) {
@@ -542,7 +542,7 @@ function Ia() {
 function La(a) {
   var b = K({}, a.attributes);
   b.children = a.children;
-  a = a.nodeName.Xa;
+  a = a.nodeName.Wa;
   if (void 0 !== a) {
     for (var c in a) {
       void 0 === b[c] && (b[c] = a[c]);
@@ -608,7 +608,7 @@ function Sa() {
   }
 }
 function Ta(a, b, c, e, f, g) {
-  Qa++ || (L = null != f && void 0 !== f.Za, Ra = null != a && !("__preactattr_" in a));
+  Qa++ || (L = null != f && void 0 !== f.Ya, Ra = null != a && !("__preactattr_" in a));
   a = Ua(a, b, c, e, g);
   f && a.parentNode !== f && f.appendChild(a);
   --Qa || (Ra = !1, g || Sa());
@@ -659,7 +659,7 @@ function Ua(a, b, c, e, f) {
   } else {
     if (f && f.length || null != l) {
       l = g;
-      t = Ra || null != a.Va;
+      t = Ra || null != a.Ua;
       F = l.childNodes;
       var M = [], C = {}, y = 0, x = 0, u = F.length, W = 0, Ka = f ? f.length : 0;
       if (0 !== u) {
@@ -769,7 +769,7 @@ function $a(a, b, c) {
   return this.constructor(a, c);
 }
 function Va(a, b, c, e, f) {
-  a.V || (a.V = !0, a.qa = b.ca, a.pa = b.key, delete b.ca, delete b.key, "undefined" === typeof a.constructor.Ba && (!a.G || f ? a.xa && a.xa() : a.Ka && a.Ka(b, e)), e && e !== a.context && (a.ka || (a.ka = a.context), a.context = e), a.la || (a.la = a.c), a.c = b, a.V = !1, 0 !== c && (1 !== c && !1 === I.eb && a.G ? Ha(a) : Ja(a, 1, f)), Ca(a.qa, a));
+  a.V || (a.V = !0, a.qa = b.ca, a.pa = b.key, delete b.ca, delete b.key, "undefined" === typeof a.constructor.Ba && (!a.G || f ? a.xa && a.xa() : a.Ka && a.Ka(b, e)), e && e !== a.context && (a.ka || (a.ka = a.context), a.context = e), a.la || (a.la = a.c), a.c = b, a.V = !1, 0 !== c && (1 !== c && !1 === I.cb && a.G ? Ha(a) : Ja(a, 1, f)), Ca(a.qa, a));
 }
 function Ja(a, b, c, e) {
   if (!a.V) {
@@ -954,7 +954,7 @@ function qb(a) {
 v(qb, O);
 d = qb.prototype;
 d.P = function(a) {
-  return !0 !== a.bb ? !0 : a.url !== this.c.url || a.l !== this.c.l;
+  return !0 !== a.ab ? !0 : a.url !== this.c.url || a.l !== this.c.l;
 };
 function ib(a, b) {
   a.a = !1;
@@ -971,7 +971,7 @@ d.xa = function() {
 };
 d.s = function() {
   var a = this;
-  P && (this.f = P.Ya(function(b) {
+  P && (this.f = P.Xa(function(b) {
     ib(a, "" + (b.pathname || "") + (b.search || ""));
   }));
   this.updating = !1;
@@ -1033,7 +1033,7 @@ d.h = function(a, b) {
   var e = a[0] || null;
   this.a = !!e;
   var f = this.j;
-  b !== f && (this.j = b, "function" === typeof c && c({ab:this, url:b, $a:f, active:a, current:e}));
+  b !== f && (this.j = b, "function" === typeof c && c({$a:this, url:b, Za:f, active:a, current:e}));
   return e;
 };
 function rb(a) {
@@ -1067,7 +1067,7 @@ function S(a) {
   a = a.path;
   var e = (delete b.ta, delete b.path, b);
   return J(sb, {path:a || e.href}, function(a) {
-    return J(rb, Object.assign({}, e, {className:[e.Ua || e.className, a.matches && c].filter(Boolean).join(" ")}));
+    return J(rb, Object.assign({}, e, {className:[e.Ta || e.className, a.matches && c].filter(Boolean).join(" ")}));
   });
 }
 ;function tb(a) {
@@ -1859,7 +1859,7 @@ function Wb(a) {
 function Xb(a) {
   var b = a.item, c = a.N, e = a.M, f = b._id, g = b.title;
   a = b.cdnImage;
-  var h = b.description, k = b.price, m = "on" == b.Ra;
+  var h = b.description, k = b.price, m = "on" == b.show_on_main;
   return J("div", {className:m ? "IsShownOnMain" : "", style:"border-bottom:1px solid brown;border-top:1px solid lightcoral;"}, J("h4", {}, g, " ", m && J("span", {className:"badge badge-danger"}, "На главной")), J("p", {}, J("img", {src:a, style:"display:block;"}), h, J("span", {style:"font-weight: bold;"}, " ", k)), J("a", {onClick:function(a) {
     a.preventDefault();
     c({text:J("span", {}, "Вы действительно хотите удалить предложение ", J("strong", {}, g), "?"), I:"Удалить", title:"Удаление Предложения", path:"specials&id=" + f + "&delete"});
@@ -1881,8 +1881,8 @@ Vb.prototype.h = function(a) {
   return J(X, {aa:this.a.bind(this), l:function() {
     b.b({error:null, C:null});
   }}, J(Y, {label:"Название", i:"Заголовок для главной страницы, напр., Ленинский проспект, дом 114"}, J(Z.D, {value:h.title, placeholder:"Название акции", name:"title", required:1})), J(Y, {label:"Описание", i:"Введите описание акции..."}, J(Z.da, {required:!0, name:"description", placeholder:"Описание акции"}, h.description)), J(Sb, {B:c, i:"Картинка, отображаемая на главной странице.", required:1, image:h.cdnImage}), J(Y, {label:"Цена", i:"Задайте цену..."}, J(Z.D, {value:h.price, name:"price", 
-  placeholder:"55 000 000 руб."})), J(Y, {label:"Переход", i:"Ссылка на страницу каталога, или сайта."}, J(Z.D, {value:h.href, name:"href", placeholder:"/каталог/москва-элитная/лениниский-проспект-дом-114"})), J(Y, {i:"Добавить в специальные предложения на главной."}, J(xb, {value:h.Ra, label:"Отображать на главной", name:"show_on_main"})), c && J("input", {value:h._id, type:"hidden", name:"id"}), J(Yb, {error:this.state.error}), J(Zb, {C:this.state.C, message:g}), J("button", {disabled:k, type:"submit", 
-  className:"btn btn-primary"}, k ? "Загрузка..." : a), e && J("button", {onClick:e, type:"button", className:"FormCancelBtn btn btn-secondary"}, f));
+  placeholder:"55 000 000 руб."})), J(Y, {label:"Переход", i:"Ссылка на страницу каталога, или сайта."}, J(Z.D, {value:h.href, name:"href", placeholder:"/каталог/москва-элитная/лениниский-проспект-дом-114"})), J(Y, {i:"Добавить в специальные предложения на главной."}, J(xb, {value:h.show_on_main, label:"Отображать на главной", name:"show_on_main"})), c && J("input", {value:h._id, type:"hidden", name:"id"}), J(Yb, {error:this.state.error}), J(Zb, {C:this.state.C, message:g}), J("button", {disabled:k, 
+  type:"submit", className:"btn btn-primary"}, k ? "Загрузка..." : a), e && J("button", {onClick:e, type:"button", className:"FormCancelBtn btn btn-secondary"}, f));
 };
 function Yb(a) {
   return (a = a.error) ? J("div", {className:"alert alert-danger mt-3", role:"alert"}, a) : null;

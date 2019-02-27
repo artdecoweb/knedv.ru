@@ -9,6 +9,6 @@ var Category
 var Property
 
 /**
- * @typedef {{ _id: string, href: string, price: string, cdnImage: string, description: string, seo: string, title: string }}
+ * @typedef {{ _id: string, href: string, price: string, cdnImage: string, description: string, title: string, show_on_main: string }}
  */
 var Special
