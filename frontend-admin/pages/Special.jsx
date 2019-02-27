@@ -70,9 +70,9 @@ export default class Special extends Component {
 }
 
 const List = ({ data, openModal, openEdit, loading }) => {
-  if (loading) return <span className="echo-loader">Loading…</span>
-  if (!data.length) return 'Нет Специальных Предложений.'
-  return (<div style="max-height:25rem;overflow:scroll;background:wheat; padding:0.5rem;">
+  return (<div style="height:25rem;overflow:scroll;background:wheat; padding:0.5rem;">
+    {loading && <span className="echo-loader">Loading…</span>}
+    {!loading && !data.length && 'Нет специальных предложений.'}
     {data.map((item) => {
       return <Item item={item} key={item._id}
         openModal={openModal}
@@ -122,7 +122,7 @@ class SpecialsForm extends SpecialForm {
       this.setState({ error: null, success: null })
     }}>
       <FormGroup label="Название" help="Заголовок для главной страницы, напр., Ленинский проспект, дом 114">
-        <Input placeholder="Название акции" name="title" required value={i.name}/>
+        <Input placeholder="Название акции" name="title" required value={i.title}/>
       </FormGroup>
       <FormGroup label="Описание" help="Введите описание акции...">
         <TextArea name="description" required={true} placeholder="Описание акции">{i.description}</TextArea>
