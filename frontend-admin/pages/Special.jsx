@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
 import { Col, Icon, Switch } from '../../frontend/components/Bootstrap'
-import DeleteModal from '../DeleteModal'
+import DeleteModal, { EditModal } from '../DeleteModal'
 import Form, { FormGroup, Input, TextArea } from '@depack/form'
 import FormImage from '../Components/FormImage'
 import SpecialForm from '../Components/SpecialForm'
@@ -44,7 +44,8 @@ export default class Special extends Component {
       </summary>
       <SpecialsForm path="/admin-data?specials" submitFinish={() => {
         this.load()
-      }} />
+      }} successMessage="Предложение успешно создано!"
+      confirmText="Добавить" />
     </details>
     return <Col>
       <h1>Специальные Предложения</h1>
@@ -58,7 +59,11 @@ export default class Special extends Component {
         <DeleteModal {...this.state.modal} btnClass="danger" onClose={this.openModal.bind(this, null)} onComplete={this.load.bind(this)}/>
       }
       {this.state.edit &&
-        <DeleteModal {...this.state.edit} btnClass="danger" onClose={this.openEdit.bind(this, null)} onComplete={this.load.bind(this)}/>
+        <EditModal title="Редактирование" onClose={this.openEdit.bind(this, null)}>
+          <SpecialsForm item={this.state.edit} submitFinish={this.load.bind(this)} path="/admin-data?specials"
+            onClose={this.openEdit.bind(this, null)} closeText="Отмена" successMessage="Предложение успешно отредактировано!"
+            confirmText="Сохранить"/>
+        </EditModal>
       }
     </Col>
   }
@@ -75,10 +80,6 @@ const List = ({ data, openModal, openEdit, loading }) => {
       />
     })}
   </div>)
-}
-
-const EditModal = () => {
-
 }
 
 
@@ -114,7 +115,7 @@ const Item = ({ item, openModal, openEdit }) => {
 }
 
 class SpecialsForm extends SpecialForm {
-  render({ item }) {
+  render({ item, onClose, closeText = 'Отмена', successMessage, confirmText = 'Добавить' }) {
     const i = item || {}
     const { formLoading } = this.state
     return (<Form onSubmit={this.submit.bind(this)} onChange={() => {
@@ -137,19 +138,23 @@ class SpecialsForm extends SpecialForm {
         <Input name="href" placeholder="/каталог/москва-элитная/лениниский-проспект-дом-114" value={i.href} />
       </FormGroup>
 
-      {item && <input type="hidden" name="id" value={i.id} />}
-
-      <button type="submit" className="btn btn-primary" disabled={formLoading}>{formLoading ? 'Загрузка...' : 'Добавить'}</button>
+      {item && <input type="hidden" name="id" value={i._id} />}
 
       <Error error={this.state.error}/>
-      <Success success={this.state.success} message="Предложение успешно создано!"/>
+      <Success success={this.state.success} message={successMessage}/>
+
+      <button type="submit" className="btn btn-primary" disabled={formLoading}>{formLoading ? 'Загрузка...' : confirmText}</button>
+
+      {onClose &&
+        <button type="button" className="FormCancelBtn btn btn-secondary" onClick={onClose}>{closeText}</button>
+      }
     </Form>)
   }
 }
 
 const Error = ({ error }) => {
   if (!error) return null
-  return (<div className="alert alert-danger mt-3" role="alert">{this.state.error}</div>)
+  return (<div className="alert alert-danger mt-3" role="alert">{error}</div>)
 }
 
 const Success = ({ success, message }) => {

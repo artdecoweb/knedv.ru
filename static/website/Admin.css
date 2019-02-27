@@ -44,3 +44,16 @@ nav {
 .CategoryRow:hover .CategoryMeta {
   opacity: 1;
 }
+/* .EditModal Important part */
+.EditModal .modal-dialog{
+  overflow-y: initial !important
+}
+.EditModal .modal-body{
+  overflow-y: auto;
+}
+.EditModal .modal-content{
+  height: 90vh;
+}
+.FormCancelBtn {
+  float: right;
+}

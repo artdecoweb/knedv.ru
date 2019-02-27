@@ -1,4 +1,4 @@
-import { getSeo, handleImage } from '../../../src/lib'
+import { handleImage } from '../../../src/lib'
 
 /**
  * @param {import('koa').Context} ctx
@@ -11,21 +11,19 @@ const specials = async (ctx, database) => {
     return ctx.query.id
   }
   const {
-    description, title, seo: _seo, id, article, price, href,
+    description, title, id, article, price, href,
   } = ctx.req.body
 
   const { file: {
     mimetype, path, filename,
   } = {} } = ctx.req
-  const seo = getSeo(_seo || filename)
-  const img = await handleImage(ctx.cdn, ctx.storage, path, seo, mimetype, { folder: 'specials' })
+  const img = await handleImage(ctx.cdn, ctx.storage, path, filename, mimetype, { folder: 'specials' })
 
   /** @type {import('../../src/database/schema')._Category} */
   const d = {
     price, href,
     description,
     title,
-    seo,
     ...img,
     article,
   }
