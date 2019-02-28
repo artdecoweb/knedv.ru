@@ -143,3 +143,15 @@ h1 {
   box-shadow: 5px 5px 10px #bbbbbb;
   transform: translate(-10px, -10px);
 }
+.GridItem:hover {
+  border-color: brown;
+  background: white;
+}
+.GridItem {
+  border: 2.5px solid lightgray;
+  border-left: 2.5px solid lightgray;
+  border-right: 2.5px solid lightgray;
+  padding-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+}

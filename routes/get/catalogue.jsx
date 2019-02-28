@@ -19,12 +19,14 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
         <div dangerouslySetInnerHTML={{ __html: article }}/>
         <hr/>
         <Row>
-          {items.map(({ title, seo, description, cdnImage }) => {
-            return <Col key={title}>
-              <img src={cdnImage} title={title} className="img-fluid"/>
+          {items.map(({ title, seo, description, cdnImage, price }) => {
+            return <Col key={seo} className="GridItem">
+              <img alt={description} src={cdnImage} title={title} className="img-fluid" style="max-width:10rem;"/>
               <h3>{title}</h3>
-              <p>{description}</p>
-              <a className="btn btn-outline-danger" href={seo}>Подробнее</a>
+              <p>{price}</p>
+              <span>
+                <a className="btn btn-outline-danger" href={seo}>Подробнее</a>
+              </span>
             </Col>
           })}
         </Row>
@@ -41,11 +43,9 @@ const route = async (ctx) => {
   const selectedCategory = categories.find(({ seo }) => {
     return seo == ctx.params.category
   })
-  let items = [], article, property
+  let items = [], article
   const Objects = database.getModel('Object')
-  if (ctx.params.property) {
-    const props = await Objects.find({ seo: ctx.params.property })
-  } else if (selectedCategory) {
+  if (selectedCategory) {
     ([{ article }] = (await Categories.find({ _id: selectedCategory.id }, 'article')))
     items = await Objects.find({ category: selectedCategory.id })
   }
