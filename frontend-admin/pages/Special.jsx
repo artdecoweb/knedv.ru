@@ -1,8 +1,8 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
+import Form, { FormGroup, Input, TextArea } from '@depack/form'
 import { Col, Icon, Switch } from '../../frontend/components/Bootstrap'
 import DeleteModal, { EditModal } from '../DeleteModal'
-import Form, { FormGroup, Input, TextArea } from '@depack/form'
 import FormImage from '../Components/FormImage'
 import SpecialForm from '../Components/SpecialForm'
 
