@@ -1,4 +1,4 @@
-const ArticleEditor = ({ article, onSave }) => {
+const ArticleEditor = ({ article, onSave, name }) => {
   return <div className="form-group">
     <label>Статья</label>
     <div style="background: #edeee8;" className="mb-3" dangerouslySetInnerHTML={{ __html: article }}/>
@@ -12,6 +12,7 @@ const ArticleEditor = ({ article, onSave }) => {
       const editor = popup('/admin/editor', 'Редактор Статей', 900, 650)
       return false
     }}>Редактировать</a>
+    <input type="hidden" name={name} value={article} />
   </div>
 }
 

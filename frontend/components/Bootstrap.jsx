@@ -84,3 +84,13 @@ export class Switch extends Component {
     </div>)
   }
 }
+
+export const ErrorAlert = ({ error }) => {
+  if (!error) return null
+  return (<div className="alert alert-danger mt-3" role="alert">{error}</div>)
+}
+
+export const Success = ({ success, message }) => {
+  if (!success) return null
+  return (<div className="alert alert-success mt-3" role="alert">{message || success}</div>)
+}

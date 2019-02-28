@@ -1,7 +1,8 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
 import { Col, Row, Icon } from '../../frontend/components/Bootstrap'
-import DeleteModal from '../DeleteModal'
+import DeleteModal, { EditModal } from '../DeleteModal'
+import { ObjectForm } from './AddObject';
 
 export default class Objects extends Component {
   constructor() {
@@ -48,6 +49,13 @@ export default class Objects extends Component {
       {this.state.modal &&
         <DeleteModal {...this.state.modal} btnClass="danger" onClose={this.openModal.bind(this, null)} onComplete={this.load.bind(this)}/>
       }
+      {this.state.edit &&
+        <EditModal title="Редактирование Объекта" onClose={this.openEdit.bind(this, null)}>
+          <ObjectForm id={this.state.edit._id} submitFinish={this.load.bind(this)} path="/admin-data?objects"
+            onClose={this.openEdit.bind(this, null)} closeText="Отмена" successMessage="Объект успешно отредактирован!"
+            confirmText="Сохранить"/>
+        </EditModal>
+      }
     </Col>
   }
 }
@@ -82,7 +90,6 @@ class Item extends Component {
         <p>{description}</p>
       </Col>
       <Col className="col-1 CategoryMeta">
-        <a style="color:brown;" href={`/admin/add-object/${_id}`}><Icon icon="fas fa-pen"/></a>
         <br/>
         <a style="color:brown;" href="#" onClick={(e) => {
           e.preventDefault()
@@ -94,9 +101,18 @@ class Item extends Component {
           })
           return false
         }}><Icon icon="far fa-trash-alt"/></a>
+        <a style="color:brown;" href="#" onClick={(e) => {
+          e.preventDefault()
+          openEdit(item)
+          return e
+        }}>
+          <Icon icon="fas fa-pen"/>
+        </a>
       </Col>
     </Row>
   }
 }
 
 {/* <FormRow name="article" label="Статья" help="Подробная статья для раздела каталога." textarea={5} required="1"/> */}
+
+{/* <a style="color:brown;" href={`/admin/add-object/${_id}`}><Icon icon="fas fa-pen"/></a> */}

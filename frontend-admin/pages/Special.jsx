@@ -1,7 +1,7 @@
 import { Component } from 'preact'
 import fetch from 'unfetch'
 import Form, { FormGroup, Input, TextArea } from '@depack/form'
-import { Col, Icon, Switch } from '../../frontend/components/Bootstrap'
+import { Col, Icon, Switch, Success, ErrorAlert } from '../../frontend/components/Bootstrap'
 import DeleteModal, { EditModal } from '../DeleteModal'
 import FormImage from '../Components/FormImage'
 import SpecialForm from '../Components/SpecialForm'
@@ -145,7 +145,7 @@ class SpecialsForm extends SpecialForm {
 
       {item && <input type="hidden" name="id" value={i._id} />}
 
-      <Error error={this.state.error}/>
+      <ErrorAlert error={this.state.error}/>
       <Success success={this.state.success} message={successMessage}/>
 
       <button type="submit" className="btn btn-primary" disabled={formLoading}>{formLoading ? 'Загрузка...' : confirmText}</button>
@@ -155,14 +155,4 @@ class SpecialsForm extends SpecialForm {
       }
     </Form>)
   }
-}
-
-const Error = ({ error }) => {
-  if (!error) return null
-  return (<div className="alert alert-danger mt-3" role="alert">{error}</div>)
-}
-
-const Success = ({ success, message }) => {
-  if (!success) return null
-  return (<div className="alert alert-success mt-3" role="alert">{message || success}</div>)
 }
