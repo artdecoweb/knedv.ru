@@ -49,13 +49,17 @@ class ItemRow extends Component {
       modal: null,
     }
   }
-  render() {
-    const { title, image, description, seo, id, onDelete, categorySeo } = this.props
+  render({ title, image, description, seo, id, onDelete, categorySeo, price }) {
+    // read host ???
+    const s = `/каталог/${categorySeo}/${seo}`
+    const link = `knedv.ru${s}`
     return <Row className="CategoryRow">
-      <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid p-1"/></Col>
+      <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid p-1"/>
+        {price && `Цена: ${price}`}
+      </Col>
       <Col>
         <h2>{title}</h2>
-        <em>knedv.ru/{categorySeo}/{seo}</em>
+        <em><a href={s}>{link}</a></em>
         <p>{description}</p>
       </Col>
       <Col className="col-1 CategoryMeta">

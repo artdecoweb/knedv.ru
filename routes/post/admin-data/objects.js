@@ -10,7 +10,8 @@ const objects = async (ctx, database) => {
     await Obj.deleteOne({ _id: ctx.query.id })
     return ctx.query.id
   }
-  const { description, title, seo: _seo, id, category, article } = ctx.req.body
+  const { description, title, seo: _seo, id, category,
+    article, price } = ctx.req.body
   const { file: {
     mimetype, path,
   } = {} } = ctx.req
@@ -21,6 +22,7 @@ const objects = async (ctx, database) => {
     description,
     title,
     seo,
+    price,
     ...img,
     category,
     article,

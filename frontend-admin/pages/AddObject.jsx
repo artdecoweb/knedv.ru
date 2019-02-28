@@ -101,6 +101,9 @@ export default class AddCategory extends Component {
         <FormGroup help="Название для каталога недвижимости." label="Название">
           <Input name="title" required={true} placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={this.state.data.title} />
         </FormGroup>
+        <FormGroup help="Цена объекта" label="Цена">
+          <Input name="price" required={true} placeholder="3 000 000 руб." value={this.state.data.price} />
+        </FormGroup>
         <FormGroup help={hint} label="СЕО Название">
           <Input name="seo" required={true} placeholder="1-комнатные-апартаменты-воскресенское" value={this.state.data.seo} />
         </FormGroup>

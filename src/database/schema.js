@@ -14,6 +14,8 @@ export const _Object = {
   title: String,
   seo: String,
   description: String,
+  /** The price of the object. */
+  price: String,
   image: String,
   imageLocation: String,
   imageContainer: String,
