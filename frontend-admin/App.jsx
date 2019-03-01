@@ -8,6 +8,7 @@ import AddObject from './pages/AddObject'
 import Pages from './pages/Pages'
 import AddPage from './pages/AddPage'
 import Special from './pages/Special'
+import Gallery from './pages/Gallery';
 
 const Home = () => {
   return <Col>
@@ -33,6 +34,8 @@ const App = () =>
       <Pages path="/admin/pages" title="Статьи" />
       <AddPage path="/admin/add-page/:id?" title="Добавить Страницу" />
       <Special path="/admin/special" title="Специальные Предложения" />
+
+      <Gallery path="/admin/galleries" title="Галереи" />
     </Router>
   </Row>
 

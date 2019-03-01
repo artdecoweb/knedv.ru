@@ -1,8 +1,8 @@
 import { Component } from 'preact'
-import fetch from 'unfetch'
 import { Col, Row, Icon } from '../../frontend/components/Bootstrap'
 import DeleteModal, { EditModal } from '../DeleteModal'
-import { ObjectForm } from './AddObject';
+import ObjectForm from './Forms/Object'
+import { loadData } from '../Components/LoadData'
 
 export default class Objects extends Component {
   constructor() {
@@ -18,18 +18,9 @@ export default class Objects extends Component {
     await this.load()
   }
   async load() {
-    this.setState({ loading: true })
-    try {
-      /** @type {{ json: function(): Promise<{ error: string, data: Array<Property> }> }} */
-      const res = await fetch('/admin-data?objects')
-      const { error, data } = await res.json()
-      if (error) this.setState({ error })
-      else this.setState({ data })
-    } catch (error) {
-      this.setState({ error })
-    } finally {
-      this.setState({ loading: false })
-    }
+    /** @type {Array<Property>}  */
+    const data = await loadData.bind(this)('objects')
+    if (data) this.setState({ data })
   }
   openModal(modal) {
     this.setState({ modal })

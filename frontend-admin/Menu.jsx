@@ -29,6 +29,9 @@ const Menu = () =>
     <Link className="nav-link" href="/admin/offers">
       <i className="fas fa-grip-lines"></i> Акции
     </Link>
+    <Link className="nav-link" href="/admin/galleries">
+      <i className="fas fa-camera-retro"></i> Галереи
+    </Link>
   </nav>
 
 export default Menu

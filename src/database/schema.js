@@ -1,5 +1,12 @@
 import { Schema } from 'mongoose'
 
+const Img = {
+  image: String,
+  imageLocation: String,
+  imageContainer: String,
+  cdnImage: String,
+}
+
 export const _Category = {
   title: String,
   seo: String,
@@ -37,13 +44,19 @@ export const _Special = {
   href: String,
   price: String,
   show_on_main: String,
-
-  image: String,
-  imageLocation: String,
-  imageContainer: String,
-  cdnImage: String,
+  ...Img,
+}
+export const _Gallery = {
+  seo: String,
+  article: String,
+  title: String,
+  description: String,
+  href: String,
+  show_on_main: String,
+  ...Img,
 }
 export const Category = new Schema(_Category)
 export const Obj = new Schema(_Object)
 export const Page = new Schema(_Page)
 export const Special = new Schema(_Special)
+export const Gallery = new Schema(_Gallery)

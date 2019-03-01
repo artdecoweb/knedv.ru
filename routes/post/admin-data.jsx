@@ -2,22 +2,26 @@ import objects from './admin-data/objects'
 import categories from './admin-data/categories'
 import pages from './admin-data/pages'
 import specials from './admin-data/specials'
+import galleries from './admin-data/galleries'
+
+const fns = {
+  categories,
+  objects,
+  pages,
+  specials,
+  galleries,
+}
 
 /** @type {import('koa').Middleware} */
 const postData = async (ctx) => {
   const database = ctx.database
-  if ('categories' in ctx.query) {
-    return await categories(ctx, database)
-  }
-  if ('objects' in ctx.query) {
-    return await objects(ctx, database)
-  }
-  if ('pages' in ctx.query) {
-    return await pages(ctx, database)
-  }
-  if ('specials' in ctx.query) {
-    return await specials(ctx, database)
-  }
+  const key = Object.keys(fns).find(k => {
+    return k in ctx.query
+  })
+  const fn = fns[key]
+  if (!fn) throw new Error('Unknown path.')
+  const res = await fn(ctx, database)
+  return res
 }
 
 export const middleware = r => [
