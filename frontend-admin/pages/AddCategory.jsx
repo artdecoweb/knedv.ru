@@ -35,8 +35,7 @@ export default class AddCategory extends Component {
   async submit(e) {
     this.setState({ error: null })
     e.preventDefault()
-    const data = new FormData(this.form)
-    data.append('article', this.state.article)
+    const data = new FormData(e.currentTarget.data)
     this.setState({ formLoading: true })
     try {
       const res = await fetch('/admin-data?categories', {
@@ -69,11 +68,8 @@ export default class AddCategory extends Component {
         <Form onChange={(values) => {
           console.log(values)
           console.log(values.seo)
-        }} formRef={r => {
-          this.form = r
         }}
-        onSubmit={this.submit.bind(this)}
-        >
+        onSubmit={this.submit.bind(this)}>
           <FormGroup label="Название" help="Название для меню слева.">
             <Input name="title" placeholder="Москва Новостройки"
               value={this.state.data.title} required={true} />

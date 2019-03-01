@@ -17,7 +17,7 @@ export default class Gallery extends Component {
    * Side-effects: sets the `error`, `data` and `loading` on the state.
    */
   async load() {
-    /** @type {Array<Gallery>}> }} */
+    /** @type {Array<Gallery>} */
     const data = await loadData.bind(this)('galleries')
     if (data) this.setState({ data })
   }
@@ -37,6 +37,7 @@ export default class Gallery extends Component {
           </Col>
           <Col>
             <h2>{title}</h2>
+            <a href={_id}>Просмотр</a>
             {description}
           </Col>
         </Row>)

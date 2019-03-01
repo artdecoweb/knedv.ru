@@ -12,3 +12,7 @@ var Property
  * @typedef {{ _id: string, href: string, price: string, cdnImage: string, description: string, title: string, show_on_main: string }}
  */
 var Special
+/**
+ * @typedef {{ _id: string, cdnImage: string, description: string, title: string }}
+ */
+var Gallery

@@ -8,7 +8,8 @@ import AddObject from './pages/AddObject'
 import Pages from './pages/Pages'
 import AddPage from './pages/AddPage'
 import Special from './pages/Special'
-import Gallery from './pages/Gallery';
+import Gallery from './pages/Gallery'
+import Gallery2 from './pages/Gallery2'
 
 const Home = () => {
   return <Col>
@@ -36,6 +37,7 @@ const App = () =>
       <Special path="/admin/special" title="Специальные Предложения" />
 
       <Gallery path="/admin/galleries" title="Галереи" />
+      <Gallery2 path="/admin/galleries/:id" title="Фотографии" />
     </Router>
   </Row>
 

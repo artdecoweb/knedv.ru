@@ -62,3 +62,24 @@ nav {
   background: #ffffff85;
   padding: 0.2rem;
 }
+.PhotoUploader .Image {
+  position: relative;
+  border: 1px solid grey;
+  background: #cecece;
+  display: inline-block;
+}
+.PhotoUploader .Image span {
+  position:absolute;
+  top:0;
+  right:0;
+  background: rgba(255, 255, 255, 0.687);
+  cursor: pointer;
+}
+.GalleryLink {
+  max-width: 100%;
+  margin: 0;
+  background: rgba(255,255,255,0.75);
+  overflow:scroll;
+  bottom: 0;
+  position: absolute;
+}
