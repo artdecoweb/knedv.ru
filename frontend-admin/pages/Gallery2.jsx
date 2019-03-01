@@ -2,7 +2,7 @@ import { Component } from 'preact'
 import { Col, Row } from '../../frontend/components/Bootstrap'
 import { loadData } from '../Components/LoadData'
 import { LoadingIndicator } from '../Components'
-import 'preact/devtools/'
+// import 'preact/devtools/'
 import { Gallery } from '../Components/PhotoUploader'
 
 export default class Gallery2 extends Component {
