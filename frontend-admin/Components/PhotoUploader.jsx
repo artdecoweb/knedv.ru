@@ -25,9 +25,9 @@ class Photo extends Component {
         const t = xhr.responseText
         const tt = JSON.parse(t)
         if (tt.error) {
-          this.setState({ error: tt.error })
+          this.setState({ error: tt['error'] })
         } else if (tt.file) {
-          this.setState({ result: tt.file })
+          this.setState({ result: tt['file'] })
         }
       }
       else if (xhr.readyState == 4 && xhr.status != 200) {
@@ -42,27 +42,35 @@ class Photo extends Component {
   }
   render ({ preview, name, onRemove, fieldName }) {
     const { progress } = this.state
+    const processing = progress == 100 && !this.state.uploaded
     const s = {
-      background: this.state.uploaded ? '#82d285' : undefined,
+      background: this.state.uploaded ? "linear-gradient(lightgreen, #82d285)" : undefined,
       'border-color': this.state.uploaded ? 'green' : undefined,
     }
+    if (processing) {
+      s.background = "linear-gradient(lightblue, blue)"
+      s['border-color'] = 'blue'
+    }
+    const src = this.state.result ? this.state.result : preview
     return (<div className="Image" style={s}>
-      <span onClick={onRemove}>x</span>
-      <img style="max-height:150px;" className="img-fluid" src={preview} />
-      {name}
+      <img style="max-height:150px; padding: 0.5rem;" className="img-fluid" src={src} />
+      <span className="ImageInfo" style="top:0;left:0;max-width:100%;overfrlow:scroll;">{name}</span>
+      <span className="ImageInfo CloseSpan" onClick={onRemove}>x</span>
       {progress === null &&
-        <a href="#" className="btn btn-light btn-small" onClick={(e) => {
+        <a href="#" className="btn btn-light btn-sm ImageInfo" onClick={(e) => {
           e.preventDefault()
           this.upload()
           return false
-        }}>Загрузить</a>
+        }} style="bottom: 0; left:0;">Загрузить</a>
       }
-      {progress && progress != 100 && <progress max={100} value={progress}></progress>}
-      {progress == 100 && !this.state.uploaded &&
-        'Выполняется обработка...'
-      }
+      <span className="ImageInfo" style="bottom:0;left:0;">
+        {progress && progress != 100 && <progress max={100} value={progress}></progress>}
+        {processing &&
+          'Выполняется обработка...'
+        }
+      </span>
       {this.state.error && <p style="width: 150px;">Error: {this.state.error}</p>}
-      {this.state.result && <p className="GalleryLink"><a href={this.state.result}>Ссылка</a></p>}
+      {this.state.result && <p className="ImageInfo GalleryLink"><a href={this.state.result}>Ссылка</a></p>}
       {this.state.result && <input type="hidden" name={fieldName} value={this.state.result}/>}
     </div>)
   }
@@ -93,6 +101,7 @@ export class Gallery extends Component {
   async addFiles(f) {
     const [...files] = f
     this.setState({ addingFiles: true })
+    await new Promise(r => setTimeout(r, 5))
     try {
       const newFiles = await Promise.all(files.map(async file => {
         const preview = await getPreview(file)
@@ -119,10 +128,14 @@ export class Gallery extends Component {
       event.preventDefault()
       event.stopPropagation()
     }}>
-      <input accept="image/*" onChange={(e) => this.addFiles(e.currentTarget.files)} type="file" multiple={true} />
+      <input accept="image/*" onChange={(e) => {
+        e.preventDefault()
+        this.addFiles(e.currentTarget.files)
+        e.currentTarget.value = null
+      }} type="file" multiple={true} />
       {this.state.addingFiles ? 'Идет опознование файлов...' : 'Или переместите файлы сюда...'}
       {this.state.files.map(({ file, preview }) => {
-        return <Photo name={file.name} key={file} file={file} preview={preview} onRemove={() => {
+        return <Photo name={file.name} key={file.name} file={file} preview={preview} onRemove={() => {
           this.removeFile(file)
         }}/>
       })}
