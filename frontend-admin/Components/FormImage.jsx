@@ -4,10 +4,12 @@ import { FormGroup, Input } from '@depack/form'
 /**
  * The image for the form that can be changed.
  */
-export default class FormImage extends Component {
+class FormImage extends Component {
   constructor() {
     super()
     this.state = { resetImage: false }
+    /** @type {{ editing: boolean, required: boolean, image: string, help: string }} */
+    this.props = this.props
   }
   render({ editing, required, image, help }) {
     const { resetImage } = this.state
@@ -21,7 +23,9 @@ export default class FormImage extends Component {
       }}>Изменить</a>
     </FormGroup>
     if(!editing || resetImage) return <FormGroup label="Изображение" help={help}>
-      <Input name="image" type="file" file="1" required={required !== undefined} />
+      <Input name="image" type="file" file="1" required={required} />
     </FormGroup>
   }
 }
+
+export default FormImage

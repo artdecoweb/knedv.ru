@@ -15,7 +15,7 @@ export default class GalleryForm extends SubmitForm {
         <Input placeholder="Мосфильмовская, дом 70к6" name="title" required value={i.title}/>
       </FormGroup>
       <FormGroup label="Описание" help="Введите описание акции...">
-        <TextArea name="description" required={true} placeholder="Описание Альбома">{i.description}</TextArea>
+        <TextArea name="description" required placeholder="Описание Альбома">{i.description}</TextArea>
       </FormGroup>
 
       <FormImage help="Картинка для узнаваемости." required editing={item} image={i.cdnImage} />

@@ -75,16 +75,16 @@ export default class ObjectForm extends SubmitForm {
     const { categories, formLoading, data, loading, error, success } = this.state
     const form = (<Form onSubmit={this.submit.bind(this)}>
       <FormGroup help="Название для каталога недвижимости." label="Название">
-        <Input name="title" required={true} placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={data.title} />
+        <Input name="title" required placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={data.title} />
       </FormGroup>
       <FormGroup help="Цена объекта" label="Цена">
-        <Input name="price" required={true} placeholder="3 000 000 руб." value={data.price} />
+        <Input name="price" required placeholder="3 000 000 руб." value={data.price} />
       </FormGroup>
       <FormGroup help={hint} label="СЕО Название">
-        <Input name="seo" required={true} placeholder="1-комнатные-апартаменты-воскресенское" value={data.seo} />
+        <Input name="seo" required placeholder="1-комнатные-апартаменты-воскресенское" value={data.seo} />
       </FormGroup>
       <FormGroup help="Описание объекта." label="Описание">
-        <TextArea rows={10} name="description" required={true}  placeholder="Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично).">
+        <TextArea rows={10} name="description" required  placeholder="Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично).">
           {data.description}
         </TextArea>
       </FormGroup>
@@ -96,7 +96,7 @@ export default class ObjectForm extends SubmitForm {
       }}/>
       {this.editing && <input type="hidden" name="id" value={this.props.id}/>}
       <FormGroup label="Раздел" help="Категория в каталоге">
-        <Select name="category" options={categories} required={true} value={data.category} />
+        <Select name="category" options={categories} required value={data.category} />
       </FormGroup>
 
       <ErrorAlert error={error} />

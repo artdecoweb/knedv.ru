@@ -15,7 +15,7 @@ export default class SpecialsForm extends SubmitForm {
         <Input placeholder="Название акции" name="title" required value={i.title}/>
       </FormGroup>
       <FormGroup label="Описание" help="Введите описание акции...">
-        <TextArea name="description" required={true} placeholder="Описание акции">{i.description}</TextArea>
+        <TextArea name="description" required placeholder="Описание акции">{i.description}</TextArea>
       </FormGroup>
 
       <FormImage help="Картинка, отображаемая на главной странице." required editing={item} image={i.cdnImage} />

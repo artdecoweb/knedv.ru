@@ -81,7 +81,7 @@ export default class Gallery2 extends Component {
 //   debugger
 // }}>
 //   <FormGroup label="Добавить Фото Из Циана" help="Ссылка на страницу объекта в ЦИАН">
-//     <Input required={true} placeholder="https://www.cian.ru/sale/suburban/164631748/" name="cian" {...({ 'style': 'display:inline;' })}/>
+//     <Input required placeholder="https://www.cian.ru/sale/suburban/164631748/" name="cian" {...({ 'style': 'display:inline;' })}/>
 //     <button type="submit" className="btn btn-sm btn-warning">
 //       Добавить Фото
 //     </button>

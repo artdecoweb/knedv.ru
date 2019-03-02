@@ -144,7 +144,7 @@ export class Gallery extends Component {
         e.preventDefault()
         this.addFiles(e.currentTarget.files)
         e.currentTarget.value = null
-      }} type="file" multiple={true} />
+      }} type="file" multiple />
       {this.state.addingFiles ? 'Идет опознование файлов...' : 'Или переместите файлы сюда...'}
       {this.state.files.map(({ file, preview, rid }) => {
         return <Photo name={file.name} key={rid} file={file} preview={preview} onRemove={() => {
