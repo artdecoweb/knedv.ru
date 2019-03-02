@@ -68,23 +68,35 @@ nav {
   background: #cecece;
   display: inline-block;
 }
+/* .PhotoUploader .ImageInfo:hover {
+  background: white;
+} */
 .PhotoUploader .Image .CloseSpan {
-  top:0;
-  right:0;
+  top: 0;
+  right: 0;
   padding: 5px;
   cursor: pointer;
+  border-radius: 5px;
+  width: 1.5rem;
+  height: 2rem;
+  overflow: hidden;
+  text-align: center;
+  /* transition: .5s; */
 }
 .GalleryLink {
-  max-width: 100%;
   margin: 0;
-  overflow:scroll;
   bottom: 0;
 }
 .PhotoUploader .ImageInfo {
   background: rgba(255, 255, 255, 0.75);
   position: absolute;
   word-break: break-all;
+  max-width: 100%;
+  overflow: hide;
 }
-.PhotoUploader:hover img {
-  z-index: 999
+.ArticleHolder {
+  background: #edeee8;
+}
+.ArticleHolder img {
+  max-width: 100%;
 }

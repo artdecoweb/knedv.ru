@@ -37,7 +37,7 @@ export default class Gallery extends Component {
           </Col>
           <Col>
             <h2>{title}</h2>
-            <a href={_id}>Просмотр</a>
+            <a href={`/admin/galleries/${_id}`}>Просмотр</a>
             {description}
           </Col>
         </Row>)

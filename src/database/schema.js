@@ -55,8 +55,19 @@ export const _Gallery = {
   show_on_main: String,
   ...Img,
 }
+export const _Photo = {
+  seo: String,
+  article: String,
+  galleryId: String,
+  file: String,
+  description: String,
+  href: String,
+  show_on_main: String,
+  ...Img,
+}
 export const Category = new Schema(_Category)
 export const Obj = new Schema(_Object)
 export const Page = new Schema(_Page)
 export const Special = new Schema(_Special)
 export const Gallery = new Schema(_Gallery)
+export const Photo = new Schema(_Photo)

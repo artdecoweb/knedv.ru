@@ -1,9 +1,11 @@
 import { Component } from 'preact'
-import { Col, Row } from '../../frontend/components/Bootstrap'
+import { Col, Row, ErrorAlert, Success } from '../../frontend/components/Bootstrap'
 import { loadData } from '../Components/LoadData'
 import { LoadingIndicator } from '../Components'
 // import 'preact/devtools/'
 import { Gallery } from '../Components/PhotoUploader'
+import Form, { FormGroup } from '@depack/form'
+import SpecialForm from '../Components/SpecialForm'
 
 export default class Gallery2 extends Component {
   constructor() {
@@ -34,21 +36,20 @@ export default class Gallery2 extends Component {
   async load() {
     const id = this.props.id
     if (!id) this.setState({ loading: false, error: 'No id' })
-    const d = await loadData.bind(this)(`galleries&id=${id}`)
+    const data = await loadData.bind(this)(`galleries&id=${id}`)
     /** @type {Gallery} */
-    const data = d[0]
     if (data) this.setState({ data })
   }
   get data() {
     return this.state.data
   }
   render() {
-    const { title, cdnImage, description } = this.data || {}
+    const { title, cdnImage, description, _id, photos } = this.data || {}
     return (<Col>
       <h1>Галерея</h1>
 
       {this.loading && <LoadingIndicator />}
-      {this.data && <Row>
+      {this.data && <Row className="mb-3">
         <Col className="col-sm-3">
           <img className="img-fluid" src={cdnImage} />
         </Col>
@@ -58,9 +59,41 @@ export default class Gallery2 extends Component {
         </Col>
       </Row>
       }
-      <h3>Загрузка Изображений</h3>
-      <Gallery />
+      {this.data && <PhotoList photos={photos} />}
+      <hr />
+      <GalleryForm submitFinish={async () => {
+        await this.load()
+      }} path="/admin-data?photos" galleryId={_id}
+      confirmText="Сохранить Галерею"
+      />
     </Col>)
+  }
+}
+
+class PhotoList extends Component {
+  render({ photos }) {
+    return (<Row>
+      {photos.map(({ file, _id: i }) => {
+        return (<Col key={i} className="col-sm-4">
+          <img className="img-fluid" style="padding: 0.25rem; max-height: 200px;" src={file} /></Col>)
+      })}
+    </Row>)
+  }
+}
+
+class GalleryForm extends SpecialForm {
+  render({ galleryId, confirmText }) {
+    const { formLoading } = this.state
+    return (
+      <Form onSubmit={this.submit.bind(this)}>
+        <input name="galleryId" value={galleryId} type="hidden" />
+        <FormGroup label="Загрузка Изображений" help="Выберите несколько изображений, и загрузите их.">
+          <Gallery />
+        </FormGroup>
+        <button type="submit" className="btn btn-success" disabled={formLoading}>{formLoading ? 'Загрузка...' : confirmText}</button>
+        <ErrorAlert error={this.state.error} />
+        <Success success={this.state.success} message="Галерея сохранена!" />
+      </Form>)
   }
 }
 

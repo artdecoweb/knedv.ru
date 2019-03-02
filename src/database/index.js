@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { Category, Obj, Page, Special, Gallery } from './schema'
+import { Category, Obj, Page, Special, Gallery, Photo } from './schema'
 
 function setupModels(connection, models) {
   Object.keys(models).forEach((key) => {
@@ -19,6 +19,7 @@ export default class Database {
       Page,
       Special,
       Gallery,
+      Photo,
     }
   }
   // deleteById(modelName, id) {

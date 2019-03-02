@@ -36,7 +36,7 @@ const App = () =>
       <AddPage path="/admin/add-page/:id?" title="Добавить Страницу" />
       <Special path="/admin/special" title="Специальные Предложения" />
 
-      <Gallery path="/admin/galleries" title="Галереи" />
+      <Gallery path="/admin/galleries/" title="Галереи" />
       <Gallery2 path="/admin/galleries/:id" title="Фотографии" />
     </Router>
   </Row>

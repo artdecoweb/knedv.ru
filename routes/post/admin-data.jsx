@@ -3,6 +3,7 @@ import categories from './admin-data/categories'
 import pages from './admin-data/pages'
 import specials from './admin-data/specials'
 import galleries from './admin-data/galleries'
+import photos from './admin-data/photos'
 
 const fns = {
   categories,
@@ -10,6 +11,7 @@ const fns = {
   pages,
   specials,
   galleries,
+  photos,
 }
 
 /** @type {import('koa').Middleware} */
