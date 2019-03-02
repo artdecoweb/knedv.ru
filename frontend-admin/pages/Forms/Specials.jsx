@@ -1,12 +1,13 @@
-import Form, { FormGroup, Input, TextArea } from '@depack/form'
+import Form, {
+  FormGroup, Input, TextArea, SubmitForm, SubmitButton,
+} from '@depack/form'
 import { Switch, Success, ErrorAlert } from '../../../frontend/components/Bootstrap'
 import FormImage from '../../Components/FormImage'
-import SpecialForm from '../../Components/SpecialForm'
 
-export default class SpecialsForm extends SpecialForm {
+export default class SpecialsForm extends SubmitForm {
   render({ item, onClose, closeText = 'Отмена', successMessage, confirmText = 'Добавить' }) {
     const i = item || {}
-    const { formLoading } = this.state
+    const { formLoading, error, success } = this.state
     return (<Form onSubmit={this.submit.bind(this)} onChange={() => {
       this.setState({ error: null, success: null })
     }}>
@@ -33,10 +34,10 @@ export default class SpecialsForm extends SpecialForm {
 
       {item && <input type="hidden" name="id" value={i._id} />}
 
-      <ErrorAlert error={this.state.error}/>
-      <Success success={this.state.success} message={successMessage}/>
+      <ErrorAlert error={error}/>
+      <Success success={success} message={successMessage}/>
 
-      <button type="submit" className="btn btn-primary" disabled={formLoading}>{formLoading ? 'Загрузка...' : confirmText}</button>
+      <SubmitButton confirmText={confirmText} loadingText="Загрузка..." loading={formLoading} />
 
       {onClose &&
         <button type="button" className="FormCancelBtn btn btn-secondary" onClick={onClose}>{closeText}</button>

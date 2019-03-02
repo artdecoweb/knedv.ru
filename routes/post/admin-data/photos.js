@@ -12,6 +12,10 @@ const photos = async (ctx, database) => {
     title, galleryId, files,
   } = ctx.req.body
 
+  if (!Array.isArray(files) || !files.length) {
+    throw new Error('Не добавлено файлов.')
+  }
+
   const r = await Promise.all(files.map(async file => {
     /** @type {import('../../../src/database/schema')._Photo} */
     const d = {

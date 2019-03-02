@@ -89,10 +89,13 @@ nav {
 }
 .PhotoUploader .ImageInfo {
   background: rgba(255, 255, 255, 0.75);
-  position: absolute;
   word-break: break-all;
   max-width: 100%;
-  overflow: hide;
+  overflow: hidden;
+  position: absolute;
+}
+.Absolute {
+  position: absolute;
 }
 .ArticleHolder {
   background: #edeee8;

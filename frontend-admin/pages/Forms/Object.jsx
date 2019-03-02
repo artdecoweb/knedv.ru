@@ -1,21 +1,23 @@
 import fetch from 'unfetch'
-import Form, { FormGroup, Input, TextArea, Select } from '@depack/form'
+import Form, {
+  FormGroup, Input, TextArea, SubmitForm, SubmitButton, Select,
+} from '@depack/form'
 import { Col, ErrorAlert, Success } from '../../../frontend/components/Bootstrap'
 import ArticleEditor from '../../ArticleEditor'
 import FormImage from '../../Components/FormImage'
-import SpecialForm from '../../Components/SpecialForm'
+import { LoadingIndicator } from '../../Components'
 
-export default class ObjectForm extends SpecialForm {
+export default class ObjectForm extends SubmitForm {
   constructor() {
     super()
-    this.state = {
+    Object.assign(this.state, {
       loading: false,
       data: {},
       categories: [],
       hint: '1-комнатные-апартаменты-воскресенское',
       catSeo: 'апартаменты',
       article: '',
-    }
+    })
   }
   async componentDidMount() {
     await this.loadCategories()
@@ -99,7 +101,7 @@ export default class ObjectForm extends SpecialForm {
 
       <ErrorAlert error={error} />
       <Success success={success} message={successMessage} />
-      <button type="submit" className="btn btn-primary" disabled={formLoading}>{formLoading ? 'Загрузка...' : confirmText}</button>
+      <SubmitButton confirmText={confirmText} loadingText="Загрузка..." loading={formLoading} />
 
       {onClose &&
         <button type="button" className="FormCancelBtn btn btn-secondary" onClick={onClose}>{closeText}</button>
@@ -107,7 +109,7 @@ export default class ObjectForm extends SpecialForm {
     </Form>)
     return <Col>
       {title && <h1>{title}</h1>}
-      {loading && <span className="echo-loader">Loading…</span>}
+      {loading && <LoadingIndicator />}
       {!loading && form}
     </Col>
   }

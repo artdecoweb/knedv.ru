@@ -8,7 +8,10 @@ import rqt from 'rqt'
   })
   const re = /window\._cianConfig\['offer-card'\] = ([\s\S]+?);\s*<\/script>/
   const [,r] = re.exec(res) || []
-  if (!r) throw new Error('did not find config')
+  if (!r) {
+    console.log(res)
+    throw new Error('did not find config')
+  }
   const j = JSON.parse(r)
   console.log(j[42].value.offerData.offer)
 })()

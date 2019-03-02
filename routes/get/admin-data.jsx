@@ -26,8 +26,8 @@ const getData = async (ctx) => {
     const o = await findInModel(database, 'Special', id)
     return o
   } else if ('galleries' in ctx.query) {
-    // if ()
     const g = await findInModel(database, 'Gallery', id)
+    if (!id) return g
     if (!g.length) return
     const [gg] = g
     const photos = await findPhotos(database, id)

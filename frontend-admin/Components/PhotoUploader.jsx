@@ -58,7 +58,7 @@ class Photo extends Component {
       <span className="ImageInfo" style="top:.5rem;left:.5rem;">{name}</span>
       <span className="ImageInfo CloseSpan" onClick={onRemove}>✕</span>
       {!existing && progress === null &&
-        <span className="ImageInfo" style="bottom:0.5rem;left:0.5rem;">
+        <span className="Absolute" style="bottom:0.5rem;left:0.5rem;">
           <a href="#" className="btn btn-light btn-sm" onClick={(e) => {
             e.preventDefault()
             this.upload()

@@ -2,10 +2,9 @@ import { Component } from 'preact'
 import { Col, Row, ErrorAlert, Success } from '../../frontend/components/Bootstrap'
 import { loadData } from '../Components/LoadData'
 import { LoadingIndicator } from '../Components'
-// import 'preact/devtools/'
-import { Gallery } from '../Components/PhotoUploader'
-import Form, { FormGroup } from '@depack/form'
-import SpecialForm from '../Components/SpecialForm'
+import 'preact/devtools/'
+import { Gallery as PhotoUpload } from '../Components/PhotoUploader'
+import Form, { FormGroup, SubmitButton, SubmitForm } from '@depack/form'
 
 export default class Gallery2 extends Component {
   constructor() {
@@ -61,14 +60,34 @@ export default class Gallery2 extends Component {
       }
       {this.data && <PhotoList photos={photos} />}
       <hr />
-      <GalleryForm submitFinish={async () => {
+      {_id && <GalleryForm submitFinish={async () => {
         await this.load()
       }} path="/admin-data?photos" galleryId={_id}
-      confirmText="Сохранить Галерею"
-      />
+      confirmText="Сохранить Галерею" ref={(f) => {
+        this.galleryForm = f
+      }}
+      />}
     </Col>)
   }
 }
+
+// {<Form onSubmit={(e) => {
+//   console.log('ok', e.currentTarget[0].value)
+//   // if (this.galleryForm) {
+//   //   debugger
+//   //   this.galleryForm.addLinks()
+//   // }
+//   const w = popup(e.currentTarget[0].value, 'Cian', 800, 800)
+//   debugger
+// }}>
+//   <FormGroup label="Добавить Фото Из Циана" help="Ссылка на страницу объекта в ЦИАН">
+//     <Input required={true} placeholder="https://www.cian.ru/sale/suburban/164631748/" name="cian" {...({ 'style': 'display:inline;' })}/>
+//     <button type="submit" className="btn btn-sm btn-warning">
+//       Добавить Фото
+//     </button>
+//   </FormGroup>
+// </Form>
+// }
 
 class PhotoList extends Component {
   render({ photos }) {
@@ -81,18 +100,28 @@ class PhotoList extends Component {
   }
 }
 
-class GalleryForm extends SpecialForm {
+/**
+ * This is the form to upload pictures.
+ */
+class GalleryForm extends SubmitForm {
+  addLinks() {
+    if (this.photoUploader) {
+      this.photoUploader.externalAPI()
+    }
+  }
   render({ galleryId, confirmText }) {
-    const { formLoading } = this.state
+    const { formLoading, error, success } = this.state
     return (
       <Form onSubmit={this.submit.bind(this)}>
         <input name="galleryId" value={galleryId} type="hidden" />
-        <FormGroup label="Загрузка Изображений" help="Выберите несколько изображений, и загрузите их.">
-          <Gallery />
+        <FormGroup label="Загрузка Изображений" help="Выберите несколько изображений и загрузите их.">
+          <PhotoUpload ref={(r) => {
+            this.photoUploader = r
+          }} />
         </FormGroup>
-        <button type="submit" className="btn btn-success" disabled={formLoading}>{formLoading ? 'Загрузка...' : confirmText}</button>
-        <ErrorAlert error={this.state.error} />
-        <Success success={this.state.success} message="Галерея сохранена!" />
+        <SubmitButton loading={formLoading} loadingText="Загрузка..." confirmText={confirmText} />
+        <ErrorAlert error={error} />
+        <Success success={success} message="Галерея сохранена!" />
       </Form>)
   }
 }
