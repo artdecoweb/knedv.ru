@@ -3,7 +3,13 @@ import sharp from 'sharp'
 
 export const resize = async (path, size) => {
   const res = await sharp(path).rotate()
-    .withoutEnlargement().resize(size)
+    .resize(size, null, { withoutEnlargement: true })
+    .jpeg({ quality: 90 }).toBuffer()
+  return res
+}
+export const resizeBuffer = async (buffer, size) => {
+  const res = await sharp(buffer).rotate()
+    .resize(size, null, { withoutEnlargement: true })
     .jpeg({ quality: 90 }).toBuffer()
   return res
 }

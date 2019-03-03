@@ -1,7 +1,12 @@
-import { c } from 'erte'
+import { c, b } from 'erte'
+import { ExiftoolProcess } from 'node-exiftool'
+import bin from 'dist-exiftool'
 import Server from './server'
 
 (async () => {
+  const ep = new ExiftoolProcess(bin)
+  const pid = await ep.open()
+  console.log('Opened %s %s', c(b('exiftool', 'yellow'), 'red'), pid)
   const { MONGO_URL, STORAGE } = process.env
   if (!MONGO_URL) {
     console.log('No Mongo connection string.')
@@ -22,6 +27,7 @@ import Server from './server'
     PROD: process.env.NODE_ENV == 'production',
     frontendUrl: process.env.FRONT_END || 'https://knedv.ru',
     elastic: process.env.ELASTIC_SEARCH,
+    exiftool: ep,
   })
-  console.log('Started on %s', c(url, 'green'))
+  console.log('Started on %s :: %s', c(url, 'green'), c(`${url}/admin`, 'blue'))
 })()

@@ -67,6 +67,14 @@ nav {
   border: 1px solid grey;
   background: #cecece;
   display: inline-block;
+  border-radius: 5px;
+  margin: .25rem;
+  height: 200px;
+  vertical-align: top;
+}
+.Image img {
+  max-width: 100%;
+  max-height: 100%;
 }
 /* .PhotoUploader .ImageInfo:hover {
   background: white;
@@ -85,13 +93,16 @@ nav {
 }
 .GalleryLink {
   margin: 0;
-  bottom: 0;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
 }
 .PhotoUploader .ImageInfo {
   background: rgba(255, 255, 255, 0.75);
   word-break: break-all;
   max-width: 100%;
-  overflow: hidden;
+  overflow: scroll;
   position: absolute;
 }
 .Absolute {
@@ -102,4 +113,21 @@ nav {
 }
 .ArticleHolder img {
   max-width: 100%;
+}
+.ImageInfo.PhotoError {
+  background: rgba(156, 66, 60, 0.63);
+  margin: 0px;
+  border-color: red;
+  color: navajowhite;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+  text-shadow: 1px 1px brown;
+}
+.PhotoError:hover {
+  z-index: 5;
+}
+.PreviewLoading {
+  width: 290px;
 }

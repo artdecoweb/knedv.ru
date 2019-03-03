@@ -7,10 +7,23 @@ import Database from './database'
 
 const maxage = PROD => PROD ? 1000 * 60 * 60 * 60 * 24 : 0
 
-export default async ({
-  port, PROD, watch = !PROD, database_url, storage, storageDomain,
-  client_id, client_secret, cdn, frontendUrl, elastic,
-}) => {
+/**
+ * Starts the server.
+ * @param {ServerOptions} opts The options accepted by the server.
+ * @param {number} [opts.port=5000] What port to start on. Default `5000`.
+ * @param {boolean} [opts.PROD=false] Whether this is a production server. Default `false`.
+ * @param {boolean} [opts.watch=true] Watch routes for changes. Default `true`.
+ * @param {string} opts.database_url The MongoDB connection string.
+ * @param {string} opts.client_id The Mail.ru app id for admin authentication. Add new at https://api.mail.ru/sites/my/add.
+ * @param {string} opts.client_secret The Mail.ru app secrte for admin authentication.
+ * @param {string} [opts.elastic] The URL of the ElasticSearch for logging the requests.
+ * @param {ExiftoolProcess} [opts.exiftool] The open Exiftool process.
+ */
+export default async (opts) => {
+  const {
+    port = 5000, PROD, watch = !PROD, database_url, storage, storageDomain,
+    client_id, client_secret, cdn, frontendUrl, elastic, exiftool,
+  } = opts
   const { router, middleware, app, url } = await idio({
     cors: { use: true,
       origin: PROD && [frontendUrl],
@@ -110,6 +123,7 @@ export default async ({
   Object.assign(app.context, {
     database, storage, storageDomain, cdn,
     PROD: PROD || process.env.NODE_ENV == 'emulate-prod',
+    exiftool,
   })
   if (elastic) {
     await ping(elastic)
@@ -118,3 +132,18 @@ export default async ({
   console.log('Connected to %s', b('Mongo', 'green'))
   return { app, url }
 }
+
+/* documentary types/index.xml */
+/**
+ * @typedef {import('node-exiftool').ExiftoolProcess} ExiftoolProcess
+ *
+ * @typedef {Object} ServerOptions The options accepted by the server.
+ * @prop {number} [port=5000] What port to start on. Default `5000`.
+ * @prop {boolean} [PROD=false] Whether this is a production server. Default `false`.
+ * @prop {boolean} [watch=true] Watch routes for changes. Default `true`.
+ * @prop {string} database_url The MongoDB connection string.
+ * @prop {string} client_id The Mail.ru app id for admin authentication. Add new at https://api.mail.ru/sites/my/add.
+ * @prop {string} client_secret The Mail.ru app secrte for admin authentication.
+ * @prop {string} [elastic] The URL of the ElasticSearch for logging the requests.
+ * @prop {ExiftoolProcess} [exiftool] The open Exiftool process.
+ */

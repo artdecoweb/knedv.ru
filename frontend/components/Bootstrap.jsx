@@ -15,6 +15,13 @@ export const Col = ({ children, className, ...props }) => {
   const cl = `col${className ? ` ${className}` : ''}`
   return <div {...props} className={cl}>{children}</div>
 }
+export const A = ({ onClick, className, ...props }) => {
+  return (<a className={className} href="#" {...props} onClick={(e) => {
+    e.preventDefault()
+    onClick(e)
+    return false
+  }}/>)
+}
 
 const Input = ({ textarea, required, name, placeholder, id, hid, type, file, value }) => {
   const props = { 'required': required, 'name': name, 'placeholder': placeholder, 'className': `form-control${file ? '-file' : ''}`, 'id': id, 'aria-describedby': hid }
@@ -87,6 +94,7 @@ export class Switch extends Component {
 
 export const ErrorAlert = ({ error }) => {
   if (!error) return null
+  if (typeof error != 'string') error = 'Ошибка'
   return (<div className="alert alert-danger mt-3" role="alert">{error}</div>)
 }
 

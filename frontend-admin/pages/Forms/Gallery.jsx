@@ -4,7 +4,7 @@ import Form, {
 import { Success, ErrorAlert } from '../../../frontend/components/Bootstrap'
 import FormImage from '../../Components/FormImage'
 
-export default class GalleryForm extends SubmitForm {
+class GalleryForm extends SubmitForm {
   render({ item, onClose, closeText = 'Отмена', successMessage, confirmText = 'Добавить' }) {
     const i = item || {}
     const { formLoading, error, success } = this.state
@@ -22,7 +22,7 @@ export default class GalleryForm extends SubmitForm {
 
       {item && <input type="hidden" name="id" value={i._id} />}
 
-      <ErrorAlert error={error}/>
+      <ErrorAlert error={error} />
       <Success success={success} message={successMessage}/>
 
       <SubmitButton confirmText={confirmText} loadingText="Загрузка..." loading={formLoading} />
@@ -33,3 +33,5 @@ export default class GalleryForm extends SubmitForm {
     </Form>)
   }
 }
+
+export default GalleryForm

@@ -1,0 +1,29 @@
+<types>
+  <import from="node-exiftool" name="ExiftoolProcess" />
+  <type name="ServerOptions" desc="The options accepted by the server.">
+    <prop number name="port" default="5000">
+      What port to start on.
+    </prop>
+    <prop boolean name="PROD" default="false">
+      Whether this is a production server.
+    </prop>
+    <prop boolean name="watch" default="true">
+      Watch routes for changes.
+    </prop>
+    <prop string name="database_url">
+      The MongoDB connection string.
+    </prop>
+    <prop string name="client_id">
+      The Mail.ru app id for admin authentication. Add new at https://api.mail.ru/sites/my/add.
+    </prop>
+    <prop string name="client_secret">
+      The Mail.ru app secrte for admin authentication.
+    </prop>
+    <prop opt string name="elastic">
+      The URL of the ElasticSearch for logging the requests.
+    </prop>
+    <prop opt type="ExiftoolProcess" name="exiftool">
+      The open Exiftool process.
+    </prop>
+  </type>
+</types>

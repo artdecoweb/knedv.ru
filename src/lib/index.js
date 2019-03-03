@@ -18,12 +18,12 @@ export const getSeo = (seo) => {
  * @param {string} seo The name of how to save the file.
  * @param {string} mimetype The mimetype.
  */
-export const handleImage = async (cdn, storage, path, seo, mimetype, { folder = 'catalog', resize: r = 250 } = {}) => {
+export const handleImage = async (cdn, storage, path, seo, mimetype, { folder = 'catalog', resize: r = 250, buffer } = {}) => {
   if (!path) {
     return {}
   }
   checkExtension(mimetype)
-  const buffer = await resize(path, r)
+  buffer = buffer ? await resize(buffer, r) : await resize(path, r)
   const blob = `${folder}/${seo}.jpg`
   const imageContainer = 'images'
   const image = await file({
@@ -34,5 +34,5 @@ export const handleImage = async (cdn, storage, path, seo, mimetype, { folder = 
   })
   const imageLocation = `${imageContainer}/${blob}`
   const cdnImage = `${cdn}/${imageLocation}`
-  return { imageContainer, image, imageLocation, cdnImage }
+  return { imageContainer, image, imageLocation, cdnImage, buffer }
 }

@@ -1,36 +1,56 @@
 import { Component } from 'preact'
+import { A } from '../../frontend/components/Bootstrap'
 
 class Photo extends Component {
   constructor() {
     super()
     this.state = {
       uploaded: false,
-      init: true,
       progress: null,
+      error: null,
+      preview: null,
+      result: null,
+    }
+  }
+  componentDidMount() {
+    this.getPreview(this.props.file)
+  }
+  getPreview(file) {
+    const reader = new FileReader()
+    reader.readAsDataURL(file)
+    reader.onloadend = () => {
+      this.setState({ preview: reader.result })
     }
   }
   async upload() {
+    this.setState({ error: null, progress: 0, uploaded: false })
     const formData = new FormData()
     formData.append('image', this.props.file)
     const xhr = new XMLHttpRequest()
     xhr.open('POST', '/upload-asset', true)
+    xhr.seenBytes = 0
     xhr.upload.addEventListener('progress', (e) => {
       this.updateProgress((e.loaded * 100.0 / e.total) || 100)
     })
-    xhr.addEventListener('readystatechange', e => {
+    xhr.addEventListener('readystatechange', () => {
+      if(xhr.readyState == 3) {
+        const newData = xhr.response.substr(xhr.seenBytes)
+        console.log(123, newData)
+        xhr.seenBytes = xhr.responseText.length
+        return
+      }
       if (xhr.readyState == 4) {
         this.setState({ uploaded: true })
       }
       if (xhr.readyState == 4 && xhr.status == 200) {
         const t = xhr.responseText
-        const tt = JSON.parse(t)
-        if (tt.error) {
-          this.setState({ error: tt['error'] })
-        } else if (tt.file) {
-          this.setState({ result: tt['file'] })
+        const { 'error': error, 'result': result } = JSON.parse(t)
+        if (error) {
+          this.setState({ error })
+        } else if (result['file']) {
+          this.setState({ result: result['file'], preview: null })
         }
-      }
-      else if (xhr.readyState == 4 && xhr.status != 200) {
+      } else if (xhr.readyState == 4 && xhr.status != 200) {
         this.setState({ error: 'XHR Error' })
       }
     })
@@ -40,42 +60,50 @@ class Photo extends Component {
   updateProgress(progress) {
     this.setState({ progress })
   }
-  render ({ preview, name, onRemove, fieldName, existing }) {
-    const { progress } = this.state
-    const processing = progress == 100 && !this.state.uploaded
+  render ({ name, onRemove, fieldName, existing }) {
+    const { progress, error, preview, uploaded, result } = this.state
+    const processing = progress == 100 && !uploaded
     const s = {
-      background: this.state.uploaded ? "linear-gradient(lightgreen, #82d285)" : undefined,
-      'border-color': this.state.uploaded ? 'green' : undefined,
+      background: uploaded ? 'linear-gradient(lightgreen, #82d285)' : null,
+      'border-color': uploaded ? 'green' : null,
     }
     if (processing) {
-      s.background = "linear-gradient(lightblue, blue)"
+      s.background = 'linear-gradient(lightblue, blue)'
       s['border-color'] = 'blue'
+    } else if (error) {
+      s.background = "linear-gradient(coral, brown)"
+      s['border-color'] = 'red'
     }
-    const Result = existing || this.state.result
+    const Result = existing || result
     const src = Result ? Result : preview
-    return (<div className="Image" style={s}>
-      <img style="max-height:250px; padding: 0.5rem;" className="img-fluid" src={src} />
+    return (<div style={s} className={`Image${src ? '' : ' PreviewLoading'}`} >
+      <img style="padding:.5rem;" src={src} />
       <span className="ImageInfo" style="top:.5rem;left:.5rem;">{name}</span>
       <span className="ImageInfo CloseSpan" onClick={onRemove}>✕</span>
       {!existing && progress === null &&
-        <span className="Absolute" style="bottom:0.5rem;left:0.5rem;">
-          <a href="#" className="btn btn-light btn-sm" onClick={(e) => {
-            e.preventDefault()
+        <BottomLeft className="Absolute">
+          <A className="btn btn-light btn-sm" onClick={() => {
             this.upload()
-            return false
-          }}>Загрузить</a>
-        </span>
+          }}>Загрузить</A>
+        </BottomLeft>
       }
-      <span className="ImageInfo" style="bottom:.5rem;left:.5rem;">
-        {progress && progress != 100 && <progress max={100} value={progress}></progress>}
-        {processing &&
-          ['Выполняется обработка...',
-          <div className="spinner-border text-primary" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>]
-        }
-      </span>
-      {this.state.error && <p style="background: lightcoral; width: 150px;">Error: {this.state.error}</p>}
+      {!!progress && progress != 100 && <BottomLeft>
+        <progress max={100} value={progress}/>
+      </BottomLeft>}
+      {processing && <BottomLeft>
+        Выполняется обработка...
+        <div className="spinner-border text-primary" role="status">
+          <span className="sr-only">Loading...</span>
+        </div>
+      </BottomLeft>}
+      {this.state.error && <p className="ImageInfo PhotoError">
+        Error: {this.state.error}
+      </p>}
+      {this.state.error && <a href="#" className="btn btn-danger btn-sm" onClick={(e) => {
+        e.preventDefault()
+        this.upload()
+        return false
+      }} style="position:absolute;right:.5rem;bottom:.5rem;">Загрузить снова</a>}
       {Result &&
         <p className="ImageInfo GalleryLink">
           <a href={Result}>Ссылка</a>
@@ -86,14 +114,10 @@ class Photo extends Component {
   }
 }
 
-const getPreview = async (file) => {
-  const reader = new FileReader()
-  reader.readAsDataURL(file)
-  return await new Promise(r => {
-    reader.onloadend = function() {
-      r(reader.result)
-    }
-  })
+const BottomLeft = ({ children, className = 'ImageInfo' }) => {
+  return (<span className={className} style="bottom:.5rem;left:.5rem;">
+    {children}
+  </span>)
 }
 
 /**
@@ -109,19 +133,12 @@ export class Gallery extends Component {
     this.setState({ files })
   }
   async addFiles(f) {
-    const [...files] = f
-    this.setState({ addingFiles: true })
-    await new Promise(r => setTimeout(r, 5))
-    try {
-      const newFiles = await Promise.all(files.map(async file => {
-        const preview = await getPreview(file)
-        const rid = Math.floor(Math.random() * 10000)
-        return { file, preview, rid }
-      }))
-      this.setState({ files: [...this.state.files, ...newFiles] })
-    } finally {
-      this.setState({ addingFiles: false })
-    }
+    const [...ff] = f
+    const files = ff.map(file => ({ file,
+      pid: Math.floor(Math.random() * 10000) }))
+    this.setState({
+      files: [...this.state.files, ...files],
+    })
   }
   render({ fieldName = 'files[]' }) {
     const { hid, id } = this.context
@@ -146,10 +163,10 @@ export class Gallery extends Component {
         e.currentTarget.value = null
       }} type="file" multiple />
       {this.state.addingFiles ? 'Идет опознование файлов...' : 'Или переместите файлы сюда...'}
-      {this.state.files.map(({ file, preview, rid }) => {
-        return <Photo name={file.name} key={rid} file={file} preview={preview} onRemove={() => {
+      {this.state.files.map(({ file, pid }) => {
+        return (<Photo key={pid} name={file.name} file={file} onRemove={() => {
           this.removeFile(file)
-        }} fieldName={fieldName} />
+        }} fieldName={fieldName} />)
       })}
     </div>)
   }
