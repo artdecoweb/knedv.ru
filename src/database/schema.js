@@ -58,12 +58,10 @@ export const _Gallery = {
 }
 export const _Photo = {
   seo: String,
-  article: String,
-  galleryId: String,
-  file: String,
-  description: String,
-  href: String,
-  show_on_main: String,
+  galleryId: String, // can be gallery or album
+  file: String, // the s preview (dep)
+  photo: String, // the id of the Upload
+  description: String, // ?
   ...Img,
 }
 export const _Upload = {

@@ -73,16 +73,12 @@ export default class Gallery2 extends Component {
       {_id && <GalleryForm
         uploadedResults={uploadedResults}
         submitFinish={async (result) => {
-          const { data: res } = await result.json()
+          // the form responds with ids of added uploads
+          const { 'data': res } = await result.json()
           if (res) this.addUploadedResults(res)
           await this.load()
         }} path="/admin-data?photos" galleryId={_id}
         confirmText="Сохранить Галерею"
-        onPhotoUploaded={async (result) => {
-          // debugger
-          // the photo has been uploaded via photo UI.
-          // await this.load()
-        }}
       />}
     </Col>)
   }
@@ -126,7 +122,7 @@ class GalleryForm extends SubmitForm {
       this.photoUploader.externalAPI()
     }
   }
-  render({ galleryId, confirmText, onPhotoUploaded, uploadedResults }) {
+  render({ galleryId, confirmText, uploadedResults }) {
     const { formLoading, error, success } = this.state
     return (
       <Form onSubmit={this.submit.bind(this)}>
@@ -134,9 +130,10 @@ class GalleryForm extends SubmitForm {
         <FormGroup label="Загрузка Изображений" help="Выберите несколько изображений и загрузите их.">
           <PhotoUploader ref={(r) => {
             this.photoUploader = r
-          }} onPhotoUploaded={(res) => {
+          }} onPhotoUploaded={async () => {
             this.reset()
-            if (onPhotoUploaded) onPhotoUploaded(res)
+            // await new Promise(r => setTimeout(r, 1))
+            // this.submit({ target: this.base, preventDefault() {} })
           }} onAdded={() => this.reset()} onRemove={() => this.reset()}
           uploadedResults={uploadedResults}
           />

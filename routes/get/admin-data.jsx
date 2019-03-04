@@ -32,6 +32,15 @@ const getData = async (ctx) => {
     if (!g.length) return
     const [gg] = g
     const photos = await findPhotos(database, id)
+    await Promise.all(photos.map(async (p) => {
+      const { photo } = p
+      if (!photo) return p
+      const upload = await findInModel(database, 'Upload', photo)
+      const [u] = upload
+      if (!u || !u.cdnImageS) return p
+      p.file = u.cdnImageS
+      return p
+    }))
     gg.photos = photos
     return gg
   } else {

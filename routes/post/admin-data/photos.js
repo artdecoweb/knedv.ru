@@ -9,26 +9,25 @@ const photos = async (ctx, database) => {
     return ctx.query.id
   }
   const {
-    title, galleryId, files,
+    title, galleryId, photos: p,
   } = ctx.req.body
 
-  if (!Array.isArray(files) || !files.length) {
+  if (!Array.isArray(p) || !p.length) {
     throw new Error('Не добавлено новых файлов.')
   }
 
-  const r = await Promise.all(files.map(async file => {
+  await Promise.all(p.map(async photo => {
     /** @type {import('../../../src/database/schema')._Photo} */
     const d = {
       title,
       galleryId,
-      file,
+      photo,
     }
 
-    const c = new Photo(d)
-    const res = await c.save()
-    return res._doc
+    const doc = await database.addObject('Photo', d)
+    return doc._id
   }))
-  return files
+  return p
 }
 
 export default photos

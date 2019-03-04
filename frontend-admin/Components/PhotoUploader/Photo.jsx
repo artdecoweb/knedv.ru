@@ -82,9 +82,9 @@ class Photo extends Component {
       }
       if (xhr.readyState == 4 && xhr.status == 200) {
         const t = xhr.responseText
-        let error, result
+        let error, result, photoId
         try {
-          ({ 'error': error, 'result': result } = JSON.parse(t))
+          ({ 'error': error, 'result': result, 'photoId': photoId } = JSON.parse(t))
         } catch (err) {
           error = `Could not parse JSON: ${err.message}`
         }
@@ -93,6 +93,7 @@ class Photo extends Component {
         } else if (result) {
           this.setState({ result,
             preview: null, // release canvas memory from the state.
+            photoId,
           })
           if (this.props.onUploaded) {
             this.props.onUploaded(result)
@@ -111,10 +112,15 @@ class Photo extends Component {
   updateProgress(progress) {
     this.setState({ progress })
   }
-  render ({ name, onRemove, fieldName, existing, uploadedResults }) {
-    const { progress, error, preview, uploaded, result, metadata } = this.state
+  render ({
+    name, onRemove, fieldName = 'files[]', existing, uploadedResults,
+    photoIdName = 'photos[]',
+  }) {
+    const {
+      progress, error, preview, uploaded, result, metadata, photoId,
+    } = this.state
     const processing = progress == 100 && !uploaded
-    const alreadyUploaded = result && uploadedResults.some(i => i ==  result)
+    const alreadyUploaded = photoId && uploadedResults.some(i => i ==  photoId)
     const s = {
       background: uploaded ? 'linear-gradient(lightgreen, #82d285)' : null,
       'border-color': uploaded ? 'green' : null,
@@ -123,9 +129,11 @@ class Photo extends Component {
     if (processing) {
       s.background = 'linear-gradient(lightblue, blue)'
       s['border-color'] = 'blue'
+      s['box-shadow'] = 'inset 1px -5px 15px #2a33a0'
     } else if (error) {
       s.background = "linear-gradient(coral, brown)"
       s['border-color'] = 'red'
+      s['box-shadow'] = 'rgb(162, 31, 31) 1px -5px 15px inset'
     }
     const Result = existing || result
     const src = Result ? Result : preview
@@ -184,6 +192,7 @@ class Photo extends Component {
         </p>
       }
       {readyForUpload && <input type="hidden" name={fieldName} value={Result}/>}
+      {readyForUpload && photoId && <input type="hidden" name={photoIdName} value={photoId}/>}
     </div>)
   }
 }
