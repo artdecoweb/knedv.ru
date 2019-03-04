@@ -1,5 +1,7 @@
 FROM node:10-alpine
 
+RUN apk add --update perl && rm -rf /var/cache/apk/*
+
 COPY package*.json .
 COPY yarn.lock .
 RUN yarn
