@@ -1,5 +1,5 @@
 import { Component } from 'preact'
-import { A } from '../../frontend/components/Bootstrap'
+import { A } from '../../../frontend/components/Bootstrap'
 import { handleBinaryFile } from './jpeg'
 
 const getCanvas = (width, height, img) => {
@@ -56,30 +56,51 @@ class Photo extends Component {
     this.setState({ error: null, progress: 0, uploaded: false })
     const formData = new FormData()
     formData.append('image', this.props.file)
+    formData.append('name', this.props.file.name)
     const xhr = new XMLHttpRequest()
     xhr.open('POST', '/upload-asset', true)
     xhr.seenBytes = 0
     xhr.upload.addEventListener('progress', (e) => {
       this.updateProgress((e.loaded * 100.0 / e.total) || 100)
     })
+    // let lastData
     xhr.addEventListener('readystatechange', () => {
-      if(xhr.readyState == 3) {
-        const newData = xhr.response.substr(xhr.seenBytes)
-        console.log(123, newData) //
-        xhr.seenBytes = xhr.responseText.length
-        return
-      }
+      // if(xhr.readyState == 3) {
+      //   const newData = xhr.response.substr(xhr.seenBytes)
+      //   xhr.seenBytes = xhr.responseText.length
+      //   lastData = newData
+      //   if (lastData) {
+      //     try {
+      //       lastData = JSON.parse(lastData)
+      //     } catch (err) {/**/}
+      //   }
+      //   return
+      // }
+
       if (xhr.readyState == 4) {
         this.setState({ uploaded: true })
       }
       if (xhr.readyState == 4 && xhr.status == 200) {
         const t = xhr.responseText
-        const { 'error': error, 'result': result } = JSON.parse(t)
+        let error, result
+        try {
+          ({ 'error': error, 'result': result } = JSON.parse(t))
+        } catch (err) {
+          error = `Could not parse JSON: ${err.message}`
+        }
         if (error) {
           this.setState({ error })
-        } else if (result['file']) {
-          this.setState({ result: result['file'], preview: null })
+        } else if (result) {
+          this.setState({ result,
+            preview: null, // release canvas memory from the state.
+          })
+          if (this.props.onUploaded) {
+            this.props.onUploaded(result)
+          }
         }
+        // else if (lastData) {
+        //   this.setState({ result: lastData })
+        // }
       } else if (xhr.readyState == 4 && xhr.status != 200) {
         this.setState({ error: 'XHR Error' })
       }
@@ -90,12 +111,14 @@ class Photo extends Component {
   updateProgress(progress) {
     this.setState({ progress })
   }
-  render ({ name, onRemove, fieldName, existing }) {
+  render ({ name, onRemove, fieldName, existing, uploadedResults }) {
     const { progress, error, preview, uploaded, result, metadata } = this.state
     const processing = progress == 100 && !uploaded
+    const alreadyUploaded = result && uploadedResults.some(i => i ==  result)
     const s = {
       background: uploaded ? 'linear-gradient(lightgreen, #82d285)' : null,
       'border-color': uploaded ? 'green' : null,
+      'box-shadow': uploaded ? 'inset 1px -5px 15px #6f9e14' : null,
     }
     if (processing) {
       s.background = 'linear-gradient(lightblue, blue)'
@@ -112,6 +135,12 @@ class Photo extends Component {
       if (date) date = getDate(date).toLocaleDateString()
     } catch (er) {
       // ok
+    }
+    const readyForUpload = Result && !alreadyUploaded
+    if (readyForUpload) {
+      s.background = "linear-gradient(yellow, rgb(207, 198, 92))"
+      s['border-color'] = 'rgb(156, 158, 9)'
+      s['box-shadow'] = 'inset 1px -5px 15px #9e7414'
     }
     return (<div style={s} className={`Image${src ? '' : ' PreviewLoading'}`} >
       {!src  && <span
@@ -154,7 +183,7 @@ class Photo extends Component {
           <a href={Result}>Ссылка</a>
         </p>
       }
-      {Result && <input type="hidden" name={fieldName} value={Result}/>}
+      {readyForUpload && <input type="hidden" name={fieldName} value={Result}/>}
     </div>)
   }
 }
@@ -165,64 +194,12 @@ const BottomLeft = ({ children, className = 'ImageInfo' }) => {
   </span>)
 }
 
-// Sudhir Bastakoti
-// https://stackoverflow.com/a/43084142/1267201
-const getDate = () => {
-  const [date, time] = "2017:03:09 14:49:21".split(' ')
-  const dateStr = date.replace(/:/g, "-")
-  const properDateStr = dateStr + ' ' + time
-  const d = new Date(properDateStr)
-  return d
+
+// RobG
+// https://stackoverflow.com/a/43084928/1267201
+const getDate = (s) => {
+  const [year, month, date, hour, min, sec] = s.split(/\D/)
+  return new Date(year,month-1,date,hour,min,sec)
 }
 
-/**
- * The gallery is the image upload component which drop allowed adding of files.
- */
-export class Gallery extends Component {
-  constructor() {
-    super()
-    this.state = { files: [] }
-  }
-  removeFile(file) {
-    const files = this.state.files.filter(({ file: f }) => f !== file)
-    this.setState({ files })
-  }
-  async addFiles(f) {
-    const [...ff] = f
-    const files = ff.map(file => ({ file,
-      pid: Math.floor(Math.random() * 10000) }))
-    this.setState({
-      files: [...this.state.files, ...files],
-    })
-  }
-  render({ fieldName = 'files[]' }) {
-    const { hid, id } = this.context
-    return (<div className="PhotoUploader" onDragEnter={(event) => {
-      event.preventDefault()
-      event.currentTarget.style.background = '#E91E63'
-    }} onDragLeave={(event) => {
-      event.currentTarget.style.background = ''
-    }} onDrop={(event) => {
-      event.preventDefault()
-      event.stopPropagation()
-      event.currentTarget.style.background = ''
-      const { dataTransfer: { files } } = event
-      this.addFiles(files)
-    }} onDragOver={(event) => {
-      event.preventDefault()
-      event.stopPropagation()
-    }}>
-      <input id={id} aria-described-by={hid} accept="image/*" onChange={(e) => {
-        e.preventDefault()
-        this.addFiles(e.currentTarget.files)
-        e.currentTarget.value = null
-      }} type="file" multiple />
-      {this.state.addingFiles ? 'Идет опознование файлов...' : 'Или переместите файлы сюда...'}
-      {this.state.files.map(({ file, pid }) => {
-        return (<Photo key={pid} name={file.name} file={file} onRemove={() => {
-          this.removeFile(file)
-        }} fieldName={fieldName} />)
-      })}
-    </div>)
-  }
-}
+export default Photo

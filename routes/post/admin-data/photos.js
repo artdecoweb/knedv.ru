@@ -13,7 +13,7 @@ const photos = async (ctx, database) => {
   } = ctx.req.body
 
   if (!Array.isArray(files) || !files.length) {
-    throw new Error('Не добавлено файлов.')
+    throw new Error('Не добавлено новых файлов.')
   }
 
   const r = await Promise.all(files.map(async file => {
@@ -28,7 +28,7 @@ const photos = async (ctx, database) => {
     const res = await c.save()
     return res._doc
   }))
-  return r
+  return files
 }
 
 export default photos

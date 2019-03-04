@@ -6,6 +6,7 @@ const Img = {
   imageContainer: String,
   cdnImage: String,
 }
+const CDNImage = new Schema(Img)
 
 export const _Category = {
   title: String,
@@ -65,9 +66,19 @@ export const _Photo = {
   show_on_main: String,
   ...Img,
 }
+export const _Upload = {
+  model: String,
+  date: Date,
+  imgM: CDNImage,
+  imgS: CDNImage,
+  name: String,
+  cdnImageS: String,
+  cdnImageM: String,
+}
 export const Category = new Schema(_Category)
-export const Obj = new Schema(_Object)
+export const Object = new Schema(_Object)
 export const Page = new Schema(_Page)
 export const Special = new Schema(_Special)
 export const Gallery = new Schema(_Gallery)
 export const Photo = new Schema(_Photo)
+export const Upload = new Schema(_Upload)

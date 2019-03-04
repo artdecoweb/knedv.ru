@@ -3,13 +3,16 @@ import { Col, Row, ErrorAlert, Success } from '../../frontend/components/Bootstr
 import { loadData } from '../Components/LoadData'
 import { LoadingIndicator } from '../Components'
 import 'preact/devtools/'
-import { Gallery as PhotoUpload } from '../Components/PhotoUploader'
+import PhotoUploader from '../Components/PhotoUploader'
 import Form, { FormGroup, SubmitButton, SubmitForm } from '@depack/form'
 
+/**
+ * The Gallery with the photo display at the top and upload form at the bottom. When a photo is uploaded via the inner photo uploaded, the `load` method is triggered which refreshes the list.
+ */
 export default class Gallery2 extends Component {
   constructor() {
     super()
-    this.state = { data: null, loading: true, files: [] }
+    this.state = { data: null, loading: true, files: [], uploadedResults: [] }
     // this._listener = (event) => {
     //   debugger
     //   // prevent default action (open as link for some elements)
@@ -42,8 +45,14 @@ export default class Gallery2 extends Component {
   get data() {
     return this.state.data
   }
+  addUploadedResults(results) {
+    this.setState({ uploadedResults:
+      [...this.state.uploadedResults, ...results],
+    })
+  }
   render() {
     const { title, cdnImage, description, _id, photos } = this.data || {}
+    const { uploadedResults } = this.state
     return (<Col>
       <h1>Галерея</h1>
 
@@ -60,12 +69,19 @@ export default class Gallery2 extends Component {
       }
       {this.data && <PhotoList photos={photos} />}
       <hr />
-      {_id && <GalleryForm submitFinish={async () => {
-        await this.load()
-      }} path="/admin-data?photos" galleryId={_id}
-      confirmText="Сохранить Галерею" ref={(f) => {
-        this.galleryForm = f
-      }}
+      {_id && <GalleryForm
+        uploadedResults={uploadedResults}
+        submitFinish={async (result) => {
+          const { data: res } = await result.json()
+          if (res) this.addUploadedResults(res)
+          await this.load()
+        }} path="/admin-data?photos" galleryId={_id}
+        confirmText="Сохранить Галерею"
+        onPhotoUploaded={async (result) => {
+          // debugger
+          // the photo has been uploaded via photo UI.
+          // await this.load()
+        }}
       />}
     </Col>)
   }
@@ -109,15 +125,20 @@ class GalleryForm extends SubmitForm {
       this.photoUploader.externalAPI()
     }
   }
-  render({ galleryId, confirmText }) {
+  render({ galleryId, confirmText, onPhotoUploaded, uploadedResults }) {
     const { formLoading, error, success } = this.state
     return (
       <Form onSubmit={this.submit.bind(this)}>
         <input name="galleryId" value={galleryId} type="hidden" />
         <FormGroup label="Загрузка Изображений" help="Выберите несколько изображений и загрузите их.">
-          <PhotoUpload ref={(r) => {
+          <PhotoUploader ref={(r) => {
             this.photoUploader = r
-          }} />
+          }} onPhotoUploaded={(res) => {
+            this.reset()
+            if (onPhotoUploaded) onPhotoUploaded(res)
+          }} onAdded={() => this.reset()} onRemove={() => this.reset()}
+          uploadedResults={uploadedResults}
+          />
         </FormGroup>
         <SubmitButton loading={formLoading} loadingText="Загрузка..." confirmText={confirmText} />
         <ErrorAlert error={error} />
