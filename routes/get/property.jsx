@@ -3,8 +3,9 @@ import App from '../../frontend/App'
 import { Row, Col } from '../../frontend/components/Bootstrap'
 import { LeftMenu } from '../../frontend/LeftMenu'
 import Offer from '../../frontend/components/Offer'
+import { findPhotos, findInModel } from './admin-data'
 
-const Content = ({ offers, categories, property }) => {
+const Content = ({ offers, categories, property, photos }) => {
   return <div className="container-fluid">
     {offers.map(({ text }) => <Offer>{text}</Offer>)}
     <Row>
@@ -18,6 +19,10 @@ const Content = ({ offers, categories, property }) => {
         <img src={property.cdnImage} className="image-float"/>
         <p>{property.description}</p>
         <div dangerouslySetInnerHTML={{ __html: property.article }}/>
+        {!!photos.length && <h2>Фотографии</h2>}
+        {photos.map(({ file, name }) => {
+          return (<img className="mb-2 img-fluid" src={file} alt={name}/>)
+        })}
       </Col>}
     </Row>
   </div>
@@ -28,12 +33,24 @@ const route = async (ctx) => {
   const database = ctx.database
   const Categories = database.getModel('Category')
   const categories = await Categories.find({}, 'title seo description')
-  let property
+  let property, photos
   const Objects = database.getModel('Object')
   if (ctx.params.property) {
     ([property] = await Objects.find({ seo: ctx.params.property }))
   }
-  const content = <Content categories={categories} offers={[]} property={property}/>
+  if (property) {
+    photos = await findPhotos(database, property._id)
+    await Promise.all(photos.map(async (p) => {
+      const { photo } = p
+      if (!photo) return p
+      const upload = await findInModel(database, 'Upload', photo)
+      const [u] = upload
+      if (!u || !u.cdnImageS) return p
+      p.file = u.cdnImageS
+      return p
+    }))
+  }
+  const content = <Content categories={categories} offers={[]} property={property} photos={photos}/>
   const app = <App activeMenu="index" Content={content} />
   ctx.body = Layout({
     title: property ? property.title : 'Каталог',

@@ -121,3 +121,9 @@ export default class ObjectForm extends SubmitForm {
     </Col>
   }
 }
+
+
+// {addedId &&
+//   <a className="ml-2 btn btn-light" href={`/goto/${addedId}`}>
+//     Перейти К Каталогу
+//   </a>}

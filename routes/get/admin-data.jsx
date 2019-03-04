@@ -48,14 +48,14 @@ const getData = async (ctx) => {
   }
 }
 
-const findInModel = async (database, modelName, id) => {
+export const findInModel = async (database, modelName, id) => {
   const model = database.getModel(modelName)
   const objects = await model.find({
     ...(id ? { _id: id }: {}),
   })
   return objects.map(mapDoc)
 }
-const findPhotos = async (database, galleryId) => {
+export const findPhotos = async (database, galleryId) => {
   const model = database.getModel('Photo')
   const objects = await model.find({
     ...(galleryId ? { galleryId: galleryId }: {}),
