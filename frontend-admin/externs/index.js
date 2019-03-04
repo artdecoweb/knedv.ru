@@ -13,6 +13,11 @@ var Property
  */
 var Special
 /**
- * @typedef {{ _id: string, cdnImage: string, description: string, title: string }}
+ * @typedef {{ _id: string, cdnImage: string, description: string, title: string, photos: Array<Photo> }}
  */
 var Gallery
+
+/**
+ * @typedef {{_id: string, file: string, galleryId: string}}
+ */
+var Photo
