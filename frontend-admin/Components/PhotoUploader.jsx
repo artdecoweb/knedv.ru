@@ -1,5 +1,15 @@
 import { Component } from 'preact'
 import { A } from '../../frontend/components/Bootstrap'
+import { handleBinaryFile } from './jpeg'
+
+const getCanvas = (width, height, img) => {
+  let canvas = document.createElement('canvas')
+  canvas.width = width
+  canvas.height = height
+  const ctx = canvas.getContext('2d')
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
+  return canvas.toDataURL()
+}
 
 class Photo extends Component {
   constructor() {
@@ -14,12 +24,32 @@ class Photo extends Component {
   }
   componentDidMount() {
     this.getPreview(this.props.file)
+    this.getMetadata(this.props.file)
+  }
+  getMetadata(file) {
+    const reader2 = new FileReader()
+    reader2.readAsArrayBuffer(file)
+    reader2.onload = () => {
+      const d = handleBinaryFile(reader2.result)
+      this.setState({ metadata: d })
+    }
   }
   getPreview(file) {
     const reader = new FileReader()
     reader.readAsDataURL(file)
-    reader.onloadend = () => {
-      this.setState({ preview: reader.result })
+    reader.onload = () => {
+      this.getCanvas(reader.result)
+    }
+  }
+  getCanvas(data) {
+    const tempImg = new Image()
+    tempImg.src = data
+    tempImg.onload = () => {
+      const ratio = tempImg.width / tempImg.height
+      const height = 250
+      const width = tempImg.width > tempImg.height ? height * ratio : height / ratio
+      const c = getCanvas(width, height, tempImg)
+      this.setState({ preview: c })
     }
   }
   async upload() {
@@ -35,7 +65,7 @@ class Photo extends Component {
     xhr.addEventListener('readystatechange', () => {
       if(xhr.readyState == 3) {
         const newData = xhr.response.substr(xhr.seenBytes)
-        console.log(123, newData)
+        console.log(123, newData) //
         xhr.seenBytes = xhr.responseText.length
         return
       }
@@ -61,7 +91,7 @@ class Photo extends Component {
     this.setState({ progress })
   }
   render ({ name, onRemove, fieldName, existing }) {
-    const { progress, error, preview, uploaded, result } = this.state
+    const { progress, error, preview, uploaded, result, metadata } = this.state
     const processing = progress == 100 && !uploaded
     const s = {
       background: uploaded ? 'linear-gradient(lightgreen, #82d285)' : null,
@@ -76,9 +106,24 @@ class Photo extends Component {
     }
     const Result = existing || result
     const src = Result ? Result : preview
+    let date
+    try {
+      date = metadata.data.DateTime
+      if (date) date = getDate(date).toLocaleDateString()
+    } catch (er) {
+      // ok
+    }
     return (<div style={s} className={`Image${src ? '' : ' PreviewLoading'}`} >
+      {!src  && <span
+        className="ImageInfo"
+        style="top:50%;left:50%;transform:translate(-50%, -50%);">
+        Загрузка превью...</span>}
       <img style="padding:.5rem;" src={src} />
-      <span className="ImageInfo" style="top:.5rem;left:.5rem;">{name}</span>
+      <span className="ImageInfo" style="top:.5rem;left:.5rem;">
+        {name}
+        {date && <br/>}
+        {date}
+      </span>
       <span className="ImageInfo CloseSpan" onClick={onRemove}>✕</span>
       {!existing && progress === null &&
         <BottomLeft className="Absolute">
@@ -118,6 +163,16 @@ const BottomLeft = ({ children, className = 'ImageInfo' }) => {
   return (<span className={className} style="bottom:.5rem;left:.5rem;">
     {children}
   </span>)
+}
+
+// Sudhir Bastakoti
+// https://stackoverflow.com/a/43084142/1267201
+const getDate = () => {
+  const [date, time] = "2017:03:09 14:49:21".split(' ')
+  const dateStr = date.replace(/:/g, "-")
+  const properDateStr = dateStr + ' ' + time
+  const d = new Date(properDateStr)
+  return d
 }
 
 /**

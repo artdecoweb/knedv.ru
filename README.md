@@ -9,7 +9,6 @@
 - [Server](#server)
   * [`ServerOptions`](#type-serveroptions)
 - [Dokku Deploy](#dokku-deploy)
-- [deploy on a Dokku](#deploy-on-a-dokku)
 - [@idio/mailru](#idiomailru)
 - [.env](#env)
 - [Copyright](#copyright)
@@ -39,7 +38,7 @@ __<a name="type-serveroptions">`ServerOptions`</a>__: The options accepted by th
 
 ## Dokku Deploy
 
-To <a name="deploy-on-a-dokku">deploy on a Dokku</a> host, an app needs to be created first, and the `DOKKU_LETSENCRYPT_EMAIL` should be set. Locally, the following command will add a remote git repo that can be used for deploy:
+To deploy on a Dokku host, an app needs to be created first, and the `DOKKU_LETSENCRYPT_EMAIL` should be set. Locally, the following command will add a remote git repo that can be used for deploy:
 
 ```sh
 git add remove dokku dokku@artd.eco:@artdeco/knedv.ru
