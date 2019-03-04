@@ -53,11 +53,11 @@ export default class Gallery2 extends Component {
   render() {
     const { pageTitle = 'Галерея' } = this.props
     const { title, cdnImage, description, _id, photos } = this.data || {}
-    const { uploadedResults } = this.state
+    const { uploadedResults, loading } = this.state
     return (<Col>
       <h1>{pageTitle}</h1>
 
-      {this.loading && <LoadingIndicator />}
+      {loading && <LoadingIndicator />}
       {this.data && <Row className="mb-3">
         <Col className="col-sm-3">
           <img className="img-fluid" src={cdnImage} />

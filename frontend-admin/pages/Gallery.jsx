@@ -25,11 +25,12 @@ export default class Gallery extends Component {
     return this.state.data
   }
   render() {
+    const { loading } = this.state
     return (<Col>
       <h1>Галереи</h1>
 
-      {this.loading && <LoadingIndicator />}
-      {!this.loading && !this.state.data.length && 'Не существует галерей.'}
+      {loading && <LoadingIndicator />}
+      {!loading && !this.state.data.length && 'Не существует галерей.'}
       {this.state.data.map(({ _id, title, cdnImage, description }) => {
         return (<Row key={_id}>
           <Col className="col-sm-3">
