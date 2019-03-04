@@ -70,7 +70,9 @@ export default class ObjectForm extends SubmitForm {
   get editing() {
     return !!this.props.id
   }
-  render({ onClose, closeText = 'Отмена', successMessage, confirmText = 'Добавить', title }) {
+  render({
+    onClose, closeText = 'Отмена', successMessage, confirmText = 'Добавить', title, addedId,
+  }) {
     const hint = this.getHint()
     const { categories, formLoading, data, loading, error, success } = this.state
     const form = (<Form onSubmit={this.submit.bind(this)}>
@@ -102,6 +104,11 @@ export default class ObjectForm extends SubmitForm {
       <ErrorAlert error={error} />
       <Success success={success} message={successMessage} />
       <SubmitButton confirmText={confirmText} loadingText="Загрузка..." loading={formLoading} />
+
+      {addedId &&
+        <a className="ml-2 btn btn-warning" href={`/admin/albums/${addedId}`}>
+          Загрузить Фотографии
+        </a>}
 
       {onClose &&
         <button type="button" className="FormCancelBtn btn btn-secondary" onClick={onClose}>{closeText}</button>

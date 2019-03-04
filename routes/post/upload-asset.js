@@ -54,7 +54,7 @@ const fn = async ({ ctx, path, filename, mimetype, name }) => {
     cdnImageM,
   }
   const photo = await database.addObject('Upload', data)
-  ctx.body = { result: cdnImageS }
+  ctx.body = { file: cdnImageM, result: cdnImageS, success: 1, photoId: photo._id }
   // communicate(ctx, { photo_id: 'ASSIGN THE ID HERE' })
   // ctx.body.push(null)
 }

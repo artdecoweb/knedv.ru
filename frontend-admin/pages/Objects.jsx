@@ -99,10 +99,20 @@ class Item extends Component {
         }}>
           <Icon icon="fas fa-pen"/>
         </a>
+        <a style="color:brown;" href={`/admin/albums/${_id}`} onClick={(e) => {
+          e.preventDefault()
+          openEdit(item)
+          return e
+        }}>
+          <Icon icon="fas fa-images"/>
+        </a>
       </Col>
     </Row>
   }
 }
+
+{/* <p><a href={`/admin/albums/${_id}`}>Фотографии: {10}</a></p> */}
+
 
 {/* <FormRow name="article" label="Статья" help="Подробная статья для раздела каталога." textarea={5} required="1"/> */}
 

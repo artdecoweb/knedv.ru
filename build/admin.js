@@ -61,10 +61,10 @@ if ("function" == typeof Object.setPrototypeOf) {
 } else {
   var la;
   a: {
-    var ma = {Xa:!0}, na = {};
+    var ma = {Wa:!0}, na = {};
     try {
       na.__proto__ = ma;
-      la = na.Xa;
+      la = na.Wa;
       break a;
     } catch (a) {
     }
@@ -96,7 +96,7 @@ function u(a, b) {
       }
     }
   }
-  a.Ub = b.prototype;
+  a.Sb = b.prototype;
 }
 function pa(a, b) {
   if (b) {
@@ -178,14 +178,14 @@ pa("Promise", function(a) {
       };
     }
     var b = this, c = !1;
-    return {resolve:a(this.kb), reject:a(this.C)};
+    return {resolve:a(this.ib), reject:a(this.C)};
   };
-  b.prototype.kb = function(a) {
+  b.prototype.ib = function(a) {
     if (a === this) {
       this.C(new TypeError("A Promise cannot resolve to itself"));
     } else {
       if (a instanceof b) {
-        this.mb(a);
+        this.kb(a);
       } else {
         a: {
           switch(typeof a) {
@@ -211,7 +211,7 @@ pa("Promise", function(a) {
       this.C(l);
       return;
     }
-    "function" == typeof b ? this.ob(b, a) : this.O(a);
+    "function" == typeof b ? this.mb(b, a) : this.O(a);
   };
   b.prototype.C = function(a) {
     this.P(2, a);
@@ -236,11 +236,11 @@ pa("Promise", function(a) {
     }
   };
   var g = new c;
-  b.prototype.mb = function(a) {
+  b.prototype.kb = function(a) {
     var b = this.l();
     a.ea(b.resolve, b.reject);
   };
-  b.prototype.ob = function(a, b) {
+  b.prototype.mb = function(a, b) {
     var c = this.l();
     try {
       a.call(b, c.resolve, c.reject);
@@ -523,7 +523,7 @@ function K(a, b) {
   g.children = c;
   g.attributes = null == b ? void 0 : b;
   g.key = null == b ? void 0 : b.key;
-  void 0 !== J.pb && J.pb(g);
+  void 0 !== J.nb && J.nb(g);
   return g;
 }
 function L(a, b) {
@@ -541,7 +541,7 @@ function Ga(a, b) {
 }
 var Ha = /acit|ex(?:s|g|n|p|$)|rph|ows|mnc|ntw|ine[ch]|zoo|^ord/i, Ia = [];
 function Ja(a) {
-  !a.ba && (a.ba = !0) && 1 == Ia.push(a) && (J.Jb || Fa)(Ka);
+  !a.ba && (a.ba = !0) && 1 == Ia.push(a) && (J.Hb || Fa)(Ka);
 }
 function Ka() {
   for (var a; a = Ia.pop();) {
@@ -551,7 +551,7 @@ function Ka() {
 function Ma(a) {
   var b = L({}, a.attributes);
   b.children = a.children;
-  a = a.nodeName.Kb;
+  a = a.nodeName.Ib;
   if (void 0 !== a) {
     for (var c in a) {
       void 0 === b[c] && (b[c] = a[c]);
@@ -613,11 +613,11 @@ function Pa(a) {
 var Qa = [], Ra = 0, M = !1, Sa = !1;
 function Ta() {
   for (var a; a = Qa.shift();) {
-    J.Ya && J.Ya(a), a.o && a.o();
+    J.Xa && J.Xa(a), a.o && a.o();
   }
 }
 function Ua(a, b, c, e, f, g) {
-  Ra++ || (M = null != f && void 0 !== f.Pb, Sa = null != a && !("__preactattr_" in a));
+  Ra++ || (M = null != f && void 0 !== f.Nb, Sa = null != a && !("__preactattr_" in a));
   a = Wa(a, b, c, e, g);
   f && a.parentNode !== f && f.appendChild(a);
   --Ra || (Sa = !1, g || Ta());
@@ -668,7 +668,7 @@ function Wa(a, b, c, e, f) {
   } else {
     if (f && f.length || null != p) {
       p = g;
-      t = Sa || null != a.Ib;
+      t = Sa || null != a.Gb;
       B = p.childNodes;
       var H = [], F = {}, D = 0, C = 0, w = B.length, Y = 0, Va = f ? f.length : 0;
       if (0 !== w) {
@@ -778,7 +778,7 @@ function bb(a, b, c) {
   return this.constructor(a, c);
 }
 function Xa(a, b, c, e, f) {
-  a.ca || (a.ca = !0, a.Aa = b.$, a.za = b.key, delete b.$, delete b.key, "undefined" === typeof a.constructor.Ka && (!a.K || f ? a.Ha && a.Ha() : a.ab && a.ab(b, e)), e && e !== a.context && (a.sa || (a.sa = a.context), a.context = e), a.ta || (a.ta = a.c), a.c = b, a.ca = !1, 0 !== c && (1 !== c && !1 === J.Vb && a.K ? Ja(a) : La(a, 1, f)), Ea(a.Aa, a));
+  a.ca || (a.ca = !0, a.Aa = b.$, a.za = b.key, delete b.$, delete b.key, "undefined" === typeof a.constructor.Ka && (!a.K || f ? a.Ha && a.Ha() : a.$a && a.$a(b, e)), e && e !== a.context && (a.sa || (a.sa = a.context), a.context = e), a.ta || (a.ta = a.c), a.c = b, a.ca = !1, 0 !== c && (1 !== c && !1 === J.Tb && a.K ? Ja(a) : La(a, 1, f)), Ea(a.Aa, a));
 }
 function La(a, b, c, e) {
   if (!a.ca) {
@@ -790,7 +790,7 @@ function La(a, b, c, e) {
     if (!H) {
       f = a.h(f, g, h);
       a.na && (h = L(L({}, h), a.na()));
-      n && a.hb && (F = a.hb(k, l));
+      n && a.fb && (F = a.fb(k, l));
       g = f && f.nodeName;
       if ("function" === typeof g) {
         var C = Ma(f);
@@ -824,7 +824,7 @@ function La(a, b, c, e) {
         C.la = t.constructor;
       }
     }
-    !n || c ? Qa.push(a) : H || (a.Ga && a.Ga(k, l, F), J.Za && J.Za(a));
+    !n || c ? Qa.push(a) : H || (a.Ga && a.Ga(k, l, F), J.Ya && J.Ya(a));
     for (; a.da.length;) {
       a.da.pop().call(a);
     }
@@ -832,7 +832,7 @@ function La(a, b, c, e) {
   }
 }
 function Ya(a) {
-  J.$a && J.$a(a);
+  J.Za && J.Za(a);
   var b = a.K;
   a.ca = !0;
   a.fa && a.fa();
@@ -853,7 +853,7 @@ L(O.prototype, {a:function(a, b) {
   this.state = L(L({}, this.state), "function" === typeof a ? a(this.state, this.c) : a);
   b && this.da.push(b);
   Ja(this);
-}, cb:function(a) {
+}, bb:function(a) {
   a && this.da.push(a);
   La(this, 2);
 }, h:function() {
@@ -878,7 +878,7 @@ function gb(a) {
 ;var P = null, Q = [], hb = [];
 function ib() {
   var a;
-  P && P.location ? a = P.location : P && P.gb ? a = P.gb() : a = "undefined" !== typeof location ? location : {};
+  P && P.location ? a = P.location : P && P.eb ? a = P.eb() : a = "undefined" !== typeof location ? location : {};
   return "" + (a.pathname || "") + (a.search || "");
 }
 function jb(a) {
@@ -963,7 +963,7 @@ function sb(a) {
 u(sb, O);
 d = sb.prototype;
 d.W = function(a) {
-  return !0 !== a.Tb ? !0 : a.url !== this.c.url || a.m !== this.c.m;
+  return !0 !== a.Rb ? !0 : a.url !== this.c.url || a.m !== this.c.m;
 };
 function kb(a, b) {
   a.b = !1;
@@ -971,7 +971,7 @@ function kb(a, b) {
   if (a.updating) {
     return 0 < mb(a.c.children, b, !1).length;
   }
-  a.cb();
+  a.bb();
   return a.b;
 }
 d.Ha = function() {
@@ -980,7 +980,7 @@ d.Ha = function() {
 };
 d.o = function() {
   var a = this;
-  P && (this.g = P.Nb(function(b) {
+  P && (this.g = P.Lb(function(b) {
     kb(a, "" + (b.pathname || "") + (b.search || ""));
   }));
   this.updating = !1;
@@ -1042,7 +1042,7 @@ d.h = function(a, b) {
   var e = a[0] || null;
   this.b = !!e;
   var f = this.l;
-  b !== f && (this.l = b, "function" === typeof c && c({Sb:this, url:b, Rb:f, active:a, current:e}));
+  b !== f && (this.l = b, "function" === typeof c && c({Qb:this, url:b, Pb:f, active:a, current:e}));
   return e;
 };
 function tb(a) {
@@ -1076,7 +1076,7 @@ function R(a) {
   a = a.path;
   var e = (delete b.Da, delete b.path, b);
   return K(ub, {path:a || e.href}, function(a) {
-    return K(tb, Object.assign({}, e, {className:[e.Hb || e.className, a.matches && c].filter(Boolean).join(" ")}));
+    return K(tb, Object.assign({}, e, {className:[e.Fb || e.className, a.matches && c].filter(Boolean).join(" ")}));
   });
 }
 ;function vb(a) {
@@ -1107,9 +1107,9 @@ function xb(a) {
   return b ? K("textarea", Object.assign({}, a, {rows:"number" == typeof b ? b : 3}), e) : K("input", Object.assign({}, a, e ? {value:e} : {}, {type:c}));
 }
 function yb(a) {
-  var b = a.label, c = void 0 === a.type ? "text" : a.type, e = a.placeholder, f = a.i, g = a.xa, h = a.file, k = a.options, l = a.nb, m = "i" + 100000 * Math.random(), n = "h" + m;
+  var b = a.label, c = void 0 === a.type ? "text" : a.type, e = a.placeholder, f = a.i, g = a.xa, h = a.file, k = a.options, l = a.lb, m = "i" + 100000 * Math.random(), n = "h" + m;
   a = {I:n, id:m, value:a.value, name:a.name, required:a.required};
-  c = k ? K(zb, Object.assign({}, a, {options:k, nb:l})) : K(xb, Object.assign({}, a, {xa:g, placeholder:e, type:c, file:h}));
+  c = k ? K(zb, Object.assign({}, a, {options:k, lb:l})) : K(xb, Object.assign({}, a, {xa:g, placeholder:e, type:c, file:h}));
   return K("div", {className:"form-group"}, K("label", {htmlFor:m}, b), c, f && K("small", {id:n, dangerouslySetInnerHTML:{ka:f}, className:"form-text text-muted"}));
 }
 function zb(a) {
@@ -1421,9 +1421,9 @@ W.prototype.m = function(a, b) {
   this.c.m && this.c.m(this.state.values);
 };
 W.prototype.h = function(a) {
-  var b = Object.assign({}, a), c = a.children, e = a.eb;
+  var b = Object.assign({}, a), c = a.children, e = a.cb;
   a = a.V;
-  b = (delete b.children, delete b.eb, delete b.V, delete b.m, b);
+  b = (delete b.children, delete b.cb, delete b.V, delete b.m, b);
   return K("form", Object.assign({}, b, {ref:e, onSubmit:a}), c);
 };
 function X() {
@@ -1446,7 +1446,7 @@ function Nb(a) {
   a = ["btn", "btn-" + ((void 0 === a.outline ? 0 : a.outline) ? "outline-" : "") + (void 0 === a.type ? "primary" : a.type), a.className].filter(Boolean);
   return K("button", {className:a.join(" "), type:"submit", disabled:b}, b && K("span", {className:"spinner-border spinner-border-sm" + (e ? " mr-2" : ""), role:"status", "aria-hidden":"true"}), b ? e : c);
 }
-var Z = {get Wa() {
+var Z = {get Va() {
   return Jb;
 }, get aa() {
   return Kb;
@@ -1480,18 +1480,18 @@ function Pb() {
 }
 ;function Rb() {
   O.call(this);
-  this.state = {Ra:!1};
+  this.state = {Qa:!1};
   this.c = this.c;
 }
 u(Rb, O);
 Rb.prototype.h = function(a) {
   var b = this, c = a.A, e = a.required, f = a.image;
   a = a.i;
-  var g = this.state.Ra;
+  var g = this.state.Qa;
   if (c && !g) {
     return K(X, {i:a, label:"Изображение"}, K("br"), K("img", {src:f, className:"img-fluid"}), K("a", {onClick:function(a) {
       a.preventDefault();
-      b.a({Ra:!0});
+      b.a({Qa:!0});
       return !1;
     }, href:"#", className:"btn btn-outline-warning"}, "Изменить"));
   }
@@ -1636,7 +1636,7 @@ Tb.prototype.h = function(a) {
   label:"Описание"}, K(Z.aa, {rows:10, name:"description", required:!0, placeholder:"Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично)."}, 
   n.description)), K(Rb, {A:this.A, i:"Картинка, отображаемая на главной странице.", required:!0, image:n.cdnImage}), K(Qb, {article:this.state.article, name:"article", ra:function(a) {
     b.a({article:a});
-  }}), this.A && K("input", {value:this.c.id, type:"hidden", name:"id"}), K(X, {label:"Раздел", i:"Категория в каталоге"}, K(Z.Wa, {options:l, name:"category", value:n.category, required:!0})), K(Bb, {error:t}), K(Cb, {s:k, message:f}), K(Nb, {j:g, f:m, Z:"Загрузка..."}), c && K("button", {onClick:c, type:"button", className:"FormCancelBtn btn btn-secondary"}, e));
+  }}), this.A && K("input", {value:this.c.id, type:"hidden", name:"id"}), K(X, {label:"Раздел", i:"Категория в каталоге"}, K(Z.Va, {options:l, name:"category", value:n.category, required:!0})), K(Bb, {error:t}), K(Cb, {s:k, message:f}), K(Nb, {j:g, f:m, Z:"Загрузка..."}), c && K("button", {onClick:c, type:"button", className:"FormCancelBtn btn btn-secondary"}, e));
   return K(S, {}, a && K("h1", {}, a), p && K(Ob), !p && c);
 };
 q.Object.defineProperties(Tb.prototype, {A:{configurable:!0, enumerable:!0, get:function() {
@@ -1720,7 +1720,7 @@ Yb.prototype.h = function(a) {
   }, style:"color:brown;", href:"#"}, K(U, {icon:"fas fa-pen"}))));
 };
 function Zb(a) {
-  return K(Tb, {S:a.Ob, title:"Добавить Объект", path:"/admin-data?objects", T:"Объект успешно добавлен!", j:"Добавить"});
+  return K(Tb, {S:a.Mb, title:"Добавить Объект", path:"/admin-data?objects", T:"Объект успешно добавлен!", j:"Добавить"});
 }
 ;function $b() {
   O.call(this);
@@ -1972,12 +1972,12 @@ function ic(a) {
 258:"BitsPerSample", 259:"Compression", 262:"PhotometricInterpretation", 274:"Orientation", 277:"SamplesPerPixel", 284:"PlanarConfiguration", 530:"YCbCrSubSampling", 531:"YCbCrPositioning", 282:"XResolution", 283:"YResolution", 296:"ResolutionUnit", 273:"StripOffsets", 278:"RowsPerStrip", 279:"StripByteCounts", 513:"JPEGInterchangeFormat", 514:"JPEGInterchangeFormatLength", 301:"TransferFunction", 318:"WhitePoint", 319:"PrimaryChromaticities", 529:"YCbCrCoefficients", 532:"ReferenceBlackWhite", 306:"DateTime", 
 270:"ImageDescription", 271:"Make", 272:"Model", 305:"Software", 315:"Artist", 33432:"Copyright"}, lc = {0:"GPSVersionID", 1:"GPSLatitudeRef", 2:"GPSLatitude", 3:"GPSLongitudeRef", 4:"GPSLongitude", 5:"GPSAltitudeRef", 6:"GPSAltitude", 7:"GPSTimeStamp", 8:"GPSSatellites", 9:"GPSStatus", 10:"GPSMeasureMode", 11:"GPSDOP", 12:"GPSSpeedRef", 13:"GPSSpeed", 14:"GPSTrackRef", 15:"GPSTrack", 16:"GPSImgDirectionRef", 17:"GPSImgDirection", 18:"GPSMapDatum", 19:"GPSDestLatitudeRef", 20:"GPSDestLatitude", 21:"GPSDestLongitudeRef", 
 22:"GPSDestLongitude", 23:"GPSDestBearingRef", 24:"GPSDestBearing", 25:"GPSDestDistanceRef", 26:"GPSDestDistance", 27:"GPSProcessingMethod", 28:"GPSAreaInformation", 29:"GPSDateStamp", 30:"GPSDifferential"}, mc = {256:"ImageWidth", 257:"ImageHeight", 258:"BitsPerSample", 259:"Compression", 262:"PhotometricInterpretation", 273:"StripOffsets", 274:"Orientation", 277:"SamplesPerPixel", 278:"RowsPerStrip", 279:"StripByteCounts", 282:"XResolution", 283:"YResolution", 284:"PlanarConfiguration", 296:"ResolutionUnit", 
-513:"JpegIFOffset", 514:"JpegIFByteCount", 529:"YCbCrCoefficients", 530:"YCbCrSubSampling", 531:"YCbCrPositioning", 532:"ReferenceBlackWhite"}, nc = {tb:{0:"Not defined", 1:"Manual", 2:"Normal program", 3:"Aperture priority", 4:"Shutter priority", 5:"Creative program", 6:"Action program", 7:"Portrait mode", 8:"Landscape mode"}, yb:{0:"Unknown", 1:"Average", 2:"CenterWeightedAverage", 3:"Spot", 4:"MultiSpot", 5:"Pattern", 6:"Partial", 255:"Other"}, xb:{0:"Unknown", 1:"Daylight", 2:"Fluorescent", 3:"Tungsten (incandescent light)", 
-4:"Flash", 9:"Fine weather", 10:"Cloudy weather", 11:"Shade", 12:"Daylight fluorescent (D 5700 - 7100K)", 13:"Day white fluorescent (N 4600 - 5400K)", 14:"Cool white fluorescent (W 3900 - 4500K)", 15:"White fluorescent (WW 3200 - 3700K)", 17:"Standard light A", 18:"Standard light B", 19:"Standard light C", 20:"D55", 21:"D65", 22:"D75", 23:"D50", 24:"ISO studio tungsten", 255:"Other"}, vb:{0:"Flash did not fire", 1:"Flash fired", 5:"Strobe return light not detected", 7:"Strobe return light detected", 
+513:"JpegIFOffset", 514:"JpegIFByteCount", 529:"YCbCrCoefficients", 530:"YCbCrSubSampling", 531:"YCbCrPositioning", 532:"ReferenceBlackWhite"}, nc = {rb:{0:"Not defined", 1:"Manual", 2:"Normal program", 3:"Aperture priority", 4:"Shutter priority", 5:"Creative program", 6:"Action program", 7:"Portrait mode", 8:"Landscape mode"}, wb:{0:"Unknown", 1:"Average", 2:"CenterWeightedAverage", 3:"Spot", 4:"MultiSpot", 5:"Pattern", 6:"Partial", 255:"Other"}, vb:{0:"Unknown", 1:"Daylight", 2:"Fluorescent", 3:"Tungsten (incandescent light)", 
+4:"Flash", 9:"Fine weather", 10:"Cloudy weather", 11:"Shade", 12:"Daylight fluorescent (D 5700 - 7100K)", 13:"Day white fluorescent (N 4600 - 5400K)", 14:"Cool white fluorescent (W 3900 - 4500K)", 15:"White fluorescent (WW 3200 - 3700K)", 17:"Standard light A", 18:"Standard light B", 19:"Standard light C", 20:"D55", 21:"D65", 22:"D75", 23:"D50", 24:"ISO studio tungsten", 255:"Other"}, tb:{0:"Flash did not fire", 1:"Flash fired", 5:"Strobe return light not detected", 7:"Strobe return light detected", 
 9:"Flash fired, compulsory flash mode", 13:"Flash fired, compulsory flash mode, return light not detected", 15:"Flash fired, compulsory flash mode, return light detected", 16:"Flash did not fire, compulsory flash mode", 24:"Flash did not fire, auto mode", 25:"Flash fired, auto mode", 29:"Flash fired, auto mode, return light not detected", 31:"Flash fired, auto mode, return light detected", 32:"No flash function", 65:"Flash fired, red-eye reduction mode", 69:"Flash fired, red-eye reduction mode, return light not detected", 
 71:"Flash fired, red-eye reduction mode, return light detected", 73:"Flash fired, compulsory flash mode, red-eye reduction mode", 77:"Flash fired, compulsory flash mode, red-eye reduction mode, return light not detected", 79:"Flash fired, compulsory flash mode, red-eye reduction mode, return light detected", 89:"Flash fired, auto mode, red-eye reduction mode", 93:"Flash fired, auto mode, return light not detected, red-eye reduction mode", 95:"Flash fired, auto mode, return light detected, red-eye reduction mode"}, 
-Cb:{1:"Not defined", 2:"One-chip color area sensor", 3:"Two-chip color area sensor", 4:"Three-chip color area sensor", 5:"Color sequential area sensor", 7:"Trilinear sensor", 8:"Color sequential linear sensor"}, Ab:{0:"Standard", 1:"Landscape", 2:"Portrait", 3:"Night scene"}, Bb:{1:"Directly photographed"}, rb:{0:"Normal process", 1:"Custom process"}, Fb:{0:"Auto white balance", 1:"Manual white balance"}, wb:{0:"None", 1:"Low gain up", 2:"High gain up", 3:"Low gain down", 4:"High gain down"}, qb:{0:"Normal", 
-1:"Soft", 2:"Hard"}, zb:{0:"Normal", 1:"Low saturation", 2:"High saturation"}, Db:{0:"Normal", 1:"Soft", 2:"Hard"}, Eb:{0:"Unknown", 1:"Macro", 2:"Close view", 3:"Distant view"}, ub:{3:"DSC"}, Components:{0:"", 1:"Y", 2:"Cb", 3:"Cr", 4:"R", 5:"G", 6:"B"}}, oc = {120:"caption", 110:"credit", 25:"keywords", 55:"dateCreated", 80:"byline", 85:"bylineTitle", 122:"captionWriter", 105:"headline", 116:"copyright", 15:"category"};
+Ab:{1:"Not defined", 2:"One-chip color area sensor", 3:"Two-chip color area sensor", 4:"Three-chip color area sensor", 5:"Color sequential area sensor", 7:"Trilinear sensor", 8:"Color sequential linear sensor"}, yb:{0:"Standard", 1:"Landscape", 2:"Portrait", 3:"Night scene"}, zb:{1:"Directly photographed"}, pb:{0:"Normal process", 1:"Custom process"}, Db:{0:"Auto white balance", 1:"Manual white balance"}, ub:{0:"None", 1:"Low gain up", 2:"High gain up", 3:"Low gain down", 4:"High gain down"}, ob:{0:"Normal", 
+1:"Soft", 2:"Hard"}, xb:{0:"Normal", 1:"Low saturation", 2:"High saturation"}, Bb:{0:"Normal", 1:"Soft", 2:"Hard"}, Cb:{0:"Unknown", 1:"Macro", 2:"Close view", 3:"Distant view"}, sb:{3:"DSC"}, Components:{0:"", 1:"Y", 2:"Cb", 3:"Cr", 4:"R", 5:"G", 6:"B"}}, oc = {120:"caption", 110:"credit", 25:"keywords", 55:"dateCreated", 80:"byline", 85:"bylineTitle", 122:"captionWriter", 105:"headline", 116:"copyright", 15:"category"};
 function pc(a, b, c, e, f) {
   var g = a.getUint16(c, !f), h = {}, k;
   for (k = 0; k < g; k++) {
@@ -2028,13 +2028,13 @@ function qc(a, b, c, e) {
         var h = a.getUint32(c, !e);
         var k = a.getUint32(c + 4, !e);
         a = new Number(h / k);
-        a.jb = h;
-        a.bb = k;
+        a.hb = h;
+        a.ab = k;
         return a;
       }
       b = [];
       for (f = 0; f < g; f++) {
-        h = a.getUint32(c + 8 * f, !e), k = a.getUint32(c + 4 + 8 * f, !e), b[f] = new Number(h / k), b[f].jb = h, b[f].bb = k;
+        h = a.getUint32(c + 8 * f, !e), k = a.getUint32(c + 4 + 8 * f, !e), b[f] = new Number(h / k), b[f].hb = h, b[f].ab = k;
       }
       return b;
     case 9:
@@ -2085,8 +2085,8 @@ function sc(a, b) {
     return !1;
   }
   b = pc(a, c, c + f, kc, e);
-  if (b.Sa) {
-    var g = pc(a, c, c + b.Sa, jc, e);
+  if (b.Ra) {
+    var g = pc(a, c, c + b.Ra, jc, e);
     for (h in g) {
       switch(h) {
         case "LightSource":
@@ -2116,8 +2116,8 @@ function sc(a, b) {
       b[h] = g[h];
     }
   }
-  if (b.Ta) {
-    for (h in g = pc(a, c, c + b.Ta, lc, e), g) {
+  if (b.Sa) {
+    for (h in g = pc(a, c, c + b.Sa, lc, e), g) {
       switch(h) {
         case "GPSVersionID":
           g[h] = g[h][0] + "." + g[h][1] + "." + g[h][2] + "." + g[h][3];
@@ -2136,7 +2136,7 @@ function sc(a, b) {
       if (h.Compression) {
         switch(h.Compression) {
           case 6:
-            h.Va && h.Ua && (h.blob = new Blob([new Uint8Array(a.buffer, c + h.Va, h.Ua)], {type:"image/jpeg"}));
+            h.Ua && h.Ta && (h.blob = new Blob([new Uint8Array(a.buffer, c + h.Ua, h.Ta)], {type:"image/jpeg"}));
             break;
           case 1:
             console.log("Thumbnail image format is TIFF, which is not implemented.");
@@ -2220,7 +2220,7 @@ function vc(a, b) {
         b = void 0;
       }
     }
-    a.a({ib:{data:f, Mb:b}});
+    a.a({gb:{data:f, Kb:b}});
   };
 }
 function uc(a, b) {
@@ -2276,9 +2276,9 @@ function xc(a) {
   });
 }
 tc.prototype.h = function(a) {
-  var b = this, c = a.name, e = a.ia, f = a.ma, g = a.Lb, h = a.M, k = this.state;
+  var b = this, c = a.name, e = a.ia, f = a.ma, g = a.Jb, h = a.M, k = this.state;
   a = k.wa;
-  var l = k.error, m = k.va, n = k.ya, p = k.result, t = k.ib;
+  var l = k.error, m = k.va, n = k.ya, p = k.result, t = k.gb;
   k = 100 == a && !n;
   h = p && h.some(function(a) {
     return a == p;
@@ -2288,7 +2288,7 @@ tc.prototype.h = function(a) {
   m = (l = g || p) ? l : m;
   var B;
   try {
-    (B = t.data.sb) && (B = yc(B).toLocaleDateString());
+    (B = t.data.qb) && (B = yc(B).toLocaleDateString());
   } catch (H) {
   }
   if (t = l && !h) {
@@ -2330,7 +2330,7 @@ function Cc(a, b) {
     c = r(b);
     e = ha(c);
     f = e.map(function(a) {
-      return {file:a, lb:Math.floor(10000 * Math.random())};
+      return {file:a, jb:Math.floor(10000 * Math.random())};
     });
     a.a({files:[].concat(ia(a.state.files), ia(f))});
     a.c.Na && a.c.Na();
@@ -2357,9 +2357,9 @@ Ac.prototype.h = function(a) {
     a.preventDefault();
     Cc(b, a.currentTarget.files);
     a.currentTarget.value = null;
-  }, accept:"image/*", type:"file", multiple:!0}), this.state.Gb ? "Идет опознование файлов..." : "Или переместите файлы сюда...", this.state.files.map(function(a) {
+  }, accept:"image/*", type:"file", multiple:!0}), this.state.Eb ? "Идет опознование файлов..." : "Или переместите файлы сюда...", this.state.files.map(function(a) {
     var g = a.file;
-    return K(tc, {key:a.lb, name:g.name, file:g, ia:function() {
+    return K(tc, {key:a.jb, name:g.name, file:g, ia:function() {
       Bc(b, g);
     }, ma:c, Pa:e, M:f});
   }));
@@ -2389,9 +2389,9 @@ Dc.prototype.load = function() {
 };
 Dc.prototype.h = function() {
   var a = this, b = this.data || {}, c = b.title, e = b.cdnImage, f = b.description, g = b._id;
-  b = b.Qa;
+  b = b.photos;
   var h = this.state.M;
-  return K(S, {}, K("h1", {}, "Галерея"), this.f && K(Ob), this.data && K(vb, {className:"mb-3"}, K(S, {className:"col-sm-3"}, K("img", {src:e, className:"img-fluid"})), K(S, {}, K("h2", {}, c), f)), this.data && K(Ec, {Qa:b}), K("hr"), g && K(Fc, {M:h, S:function(b) {
+  return K(S, {}, K("h1", {}, "Галерея"), this.f && K(Ob), this.data && K(vb, {className:"mb-3"}, K(S, {className:"col-sm-3"}, K("img", {src:e, className:"img-fluid"})), K(S, {}, K("h2", {}, c), f)), this.data && K(Ec, {photos:b}), K("hr"), g && K(Fc, {M:h, S:function(b) {
     var c, e;
     return I(function(f) {
       if (1 == f.b) {
@@ -2401,7 +2401,7 @@ Dc.prototype.h = function() {
       (e = c.data) && a.a({M:[].concat(ia(a.state.M), ia(e))});
       return v(f, a.load(), 0);
     });
-  }, fb:g, path:"/admin-data?photos", qa:function() {
+  }, galleryId:g, path:"/admin-data?photos", qa:function() {
     return I(function(a) {
       a.b = 0;
     });
@@ -2415,7 +2415,7 @@ function Ec(a) {
 }
 u(Ec, O);
 Ec.prototype.h = function(a) {
-  return K(vb, {}, a.Qa.map(function(a) {
+  return K(vb, {}, a.photos.map(function(a) {
     return K(S, {key:a._id, className:"col-sm-4"}, K("img", {src:a.file, className:"img-fluid", style:"padding: 0.25rem; max-height: 200px;"}));
   }));
 };
@@ -2426,8 +2426,8 @@ u(Fc, Z.N);
 Fc.prototype.h = function(a) {
   var b = this, c = a.j, e = a.qa, f = a.M, g = this.state, h = g.B, k = g.error;
   g = g.s;
-  return K(W, {V:this.submit.bind(this)}, K("input", {value:a.fb, name:"galleryId", type:"hidden"}), K(X, {label:"Загрузка Изображений", i:"Выберите несколько изображений и загрузите их."}, K(Ac, {$:function(a) {
-    b.Qb = a;
+  return K(W, {V:this.submit.bind(this)}, K("input", {value:a.galleryId, name:"galleryId", type:"hidden"}), K(X, {label:"Загрузка Изображений", i:"Выберите несколько изображений и загрузите их."}, K(Ac, {$:function(a) {
+    b.Ob = a;
   }, qa:function(a) {
     b.reset();
     e && e(a);

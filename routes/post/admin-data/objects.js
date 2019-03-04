@@ -31,9 +31,8 @@ const objects = async (ctx, database) => {
     const res = await Obj.updateOne({ _id: id }, d)
     return res._doc
   } else {
-    const c = new Obj(d)
-    const res = await c.save()
-    return res._doc
+    const { _id } = await database.addObject('Object', d)
+    return _id
   }
 }
 

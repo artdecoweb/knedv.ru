@@ -29,8 +29,8 @@ export default class Database {
    */
   async addObject(modelName, data) {
     const M = this.getModel(modelName)
-    const m = new M()
-    const res = await m.save(data)
+    const m = new M(data)
+    const res = await m.save()
     return res._doc
   }
   // deleteById(modelName, id) {

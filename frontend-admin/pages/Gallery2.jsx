@@ -36,9 +36,9 @@ export default class Gallery2 extends Component {
    * Side-effects: sets the `error`, `data` and `loading` on the state.
    */
   async load() {
-    const id = this.props.id
+    const { id, server = 'galleries' } = this.props
     if (!id) this.setState({ loading: false, error: 'No id' })
-    const data = await loadData.bind(this)(`galleries&id=${id}`)
+    const data = await loadData.bind(this)(`${server}&id=${id}`)
     /** @type {Gallery} */
     if (data) this.setState({ data })
   }
@@ -51,10 +51,11 @@ export default class Gallery2 extends Component {
     })
   }
   render() {
+    const { pageTitle = 'Галерея' } = this.props
     const { title, cdnImage, description, _id, photos } = this.data || {}
     const { uploadedResults } = this.state
     return (<Col>
-      <h1>Галерея</h1>
+      <h1>{pageTitle}</h1>
 
       {this.loading && <LoadingIndicator />}
       {this.data && <Row className="mb-3">

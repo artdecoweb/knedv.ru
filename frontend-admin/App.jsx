@@ -38,6 +38,7 @@ const App = () =>
 
       <Gallery path="/admin/galleries/" title="Галереи" />
       <Gallery2 path="/admin/galleries/:id" title="Фотографии" />
+      <Gallery2 path="/admin/albums/:id" title="Фото Объекта" server="galleries&album" pageTitle="Изображения Объекта" />
     </Router>
   </Row>
 
