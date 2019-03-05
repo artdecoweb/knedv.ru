@@ -4,7 +4,7 @@
 var Category
 
 /**
- * @typedef {{ _id: string, category: string, categorySeo: string, cdnImage: string, description: string, seo: string, title: string, price: string }}
+ * @typedef {{ _id: string, category: string, categorySeo: string, cdnImage: string, description: string, seo: string, title: string, price: string, numberOfPhotos: number }}
  */
 var Property
 

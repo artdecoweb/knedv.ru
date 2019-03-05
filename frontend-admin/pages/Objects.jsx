@@ -55,10 +55,12 @@ const List = ({ data, openModal, openEdit, loading }) => {
   return (<div>
     {loading && <span className="echo-loader">Loading…</span>}
     {!loading && !data.length && 'Нет объектов недвижимости.'}
-    {data.map((item) => {
+    {data.map((item, i) => {
+      const even = i % 2 == 0
       return <Item item={item} key={item._id}
         openModal={openModal}
         openEdit={openEdit}
+        style={`background:${!even ? '#edeee8' : 'white'};`}
       />
     })}
   </div>)
@@ -66,12 +68,12 @@ const List = ({ data, openModal, openEdit, loading }) => {
 
 
 class Item extends Component {
-  render({ item, openModal, openEdit }) {
-    const { title, image, description, seo, _id, categorySeo, price } = item
+  render({ item, openModal, openEdit, style }) {
+    const { title, image, description, seo, _id, categorySeo, price, numberOfPhotos } = item
     // read host ???
     const s = `/каталог/${categorySeo}/${seo}`
     const link = `knedv.ru${s}`
-    return <Row className="CategoryRow">
+    return <Row className="CategoryRow" style={style}>
       <Col className="col-3 col-sm-4 "><img src={image} className="img-fluid p-1"/>
         {price && `Цена: ${price}`}
       </Col>
@@ -105,6 +107,7 @@ class Item extends Component {
           return e
         }}>
           <Icon icon="fas fa-images"/>
+          {numberOfPhotos ? `(${numberOfPhotos})` : ''}
         </a>
       </Col>
     </Row>

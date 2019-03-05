@@ -10,10 +10,14 @@ const getData = async (ctx) => {
     const categories = await findInModel(database, 'Category')
     const objects = await findInModel(database, 'Object', id)
     const mo = objects.map((_doc) => {
-      const cat = categories.find(({ id: cid }) => _doc.category == cid)
+      const cat = categories.find(({ _id: cid }) => _doc.category == cid)
       if (!cat) return _doc
       return { ..._doc, categorySeo: cat.seo }
     }).reverse()
+    await Promise.all(mo.map(async (doc) => {
+      const photos = await findPhotos(database, doc._id, 'id')
+      doc.numberOfPhotos = photos.length
+    }))
     return mo
   } else if ('pages' in ctx.query) {
     const p = await findInModel(database, 'Page', id)
@@ -54,11 +58,11 @@ export const findInModel = async (database, modelName, id) => {
   })
   return objects.map(mapDoc)
 }
-export const findPhotos = async (database, galleryId) => {
+export const findPhotos = async (database, galleryId, fields) => {
   const model = database.getModel('Photo')
   const objects = await model.find({
     ...(galleryId ? { galleryId: galleryId }: {}),
-  })
+  }, fields)
   return objects.map(mapDoc)
 }
 
