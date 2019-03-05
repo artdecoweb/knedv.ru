@@ -100,7 +100,7 @@ class PhotoList extends Component {
       })}
       {loading && <Col className="col-sm-4">
         <div className="h-100 w-100 d-flex align-items-center rounded PhotoLoadingPlaceholder">
-          <span className="align-middle">
+          <span className="align-middle" style="padding:.5rem;">
             Запрос изображений... <br />
             <GrowingSpinner />
           </span>

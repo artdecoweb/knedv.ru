@@ -1,4 +1,7 @@
+import { findInModel } from '../../get/admin-data'
+
 /**
+ * This route assigns the upload ids to a new Photograph, when saving the form that has Photo Uploader.
  * @param {import('koa').Context} ctx
  * @param {import('../../src/database').default} database
  */
@@ -9,25 +12,28 @@ const photos = async (ctx, database) => {
     return ctx.query.id
   }
   const {
-    title, galleryId, photos: p,
+    title, galleryId, photos: uploads,
   } = ctx.req.body
 
-  if (!Array.isArray(p) || !p.length) {
+  if (!Array.isArray(uploads) || !uploads.length) {
     throw new Error('Не добавлено новых файлов.')
   }
 
-  await Promise.all(p.map(async photo => {
+  const realUploads = await findInModel(database, 'Upload', uploads)
+  const ids = await Promise.all(realUploads.map(async upload => {
     /** @type {import('../../../src/database/schema')._Photo} */
     const d = {
+      name: upload.name,
       title,
       galleryId,
-      photo,
+      upload: upload._id,
+      cdnImageS: upload.cdnImageS,
+      cdnImageM: upload.cdnImageM,
     }
-
-    const doc = await database.addObject('Photo', d)
-    return doc._id
+    await database.addObject('Photo', d)
+    return upload._id
   }))
-  return p
+  return ids
 }
 
 export default photos

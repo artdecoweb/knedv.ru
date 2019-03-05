@@ -33,7 +33,11 @@ const getData = async (ctx) => {
     const [gg] = g
     const photos = await findPhotos(database, id)
     await Promise.all(photos.map(async (p) => {
-      const { photo } = p
+      const { photo, cdnImageS } = p
+      if (cdnImageS) {
+        return p.file = cdnImageS
+      }
+      // try from ver 2
       if (!photo) return p
       const upload = await findInModel(database, 'Upload', photo)
       const [u] = upload

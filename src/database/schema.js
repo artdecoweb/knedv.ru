@@ -60,10 +60,15 @@ export const _Photo = {
   seo: String,
   galleryId: String, // can be gallery or album
   file: String, // the s preview (dep)
-  photo: String, // the id of the Upload
+  photo: String, // the id of the Upload (dep)
+  upload: String, // the id of the Upload
   description: String, // ?
-  ...Img,
+  cdnImageS: String,
+  cdnImageM: String,
 }
+/**
+ * Some extracted metadata (name and date) from JPEGS with locations of uploaded files in M and S sizes. TODO: WE NEED TO WRITE COPYRIGHT METADATA!
+ */
 export const _Upload = {
   model: String,
   date: Date,

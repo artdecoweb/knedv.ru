@@ -1,9 +1,7 @@
 import idio from '@idio/core'
 import initRoutes, { watchRoutes } from '@idio/router'
 import mailru from '@idio/mailru'
-import { b } from 'erte'
-import logarithm, { ping } from 'logarithm'
-import Database from './database'
+import logarithm from 'logarithm'
 
 const maxage = PROD => PROD ? 1000 * 60 * 60 * 60 * 24 : 0
 
@@ -21,8 +19,8 @@ const maxage = PROD => PROD ? 1000 * 60 * 60 * 60 * 24 : 0
  */
 export default async (opts) => {
   const {
-    port = 5000, PROD, watch = !PROD, database_url, storage, storageDomain,
-    client_id, client_secret, cdn, frontendUrl, elastic, exiftool,
+    port = 5000, PROD, watch = !PROD, storage, storageDomain,
+    client_id, client_secret, cdn, frontendUrl, exiftool, elastic,
   } = opts
   const { router, middleware, app, url } = await idio({
     cors: { use: true,
@@ -118,19 +116,16 @@ export default async (opts) => {
     },
   })
   app.use(router.routes())
-  const database = new Database()
-  await database.connect(database_url)
   Object.assign(app.context, {
-    database, storage, storageDomain, cdn,
+    storage, storageDomain, cdn,
     PROD: PROD || process.env.NODE_ENV == 'emulate-prod',
     exiftool,
   })
-  if (elastic) {
-    await ping(elastic)
-    console.log('Pinged %s', b(elastic, 'cyan'))
-  }
-  console.log('Connected to %s', b('Mongo', 'green'))
-  return { app, url }
+  // START FRONTEND TBH
+  return { app, url, addContext(item) {
+    console.log('> Adding App Context %s', Object.keys(item).join(' '))
+    Object.assign(app.context, item)
+  } }
 }
 
 /* documentary types/index.xml */

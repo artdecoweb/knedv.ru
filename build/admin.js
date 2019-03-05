@@ -7,11 +7,11 @@ function aa(a) {
 }
 var ba = "function" == typeof Object.defineProperties ? Object.defineProperty : function(a, b, c) {
   a != Array.prototype && a != Object.prototype && (a[b] = c.value);
-}, p = "undefined" != typeof window && window === this ? this : "undefined" != typeof global && null != global ? global : this;
+}, q = "undefined" != typeof window && window === this ? this : "undefined" != typeof global && null != global ? global : this;
 function ca() {
   ca = function() {
   };
-  p.Symbol || (p.Symbol = da);
+  q.Symbol || (q.Symbol = da);
 }
 var da = function() {
   var a = 0;
@@ -21,8 +21,8 @@ var da = function() {
 }();
 function ea() {
   ca();
-  var a = p.Symbol.iterator;
-  a || (a = p.Symbol.iterator = p.Symbol("iterator"));
+  var a = q.Symbol.iterator;
+  a || (a = q.Symbol.iterator = q.Symbol("iterator"));
   "function" != typeof Array.prototype[a] && ba(Array.prototype, a, {configurable:!0, writable:!0, value:function() {
     return fa(aa(this));
   }});
@@ -32,7 +32,7 @@ function ea() {
 function fa(a) {
   ea();
   a = {next:a};
-  a[p.Symbol.iterator] = function() {
+  a[q.Symbol.iterator] = function() {
     return this;
   };
   return a;
@@ -100,7 +100,7 @@ function u(a, b) {
 }
 function pa(a, b) {
   if (b) {
-    var c = p;
+    var c = q;
     a = a.split(".");
     for (var f = 0; f < a.length - 1; f++) {
       var e = a[f];
@@ -146,7 +146,7 @@ pa("Promise", function(a) {
     }
     this.b.push(a);
   };
-  var e = p.setTimeout;
+  var e = q.setTimeout;
   c.prototype.l = function(a) {
     e(a, 0);
   };
@@ -636,11 +636,11 @@ function Wa(a, b, c, f, e) {
     h = a;
     var k = b;
     g = b = h && h.D;
-    var l = h, m = b && h.la === k.nodeName, q = m;
-    for (a = Ma(k); b && !q && (b = b.Aa);) {
-      q = b.constructor === k.nodeName;
+    var l = h, m = b && h.la === k.nodeName, n = m;
+    for (a = Ma(k); b && !n && (b = b.Aa);) {
+      n = b.constructor === k.nodeName;
     }
-    b && q && (!f || b.D) ? (Xa(b, a, 3, c, f), h = b.K) : (g && !m && (Ya(g), h = l = null), b = Za(k.nodeName, a, c), h && !b.R && (b.R = h, l = null), Xa(b, a, 1, c, f), h = b.K, l && h !== l && (l.D = null, N(l, !1)));
+    b && n && (!f || b.D) ? (Xa(b, a, 3, c, f), h = b.K) : (g && !m && (Ya(g), h = l = null), b = Za(k.nodeName, a, c), h && !b.R && (b.R = h, l = null), Xa(b, a, 1, c, f), h = b.K, l && h !== l && (l.D = null, N(l, !1)));
     return h;
   }
   M = "svg" === e ? !0 : "foreignObject" === e ? !1 : M;
@@ -654,7 +654,7 @@ function Wa(a, b, c, f, e) {
       N(a, !0);
     }
   }
-  var n = g.firstChild;
+  var p = g.firstChild;
   a = g.__preactattr_;
   e = b.children;
   if (null == a) {
@@ -663,17 +663,17 @@ function Wa(a, b, c, f, e) {
       a[r[A].name] = r[A].value;
     }
   }
-  if (!Sa && e && 1 === e.length && "string" === typeof e[0] && null != n && void 0 !== n.splitText && null == n.nextSibling) {
-    n.nodeValue != e[0] && (n.nodeValue = e[0]);
+  if (!Sa && e && 1 === e.length && "string" === typeof e[0] && null != p && void 0 !== p.splitText && null == p.nextSibling) {
+    p.nodeValue != e[0] && (p.nodeValue = e[0]);
   } else {
-    if (e && e.length || null != n) {
-      n = g;
+    if (e && e.length || null != p) {
+      p = g;
       r = Sa || null != a.Mb;
-      A = n.childNodes;
+      A = p.childNodes;
       var v = [], B = {}, E = 0, F = 0, x = A.length, Y = 0, Va = e ? e.length : 0;
       if (0 !== x) {
-        for (q = 0; q < x; q++) {
-          var G = A[q], T = G.__preactattr_;
+        for (n = 0; n < x; n++) {
+          var G = A[n], T = G.__preactattr_;
           var H = Va && T ? G.D ? G.D.xa : T.key : null;
           if (null != H) {
             E++, B[H] = G;
@@ -685,8 +685,8 @@ function Wa(a, b, c, f, e) {
         }
       }
       if (0 !== Va) {
-        for (q = 0; q < Va; q++) {
-          x = e[q];
+        for (n = 0; n < Va; n++) {
+          x = e[n];
           m = null;
           H = x.key;
           if (null != H) {
@@ -719,13 +719,13 @@ function Wa(a, b, c, f, e) {
             }
           }
           m = Wa(m, x, c, f);
-          x = A[q];
-          m && m !== n && m !== x && (null == x ? n.appendChild(m) : m === x.nextSibling ? Na(x) : n.insertBefore(m, x));
+          x = A[n];
+          m && m !== p && m !== x && (null == x ? p.appendChild(m) : m === x.nextSibling ? Na(x) : p.insertBefore(m, x));
         }
       }
       if (E) {
-        for (q in B) {
-          void 0 !== B[q] && N(B[q], !1);
+        for (n in B) {
+          void 0 !== B[n] && N(B[n], !1);
         }
       }
       for (; F <= Y;) {
@@ -782,15 +782,15 @@ function Xa(a, b, c, f, e) {
 }
 function La(a, b, c, f) {
   if (!a.ca) {
-    var e = a.c, g = a.state, h = a.context, k = a.sa || e, l = a.ta || g, m = a.ra || h, q = a.K, n = a.R, r = q || n, A = a.D, v = !1, B = m, E;
+    var e = a.c, g = a.state, h = a.context, k = a.sa || e, l = a.ta || g, m = a.ra || h, n = a.K, p = a.R, r = n || p, A = a.D, v = !1, B = m, E;
     a.constructor.Ja && (g = L(L({}, g), a.constructor.Ja(e, g)), a.state = g);
-    q && (a.c = k, a.state = l, a.context = m, 2 !== b && a.W && !1 === a.W(e, g, h) ? v = !0 : a.Ga && a.Ga(e, g, h), a.c = e, a.state = g, a.context = h);
+    n && (a.c = k, a.state = l, a.context = m, 2 !== b && a.W && !1 === a.W(e, g, h) ? v = !0 : a.Ga && a.Ga(e, g, h), a.c = e, a.state = g, a.context = h);
     a.sa = a.ta = a.ra = a.R = null;
     a.ba = !1;
     if (!v) {
       e = a.h(e, g, h);
       a.na && (h = L(L({}, h), a.na()));
-      q && a.hb && (B = a.hb(k, l));
+      n && a.hb && (B = a.hb(k, l));
       g = e && e.nodeName;
       if ("function" === typeof g) {
         var F = Ma(e);
@@ -799,19 +799,19 @@ function La(a, b, c, f) {
         } else {
           var x = E;
           a.D = E = Za(g, F, h);
-          E.R = E.R || n;
+          E.R = E.R || p;
           E.Aa = a;
           Xa(E, F, 0, h, !1);
           La(E, 1, c, !0);
         }
         F = E.K;
       } else {
-        n = r;
+        p = r;
         if (x = A) {
-          n = a.D = null;
+          p = a.D = null;
         }
         if (r || 1 === b) {
-          n && (n.D = null), F = Ua(n, e, h, c || !q, r && r.parentNode, !0);
+          p && (p.D = null), F = Ua(p, e, h, c || !n, r && r.parentNode, !0);
         }
       }
       r && F !== r && E !== A && (h = r.parentNode) && F !== h && (h.replaceChild(F, r), x || (r.D = null, N(r, !1)));
@@ -824,7 +824,7 @@ function La(a, b, c, f) {
         F.la = r.constructor;
       }
     }
-    !q || c ? Qa.push(a) : v || (a.Ea && a.Ea(k, l, B), J.$a && J.$a(a));
+    !n || c ? Qa.push(a) : v || (a.Ea && a.Ea(k, l, B), J.$a && J.$a(a));
     for (; a.da.length;) {
       a.da.pop().call(a);
     }
@@ -1001,9 +1001,9 @@ function mb(a, b, c) {
     var f = a.attributes.path, h = a.attributes, k = /(?:\?([^#]*))?(#.*)?$/, l = e.match(k), m = {};
     if (l && l[1]) {
       l = l[1].split("&");
-      for (var q = 0; q < l.length; q++) {
-        var n = l[q].split("=");
-        m[decodeURIComponent(n[0])] = decodeURIComponent(n.slice(1).join("="));
+      for (var n = 0; n < l.length; n++) {
+        var p = l[n].split("=");
+        m[decodeURIComponent(p[0])] = decodeURIComponent(p.slice(1).join("="));
       }
     }
     e = fb(e.replace(k, ""));
@@ -1011,16 +1011,16 @@ function mb(a, b, c) {
     k = Math.max(e.length, f.length);
     for (l = 0; l < k; l++) {
       if (f[l] && ":" === f[l].charAt(0)) {
-        q = f[l].replace(/(^:|[+*?]+$)/g, "");
-        n = (f[l].match(/[+*?]+$/) || cb)[0] || "";
-        var r = ~n.indexOf("+"), A = ~n.indexOf("*"), v = e[l] || "";
-        if (!v && !A && (0 > n.indexOf("?") || r)) {
+        n = f[l].replace(/(^:|[+*?]+$)/g, "");
+        p = (f[l].match(/[+*?]+$/) || cb)[0] || "";
+        var r = ~p.indexOf("+"), A = ~p.indexOf("*"), v = e[l] || "";
+        if (!v && !A && (0 > p.indexOf("?") || r)) {
           var B = !1;
           break;
         }
-        m[q] = decodeURIComponent(v);
+        m[n] = decodeURIComponent(v);
         if (r || A) {
-          m[q] = e.slice(l).map(decodeURIComponent).join("/");
+          m[n] = e.slice(l).map(decodeURIComponent).join("/");
           break;
         }
       } else {
@@ -1110,10 +1110,10 @@ function yb(a) {
   return b ? K("textarea", Object.assign({}, a, {rows:"number" == typeof b ? b : 3}), f) : K("input", Object.assign({}, a, f ? {value:f} : {}, {type:c}));
 }
 function zb(a) {
-  var b = a.label, c = void 0 === a.type ? "text" : a.type, f = a.placeholder, e = a.i, g = a.va, h = a.file, k = a.options, l = a.rb, m = "i" + 100000 * Math.random(), q = "h" + m;
-  a = {I:q, id:m, value:a.value, name:a.name, required:a.required};
+  var b = a.label, c = void 0 === a.type ? "text" : a.type, f = a.placeholder, e = a.i, g = a.va, h = a.file, k = a.options, l = a.rb, m = "i" + 100000 * Math.random(), n = "h" + m;
+  a = {I:n, id:m, value:a.value, name:a.name, required:a.required};
   c = k ? K(Ab, Object.assign({}, a, {options:k, rb:l})) : K(yb, Object.assign({}, a, {va:g, placeholder:f, type:c, file:h}));
-  return K("div", {className:"form-group"}, K("label", {htmlFor:m}, b), c, e && K("small", {id:q, dangerouslySetInnerHTML:{ka:e}, className:"form-text text-muted"}));
+  return K("div", {className:"form-group"}, K("label", {htmlFor:m}, b), c, e && K("small", {id:n, dangerouslySetInnerHTML:{ka:e}, className:"form-text text-muted"}));
 }
 function Ab(a) {
   var b = a.options, c = a.value;
@@ -1578,30 +1578,30 @@ function Ub() {
 }
 u(Ub, Z.N);
 Ub.prototype.o = function() {
-  var a = this, b, c, f, e, g, h, k, l, m, q;
-  return I(function(n) {
-    switch(n.b) {
+  var a = this, b, c, f, e, g, h, k, l, m, n;
+  return I(function(p) {
+    switch(p.b) {
       case 1:
-        return w(n, Vb(a), 2);
+        return w(p, Vb(a), 2);
       case 2:
         b = !!a.c.id;
         if (!b) {
-          return n.return();
+          return p.return();
         }
         a.a({A:1, f:!0});
-        y(n, 3, 4);
-        return w(n, V("/admin-data?objects&id=" + a.c.id), 6);
+        y(p, 3, 4);
+        return w(p, V("/admin-data?objects&id=" + a.c.id), 6);
       case 6:
-        return c = n.g, w(n, c.json(), 7);
+        return c = p.g, w(p, c.json(), 7);
       case 7:
-        f = n.g, e = f.error, g = f.data, e ? a.a({error:e}) : (h = t(g), k = h.next().value, a.a({data:k, hint:k.seo, Ca:k.categorySeo, article:k.article}));
+        f = p.g, e = f.error, g = f.data, e ? a.a({error:e}) : (h = t(g), k = h.next().value, a.a({data:k, hint:k.seo, Ca:k.categorySeo, article:k.article}));
       case 4:
-        C(n);
+        C(p);
         a.a({f:!1});
-        D(n, 0);
+        D(p, 0);
         break;
       case 3:
-        m = l = z(n), q = m.message, a.a({error:q}), n.u(4);
+        m = l = z(p), n = m.message, a.a({error:n}), p.u(4);
     }
   });
 };
@@ -1631,7 +1631,7 @@ Ub.prototype.oa = function() {
   return "Фраза для поисковой оптимизации, участвующая в адресах страниц, например, knedv.ru/" + this.state.Ca + "/<strong>" + this.state.hint + "</strong>.";
 };
 Ub.prototype.h = function(a) {
-  var b = this, c = a.G, f = void 0 === a.L ? "Отмена" : a.L, e = a.T, g = void 0 === a.j ? "Добавить" : a.j, h = a.title, k = a.Ya, l = this.oa(), m = this.state, q = m.Da, n = m.B, r = m.data;
+  var b = this, c = a.G, f = void 0 === a.L ? "Отмена" : a.L, e = a.T, g = void 0 === a.j ? "Добавить" : a.j, h = a.title, k = a.Ya, l = this.oa(), m = this.state, n = m.Da, p = m.B, r = m.data;
   a = m.f;
   var A = m.error;
   m = m.s;
@@ -1639,10 +1639,10 @@ Ub.prototype.h = function(a) {
   label:"Описание"}, K(Z.aa, {rows:10, name:"description", required:!0, placeholder:"Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично)."}, 
   r.description)), K(Sb, {A:this.A, i:"Картинка, отображаемая на главной странице.", required:!0, image:r.cdnImage}), K(Rb, {article:this.state.article, name:"article", qa:function(a) {
     b.a({article:a});
-  }}), this.A && K("input", {value:this.c.id, type:"hidden", name:"id"}), K(X, {label:"Раздел", i:"Категория в каталоге"}, K(Z.Wa, {options:q, name:"category", value:r.category, required:!0})), K(Cb, {error:A}), K(Db, {s:m, message:e}), K(Ob, {j:g, f:n, Z:"Загрузка..."}), k && K("a", {href:"/admin/albums/" + k, className:"ml-2 btn btn-warning"}, "Загрузить Фотографии"), c && K("button", {onClick:c, type:"button", className:"FormCancelBtn btn btn-secondary"}, f));
+  }}), this.A && K("input", {value:this.c.id, type:"hidden", name:"id"}), K(X, {label:"Раздел", i:"Категория в каталоге"}, K(Z.Wa, {options:n, name:"category", value:r.category, required:!0})), K(Cb, {error:A}), K(Db, {s:m, message:e}), K(Ob, {j:g, f:p, Z:"Загрузка..."}), k && K("a", {href:"/admin/albums/" + k, className:"ml-2 btn btn-warning"}, "Загрузить Фотографии"), c && K("button", {onClick:c, type:"button", className:"FormCancelBtn btn btn-secondary"}, f));
   return K(S, {}, h && K("h1", {}, h), a && K(Pb), !a && c);
 };
-p.Object.defineProperties(Ub.prototype, {A:{configurable:!0, enumerable:!0, get:function() {
+q.Object.defineProperties(Ub.prototype, {A:{configurable:!0, enumerable:!0, get:function() {
   return !!this.c.id;
 }}});
 function Wb(a) {
@@ -1700,8 +1700,8 @@ d.h = function() {
 function Yb(a) {
   var b = a.data, c = a.H, f = a.w;
   a = a.f;
-  return K("div", {}, a && K("span", {className:"echo-loader"}, "Loading…"), !a && !b.length && "Нет объектов недвижимости.", b.map(function(a) {
-    return K(Zb, {item:a, key:a._id, H:c, w:f});
+  return K("div", {}, a && K("span", {className:"echo-loader"}, "Loading…"), !a && !b.length && "Нет объектов недвижимости.", b.map(function(a, b) {
+    return K(Zb, {item:a, key:a._id, H:c, w:f, style:"background:" + (0 != b % 2 ? "#edeee8" : "white") + ";"});
   }));
 }
 function Zb(a) {
@@ -1709,22 +1709,20 @@ function Zb(a) {
 }
 u(Zb, O);
 Zb.prototype.h = function(a) {
-  var b = a.item, c = a.H, f = a.w, e = b.title;
-  a = b.description;
-  var g = b._id, h = b.price, k = "/каталог/" + b.categorySeo + "/" + b.seo, l = "knedv.ru" + k;
-  return K(vb, {className:"CategoryRow"}, K(S, {className:"col-3 col-sm-4 "}, K("img", {src:b.image, className:"img-fluid p-1"}), h && "Цена: " + h), K(S, {}, K("h2", {}, e), K("em", {}, K("a", {href:k}, l)), K("p", {}, a)), K(S, {className:"col-1 CategoryMeta"}, K("br"), K("a", {onClick:function(a) {
+  var b = a.item, c = a.H, f = a.w, e = b.title, g = b.description, h = b._id, k = b.price, l = b.numberOfPhotos, m = "/каталог/" + b.categorySeo + "/" + b.seo, n = "knedv.ru" + m;
+  return K(vb, {style:a.style, className:"CategoryRow"}, K(S, {className:"col-3 col-sm-4 "}, K("img", {src:b.image, className:"img-fluid p-1"}), k && "Цена: " + k), K(S, {}, K("h2", {}, e), K("em", {}, K("a", {href:m}, n)), K("p", {}, g)), K(S, {className:"col-1 CategoryMeta"}, K("br"), K("a", {onClick:function(a) {
     a.preventDefault();
-    c({text:K("span", {}, "Вы действительно хотите удалить объект ", K("strong", {}, e), "?"), j:"Удалить", title:"Удаление Объекта", path:"objects&id=" + g + "&delete"});
+    c({text:K("span", {}, "Вы действительно хотите удалить объект ", K("strong", {}, e), "?"), j:"Удалить", title:"Удаление Объекта", path:"objects&id=" + h + "&delete"});
     return !1;
   }, style:"color:brown;", href:"#"}, K(U, {icon:"far fa-trash-alt"})), K("a", {onClick:function(a) {
     a.preventDefault();
     f(b);
     return a;
-  }, style:"color:brown;", href:"#"}, K(U, {icon:"fas fa-pen"})), K("a", {href:"/admin/albums/" + g, style:"color:brown;", onClick:function(a) {
+  }, style:"color:brown;", href:"#"}, K(U, {icon:"fas fa-pen"})), K("a", {href:"/admin/albums/" + h, style:"color:brown;", onClick:function(a) {
     a.preventDefault();
     f(b);
     return a;
-  }}, K(U, {icon:"fas fa-images"}))));
+  }}, K(U, {icon:"fas fa-images"}), l ? "(" + l + ")" : "")));
 };
 function $b(a) {
   O.apply(this, arguments);
@@ -1808,28 +1806,28 @@ function cc() {
 }
 u(cc, O);
 cc.prototype.o = function() {
-  var a = this, b, c, f, e, g, h, k, l, m, q;
-  return I(function(n) {
-    switch(n.b) {
+  var a = this, b, c, f, e, g, h, k, l, m, n;
+  return I(function(p) {
+    switch(p.b) {
       case 1:
         b = !!a.c.id;
         if (!b) {
-          return n.return();
+          return p.return();
         }
         a.a({A:1, f:!0});
-        y(n, 2, 3);
-        return w(n, V("/admin-data?pages&id=" + a.c.id), 5);
+        y(p, 2, 3);
+        return w(p, V("/admin-data?pages&id=" + a.c.id), 5);
       case 5:
-        return c = n.g, w(n, c.json(), 6);
+        return c = p.g, w(p, c.json(), 6);
       case 6:
-        f = n.g, e = f.error, g = f.data, e ? a.a({error:e}) : (h = t(g), k = h.next().value, a.a({data:k, article:k.article}));
+        f = p.g, e = f.error, g = f.data, e ? a.a({error:e}) : (h = t(g), k = h.next().value, a.a({data:k, article:k.article}));
       case 3:
-        C(n);
+        C(p);
         a.a({f:!1});
-        D(n, 0);
+        D(p, 0);
         break;
       case 2:
-        m = l = z(n), q = m.message, a.a({error:q}), n.u(3);
+        m = l = z(p), n = m.message, a.a({error:n}), p.u(3);
     }
   });
 };
@@ -1982,7 +1980,7 @@ ic.prototype.h = function() {
     a.load();
   }, path:"/admin-data?galleries", T:"Галерея успешно создана!", j:"Добавить"})));
 };
-p.Object.defineProperties(ic.prototype, {data:{configurable:!0, enumerable:!0, get:function() {
+q.Object.defineProperties(ic.prototype, {data:{configurable:!0, enumerable:!0, get:function() {
   return this.state.data;
 }}});
 function jc(a) {
@@ -2230,8 +2228,8 @@ function wc(a, b) {
             k = {};
             for (l = g; l < g + h;) {
               if (28 === b.getUint8(l) && 2 === b.getUint8(l + 1)) {
-                var q = b.getUint8(l + 2);
-                q in pc && (m = b.getInt16(l + 3), q = pc[q], m = sc(b, l + 5, m), k.hasOwnProperty(q) ? k[q] instanceof Array ? k[q].push(m) : k[q] = [k[q], m] : k[q] = m);
+                var n = b.getUint8(l + 2);
+                n in pc && (m = b.getInt16(l + 3), n = pc[n], m = sc(b, l + 5, m), k.hasOwnProperty(n) ? k[n] instanceof Array ? k[n].push(m) : k[n] = [k[n], m] : k[n] = m);
               }
               l++;
             }
@@ -2302,29 +2300,29 @@ function yc(a) {
 uc.prototype.h = function(a) {
   var b = this, c = a.name, f = a.ha, e = a.M;
   a = void 0 === a.nb ? "photos[]" : a.nb;
-  var g = this.state, h = g.ia, k = g.error, l = g.ua, m = g.wa, q = g.result, n = g.ib, r = g.mb;
+  var g = this.state, h = g.ia, k = g.error, l = g.ua, m = g.wa, n = g.result, p = g.ib, r = g.mb;
   g = 100 == h && !m;
   e = r && e.some(function(a) {
     return a == r;
   });
-  e = q && !e;
+  e = n && !e;
   var A = "Added", v = {background:"linear-gradient(lightgrey, grey)", "border-color":"#838383", "box-shadow":"rgb(98, 98, 98) 1px -5px 15px inset"};
   g ? (v.background = "linear-gradient(lightblue, blue)", v["border-color"] = "blue", v["box-shadow"] = "inset 1px -5px 15px #2a33a0", A = "Uploading") : k ? (v.background = "linear-gradient(coral, brown)", v["border-color"] = "red", v["box-shadow"] = "rgb(162, 31, 31) 1px -5px 15px inset", A = "Error") : e ? (v.background = "linear-gradient(yellow, rgb(207, 198, 92))", v["border-color"] = "rgb(156, 158, 9)", v["box-shadow"] = "inset 1px -5px 15px #9e7414", A = "HasInput") : m && (v.background = 
   "linear-gradient(lightgreen, #82d285)", v["border-color"] = "green", v["box-shadow"] = "inset 1px -5px 15px #6f9e14", A = "Uploaded");
-  l = q || l;
+  l = n || l;
   var B;
   try {
-    (B = n.data.wb) && (B = zc(B).toLocaleDateString());
+    (B = p.data.wb) && (B = zc(B).toLocaleDateString());
   } catch (E) {
   }
-  n = ["Image", l ? void 0 : "PreviewLoading", "PhotoUploader" + A].filter(Boolean).join(" ");
-  return K("div", {style:v, className:n}, !l && K("span", {className:"ImageInfo", style:"top:50%;left:50%;transform:translate(-50%, -50%);"}, "Загрузка превью..."), K("img", {src:l}), K("span", {className:"ImageInfo", style:"top:.5rem;left:.5rem;"}, c, B && K("br"), B), K("span", {onClick:f, className:"ImageInfo CloseSpan"}, "✕"), !q && !k && null === h && K(Ac, {className:"Absolute"}, K(xb, {Na:function() {
+  p = ["Image", l ? void 0 : "PreviewLoading", "PhotoUploader" + A].filter(Boolean).join(" ");
+  return K("div", {style:v, className:p}, !l && K("span", {className:"ImageInfo", style:"top:50%;left:50%;transform:translate(-50%, -50%);"}, "Загрузка превью..."), K("img", {src:l}), K("span", {className:"ImageInfo", style:"top:.5rem;left:.5rem;"}, c, B && K("br"), B), K("span", {onClick:f, className:"ImageInfo CloseSpan"}, "✕"), !n && !k && null === h && K(Ac, {className:"Absolute"}, K(xb, {Na:function() {
     yc(b);
   }, className:"btn btn-light btn-sm"}, "Загрузить")), null !== h && 100 != h && K(Ac, {}, K("progress", {max:100, value:h})), g && K(Ac, {}, "Выполняется обработка...", K("div", {className:"spinner-border text-primary", role:"status"}, K("span", {className:"sr-only"}, "Loading..."))), k && K("p", {className:"ImageInfo PhotoError"}, "Ошибка: ", k), k && K("a", {onClick:function(a) {
     a.preventDefault();
     yc(b);
     return !1;
-  }, href:"#", className:"btn btn-danger btn-sm", style:"position:absolute;right:.5rem;bottom:.5rem;"}, "Загрузить снова"), q && K("p", {className:"ImageInfo GalleryLink"}, K("a", {href:q, rel:"noopener noreferrer", target:"_blank"}, "Ссылка")), e && r && K("input", {name:a, type:"hidden", value:r}));
+  }, href:"#", className:"btn btn-danger btn-sm", style:"position:absolute;right:.5rem;bottom:.5rem;"}, "Загрузить снова"), n && K("p", {className:"ImageInfo GalleryLink"}, K("a", {href:n, rel:"noopener noreferrer", target:"_blank"}, "Ссылка")), e && r && K("input", {name:a, type:"hidden", value:r}));
 };
 function Ac(a) {
   return K("span", {className:void 0 === a.className ? "ImageInfo" : a.className, style:"bottom:.5rem;left:.5rem;"}, a.children);
@@ -2434,7 +2432,7 @@ Ec.prototype.h = function() {
     });
   }, galleryId:h, path:"/admin-data?photos", j:"Сохранить Галерею"}));
 };
-p.Object.defineProperties(Ec.prototype, {data:{configurable:!0, enumerable:!0, get:function() {
+q.Object.defineProperties(Ec.prototype, {data:{configurable:!0, enumerable:!0, get:function() {
   return this.state.data;
 }}});
 function Fc(a) {
