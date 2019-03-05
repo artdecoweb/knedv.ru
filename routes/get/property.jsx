@@ -9,7 +9,7 @@ const Content = ({ offers, categories, property, photos }) => {
   return <div className="container-fluid">
     {offers.map(({ text }) => <Offer>{text}</Offer>)}
     <Row>
-      <LeftMenu categories={categories} />
+      <LeftMenu categories={categories} noBanner={true} />
       {!property && <Col>
         <h1>Каталог Недвижимости</h1>
         <p>Запрашиваемый объект не найден. Выберите категорию из меню слева.</p>
@@ -20,8 +20,14 @@ const Content = ({ offers, categories, property, photos }) => {
         <p>{property.description}</p>
         <div dangerouslySetInnerHTML={{ __html: property.article }}/>
         {!!photos.length && <h2>Фотографии</h2>}
-        {photos.map(({ file, name }) => {
-          return (<img className="mb-2 img-fluid" src={file} alt={name}/>)
+        {photos.map(({ file, fileLarge, name }) => {
+          const img = <img className="mb-2 img-fluid" src={file} alt={name}/>
+          if (fileLarge) {
+            return <a className="PhotoLink" href={fileLarge} target="_blank" rel="noopener noreferrer">
+              {img} <span className="zoomIn">Увеличить 🔍</span>
+            </a>
+          }
+          return img
         })}
       </Col>}
     </Row>
@@ -41,12 +47,18 @@ const route = async (ctx) => {
   if (property) {
     photos = await findPhotos(database, property._id)
     await Promise.all(photos.map(async (p) => {
-      const { photo } = p
+      const { photo, cdnImageS, cdnImageM } = p
+      if (cdnImageS) {
+        p.fileLarge = cdnImageM
+        return p.file = cdnImageS
+      }
+      // try from ver 2 (dep this)
       if (!photo) return p
       const upload = await findInModel(database, 'Upload', photo)
       const [u] = upload
       if (!u || !u.cdnImageS) return p
       p.file = u.cdnImageS
+      p.fileLarge = u.cdnImageM
       return p
     }))
   }

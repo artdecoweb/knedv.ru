@@ -1,6 +1,6 @@
 import { Col } from './components/Bootstrap'
 
-export const LeftMenu = ({ categories }) => {
+export const LeftMenu = ({ categories, noBanner }) => {
   return <Col className="LeftMenu col-md-6 col-lg-3">
     <h2><img src="/website/bookmark.svg" style="height:2rem;"/>Каталог Недви\u00ADжи\u00ADмо\u00ADсти</h2>
     <ul>
@@ -9,6 +9,12 @@ export const LeftMenu = ({ categories }) => {
       })}
     </ul>
     <hr/>
+    {!noBanner && <BannerLeft />}
+  </Col>
+}
+
+const BannerLeft = () => {
+  return (<div>
     <h2>Пособие По Покупке Квартиры</h2>
     <em>Советы от профессионалов</em>
     <img className="img-fluid" src="/website/keys.jpg" title="Как купить новую квартиру"/>
@@ -16,8 +22,7 @@ export const LeftMenu = ({ categories }) => {
     </p>
 
     <a className="my-2 btn btn-dark" href="/пособие-по-покупке-квартиры">Читать далее...</a>
-
-  </Col>
+  </div>)
 }
 
 {/* <a className="btn btn-light my-2" href="/articles">Все Статьи</a> */}
