@@ -9,15 +9,20 @@ const Content = ({ offers, categories, property, photos }) => {
   return <div className="container-fluid">
     {offers.map(({ text }) => <Offer>{text}</Offer>)}
     <Row>
-      <LeftMenu categories={categories} noBanner={true} />
       {!property && <Col>
         <h1>Каталог Недвижимости</h1>
-        <p>Запрашиваемый объект не найден. Выберите категорию из меню слева.</p>
+        <p>Запрашиваемый объект не найден. Выберите категорию из меню справа.</p>
       </Col>}
       {property && <Col style="padding-bottom:1rem;">
-        <h1>{property.title}</h1>
-        <img src={property.cdnImage} className="image-float"/>
-        <p>{property.description}</p>
+        <Row>
+          <Col className="col-md-8 text-center">
+            <h1>{property.title}</h1>
+            <img src={property.cdnImage} className="rounded img-fluid"/>
+          </Col>
+          <Col>
+            {property.description}
+          </Col>
+        </Row>
         <div dangerouslySetInnerHTML={{ __html: property.article }}/>
         {!!photos.length && <h2>Фотографии</h2>}
         {photos.map(({ file, fileLarge, name }) => {
@@ -30,6 +35,7 @@ const Content = ({ offers, categories, property, photos }) => {
           return img
         })}
       </Col>}
+      <LeftMenu categories={categories} noBanner={true} md={3} />
     </Row>
   </div>
 }

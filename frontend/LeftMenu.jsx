@@ -1,7 +1,7 @@
 import { Col } from './components/Bootstrap'
 
-export const LeftMenu = ({ categories, noBanner }) => {
-  return <Col className="LeftMenu col-md-6 col-lg-3">
+export const LeftMenu = ({ categories, noBanner, md = 6 }) => {
+  return <Col className={`LeftMenu col-md-${md} col-lg-3`}>
     <h2><img src="/website/bookmark.svg" style="height:2rem;"/>Каталог Недви\u00ADжи\u00ADмо\u00ADсти</h2>
     <ul>
       {categories.map(({ seo, title }) => {
