@@ -1,5 +1,5 @@
 import { Component } from 'preact'
-import { Col, Row, ErrorAlert, Success } from '../../frontend/components/Bootstrap'
+import { Col, Row, ErrorAlert, Success, GrowingSpinner } from '../../frontend/components/Bootstrap'
 import { loadData } from '../Components/LoadData'
 import { LoadingIndicator } from '../Components'
 // import 'preact/devtools/'
@@ -13,23 +13,10 @@ export default class Gallery2 extends Component {
   constructor() {
     super()
     this.state = { data: null, loading: true, files: [], uploadedResults: [] }
-    // this._listener = (event) => {
-    //   debugger
-    //   // prevent default action (open as link for some elements)
-    //   event.preventDefault()
-    //   // move dragged elem to the selected drop target
-    //   if ( event.target.className == 'Gallery2Area' ) {
-    //     debugger
-    //   }
-    //   return false
-    // }
   }
   async componentDidMount() {
-    // document.addEventListener('drop', this._listener)
     await this.load()
-  }
-  componentWillUnmount() {
-    // document.removeEventListener('drop', this.listener)
+    this.setState({ preventLoader: true }) // no more page loaders
   }
   /**
    * Loads the galleries list from the server.
@@ -53,11 +40,11 @@ export default class Gallery2 extends Component {
   render() {
     const { pageTitle = 'Галерея' } = this.props
     const { title, cdnImage, description, _id, photos } = this.data || {}
-    const { uploadedResults, loading } = this.state
+    const { uploadedResults, loading, preventLoader } = this.state
     return (<Col>
       <h1>{pageTitle}</h1>
 
-      {loading && <LoadingIndicator />}
+      {!preventLoader && loading && <LoadingIndicator />}
       {this.data && <Row className="mb-3">
         <Col className="col-sm-3">
           <img className="img-fluid" src={cdnImage} />
@@ -75,8 +62,10 @@ export default class Gallery2 extends Component {
         submitFinish={async (result) => {
           // the form responds with ids of added uploads
           const { 'data': res } = await result.json()
-          if (res) this.addUploadedResults(res)
-          await this.load()
+          if (res) {
+            this.addUploadedResults(res)
+            await this.load()
+          }
         }} path="/admin-data?photos" galleryId={_id}
         confirmText="Сохранить Галерею"
       />}
@@ -106,12 +95,15 @@ class PhotoList extends Component {
   render({ photos, loading }) {
     return (<Row>
       {photos.map(({ file, _id: i }) => {
-        return (<Col key={i} className="col-sm-4">
-          <img className="img-fluid" style="padding: 0.25rem; max-height: 200px;" src={file} /></Col>)
+        return (<Col key={i} className="col-sm-4" style="padding:.25rem;">
+          <img className="img-fluid" style="max-height: 200px;" src={file} /></Col>)
       })}
       {loading && <Col className="col-sm-4">
-        <div style="height:150px;width: 100px;background:lightgrey;">
-          Запрос изображений...
+        <div className="h-100 w-100 d-flex align-items-center rounded PhotoLoadingPlaceholder">
+          <span className="align-middle">
+            Запрос изображений... <br />
+            <GrowingSpinner />
+          </span>
         </div>
       </Col>}
     </Row>)

@@ -8,6 +8,12 @@ export const Row = ({ children, className, ...props }) => {
   return <div className={cl} {...props}>{children}</div>
 }
 
+export const GrowingSpinner = ({ color = 'danger' }) => {
+  return (<div className={`spinner-grow text-${color}`} role="status">
+    <span className="sr-only">Loading...</span>
+  </div>)
+}
+
 /**
  * The Bootstrap column.
  */

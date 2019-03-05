@@ -81,7 +81,7 @@ class Photo extends Component {
       // }
 
       if (xhr.readyState == 4) {
-        this.setState({ uploaded: true })
+        this.setState({ uploaded: true, progress: null })
       }
       if (xhr.readyState == 4 && xhr.status == 200) {
         const t = xhr.responseText
@@ -106,7 +106,7 @@ class Photo extends Component {
         //   this.setState({ result: lastData })
         // }
       } else if (xhr.readyState == 4 && xhr.status != 200) {
-        this.setState({ error: 'XHR Error', progress: null })
+        this.setState({ error: 'XHR Error' })
       }
     })
 
@@ -116,7 +116,7 @@ class Photo extends Component {
     this.setState({ progress })
   }
   render ({
-    name, onRemove, existing, uploadedResults,
+    name, onRemove, uploadedResults,
     photoIdName = 'photos[]',
   }) {
     const {
@@ -124,8 +124,7 @@ class Photo extends Component {
     } = this.state
     const processing = progress == 100 && !uploaded
     const alreadyExported = photoId && uploadedResults.some(i => i ==  photoId)
-    const Result = existing || result
-    const hasInput = Result && !alreadyExported
+    const hasInput = result && !alreadyExported
 
     let className = 'Added'
     const s = {
@@ -155,7 +154,7 @@ class Photo extends Component {
       className = 'Uploaded'
     }
 
-    const src = Result ? Result : preview
+    const src = result || preview
     let date
     try {
       date = metadata.data.DateTime
@@ -176,14 +175,14 @@ class Photo extends Component {
         {date}
       </span>
       <span className="ImageInfo CloseSpan" onClick={onRemove}>✕</span>
-      {!existing && progress === null &&
+      {!result && !error && progress === null &&
         <BottomLeft className="Absolute">
           <A className="btn btn-light btn-sm" onClick={() => {
             this.upload()
           }}>Загрузить</A>
         </BottomLeft>
       }
-      {!!progress && progress != 100 && <BottomLeft>
+      {progress !== null && progress != 100 && <BottomLeft>
         <progress max={100} value={progress}/>
       </BottomLeft>}
       {processing && <BottomLeft>
@@ -200,9 +199,9 @@ class Photo extends Component {
         this.upload()
         return false
       }} style="position:absolute;right:.5rem;bottom:.5rem;">Загрузить снова</a>}
-      {Result &&
+      {result &&
         <p className="ImageInfo GalleryLink">
-          <a href={Result}>Ссылка</a>
+          <a rel="noopener noreferrer" target="_blank" href={result}>Ссылка</a>
         </p>
       }
       {hasInput && photoId && <input type="hidden" name={photoIdName} value={photoId}/>}

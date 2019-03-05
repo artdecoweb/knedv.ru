@@ -153,3 +153,7 @@ nav {
 .PhotoUploaderUploaded:hover img {
   box-shadow: 0 0 19px 1px lightgreen;
 }
+.PhotoLoadingPlaceholder {
+  background:lightgrey;
+  text-align: center;
+}
