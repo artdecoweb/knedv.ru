@@ -14,7 +14,7 @@ export default class Gallery extends Component {
   }
   /**
    * Loads the galleries list from the server.
-   * Side-effects: sets the `error`, `data` and `loading` on the state.
+   * Side-effects: sets the `error` and `loading` on the state.
    */
   async load() {
     /** @type {Array<Gallery>} */

@@ -14,9 +14,9 @@ const Content = ({ offers, categories, property, photos }) => {
         <p>Запрашиваемый объект не найден. Выберите категорию из меню справа.</p>
       </Col>}
       {property && <Col style="padding-bottom:1rem;">
+        <h1>{property.title}</h1>
         <Row>
-          <Col className="col-md-8 text-center">
-            <h1>{property.title}</h1>
+          <Col className="col-md-8 col-lg-5">
             <img src={property.cdnImage} className="rounded img-fluid"/>
           </Col>
           <Col>

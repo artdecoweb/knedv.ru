@@ -9,7 +9,7 @@ export default class SpecialsForm extends SubmitForm {
     const i = item || {}
     const { formLoading, error, success } = this.state
     return (<Form onSubmit={this.submit.bind(this)} onChange={() => {
-      this.setState({ error: null, success: null })
+      this.reset()
     }}>
       <FormGroup label="Название" help="Заголовок для главной страницы, напр., Ленинский проспект, дом 114">
         <Input placeholder="Название акции" name="title" required value={i.title}/>
