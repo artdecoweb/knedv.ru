@@ -11,6 +11,9 @@ const getCanvas = (width, height, img) => {
   return canvas.toDataURL()
 }
 
+/**
+ * The photo block included inside of the PhotoUploader which has 3 states: ready, uploaded and added.
+ */
 class Photo extends Component {
   constructor() {
     super()
@@ -103,7 +106,7 @@ class Photo extends Component {
         //   this.setState({ result: lastData })
         // }
       } else if (xhr.readyState == 4 && xhr.status != 200) {
-        this.setState({ error: 'XHR Error' })
+        this.setState({ error: 'XHR Error', progress: null })
       }
     })
 
@@ -113,7 +116,7 @@ class Photo extends Component {
     this.setState({ progress })
   }
   render ({
-    name, onRemove, fieldName = 'files[]', existing, uploadedResults,
+    name, onRemove, existing, uploadedResults,
     photoIdName = 'photos[]',
   }) {
     const {
@@ -122,18 +125,22 @@ class Photo extends Component {
     const processing = progress == 100 && !uploaded
     const alreadyUploaded = photoId && uploadedResults.some(i => i ==  photoId)
     const s = {
-      background: uploaded ? 'linear-gradient(lightgreen, #82d285)' : null,
-      'border-color': uploaded ? 'green' : null,
-      'box-shadow': uploaded ? 'inset 1px -5px 15px #6f9e14' : null,
+      'background': 'linear-gradient(lightgrey, grey)',
+      'border-color': '#838383',
+      'box-shadow': 'rgb(98, 98, 98) 1px -5px 15px inset',
     }
     if (processing) {
-      s.background = 'linear-gradient(lightblue, blue)'
+      s['background'] = 'linear-gradient(lightblue, blue)'
       s['border-color'] = 'blue'
       s['box-shadow'] = 'inset 1px -5px 15px #2a33a0'
     } else if (error) {
-      s.background = "linear-gradient(coral, brown)"
+      s['background'] = 'linear-gradient(coral, brown)'
       s['border-color'] = 'red'
       s['box-shadow'] = 'rgb(162, 31, 31) 1px -5px 15px inset'
+    } else if (uploaded) {
+      s['background'] = 'linear-gradient(lightgreen, #82d285)'
+      s['border-color'] = 'green'
+      s['box-shadow'] = 'inset 1px -5px 15px #6f9e14'
     }
     const Result = existing || result
     const src = Result ? Result : preview
@@ -155,7 +162,7 @@ class Photo extends Component {
         className="ImageInfo"
         style="top:50%;left:50%;transform:translate(-50%, -50%);">
         Загрузка превью...</span>}
-      <img style="padding:.5rem;" src={src} />
+      <img src={src} />
       <span className="ImageInfo" style="top:.5rem;left:.5rem;">
         {name}
         {date && <br/>}
@@ -178,10 +185,10 @@ class Photo extends Component {
           <span className="sr-only">Loading...</span>
         </div>
       </BottomLeft>}
-      {this.state.error && <p className="ImageInfo PhotoError">
-        Error: {this.state.error}
+      {error && <p className="ImageInfo PhotoError">
+        Ошибка: {error}
       </p>}
-      {this.state.error && <a href="#" className="btn btn-danger btn-sm" onClick={(e) => {
+      {error && <a href="#" className="btn btn-danger btn-sm" onClick={(e) => {
         e.preventDefault()
         this.upload()
         return false
@@ -191,7 +198,6 @@ class Photo extends Component {
           <a href={Result}>Ссылка</a>
         </p>
       }
-      {readyForUpload && <input type="hidden" name={fieldName} value={Result}/>}
       {readyForUpload && photoId && <input type="hidden" name={photoIdName} value={photoId}/>}
     </div>)
   }

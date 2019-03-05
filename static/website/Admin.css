@@ -131,3 +131,6 @@ nav {
 .PreviewLoading {
   width: 290px;
 }
+.Image {
+  padding: .5rem;
+}
