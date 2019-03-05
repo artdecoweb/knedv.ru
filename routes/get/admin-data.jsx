@@ -7,17 +7,13 @@ const getData = async (ctx) => {
     const c = await findInModel(database, 'Category', id)
     return c
   } else if ('objects' in ctx.query) {
-    const catModel = database.getModel('Category')
-    const categories = await catModel.find()
-    const model = database.getModel('Object')
-    const objects = await model.find({
-      ...(id ? { _id: id }: {}),
-    })
-    const mo = objects.map(({ _doc }) => {
+    const categories = await findInModel(database, 'Category')
+    const objects = await findInModel(database, 'Object', id)
+    const mo = objects.map((_doc) => {
       const cat = categories.find(({ id: cid }) => _doc.category == cid)
       if (!cat) return _doc
       return { ..._doc, categorySeo: cat.seo }
-    })
+    }).reverse()
     return mo
   } else if ('pages' in ctx.query) {
     const p = await findInModel(database, 'Page', id)
@@ -48,6 +44,9 @@ const getData = async (ctx) => {
   }
 }
 
+/**
+ * Queries Mongo and returns mapped documents, i.e., the `_doc` prop.
+ */
 export const findInModel = async (database, modelName, id) => {
   const model = database.getModel(modelName)
   const objects = await model.find({
