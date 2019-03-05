@@ -58,6 +58,7 @@ export const _Gallery = {
 }
 export const _Photo = {
   seo: String,
+  name: String,
   galleryId: String, // can be gallery or album
   file: String, // the s preview (dep)
   photo: String, // the id of the Upload (dep)

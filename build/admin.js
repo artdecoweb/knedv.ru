@@ -2443,7 +2443,7 @@ Fc.prototype.h = function(a) {
   var b = a.f;
   return K(vb, {}, a.photos.map(function(a) {
     return K(S, {key:a._id, className:"col-sm-4", style:"padding:.25rem;"}, K("img", {src:a.file, className:"img-fluid", style:"max-height: 200px;"}));
-  }), b && K(S, {className:"col-sm-4"}, K("div", {className:"h-100 w-100 d-flex align-items-center rounded PhotoLoadingPlaceholder"}, K("span", {className:"align-middle"}, "Запрос изображений... ", K("br"), K(wb)))));
+  }), b && K(S, {className:"col-sm-4"}, K("div", {className:"h-100 w-100 d-flex align-items-center rounded PhotoLoadingPlaceholder"}, K("span", {className:"align-middle", style:"padding:.5rem;"}, "Запрос изображений... ", K("br"), K(wb)))));
 };
 function Gc(a) {
   return Z.N.apply(this, arguments) || this;
