@@ -123,7 +123,11 @@ class Photo extends Component {
       progress, error, preview, uploaded, result, metadata, photoId,
     } = this.state
     const processing = progress == 100 && !uploaded
-    const alreadyUploaded = photoId && uploadedResults.some(i => i ==  photoId)
+    const alreadyExported = photoId && uploadedResults.some(i => i ==  photoId)
+    const Result = existing || result
+    const hasInput = Result && !alreadyExported
+
+    let className = 'Added'
     const s = {
       'background': 'linear-gradient(lightgrey, grey)',
       'border-color': '#838383',
@@ -133,16 +137,24 @@ class Photo extends Component {
       s['background'] = 'linear-gradient(lightblue, blue)'
       s['border-color'] = 'blue'
       s['box-shadow'] = 'inset 1px -5px 15px #2a33a0'
+      className = 'Uploading'
     } else if (error) {
       s['background'] = 'linear-gradient(coral, brown)'
       s['border-color'] = 'red'
       s['box-shadow'] = 'rgb(162, 31, 31) 1px -5px 15px inset'
+      className = 'Error'
+    } else if (hasInput) {
+      s.background = "linear-gradient(yellow, rgb(207, 198, 92))"
+      s['border-color'] = 'rgb(156, 158, 9)'
+      s['box-shadow'] = 'inset 1px -5px 15px #9e7414'
+      className = 'HasInput'
     } else if (uploaded) {
       s['background'] = 'linear-gradient(lightgreen, #82d285)'
       s['border-color'] = 'green'
       s['box-shadow'] = 'inset 1px -5px 15px #6f9e14'
+      className = 'Uploaded'
     }
-    const Result = existing || result
+
     const src = Result ? Result : preview
     let date
     try {
@@ -151,13 +163,8 @@ class Photo extends Component {
     } catch (er) {
       // ok
     }
-    const readyForUpload = Result && !alreadyUploaded
-    if (readyForUpload) {
-      s.background = "linear-gradient(yellow, rgb(207, 198, 92))"
-      s['border-color'] = 'rgb(156, 158, 9)'
-      s['box-shadow'] = 'inset 1px -5px 15px #9e7414'
-    }
-    return (<div style={s} className={`Image${src ? '' : ' PreviewLoading'}`} >
+    const cl = ['Image', src ? undefined : 'PreviewLoading', `PhotoUploader${className}`].filter(Boolean).join(' ')
+    return (<div style={s} className={cl} >
       {!src  && <span
         className="ImageInfo"
         style="top:50%;left:50%;transform:translate(-50%, -50%);">
@@ -198,7 +205,7 @@ class Photo extends Component {
           <a href={Result}>Ссылка</a>
         </p>
       }
-      {readyForUpload && photoId && <input type="hidden" name={photoIdName} value={photoId}/>}
+      {hasInput && photoId && <input type="hidden" name={photoIdName} value={photoId}/>}
     </div>)
   }
 }

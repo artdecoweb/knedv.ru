@@ -68,7 +68,7 @@ export default class Gallery2 extends Component {
         </Col>
       </Row>
       }
-      {this.data && <PhotoList photos={photos} />}
+      {this.data && <PhotoList photos={photos} loading={loading} />}
       <hr />
       {_id && <GalleryForm
         uploadedResults={uploadedResults}
@@ -103,12 +103,17 @@ export default class Gallery2 extends Component {
 // }
 
 class PhotoList extends Component {
-  render({ photos }) {
+  render({ photos, loading }) {
     return (<Row>
       {photos.map(({ file, _id: i }) => {
         return (<Col key={i} className="col-sm-4">
           <img className="img-fluid" style="padding: 0.25rem; max-height: 200px;" src={file} /></Col>)
       })}
+      {loading && <Col className="col-sm-4">
+        <div style="height:150px;width: 100px;background:lightgrey;">
+          Запрос изображений...
+        </div>
+      </Col>}
     </Row>)
   }
 }

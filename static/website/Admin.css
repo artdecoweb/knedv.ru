@@ -134,3 +134,22 @@ nav {
 .Image {
   padding: .5rem;
 }
+.Image img {
+  border-radius: 3px;
+  transition: .5s;
+}
+.Image:hover img {
+  box-shadow: 0 0 19px 1px white;
+}
+.PhotoUploaderHasInput:hover img {
+  box-shadow: 0 0 19px 1px #ecff4a;
+}
+.PhotoUploaderUploading:hover img {
+  box-shadow: 0 0 19px 1px lightblue;
+}
+.PhotoUploaderError:hover img {
+  box-shadow: 0 0 19px 1px lightsalmon;
+}
+.PhotoUploaderUploaded:hover img {
+  box-shadow: 0 0 19px 1px lightgreen;
+}
