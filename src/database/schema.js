@@ -66,9 +66,10 @@ export const _Photo = {
   description: String, // ?
   cdnImageS: String,
   cdnImageM: String,
+  width: Number, height: Number,
 }
 /**
- * Some extracted metadata (name and date) from JPEGS with locations of uploaded files in M and S sizes. TODO: WE NEED TO WRITE COPYRIGHT METADATA!
+ * Some extracted metadata (name and date) from JPEGS with locations of uploaded files in M and S sizes.
  */
 export const _Upload = {
   model: String,
@@ -78,6 +79,8 @@ export const _Upload = {
   name: String,
   cdnImageS: String,
   cdnImageM: String,
+  width: Number,
+  height: Number,
 }
 export const Category = new Schema(_Category)
 export const Object = new Schema(_Object)

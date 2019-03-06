@@ -19,7 +19,7 @@ export const getSeo = (seo) => {
  * @param {string} mimetype The mimetype.
  */
 export const handleImage = async (cdn, storage, path, seo, mimetype, { folder = 'catalog', resize: r = 250, buffer } = {}) => {
-  if (!path) {
+  if (!(path || buffer)) {
     return {}
   }
   checkExtension(mimetype)

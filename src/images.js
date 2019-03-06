@@ -2,13 +2,17 @@ import { createBlobService } from 'azure-storage'
 import sharp from 'sharp'
 
 export const resize = async (path, size) => {
-  const res = await sharp(path).rotate()
+  const res = await sharp(path)
+    .withMetadata()
+    .rotate()
     .resize(size, null, { withoutEnlargement: true })
     .jpeg({ quality: 90 }).toBuffer()
   return res
 }
 export const resizeBuffer = async (buffer, size) => {
-  const res = await sharp(buffer).rotate()
+  const res = await sharp(buffer)
+    .withMetadata()
+    .rotate()
     .resize(size, null, { withoutEnlargement: true })
     .jpeg({ quality: 90 }).toBuffer()
   return res
@@ -53,6 +57,9 @@ export const uploadFile = async ({
   return res
 }
 
+/**
+ * @returns {string} The URL of the uploaded file
+ */
 export const file = async ({
   contentType,
   text,

@@ -15,7 +15,7 @@ function setupModels(connection, schemas) {
   })
 }
 
-export default class Database {
+class Database {
   /**
    * Create new database instance.
    */
@@ -33,9 +33,11 @@ export default class Database {
     const res = await m.save()
     return res._doc
   }
-  // deleteById(modelName, id) {
-
-  // }
+  async deleteById(modelName, id) {
+    const M = this.getModel(modelName)
+    const res = await M.deleteOne({ _id: id })
+    return res
+  }
   /**
    * Connect to the database.
    * @param {string} uri the url of the database to connect to
@@ -62,3 +64,5 @@ export default class Database {
     return mongoose.connection.model(name)
   }
 }
+
+export default Database

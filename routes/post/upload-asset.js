@@ -1,4 +1,20 @@
-import { Readable } from 'stream'
+// import { Readable } from 'stream'
+// ctx.body = new Readable({
+//   read() {},
+// })
+// .catch((err) => {
+//   ctx.body.push(JSON.stringify({ error: err.message }))
+//   ctx.body.push(null)
+// })
+// const communicate = (ctx, obj) => {
+//   ctx.body.push(JSON.stringify(obj))
+// }
+// communicate(ctx, { previewM: cdnImageM })
+// communicate(ctx, { previewS: cdnImageS })
+// communicate(ctx, { metadata })
+// communicate(ctx, { photo_id: 'ASSIGN THE ID HERE' })
+// ctx.body.push(null)
+
 import { handleImage } from '../../src/lib'
 
 /**
@@ -10,39 +26,38 @@ const uploadAsset = async (ctx) => {
     mimetype, path, filename,
   } = {} } = ctx.req
   ctx.type = 'application/json'
-  // ctx.body = new Readable({
-  //   read() {},
-  // })
   try {
     await fn({ ctx, path, filename, mimetype, name })
   } catch(err) {
     this.body = { error: err.message }
   }
-  // .catch((err) => {
-  //   ctx.body.push(JSON.stringify({ error: err.message }))
-  //   ctx.body.push(null)
-  // })
-}
-
-const communicate = (ctx, obj) => {
-  ctx.body.push(JSON.stringify(obj))
 }
 
 const fn = async ({ ctx, path, filename, mimetype, name }) => {
-  const { exiftool, database } = ctx
+  const { database } = ctx
+  /** @type {ExiftoolProcess} */
+  const exiftool = ctx.exiftool
   const { data: [metadata] } = await exiftool.readMetadata(path)
-  // communicate(ctx, { metadata })
-  const { Model, DateTimeOriginal }  = metadata
+  const { Model, DateTimeOriginal, ImageWidth, ImageHeight, Orientation }  = metadata
+
+  const width = Orientation >= 5 ? ImageWidth : ImageHeight
+  const height = Orientation >= 5 ? ImageHeight : ImageWidth
+
+  // add metadata
+  const exifdata = {
+    all: '',
+    CopyrightOwnerName: `knedv.ru`,
+    CopyrightYear: new Date().getFullYear(),
+    Creator: 'Корпорация Недвижимости 21 Век',
+    Comment: '+7 (495) 749-29-15',
+  }
+  await exiftool.writeMetadata(path, exifdata, ['overwrite_original'])
 
   const { buffer, ...cdnImgM } = await handleImage(ctx.cdn, ctx.storage, path, `${filename}-m`, mimetype, { folder: 'upload', resize: 1000 })
   const cdnImageM = cdnImgM.cdnImage
-  // communicate(ctx, { previewM: cdnImageM })
 
   const { buffer: b, ...cdnImgS } = await handleImage(ctx.cdn, ctx.storage, path, `${filename}-s`, mimetype, { folder: 'upload', resize: 500, buffer })
   const cdnImageS = cdnImgS.cdnImage
-  // communicate(ctx, { previewS: cdnImageS })
-
-  // save in the database
 
   const data = {
     name,
@@ -52,11 +67,11 @@ const fn = async ({ ctx, path, filename, mimetype, name }) => {
     imgM: cdnImgM,
     cdnImageS,
     cdnImageM,
+    width,
+    height,
   }
   const photo = await database.addObject('Upload', data)
   ctx.body = { file: cdnImageM, result: cdnImageS, success: 1, photoId: photo._id }
-  // communicate(ctx, { photo_id: 'ASSIGN THE ID HERE' })
-  // ctx.body.push(null)
 }
 
 // Sudhir Bastakoti
