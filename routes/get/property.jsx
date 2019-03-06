@@ -28,6 +28,7 @@ const Content = ({ offers, categories, property, photos, admin }) => {
           </div>
           <div className="p-2">
             {property.description}
+            {property.price && <a href="/buy" className="btn btn-success">Купить {property.price}</a>}
           </div>
         </div>
         <Admin admin={admin} id={property.id} />

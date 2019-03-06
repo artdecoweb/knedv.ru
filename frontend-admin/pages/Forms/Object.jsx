@@ -91,6 +91,7 @@ export default class ObjectForm extends SubmitForm {
 
       <ArticleEditor name="article" article={this.state.article} onSave={(html) => {
         this.setState({ article: html })
+        this.reset()
       }}/>
       {this.editing && <input type="hidden" name="id" value={this.props.id}/>}
       <FormGroup label="Раздел" help="Категория в каталоге">

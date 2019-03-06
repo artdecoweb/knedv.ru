@@ -58,8 +58,10 @@
 }
 .SpecialBanner img {
   display: block;
-  /* border: 2px solid white; */
   border-radius: 5px;
+}
+.SpecialBanner .PhoneImg {
+  display: inline-block;
 }
 .SpecialBanner h4 {
   text-decoration: underline;
@@ -197,4 +199,12 @@ h1 {
 }
 .PreviewContainer .ActualImage {
   opacity: 1;
+}
+/* @media (min-width: 576px) {
+  #BugFix {
+    display: none;
+  }
+} */
+.SpecialTitle {
+  color: white !important;
 }

@@ -19,8 +19,9 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
         <div dangerouslySetInnerHTML={{ __html: article }}/>
         <hr/>
         <Row>
-          {items.map(({ title, seo, description, cdnImage, price }) => {
-            return <Col key={seo} className="GridItem">
+          {items.reduce((acc, { title, seo, description, cdnImage, price }, i) => {
+            const third = (i + 1)%3 == 0
+            const c = <Col key={seo} className="GridItem">
               <img alt={description} src={cdnImage} title={title} className="img-fluid"/>
               <h3>{title}</h3>
               <p>{price}</p>
@@ -28,11 +29,17 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
                 <a className="btn btn-outline-danger" href={seo}>Подробнее</a>
               </span>
             </Col>
-          })}
+            if (third) return [...acc, c, <BugFix/>]
+            return [...acc, c]
+          }, [])}
         </Row>
       </Col>}
     </Row>
   </div>
+}
+
+const BugFix = () => {
+  return (<div className="w-100" id="BugFix"></div>)
 }
 
 /** @type {import('koa').Middleware} */
