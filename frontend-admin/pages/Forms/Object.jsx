@@ -71,7 +71,9 @@ export default class ObjectForm extends SubmitForm {
   }) {
     const { categories, formLoading, data, loading, error, success } = this.state
 
-    const form = (<Form onSubmit={this.submit.bind(this)}>
+    const form = (<Form onSubmit={this.submit.bind(this)} onChange={(vals) => {
+      this.reset()
+    }}>
       <FormGroup help="Название для каталога недвижимости." label="Название">
         <Input name="title" required placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={data.title} />
       </FormGroup>

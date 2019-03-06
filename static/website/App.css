@@ -208,3 +208,6 @@ h1 {
 .SpecialTitle {
   color: white !important;
 }
+.ArticleContainer img {
+  max-width: 100%;
+}

@@ -16,7 +16,7 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
       {selectedCategory && <Col style="padding-bottom:1rem;">
         <h1>{selectedCategory.title}</h1>
         <p>{selectedCategory.description}</p>
-        <div dangerouslySetInnerHTML={{ __html: article }}/>
+        <div className="ArticleContainer" dangerouslySetInnerHTML={{ __html: article }}/>
         <hr/>
         <Row>
           {items.reduce((acc, { title, seo, description, cdnImage, price }, i) => {
