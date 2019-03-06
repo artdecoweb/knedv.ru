@@ -28,7 +28,7 @@ class CategoryForm extends SubmitForm {
       })
     }
   }
-  render({ confirmText, successMessage, addedId, title, id }) {
+  render({ confirmText, successMessage, addedId, title, id, onClose, closeText = 'Отмена' }) {
     const { formLoading, error, success, loading,
       editing, article, data } = this.state
 
@@ -47,16 +47,21 @@ class CategoryForm extends SubmitForm {
           {data.description}
         </TextArea>
       </FormGroup>
-      <FormImage help="Картинка, отображаемая на главной странице." required editing={editing} />
-      <ArticleEditor article={article} onSave={(html) => {
+      <FormImage help="Картинка, отображаемая на главной странице." required editing={editing} image={data.cdnImage} />
+      <ArticleEditor name="article" article={article} onSave={(html) => {
         this.setState({ article: html })
+        this.reset()
       }}/>
       {editing && <input type="hidden" name="id" value={id}/>}
 
-      <SubmitButton confirmText={confirmText} loadingText="Загрузка..." loading={formLoading} />
-
       <ErrorAlert error={error} />
       <Success success={success} message={successMessage} />
+
+      <SubmitButton confirmText={confirmText} loadingText="Загрузка..." loading={formLoading} />
+
+      {onClose &&
+        <button type="button" className="FormCancelBtn btn btn-secondary" onClick={onClose}>{closeText}</button>
+      }
     </Form>)
 
     return <Col>

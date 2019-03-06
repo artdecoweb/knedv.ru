@@ -6,6 +6,7 @@ import { Col, ErrorAlert, Success } from '../../../frontend/components/Bootstrap
 import ArticleEditor from '../../ArticleEditor'
 import FormImage from '../../Components/FormImage'
 import { LoadingIndicator } from '../../Components'
+import { loadData } from '../../Components/LoadData'
 
 export default class ObjectForm extends SubmitForm {
   constructor() {
@@ -24,27 +25,22 @@ export default class ObjectForm extends SubmitForm {
 
     const editing = !!this.props.id
     if (!editing) return
-    this.setState({ editing: 1, loading: true })
+    this.setState({ editing: 1 })
 
-    try {
-      const res = await fetch(`/admin-data?objects&id=${this.props.id}`)
-      const { error, data } = await res.json()
-      if (error) this.setState({ error })
-      else {
-        const [d] = data
-        this.setState({
-          data: d,
-          hint: d.seo,
-          catSeo: d.categorySeo,
-          article: d.article,
-        })
-      }
-    } catch ({ message: error }) {
-      this.setState({ error })
-    } finally {
-      this.setState({ loading: false })
+    /** @type {Array<Property>} */
+    const data = await loadData.bind(this)(`objects&id=${this.props.id}`)
+    if (data) {
+      const [d] = data
+      if (d) this.setState({
+        data: d,
+        hint: d.seo,
+        catSeo: d.categorySeo,
+        article: d.article,
+      })
     }
   }
+  // make this part of the other Select component
+  // redux store ftw
   async loadCategories() {
     this.setState({ loading: true })
     try {
@@ -64,7 +60,7 @@ export default class ObjectForm extends SubmitForm {
       this.setState({ loading: false })
     }
   }
-  getHint() {
+  get hint() {
     return `Фраза для поисковой оптимизации, участвующая в адресах страниц, например, knedv.ru/${this.state.catSeo}/<strong>${this.state.hint}</strong>.`
   }
   get editing() {
@@ -73,8 +69,8 @@ export default class ObjectForm extends SubmitForm {
   render({
     onClose, closeText = 'Отмена', successMessage, confirmText = 'Добавить', title, addedId,
   }) {
-    const hint = this.getHint()
     const { categories, formLoading, data, loading, error, success } = this.state
+
     const form = (<Form onSubmit={this.submit.bind(this)}>
       <FormGroup help="Название для каталога недвижимости." label="Название">
         <Input name="title" required placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={data.title} />
@@ -82,7 +78,7 @@ export default class ObjectForm extends SubmitForm {
       <FormGroup help="Цена объекта" label="Цена">
         <Input name="price" required placeholder="3 000 000 руб." value={data.price} />
       </FormGroup>
-      <FormGroup help={hint} label="СЕО Название">
+      <FormGroup help={this.hint} label="СЕО Название">
         <Input name="seo" required placeholder="1-комнатные-апартаменты-воскресенское" value={data.seo} />
       </FormGroup>
       <FormGroup help="Описание объекта." label="Описание">

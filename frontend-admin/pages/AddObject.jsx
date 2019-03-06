@@ -5,7 +5,16 @@ class AddObject extends Component {
   /**
    * Add object is the page
    */
-  render ({ onLoad }) {
+  render ({ onLoad, id }) {
+    if (id) {
+      // edit
+      return (
+        <ObjectForm
+          title="Редактировать Объект"
+          id={id}path="/admin-data?objects"
+          successMessage="Объект успешно отредактирован!"
+          confirmText="Сохранить"/>)
+    }
     return (
       <ObjectForm title="Добавить Объект" submitFinish={async (res) => {
         if (onLoad) onLoad(res)

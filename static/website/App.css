@@ -161,3 +161,40 @@ h1 {
 .PhotoLink:hover .zoomIn {
   display: inline;
 }
+.PreviewContainer {
+  /* background: linear-gradient(#fa9e9e, #8d2011); */
+  /* box-shadow: rgb(121, 55, 55) -2px -2px 15px inset; */
+  box-shadow: rgba(79, 79, 79, 0.48) -2px -2px 15px inset;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.CatTitle {
+  border-bottom: 1px solid #dbc557;
+  box-shadow: inset 0 -3px 3px #fcfab9;
+  display: inline-block;
+  background: linear-gradient(#fffae8 30%, #fff5d9);
+  width: 100%;
+  border-radius: 5px;
+  color: #563d27;
+  text-shadow: 2px 2px 0px #eed8a7;
+  border-top: 1px solid #ffefb5;
+}
+.PreviewContainer > * {
+  transition: .5s;
+}
+.PreviewContainer:hover > .Blur {
+  filter: blur(0px);
+}
+.PreviewContainer > .Blur {
+  filter: blur(5px);
+  box-shadow: 0 0 5px black;
+  position: absolute;
+  top:0;
+  left:0;
+}
+.PreviewContainer:hover .ActualImage {
+  opacity: 0;
+}
+.PreviewContainer .ActualImage {
+  opacity: 1;
+}

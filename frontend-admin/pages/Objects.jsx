@@ -29,6 +29,7 @@ export default class Objects extends Component {
     this.setState({ edit })
   }
   render() {
+    const { edit } = this.state
     return <Col>
       <h1>Объекты Недвижимости</h1>
       <p>
@@ -40,9 +41,9 @@ export default class Objects extends Component {
       {this.state.modal &&
         <DeleteModal {...this.state.modal} btnClass="danger" onClose={this.openModal.bind(this, null)} onComplete={this.load.bind(this)}/>
       }
-      {this.state.edit &&
+      {edit &&
         <EditModal title="Редактирование Объекта" onClose={this.openEdit.bind(this, null)}>
-          <ObjectForm id={this.state.edit._id} submitFinish={this.load.bind(this)} path="/admin-data?objects"
+          <ObjectForm id={edit._id} submitFinish={this.load.bind(this)} path="/admin-data?objects"
             onClose={this.openEdit.bind(this, null)} closeText="Отмена" successMessage="Объект успешно отредактирован!"
             confirmText="Сохранить"/>
         </EditModal>
@@ -65,7 +66,6 @@ const List = ({ data, openModal, openEdit, loading }) => {
     })}
   </div>)
 }
-
 
 class Item extends Component {
   render({ item, openModal, openEdit, style }) {

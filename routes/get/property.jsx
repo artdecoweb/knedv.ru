@@ -5,25 +5,39 @@ import { LeftMenu } from '../../frontend/LeftMenu'
 import Offer from '../../frontend/components/Offer'
 import { findPhotos, findInModel } from './admin-data'
 
-const Content = ({ offers, categories, property, photos }) => {
+const Content = ({ offers, categories, property, photos, admin }) => {
   return <div className="container-fluid">
     {offers.map(({ text }) => <Offer>{text}</Offer>)}
     <Row>
       {!property && <Col>
-        <h1>Каталог Недвижимости</h1>
+        <h1 className="CatTitle">Каталог Недвижимости</h1>
         <p>Запрашиваемый объект не найден. Выберите категорию из меню справа.</p>
       </Col>}
       {property && <Col style="padding-bottom:1rem;">
-        <h1>{property.title}</h1>
-        <Row>
-          <Col className="col-md-8 col-lg-5">
-            <img src={property.cdnImage} className="rounded img-fluid"/>
-          </Col>
-          <Col>
+        <div className="CatTitle" style="position:relative;">
+          <span className="w-100 h-100" style="position:absolute;top:0;left:0;background:url('/moscow.png');background-size:contain;"/>
+          <h1 style="position:relative;">
+            {property.title}</h1>
+        </div>
+        <div className="d-flex">
+          <div className="flex-shrink-0 p-2">
+            <div className="PreviewContainer" style="position:relative;">
+              <img className="rounded Blur w-100 h-100" src={property.cdnImage} />
+              <img src={property.cdnImage} className="ActualImage m-3 rounded img-fluid" style="position:relative;"/>
+            </div>
+          </div>
+          <div className="p-2">
             {property.description}
-          </Col>
-        </Row>
+          </div>
+        </div>
+        <Admin admin={admin} id={property.id} />
         <div dangerouslySetInnerHTML={{ __html: property.article }}/>
+
+        {!!photos.length &&
+          <p className="text-center mt-3">
+            <img src="https://raw.githubusercontent.com/artdecocode/documentary/HEAD/src/section-breaks/0.svg?sanitize=true" />
+          </p>
+        }
         {!!photos.length && <h2>Фотографии</h2>}
         {photos.map(({ file, fileLarge, name }) => {
           const img = <img className="mb-2 img-fluid" src={file} alt={name}/>
@@ -38,6 +52,25 @@ const Content = ({ offers, categories, property, photos }) => {
       <LeftMenu categories={categories} noBanner={true} md={3} />
     </Row>
   </div>
+}
+
+// style="position: absolute; top:0; left: 0;"
+// {property.article && <p className="text-center mt-3">
+//   <img src="https://raw.githubusercontent.com/artdecocode/documentary/HEAD/src/section-breaks/1.svg?sanitize=true" />
+// </p>}
+
+const Admin = ({ admin, id }) => {
+  if (!admin) return null
+  return (<p>
+    <a className="btn btn-warning"
+      href={`/admin/albums/${id}`}>
+      Добавить Фото
+    </a>
+    <a className="btn ml-2 btn-light"
+      href={`/admin/add-object/${id}`}>
+      Редактировать
+    </a>
+  </p>)
 }
 
 /** @type {import('koa').Middleware} */
@@ -68,7 +101,7 @@ const route = async (ctx) => {
       return p
     }))
   }
-  const content = <Content categories={categories} offers={[]} property={property} photos={photos}/>
+  const content = <Content categories={categories} offers={[]} property={property} photos={photos} admin={ctx.session.admin}/>
   const app = <App activeMenu="index" Content={content} />
   ctx.body = Layout({
     title: property ? property.title : 'Каталог',

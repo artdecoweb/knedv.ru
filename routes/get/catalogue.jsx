@@ -8,7 +8,7 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
   return <div className="container-fluid">
     {offers.map(({ text }) => <Offer>{text}</Offer>)}
     <Row>
-      <LeftMenu categories={categories} />
+      <LeftMenu md={3} noBanner={true} categories={categories} />
       {!selectedCategory && <Col>
         <h1>Каталог Недвижимости</h1>
         <p>Запрашиваемая категория не найдена. Выберите категорию из меню слева.</p>
@@ -21,7 +21,7 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
         <Row>
           {items.map(({ title, seo, description, cdnImage, price }) => {
             return <Col key={seo} className="GridItem">
-              <img alt={description} src={cdnImage} title={title} className="img-fluid" style="max-width:10rem;"/>
+              <img alt={description} src={cdnImage} title={title} className="img-fluid"/>
               <h3>{title}</h3>
               <p>{price}</p>
               <span>
@@ -37,6 +37,9 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
 
 /** @type {import('koa').Middleware} */
 const route = async (ctx) => {
+  if (!ctx.path.endsWith('/')) {
+    return ctx.redirect(`${ctx.path}/`)
+  }
   const database = ctx.database
   const Categories = database.getModel('Category')
   const categories = await Categories.find({}, 'title seo description cdnImage')
