@@ -24,10 +24,14 @@ export default class Gallery2 extends Component {
   async load() {
     const { id, server = 'galleries' } = this.props
     if (!id) this.setState({ loading: false, error: 'No id' })
-    const data = await loadData.bind(this)(`${server}&id=${id}`)
     /** @type {Gallery} */
+    const data = await loadData.bind(this)(`${server}&id=${id}`)
     if (data) this.setState({ data })
   }
+  /**
+   * The data
+   * @returns {Gallery}
+   */
   get data() {
     return this.state.data
   }
@@ -36,9 +40,15 @@ export default class Gallery2 extends Component {
       [...this.state.uploadedResults, ...results],
     })
   }
+  /**
+   * @returns {Gallery}
+   */
+  getData() {
+    return this.data || {}
+  }
   render() {
     const { pageTitle = 'Галерея' } = this.props
-    const { title, cdnImage, description, _id, photos } = this.data || {}
+    const { title, cdnImage, description, _id, photos } = this.getData()
     const { uploadedResults, loading, preventLoader } = this.state
     return (<Col>
       <h1>{pageTitle}</h1>
@@ -91,9 +101,13 @@ export default class Gallery2 extends Component {
 // }
 
 class PhotoList extends Component {
+  /**
+   * @param {{photos:Array<Photo>, loading:boolean}}
+   */
   render({ photos, loading }) {
     return (<Row>
-      {photos.map(({ file, _id: i }) => {
+      {photos.map(({ file, _id: i, width, height }) => {
+        if (width || height) console.log('w/h %s %s', width, height)
         return (<Col key={i} className="col-sm-4" style="padding:.25rem;">
           <img className="img-fluid" style="max-height: 200px;" src={file} /></Col>)
       })}

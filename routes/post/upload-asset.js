@@ -37,7 +37,7 @@ const fn = async ({ ctx, path, filename, mimetype, name }) => {
   const { database } = ctx
   /** @type {ExiftoolProcess} */
   const exiftool = ctx.exiftool
-  const { data: [metadata] } = await exiftool.readMetadata(path)
+  const { data: [metadata] } = await exiftool.readMetadata(path, ['ImageWidth', 'ImageHeight', 'Model', 'DateTimeOriginal', 'Orientation#'])
   const { Model, DateTimeOriginal, ImageWidth, ImageHeight, Orientation }  = metadata
 
   const width = Orientation >= 5 ? ImageWidth : ImageHeight
@@ -46,6 +46,7 @@ const fn = async ({ ctx, path, filename, mimetype, name }) => {
   // add metadata
   const exifdata = {
     all: '',
+    'Orientation#': Orientation,
     CopyrightOwnerName: `knedv.ru`,
     CopyrightYear: new Date().getFullYear(),
     Creator: 'Корпорация Недвижимости 21 Век',

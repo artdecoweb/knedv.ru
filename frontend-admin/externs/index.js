@@ -18,6 +18,6 @@ var Special
 var Gallery
 
 /**
- * @typedef {{_id: string, file: string, galleryId: string}}
+ * @typedef {{_id: string, file: string, galleryId: string, width: number, height: number }}
  */
 var Photo
