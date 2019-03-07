@@ -56,7 +56,38 @@ class Photo extends Component {
     }
   }
   async upload() {
-    this.setState({ error: null, progress: 0, uploaded: false })
+    const { file } = this.props
+    /**
+     * @type {import('azure-storage').BlobService}
+     */
+    const blobService = this.props.blobService
+    this.setState({
+      error: null, progress: 0, uploaded: false })
+    if (blobService) {
+      const blockSize = file.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512
+      blobService.singleBlobPutThresholdInBytes = blockSize
+      const speedSummary = blobService.createBlockBlobFromBrowserFile(
+        'web-uploads', file.name, file,
+        { blockSize },
+        (error, result) => {
+          this.setState({ uploaded: true, progress: null })
+          if(error) {
+            // Handle blob error
+            this.setState({ error: error.message })
+          } else {
+            console.log('Upload is successful')
+          }
+        })
+      speedSummary.on('progress', () => {
+        debugger
+        const process = speedSummary.getCompletePercent()
+        this.updateProgress(process)
+      })
+      debugger
+    }
+    return
+    this.setState({
+      error: null, progress: 0, uploaded: false })
     const formData = new FormData()
     formData.append('image', this.props.file)
     formData.append('name', this.props.file.name)

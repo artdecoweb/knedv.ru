@@ -45,6 +45,9 @@ const AdminLayout = ({
       </div>
     </footer>
 
+    {loggedIn &&
+      <script src="/azure.js"></script>
+    }
     {loggedIn && !PROD &&
       <script type="module" src="/frontend-admin/"></script>
     }

@@ -1,3 +1,5 @@
+import { createBlobService, BlobUtilities } from 'azure-storage'
+
 /** @type {import('koa').Middleware} */
 const getData = async (ctx) => {
   /** @type {import('../../src/database').default} */
@@ -47,8 +49,12 @@ const getData = async (ctx) => {
     }))
     gg.photos = photos
     return gg
+  } else if ('sas' in ctx.query) {
+    const container = 'web-uploads'
+    const { token } = generateSasToken(container, 'w')
+    return { sas: token, name: 'knedv', container }
   } else {
-    return { error: 'unknown path' }
+    throw new Error('Unknown path')
   }
 }
 
@@ -75,3 +81,27 @@ const mapDoc = ({ _doc }) => _doc
 export const middleware = r => ['session', 'checkAdmin', 'ajaxAdmin', r]
 
 export default getData
+
+function generateSasToken(container, permissions = BlobUtilities.SharedAccessPermissions.READ, blobName) {
+  const blobService = createBlobService()
+
+  // Create a SAS token that expires in an hour
+  // Set start time to five minutes ago to avoid clock skew.
+  const startDate = new Date()
+  startDate.setMinutes(startDate.getMinutes() - 5)
+  const expiryDate = new Date(startDate)
+  expiryDate.setMinutes(startDate.getMinutes() + 60)
+
+  const sasToken = blobService.generateSharedAccessSignature(container, blobName, {
+    AccessPolicy: {
+      Permissions: permissions,
+      Start: startDate,
+      Expiry: expiryDate,
+    },
+  })
+
+  return {
+    token: sasToken,
+    uri: blobService.getUrl(container, blobName, sasToken, true),
+  }
+}

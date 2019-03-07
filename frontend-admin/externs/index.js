@@ -21,3 +21,8 @@ var Gallery
  * @typedef {{_id: string, file: string, galleryId: string, width: number, height: number }}
  */
 var Photo
+
+/**
+ * @typedef {{ sas: string, name: string, container: string }}
+ */
+var SAS
