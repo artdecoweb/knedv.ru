@@ -7,10 +7,14 @@ import { write } from '@wrote/wrote'
 import { stringify } from 'querystring'
 import { processPhoto } from '../src/upload'
 
-const { 'MONGO_URL': MONGO_URL } = process.env
+const {
+  'MONGO_URL': MONGO_URL,
+  'CDN': CDN = 'https://knedv.azureedge.net',
+  'STORAGE': STORAGE = 'knedv',
+} = process.env
 
 export default async function (context, req) {
-  const { st, se, sp, sv, sr, sig, container, storage, name } = req.query
+  const { st, se, sp, sv, sr, sig, storage, name } = req.query
   const token = stringify({ st, se, sp, sv, sr, sig })
 
   if (req.method == 'GET') {
@@ -32,15 +36,15 @@ export default async function (context, req) {
     const [part] = parts
     if (!part) throw new Error('File not found')
     const path = `upload/data`
-    await write(path, part)
+    await write(path, part.data)
     const ep = new ExiftoolProcess(exiftool)
     await ep.open()
 
-    const blobService = await createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
+    const blobService = createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
 
-    const data = await processPhoto(exiftool, path, {
-      storage: 'knedv',
-      cdn: 'https://knedv.azureedge.net',
+    const data = await processPhoto(ep, path, {
+      storage: STORAGE,
+      cdn: CDN,
       name,
       blobService,
     })
@@ -48,16 +52,21 @@ export default async function (context, req) {
     let client
     try {
       client = new MongoClient(MONGO_URL)
-      const res = MONGO_URL.replace('/')
+      const res = MONGO_URL.split('/')
       const dbName = res[res.length - 1]
       await client.connect()
       const db = client.db(dbName)
       const collection = db.collection('uploads')
-      const insertRes = await collection.insertOne({ a : 1 })
+      const insertRes = await collection.insertOne(data)
+
+      const [photo] = insertRes.ops
+      if (!photo) throw new Error('Photo was not added')
+      const d = {
+        file: data.cdnImageM, // the file for editor upload
+        result: data.cdnImageS, success: 1, photoId: photo._id }
+      return d
     } finally {
       await client.close()
     }
-
-    return { body }
   }
 }

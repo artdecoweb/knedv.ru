@@ -1,3 +1,4 @@
+import rm from '@wrote/rm'
 import { processPhoto } from '../../src/upload'
 
 /**
@@ -5,15 +6,15 @@ import { processPhoto } from '../../src/upload'
  */
 const uploadAsset = async (ctx) => {
   const { name } = ctx.query
-  const { file: {
-    mimetype, path, filename, // generated randomly
-  } = {} } = ctx.req
+  const { file: { mimetype, path } = {} } = ctx.req
   ctx.type = 'application/json'
   try {
-    await fn({ ctx, path, mimetype, filename, name })
+    await fn({ ctx, path, mimetype, name })
   } catch({ message: error }) {
     ctx.status = 500
     ctx.body = { error }
+  } finally {
+    await rm(path)
   }
 }
 
