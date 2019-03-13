@@ -15,6 +15,8 @@ const {
   'TEMP': TEMP = 'upload',
 } = process.env
 
+let EP
+
 export default async function (context, req) {
   const { st, se, sp, sv, sr, sig, storage, name } = req.query
   const token = stringify({ st, se, sp, sv, sr, sig })
@@ -41,8 +43,13 @@ export default async function (context, req) {
     if (!part) throw new Error('File not found')
 
     let t2, t = new Date().getTime()
-    const ep = new ExiftoolProcess(exiftool)
-    await ep.open()
+    if (!EP) {
+      const ep = new ExiftoolProcess(exiftool)
+      EP = ep.open().then(() => ep)
+    } else {
+      context.log('Reusing memory exiftool process.')
+    }
+    const ep = await EP
     t2 = new Date().getTime()
     context.log(`Started exiftool in ${-(t - t2)}ms`)
     const blobService = createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
@@ -77,7 +84,7 @@ export default async function (context, req) {
       return d
     } finally {
       await Promise.all([
-        ep.close(),
+        // ep.close(),
         client.close(),
         rm(path).catch(() => {}),
       ])
