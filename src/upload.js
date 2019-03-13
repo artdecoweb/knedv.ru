@@ -1,11 +1,12 @@
+import shortid from 'shortid'
 import { handleImage } from './lib'
 
 export const processPhoto = async (exiftool, path, {
-  cdn, storage, filename, mimetype, name,
+  cdn, storage, filename = shortid.generate(), name, blobService,
 }) => {
-  const { data: [metadata] } = await exiftool.readMetadata(path, ['ImageWidth', 'ImageHeight', 'Model', 'DateTimeOriginal', 'Orientation#'])
+  const { data: [metadata] } = await exiftool.readMetadata(path, ['ImageWidth', 'ImageHeight', 'Model', 'DateTimeOriginal', 'Orientation#', 'MIMEType', 'FileTypeExtension'])
 
-  const { Model, DateTimeOriginal, ImageWidth, ImageHeight, Orientation }  = metadata
+  const { Model, DateTimeOriginal, ImageWidth, ImageHeight, Orientation, MIMEType, FileTypeExtension: filetype }  = metadata
 
   const width = Orientation >= 5 ? ImageWidth : ImageHeight
   const height = Orientation >= 5 ? ImageHeight : ImageWidth
@@ -22,10 +23,10 @@ export const processPhoto = async (exiftool, path, {
 
   await exiftool.writeMetadata(path, exifdata, ['overwrite_original'])
 
-  const { buffer, ...cdnImgM } = await handleImage(cdn, storage, path, `${filename}-m`, mimetype, { folder: 'upload', resize: 1000 })
+  const { buffer, ...cdnImgM } = await handleImage(cdn, storage, path, `${filename}-m`, MIMEType, { folder: 'upload', resize: 1000, blobService, filetype })
   const cdnImageM = cdnImgM.cdnImage
 
-  const { buffer: b, ...cdnImgS } = await handleImage(cdn, storage, path, `${filename}-s`, mimetype, { folder: 'upload', resize: 500, buffer })
+  const { buffer: b, ...cdnImgS } = await handleImage(cdn, storage, path, `${filename}-s`, MIMEType, { folder: 'upload', resize: 500, buffer, blobService, filetype })
   const cdnImageS = cdnImgS.cdnImage
 
   const data = {

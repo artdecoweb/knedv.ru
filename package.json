@@ -61,6 +61,7 @@
     "node-exiftool": "2.3.0",
     "preact": "8.4.2",
     "sharp": "0.21.3",
+    "shortid": "2.2.14",
     "trumbowyg": "2.14.0",
     "unfetch": "4.1.0"
   }

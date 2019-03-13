@@ -44,6 +44,7 @@ export const uploadFile = async ({
   storage,
 }) => {
   const blobService = createBlobService()
+  blobService.doesBlobExist
   const res = await new Promise((r, j) => {
     blobService.createBlockBlobFromLocalFile(container, blob, filename, {
       contentSettings: {
@@ -58,6 +59,7 @@ export const uploadFile = async ({
 }
 
 /**
+ * Create a block block from Buffer.
  * @returns {string} The URL of the uploaded file
  */
 export const file = async ({
@@ -66,8 +68,15 @@ export const file = async ({
   container,
   blob,
   storage,
+  blobService = createBlobService(),
 }) => {
-  const blobService = createBlobService()
+  const { exists } = await new Promise((r, j) => {
+    blobService.doesBlobExist(container, blob, (err, res) => {
+      if (err) return j(err)
+      return r(res)
+    })
+  })
+  if (exists) throw new Error(`${blob} exists in ${container}`)
   const res = await new Promise((r, j) => {
     blobService.createBlockBlobFromText(container, blob, text, {
       contentSettings: {

@@ -17,13 +17,13 @@ const uploadAsset = async (ctx) => {
   }
 }
 
-const fn = async ({ ctx, path, filename, mimetype, name }) => {
+const fn = async ({ ctx, path, mimetype, name }) => {
   const { database, cdn, storage } = ctx
   /** @type {ExiftoolProcess} */
   const exiftool = ctx.exiftool
 
   const data = await processPhoto(exiftool, path, {
-    cdn, filename, mimetype, storage, name,
+    cdn, mimetype, storage, name,
   })
   const { cdnImageS, cdnImageM } = data
   const photo = await database.addObject('Upload', data)
