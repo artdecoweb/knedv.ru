@@ -52,7 +52,7 @@ const getData = async (ctx) => {
   } else if ('sas' in ctx.query) {
     const container = 'web-uploads'
     const { token } = generateSasToken(container, 'w')
-    return { sas: token, name: 'knedv', container }
+    return `http://localhost:7071/api/WebUpload?${token}&container=${container}&storage=${ctx.storage}`
   } else {
     throw new Error('Unknown path')
   }

@@ -37,11 +37,13 @@
   },
   "homepage": "https://github.com/artdecoweb/knedv.ru#readme",
   "devDependencies": {
-    "alamode": "1.8.3",
-    "documentary": "1.21.4",
+    "alamode": "1.8.4",
+    "documentary": "1.22.0",
     "eslint-config-artdeco": "1.0.1",
+    "mongodb": "3.1.13",
+    "parse-multipart": "1.0.4",
     "rqt": "3.1.2",
-    "zoroaster": "3.8.1"
+    "zoroaster": "3.8.2"
   },
   "dependencies": {
     "@demimonde/dotenv": "1.0.0",
@@ -55,7 +57,7 @@
     "dist-exiftool": "10.53.0",
     "erte": "1.1.6",
     "logarithm": "1.0.1",
-    "mongoose": "5.4.17",
+    "mongoose": "5.4.19",
     "node-exiftool": "2.3.0",
     "preact": "8.4.2",
     "sharp": "0.21.3",

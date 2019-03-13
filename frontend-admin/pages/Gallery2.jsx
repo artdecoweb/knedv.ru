@@ -4,7 +4,7 @@ import { loadData } from '../Components/LoadData'
 import { LoadingIndicator } from '../Components'
 import PhotoUploader from '../Components/PhotoUploader'
 import Form, { FormGroup, SubmitButton, SubmitForm } from '@depack/form'
-import 'preact/devtools/'
+// import 'preact/devtools/'
 
 /**
  * The Gallery with the photo display at the top and upload form at the bottom. When a photo is uploaded via the inner photo uploaded, the `load` method is triggered which refreshes the list.
@@ -139,21 +139,16 @@ class GalleryForm extends SubmitForm {
   async load() {
     /** @type {SAS} */
     const data = await loadData.bind(this)('sas')
-    if (data) this.setState({ ...data })
+    if (data) this.setState({ uri: data })
   }
   render({ galleryId, confirmText, uploadedResults }) {
-    const { formLoading, error, success,
-      name, sas } = this.state
+    const { formLoading, error, success, uri } = this.state
     let blobService
-    if (name && sas) {
-      const blobUri = `https://${name}.blob.core.windows.net`
-      blobService = window['AzureStorage'].Blob.createBlobServiceWithSas(blobUri, sas)
-    }
     return (
       <Form onSubmit={this.submit.bind(this)}>
         <input name="galleryId" value={galleryId} type="hidden" />
         <FormGroup label="Загрузка Изображений" help="Выберите несколько изображений и загрузите их.">
-          <PhotoUploader blobService={blobService} ref={(r) => {
+          <PhotoUploader uploadUri={uri} blobService={blobService} ref={(r) => {
             this.photoUploader = r
           }} onPhotoUploaded={async () => {
             this.reset()

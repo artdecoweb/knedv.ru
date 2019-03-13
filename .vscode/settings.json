@@ -8,5 +8,8 @@
     "obj": true,
     "bin": true
   },
-  "debug.internalConsoleOptions": "neverOpen"
+  "debug.internalConsoleOptions": "neverOpen",
+  "html.experimental.customData": [
+    "./node_modules/documentary/web-components.json"
+  ]
 }

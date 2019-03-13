@@ -21,7 +21,7 @@ import { handleImage } from '../../src/lib'
  * @type {import('koa').Middleware}
  */
 const uploadAsset = async (ctx) => {
-  const { name } = ctx.req.body
+  const { name } = ctx.query
   const { file: {
     mimetype, path, filename,
   } = {} } = ctx.req

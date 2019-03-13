@@ -23,6 +23,6 @@ var Gallery
 var Photo
 
 /**
- * @typedef {{ sas: string, name: string, container: string }}
+ * @typedef {string}
  */
 var SAS

@@ -23,7 +23,7 @@ class PhotoUploader extends Component {
     })
     if (this.props.onAdded) this.props.onAdded()
   }
-  render({ fieldName = 'files[]', onPhotoUploaded, uploadedResults, blobService }) {
+  render({ fieldName = 'files[]', onPhotoUploaded, uploadedResults, uploadUri }) {
     const { hid, id } = this.context
     return (<div className="PhotoUploader" onDragEnter={(event) => {
       event.preventDefault()
@@ -47,7 +47,7 @@ class PhotoUploader extends Component {
       }} type="file" multiple />
       {this.state.addingFiles ? 'Идет опознование файлов...' : 'Или переместите файлы сюда...'}
       {this.state.files.map(({ file, pid }) => {
-        return (<Photo blobService={blobService} key={pid} name={file.name} file={file} onRemove={() => {
+        return (<Photo uploadUri={uploadUri} key={pid} name={file.name} file={file} onRemove={() => {
           this.removeFile(file)
         }} fieldName={fieldName} onUploaded={onPhotoUploaded} uploadedResults={uploadedResults}/>)
       })}

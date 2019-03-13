@@ -56,61 +56,25 @@ class Photo extends Component {
     }
   }
   async upload() {
+    const {
+      uploadUri = '/upload-asset',
+    } = this.props
+    this.setState({
+      error: null, progress: 0, uploaded: false })
+    return this.uploadPost(uploadUri)
+  }
+
+  async uploadPost(url) {
     const { file } = this.props
-    /**
-     * @type {import('azure-storage').BlobService}
-     */
-    const blobService = this.props.blobService
-    this.setState({
-      error: null, progress: 0, uploaded: false })
-    if (blobService) {
-      const blockSize = file.size > 1024 * 1024 * 32 ? 1024 * 1024 * 4 : 1024 * 512
-      blobService.singleBlobPutThresholdInBytes = blockSize
-      const speedSummary = blobService.createBlockBlobFromBrowserFile(
-        'web-uploads', file.name, file,
-        { blockSize },
-        (error, result) => {
-          this.setState({ uploaded: true, progress: null })
-          if(error) {
-            // Handle blob error
-            this.setState({ error: error.message })
-          } else {
-            console.log('Upload is successful')
-          }
-        })
-      speedSummary.on('progress', () => {
-        debugger
-        const process = speedSummary.getCompletePercent()
-        this.updateProgress(process)
-      })
-      debugger
-    }
-    return
-    this.setState({
-      error: null, progress: 0, uploaded: false })
     const formData = new FormData()
-    formData.append('image', this.props.file)
-    formData.append('name', this.props.file.name)
+    formData.append('image', file)
     const xhr = new XMLHttpRequest()
-    xhr.open('POST', '/upload-asset', true)
+    xhr.open('POST', `${url}&name=${file.name}`, true)
     xhr.seenBytes = 0
     xhr.upload.addEventListener('progress', (e) => {
       this.updateProgress((e.loaded * 100.0 / e.total) || 100)
     })
-    // let lastData
     xhr.addEventListener('readystatechange', () => {
-      // if(xhr.readyState == 3) {
-      //   const newData = xhr.response.substr(xhr.seenBytes)
-      //   xhr.seenBytes = xhr.responseText.length
-      //   lastData = newData
-      //   if (lastData) {
-      //     try {
-      //       lastData = JSON.parse(lastData)
-      //     } catch (err) {/**/}
-      //   }
-      //   return
-      // }
-
       if (xhr.readyState == 4) {
         this.setState({ uploaded: true, progress: null })
       }
@@ -133,11 +97,12 @@ class Photo extends Component {
             this.props.onUploaded(result)
           }
         }
-        // else if (lastData) {
-        //   this.setState({ result: lastData })
-        // }
       } else if (xhr.readyState == 4 && xhr.status != 200) {
-        this.setState({ error: 'XHR Error' })
+        let error = 'XHR Error'
+        try {
+          ({ 'error': error } = JSON.parse(xhr.responseText))
+        } catch (err) {/**/}
+        this.setState({ error: error })
       }
     })
 
