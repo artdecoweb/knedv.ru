@@ -35,7 +35,7 @@ export default async function (context, req) {
 
     const [part] = parts
     if (!part) throw new Error('File not found')
-    const path = `upload/data`
+    const path = `webupload-data`
     await write(path, part.data)
     const ep = new ExiftoolProcess(exiftool)
     await ep.open()

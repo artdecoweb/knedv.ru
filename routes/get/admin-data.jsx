@@ -53,7 +53,9 @@ const getData = async (ctx) => {
     // return '/upload-asset?'
     const container = 'images' // 'web-uploads'
     const { token } = generateSasToken(container, 'rw')
-    return `http://localhost:7071/api/WebUpload?${token}&container=${container}&storage=${ctx.storage}`
+    // const host = 'http://localhost:7071/api/WebUpload'
+    const host = 'https://knedv.azurewebsites.net/api/WebUpload'
+    return `${host}?${token}&container=${container}&storage=${ctx.storage}`
   } else {
     throw new Error('Unknown path')
   }
