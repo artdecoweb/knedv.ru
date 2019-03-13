@@ -108,7 +108,7 @@ class PhotoList extends Component {
   render({ photos, loading }) {
     return (<Row>
       {photos.map(({ file, _id: i, width, height }) => {
-        if (width || height) console.log('w/h %s %s', width, height)
+        // if (width || height) console.log('w/h %s %s', width, height)
         return (<Col key={i} className="col-sm-4" style="padding:.25rem;">
           <img className="img-fluid" style="max-height: 200px;" src={file} /></Col>)
       })}
@@ -128,10 +128,10 @@ class PhotoList extends Component {
  * This is the form to upload pictures.
  */
 class GalleryForm extends SubmitForm {
-  addLinks() {
-    if (this.photoUploader) {
-      this.photoUploader.externalAPI()
-    }
+  constructor() {
+    super()
+    this.reset = this.reset.bind(this)
+    this.submit = this.submit.bind(this)
   }
   async componentDidMount() {
     await this.load()
@@ -143,19 +143,12 @@ class GalleryForm extends SubmitForm {
   }
   render({ galleryId, confirmText, uploadedResults }) {
     const { formLoading, error, success, uri } = this.state
-    let blobService
     return (
-      <Form onSubmit={this.submit.bind(this)}>
+      <Form onSubmit={this.submit}>
         <input name="galleryId" value={galleryId} type="hidden" />
         <FormGroup label="Загрузка Изображений" help="Выберите несколько изображений и загрузите их.">
-          <PhotoUploader uploadUri={uri} blobService={blobService} ref={(r) => {
-            this.photoUploader = r
-          }} onPhotoUploaded={async () => {
-            this.reset()
-            // await new Promise(r => setTimeout(r, 1))
-            // this.submit({ target: this.base, preventDefault() {} })
-          }} onAdded={() => this.reset()} onRemove={() => this.reset()}
-          uploadedResults={uploadedResults}
+          <PhotoUploader uploadUri={uri} onPhotoUploaded={this.reset} onAdded={this.reset} onRemove={this.reset}
+            uploadedResults={uploadedResults}
           />
         </FormGroup>
         <SubmitButton loading={formLoading} loadingText="Загрузка..." confirmText={confirmText} />

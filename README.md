@@ -151,6 +151,25 @@ if(xhr.readyState == 3) {
 
 In such way, the user can receive a more detailed feedback to what is going on. This, however, is impossible to implement with Azure functions because they don't support streaming. Only in .NET it could be possible.
 
+```js
+import { Readable } from 'stream'
+ctx.body = new Readable({
+  read() {},
+})
+promise.catch((err) => {
+  ctx.body.push(JSON.stringify({ error: err.message }))
+  ctx.body.push(null)
+})
+const communicate = (ctx, obj) => {
+  ctx.body.push(JSON.stringify(obj))
+}
+communicate(ctx, { previewM: cdnImageM })
+communicate(ctx, { previewS: cdnImageS })
+communicate(ctx, { metadata })
+communicate(ctx, { photo_id: 'ASSIGN THE ID HERE' })
+ctx.body.push(null)
+```
+
 ### Authentication
 
 The authentication is performed by generating the SAS token on the server, and passing it to the Azure function, which then validates the token by attempting to upload the document into the store. If it was fine, it continues to save the picture in the database.

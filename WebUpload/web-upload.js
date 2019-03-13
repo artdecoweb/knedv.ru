@@ -4,15 +4,18 @@ import { Parse, getBoundary } from 'parse-multipart'
 import { MongoClient } from 'mongodb'
 import { createBlobServiceWithSas } from 'azure-storage'
 import { write } from '@wrote/wrote'
+import { stringify } from 'querystring'
 
 export default async function (context, req) {
+  const { st, se, sp, sv, sr, sig, container, storage, name } = req.query
+  const token = stringify({ st, se, sp, sv, sr, sig })
+
   if (req.method == 'GET') {
     if (req.body) req.body = req.body.slice(0, 100)
     if (req.rawBody) req.rawBody = req.rawBody.slice(0, 100)
     const body = JSON.stringify(req, null, 2)
     return body
   } else if (req.method == 'POST') {
-    const { st, se, sp, sv, sr, sig, container, storage, name } = req.query
     const { 'content-type': contentType } = context.req.headers
     if (!contentType.startsWith('multipart/form-data')) {
       throw new Error('Not multipart')
@@ -68,7 +71,7 @@ export default async function (context, req) {
       height,
     }
 
-    const blobService = await createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, `st=${st}&se=${se}&sp=${sp}&sv=${sv}&sr=${sr}&sig=${sig}`)
+    const blobService = await createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
 
     let client
     try {

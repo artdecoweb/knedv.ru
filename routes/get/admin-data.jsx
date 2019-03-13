@@ -50,6 +50,7 @@ const getData = async (ctx) => {
     gg.photos = photos
     return gg
   } else if ('sas' in ctx.query) {
+    return '/upload-asset?'
     const container = 'web-uploads'
     const { token } = generateSasToken(container, 'w')
     return `http://localhost:7071/api/WebUpload?${token}&container=${container}&storage=${ctx.storage}`
