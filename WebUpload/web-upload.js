@@ -35,6 +35,7 @@ export default async function (context, req) {
       throw new Error('No boundary')
     }
     const parts = Parse(req.body, boundary)
+    context.log('Extracted body part.')
 
     const [part] = parts
     if (!part) throw new Error('File not found')
