@@ -25,11 +25,15 @@ class PhotoUploader extends Component {
   }
   render({ fieldName = 'files[]', onPhotoUploaded, uploadedResults, uploadUri }) {
     const { hid, id } = this.context
+    let counter = 0
     return (<div className="PhotoUploader" onDragEnter={(event) => {
       event.preventDefault()
+      counter++
       event.currentTarget.style.background = '#E91E63'
     }} onDragLeave={(event) => {
-      event.currentTarget.style.background = ''
+      counter--
+      if (counter == 0)
+        event.currentTarget.style.background = ''
     }} onDrop={(event) => {
       event.preventDefault()
       event.stopPropagation()
