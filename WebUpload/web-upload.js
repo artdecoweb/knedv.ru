@@ -12,6 +12,7 @@ const {
   'MONGO_URL': MONGO_URL,
   'CDN': CDN = 'https://knedv.azureedge.net',
   'STORAGE': STORAGE = 'knedv',
+  'TEMP': TEMP = 'upload',
 } = process.env
 
 export default async function (context, req) {
@@ -41,7 +42,7 @@ export default async function (context, req) {
     await ep.open()
     const blobService = createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
 
-    const path = join('upload', context.invocationId)
+    const path = join(TEMP, context.invocationId)
     await ensurePath(path)
     await write(path, part.data)
 
