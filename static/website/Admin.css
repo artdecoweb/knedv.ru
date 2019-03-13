@@ -116,11 +116,13 @@ nav {
 }
 .ImageInfo.PhotoError {
   background: rgba(156, 66, 60, 0.63);
-  margin: 0px;
+  margin: 0;
   border-color: red;
   color: navajowhite;
-  bottom: 0.5rem;
-  left: 0.5rem;
+  bottom: 0;
+  left: 0;
+  margin-left: .5rem;
+  margin-right: .5rem;
   padding-left: .25rem;
   padding-right: .25rem;
   text-shadow: 1px 1px brown;

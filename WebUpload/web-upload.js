@@ -2,10 +2,10 @@ import { ExiftoolProcess } from 'node-exiftool'
 import exiftool from 'dist-exiftool'
 import { Parse, getBoundary } from 'parse-multipart'
 import { MongoClient } from 'mongodb'
-import shortId from 'shortid'
 import { createBlobServiceWithSas } from 'azure-storage'
 import { write, rm, ensurePath } from '@wrote/wrote'
 import { stringify } from 'querystring'
+import { join } from 'path'
 import { processPhoto } from '../src/upload'
 
 const {
@@ -41,7 +41,7 @@ export default async function (context, req) {
     await ep.open()
     const blobService = createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
 
-    const path = `upload/${shortId.generate()}`
+    const path = join('upload', context.invocationId)
     await ensurePath(path)
     await write(path, part.data)
 
@@ -55,7 +55,7 @@ export default async function (context, req) {
         log: context.log,
       })
 
-      client = new MongoClient(MONGO_URL)
+      client = new MongoClient(MONGO_URL, { useNewUrlParser: true })
       const res = MONGO_URL.split('/')
       const dbName = res[res.length - 1]
       await client.connect()
@@ -71,6 +71,7 @@ export default async function (context, req) {
       return d
     } finally {
       await Promise.all([
+        ep.close(),
         client.close(),
         rm(path),
       ])
