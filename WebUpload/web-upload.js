@@ -25,6 +25,7 @@ export default async function (context, req) {
     return req
   } else if (req.method == 'POST') {
     if (!storage) throw new Error('No storage.')
+    context.log('Completed file upload.')
     const { 'content-type': contentType } = context.req.headers
     if (!contentType.startsWith('multipart/form-data')) {
       throw new Error('Not multipart')
