@@ -74,7 +74,7 @@ export default async function (context, req) {
       await Promise.all([
         ep.close(),
         client.close(),
-        rm(path),
+        rm(path).catch(() => {}),
       ])
     }
   }
