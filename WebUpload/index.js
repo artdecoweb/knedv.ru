@@ -1,14 +1,15 @@
 require('alamode')()
 const webUpload = require('./web-upload')
-module.exports = async (...args) => {
-  let body, status
+
+module.exports = async (context, ...args) => {
+  let body, status = 200
   try {
-    body = await webUpload(...args)
+    body = await webUpload(context, ...args)
   } catch (err) {
     body = { error: err.message, stack: err.stack }
     status = 500
   }
-  return {
+  context.res = {
     status,
     body: JSON.stringify(body, null, 2),
     headers: {
