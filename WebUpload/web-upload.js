@@ -52,6 +52,7 @@ export default async function (context, req) {
         cdn: CDN,
         name,
         blobService,
+        log: context.log,
       })
 
       client = new MongoClient(MONGO_URL)

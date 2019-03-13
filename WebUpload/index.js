@@ -6,7 +6,7 @@ module.exports = async (...args) => {
     body = await webUpload(...args)
   } catch (err) {
     body = { error: err.message, stack: err.stack }
-    status = 401
+    status = 500
   }
   return {
     status,

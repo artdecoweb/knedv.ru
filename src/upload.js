@@ -2,9 +2,12 @@ import shortid from 'shortid'
 import { handleImage } from './lib'
 
 export const processPhoto = async (exiftool, path, {
-  cdn, storage, filename = shortid.generate(), name, blobService,
+  cdn, storage, filename = shortid.generate(), name, blobService, log,
 }) => {
+  let t2, t = new Date().getTime()
   const { data: [metadata] } = await exiftool.readMetadata(path, ['ImageWidth', 'ImageHeight', 'Model', 'DateTimeOriginal', 'Orientation#', 'MIMEType', 'FileTypeExtension'])
+  t2 = new Date().getTime()
+  if (log) log(`Read metadata in ${-(t - t2)}ms`)
 
   const { Model, DateTimeOriginal, ImageWidth, ImageHeight, Orientation, MIMEType, FileTypeExtension: filetype }  = metadata
 
@@ -23,11 +26,17 @@ export const processPhoto = async (exiftool, path, {
 
   await exiftool.writeMetadata(path, exifdata, ['overwrite_original'])
 
+  t = new Date().getTime()
   const { buffer, ...cdnImgM } = await handleImage(cdn, storage, path, `${filename}-m`, MIMEType, { folder: 'upload', resize: 1000, blobService, filetype })
   const cdnImageM = cdnImgM.cdnImage
+  t2 = new Date().getTime()
+  if (log) log(`Resized to ${1000} in ${-(t - t2)}ms`)
 
+  t = new Date().getTime()
   const { buffer: b, ...cdnImgS } = await handleImage(cdn, storage, path, `${filename}-s`, MIMEType, { folder: 'upload', resize: 500, buffer, blobService, filetype })
   const cdnImageS = cdnImgS.cdnImage
+  t2 = new Date().getTime()
+  if (log) log(`Resized to ${500} in ${-(t - t2)}ms`)
 
   const data = {
     name,
