@@ -10,7 +10,7 @@ module.exports = async (...args) => {
   }
   return {
     status,
-    body: JSON.stringify(body),
+    body: JSON.stringify(body, null, 2),
     headers: {
       'content-type': 'application/json',
     },

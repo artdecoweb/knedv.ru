@@ -2,8 +2,9 @@ import { ExiftoolProcess } from 'node-exiftool'
 import exiftool from 'dist-exiftool'
 import { Parse, getBoundary } from 'parse-multipart'
 import { MongoClient } from 'mongodb'
+import shortId from 'shortid'
 import { createBlobServiceWithSas } from 'azure-storage'
-import { write } from '@wrote/wrote'
+import { write, rm, ensurePath } from '@wrote/wrote'
 import { stringify } from 'querystring'
 import { processPhoto } from '../src/upload'
 
@@ -20,9 +21,9 @@ export default async function (context, req) {
   if (req.method == 'GET') {
     if (req.body) req.body = req.body.slice(0, 100)
     if (req.rawBody) req.rawBody = req.rawBody.slice(0, 100)
-    const body = JSON.stringify(req, null, 2)
-    return body
+    return req
   } else if (req.method == 'POST') {
+    if (!storage) throw new Error('No storage.')
     const { 'content-type': contentType } = context.req.headers
     if (!contentType.startsWith('multipart/form-data')) {
       throw new Error('Not multipart')
@@ -35,22 +36,24 @@ export default async function (context, req) {
 
     const [part] = parts
     if (!part) throw new Error('File not found')
-    const path = `webupload-data`
-    await write(path, part.data)
+
     const ep = new ExiftoolProcess(exiftool)
     await ep.open()
-
     const blobService = createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
 
-    const data = await processPhoto(ep, path, {
-      storage: STORAGE,
-      cdn: CDN,
-      name,
-      blobService,
-    })
+    const path = `upload/${shortId.generate()}`
+    await ensurePath(path)
+    await write(path, part.data)
 
     let client
     try {
+      const data = await processPhoto(ep, path, {
+        storage: STORAGE,
+        cdn: CDN,
+        name,
+        blobService,
+      })
+
       client = new MongoClient(MONGO_URL)
       const res = MONGO_URL.split('/')
       const dbName = res[res.length - 1]
@@ -66,7 +69,10 @@ export default async function (context, req) {
         result: data.cdnImageS, success: 1, photoId: photo._id }
       return d
     } finally {
-      await client.close()
+      await Promise.all([
+        client.close(),
+        rm(path),
+      ])
     }
   }
 }
