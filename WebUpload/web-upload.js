@@ -40,8 +40,11 @@ export default async function (context, req) {
     const [part] = parts
     if (!part) throw new Error('File not found')
 
+    let t2, t = new Date().getTime()
     const ep = new ExiftoolProcess(exiftool)
     await ep.open()
+    t2 = new Date().getTime()
+    context.log(`Started exiftool in ${-(t - t2)}ms`)
     const blobService = createBlobServiceWithSas(`https://${storage}.blob.core.windows.net`, token)
 
     const path = join(TEMP, context.invocationId)
