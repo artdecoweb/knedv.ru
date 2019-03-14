@@ -1,16 +1,16 @@
 import shortid from 'shortid'
-import spawn from 'spawncommand'
-import { resolve } from 'path'
+// import spawn from 'spawncommand'
+// import { resolve } from 'path'
 import { handleImage } from './lib'
 
 export const processPhoto = async (exiftool, path, {
   cdn, storage, filename = shortid.generate(), name, blobService, log,
 }) => {
   let t2, t = new Date().getTime()
-  const p = spawn('perl', [resolve(__dirname, '../exiftool/exiftool'), path, '-j'])
-  await p.promise
-  t2 = new Date().getTime()
-  if (log) log(`Spawn metadata in ${-(t - t2)}ms`)
+  // const p = spawn('perl', [resolve(__dirname, '../exiftool/exiftool'), path, '-j'])
+  // await p.promise
+  // t2 = new Date().getTime()
+  // if (log) log(`Spawn metadata in ${-(t - t2)}ms`)
 
   t = new Date().getTime()
   const { data: [metadata] } = await exiftool.readMetadata(path, ['ImageWidth', 'ImageHeight', 'Model', 'DateTimeOriginal', 'Orientation#', 'MIMEType', 'FileTypeExtension'])

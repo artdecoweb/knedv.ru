@@ -6,7 +6,6 @@ import { createBlobServiceWithSas } from 'azure-storage'
 import { write, rm, ensurePath } from '@wrote/wrote'
 import { stringify } from 'querystring'
 import { join } from 'path'
-import { resolve } from 'path'
 import { processPhoto } from '../src/upload'
 
 const {
@@ -86,7 +85,7 @@ export default async function (context, req) {
     } finally {
       await Promise.all([
         // ep.close(),
-        client.close(),
+        client && client.close(),
         rm(path).catch(() => {}),
       ])
     }
