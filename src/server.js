@@ -94,7 +94,7 @@ export default async (opts) => {
   const w = await initRoutes(router, 'routes', {
     middleware,
   })
-  if (watch) watchRoutes(w)
+  if (watch) await watchRoutes(w)
   mailru(router, {
     client_id,
     client_secret,

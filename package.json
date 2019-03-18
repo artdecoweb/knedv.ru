@@ -49,7 +49,7 @@
     "@depack/router": "1.0.3",
     "@idio/core": "1.3.5",
     "@idio/mailru": "1.0.0",
-    "@idio/router": "1.2.1",
+    "@idio/router": "1.2.2",
     "@wrote/rm": "1.1.2",
     "alamode": "1.8.5",
     "azure-storage": "2.10.2",
