@@ -16,7 +16,7 @@
     "doc": "NODE_DEBUG=doc doc documentary -o README.md",
     "d": "NODE_DEBUG=doc doc src/server.js -g",
     "build": "alamode src -o build -s -i bin/index.js",
-    "depack": "depack-dev frontend-admin/index.jsx -o build/admin.js -I 2018 -a -H --charset=UTF-8 -p --externs frontend-admin/externs/index.js -w",
+    "depack": "depack-dev frontend-admin/index.jsx -o build/admin.js -a -H --charset=UTF-8 -p --externs frontend-admin/externs/index.js -w",
     "dokku": "git push dokku"
   },
   "files": [
@@ -37,34 +37,34 @@
   },
   "homepage": "https://github.com/artdecoweb/knedv.ru#readme",
   "devDependencies": {
-    "documentary": "1.22.0",
+    "documentary": "1.27.2",
     "eslint-config-artdeco": "1.0.1",
-    "rqt": "3.1.2",
-    "zoroaster": "3.9.0"
+    "rqt": "3.1.3",
+    "zoroaster": "4.1.1-alpha"
   },
   "dependencies": {
     "@demimonde/dotenv": "1.0.0",
     "@depack/form": "1.2.1",
     "@depack/render": "1.1.4",
     "@depack/router": "1.0.3",
-    "@idio/core": "1.3.5",
+    "@idio/core": "1.4.0",
     "@idio/mailru": "1.0.0",
-    "@idio/router": "1.2.2",
-    "@wrote/rm": "1.1.2",
-    "alamode": "1.8.5",
-    "azure-storage": "2.10.2",
+    "@idio/router": "1.3.1",
+    "@wrote/rm": "1.1.5",
+    "alamode": "2.2.0",
+    "azure-storage": "2.10.3",
     "dist-exiftool": "10.53.0",
-    "erte": "1.1.7",
+    "erte": "1.2.0",
     "logarithm": "1.0.1",
-    "mongodb": "3.1.13",
-    "mongoose": "5.4.19",
+    "mongodb": "3.2.4",
+    "mongoose": "5.5.7",
     "node-exiftool": "2.3.0",
     "parse-multipart": "1.0.4",
     "preact": "8.4.2",
-    "sharp": "0.21.3",
+    "sharp": "0.22.1",
     "shortid": "2.2.14",
-    "spawncommand": "2.1.1",
-    "trumbowyg": "2.14.0",
+    "spawncommand": "2.2.0",
+    "trumbowyg": "2.16.2",
     "unfetch": "4.1.0"
   }
 }
