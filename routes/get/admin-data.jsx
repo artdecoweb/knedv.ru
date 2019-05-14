@@ -50,12 +50,13 @@ const getData = async (ctx) => {
     gg.photos = photos
     return gg
   } else if ('sas' in ctx.query) {
-    // return '/upload-asset?'
-    const container = 'images' // 'web-uploads'
-    const { token } = generateSasToken(container, 'rw')
-    // const host = 'http://localhost:7071/api/WebUpload'
-    const host = 'https://knedv.azurewebsites.net/api/WebUpload'
-    return `${host}?${token}&container=${container}&storage=${ctx.storage}`
+    return '/upload-asset?'
+    // const container = 'images' // 'web-uploads'
+    // const { token } = generateSasToken(container, 'rw')
+    // // const host = 'http://localhost:7071/WebUpload'
+    // const host = 'https://knedv2.azurewebsites.net/WebUpload'
+    // // const host = 'http://artd.eco:8080/WebUpload'
+    // return `${host}?${token}&container=${container}&storage=${ctx.storage}`
   } else {
     throw new Error('Unknown path')
   }

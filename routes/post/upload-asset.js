@@ -2,7 +2,7 @@ import rm from '@wrote/rm'
 import { processPhoto } from '../../src/upload'
 
 /**
- * @type {import('koa').Middleware}
+ * @type {import('@goa/koa').Middleware}
  */
 const uploadAsset = async (ctx) => {
   const { name } = ctx.query

@@ -2,7 +2,7 @@ import { Component } from 'preact'
 import { Col, Row, ErrorAlert, Success, GrowingSpinner } from '../../frontend/components/Bootstrap'
 import { loadData } from '../Components/LoadData'
 import { LoadingIndicator } from '../Components'
-import PhotoUploader from '../Components/PhotoUploader'
+import PhotoUploader from 'photo-uploader'
 import Form, { FormGroup, SubmitButton, SubmitForm } from '@depack/form'
 // import 'preact/devtools/'
 
