@@ -7,12 +7,18 @@ import Form, { FormGroup, SubmitButton, SubmitForm } from '@depack/form'
 // import 'preact/devtools/'
 
 /**
- * The Gallery with the photo display at the top and upload form at the bottom. When a photo is uploaded via the inner photo uploaded, the `load` method is triggered which refreshes the list.
+ * The Gallery with the photo display at the top and upload form at the bottom. When a photo is uploaded via the inner photo uploader, the `load` method is triggered which refreshes the list.
  */
 export default class Gallery2 extends Component {
   constructor() {
     super()
-    this.state = { data: null, loading: true, files: [], uploadedResults: [] }
+    this.state = {
+      data: null,
+      loading: true,
+      files: [],
+      uploadedResults: [],
+      uri: null,
+    }
   }
   async componentDidMount() {
     await this.load()

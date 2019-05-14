@@ -3,6 +3,7 @@ import fetch from 'unfetch'
 /**
  * Loads the data while setting the state of `this` to `loading`.
  * The data is returned by this function, unless `error` is returned in which case the `error` state is set to the error.
+ * @this {!preact.Component}
  */
 export async function loadData(path) {
   this.setState({ loading: true })

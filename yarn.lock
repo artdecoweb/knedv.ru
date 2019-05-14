@@ -52,10 +52,10 @@
   dependencies:
     mismatch "^1.1.1"
 
-"@depack/form@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@depack/form/-/form-1.2.1.tgz#0659d98776b2d128df3b1dd06aea87ea9afbdab0"
-  integrity sha512-YG4aLUZIMZfemzuUMIGm5VCmeK55SxhugOYXmQyay+6GoLwbsVjjTyOZfLwG9c8a3MRTYwsIPuGpVB+dWt9HeA==
+"@depack/form@^1.3.1":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@depack/form/-/form-1.3.1.tgz#7774d361bfa076a6c3693c915020271fce34f782"
+  integrity sha512-UhrFpeOGb0FQIbLtFVT502QpHojNruXTWssB4e4gdKgwDh92xIX12W/Eyh9fF6a4knZEU6i6yNdwUPDEwC8zqg==
   dependencies:
     unfetch "4.1.0"
 
@@ -64,15 +64,20 @@
   resolved "https://registry.yarnpkg.com/@depack/render/-/render-1.1.4.tgz#8586d55f60502c8bfae7bbb0bd0a0513670fbcbd"
   integrity sha512-/dotKRTngUMOZpVwZvdMYZz6NID6fJENTaG1sa14UbAS3bleGa7OeXie5468Huw/NRZcGPf/390ndegXbdNSpA==
 
-"@depack/router@1.0.3":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@depack/router/-/router-1.0.3.tgz#1a20cf26c8691316e4a96fd8c0dd712a19de91f8"
-  integrity sha512-oxk0pfOXJeGJZGZv5OUk4qThFFcFT9YU/pYLA+a53v77r1y/rs7+8AzN0hHXMNGscxDX8m7FMZR7JJNHJo/vNA==
+"@depack/router@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@depack/router/-/router-1.0.4.tgz#892de48ba1402afdf637e1090535e343dad2137d"
+  integrity sha512-9CxJ7iHekufoEYK/hIdhC0Bl7fpEk6FYfSFBjYl3EAQ46ykzBo5k73ZrGzZWhZod5m6Fyz7Y9A32wAvIUqkdeg==
 
 "@depack/split@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@depack/split/-/split-1.0.0.tgz#37fea28d9bc6f01e5a2da87d393f402781bb7e99"
   integrity sha512-PNJPl01VFMKtyN7qBZ2cds4N/lO2KvzLrR7JamODFiuuL2X8mGoTKp1SI8fxlT2MwLV8mScCUKn55QPwsUX7iA==
+
+"@externs/preact@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@externs/preact/-/preact-1.1.0.tgz#843ef929c150370544f210d3c866c3e203519114"
+  integrity sha512-lbqHqlykl7Y65goYSoIjZKItYfMa7vdilb2dGwGd+YzEc7HCOHaG1nOU9w8avlbeqP3UE/SQ7tQ3ktw1yfP/Xw==
 
 "@goa/koa@^1.0.2":
   version "1.1.0"

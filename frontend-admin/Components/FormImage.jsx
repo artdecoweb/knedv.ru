@@ -25,6 +25,7 @@ class FormImage extends Component {
     if(!editing || resetImage) return <FormGroup label="Изображение" help={help}>
       <Input name="image" type="file" file="1" required={required} />
     </FormGroup>
+    return null
   }
 }
 

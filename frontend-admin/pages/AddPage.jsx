@@ -11,6 +11,7 @@ export default class AppPage extends Component {
       data: {},
       article: '',
     }
+    this.form = null
   }
   async componentDidMount() {
     const editing = !!this.props.id
