@@ -36,7 +36,12 @@ export default async (opts) => {
     { use: true, root: 'node_modules/trumbowyg',
       mount: '/trumbowyg', config: {
         maxage: maxage(),
-      } } ],
+      } },
+    { use: true, root: 'node_modules/preact/dist',
+      mount: '/preact', config: {
+        maxage: maxage(),
+      } },
+    ],
     ...(!PROD ? {
       frontend: {
         directory: ['frontend', 'frontend-admin'],

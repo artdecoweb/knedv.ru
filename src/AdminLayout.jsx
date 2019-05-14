@@ -3,7 +3,7 @@ import { Row, Col } from '../frontend/components/Bootstrap'
 
 const AdminLayout = ({
   title, App, loggedIn, PROD,
-}) => '<!doctype html>' + render(<html className="h-100">
+}) => render(<html className="h-100">
   <head lang="ru">
     <title>{title}</title>
     <meta charset="utf-8"/>
@@ -45,18 +45,21 @@ const AdminLayout = ({
       </div>
     </footer>
 
-    {loggedIn &&
-      <script src="/azure.js"></script>
-    }
     {loggedIn && !PROD &&
       <script type="module" src="/frontend-admin/"></script>
+    }
+    {loggedIn && PROD &&
+      <script src="/preact/preact.min.js"></script>
     }
     {loggedIn && PROD &&
       <script src="/admin.js"></script>
     }
   </body>
-</html>)
+</html>, { addDoctype: true })
 
 {/*  */}
+// {loggedIn &&
+//   <script src="/azure.js"></script>
+// }
 
 export default AdminLayout
