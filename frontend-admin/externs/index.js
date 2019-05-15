@@ -1,5 +1,5 @@
 /**
- * @typedef {{ _id: string, article: string, cdnImage: string, description: string, image: string, imageContainer: string, imageLocation: string, seo: string, title: string }}
+ * @typedef {{ _id: string, article: string, cdnImage: string, description: string, image: string, imageContainer: string, imageLocation: string, seo: string, title: string, hidden: boolean }}
  */
 var Category
 

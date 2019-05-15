@@ -1,4 +1,5 @@
 import fetch from 'unfetch'
+import { Component } from 'preact'
 import Form, {
   FormGroup, Input, TextArea, SubmitForm, SubmitButton, Select,
 } from '@depack/form'
@@ -13,12 +14,16 @@ export default class ObjectForm extends SubmitForm {
     super()
     Object.assign(this.state, {
       loading: false,
-      data: {},
+      data: {
+        showing: true,
+      },
       categories: [],
       hint: '1-комнатные-апартаменты-воскресенское',
       catSeo: 'апартаменты',
       article: '',
     })
+    this.reset = this.reset.bind(this)
+    this.submit = this.submit.bind(this)
   }
   async componentDidMount() {
     await this.loadCategories()
@@ -32,7 +37,10 @@ export default class ObjectForm extends SubmitForm {
     if (data) {
       const [d] = data
       if (d) this.setState({
-        data: d,
+        data: {
+          ...d,
+          showing: !d.hidden,
+        },
         hint: d.seo,
         catSeo: d.categorySeo,
         article: d.article,
@@ -71,9 +79,7 @@ export default class ObjectForm extends SubmitForm {
   }) {
     const { categories, formLoading, data, loading, error, success } = this.state
 
-    const form = (<Form onSubmit={this.submit.bind(this)} onChange={(vals) => {
-      this.reset()
-    }}>
+    const form = (<Form onSubmit={this.submit} onChange={this.reset}>
       <FormGroup help="Название для каталога недвижимости." label="Название">
         <Input name="title" required placeholder="1к. апартаменты, 21 кв.м, п. Воскресенское" value={data.title} />
       </FormGroup>
@@ -84,7 +90,7 @@ export default class ObjectForm extends SubmitForm {
         <Input name="seo" required placeholder="1-комнатные-апартаменты-воскресенское" value={data.seo} />
       </FormGroup>
       <FormGroup help="Описание объекта." label="Описание">
-        <TextArea rows={10} name="description" required  placeholder="Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле 'современная классика', что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично).">
+        <TextArea rows={10} name="description" required placeholder={placeholder}>
           {data.description}
         </TextArea>
       </FormGroup>
@@ -98,6 +104,10 @@ export default class ObjectForm extends SubmitForm {
       {this.editing && <input type="hidden" name="id" value={this.props.id}/>}
       <FormGroup label="Раздел" help="Категория в каталоге">
         <Select name="category" options={categories} required value={data.category} />
+      </FormGroup>
+
+      <FormGroup label="Включено">
+        <Switch name="showing" value={data.showing} hint="Показывается в каталоге" />
       </FormGroup>
 
       <ErrorAlert error={error} />
@@ -120,6 +130,36 @@ export default class ObjectForm extends SubmitForm {
     </Col>
   }
 }
+
+class Switch extends Component {
+  render(props) {
+    const { name, value, required, hint } = props
+    const { onChange, id, values = {} } = this.context
+    const rendered = name in values // for SSR
+    const switchValue = rendered ? values[name] : value
+    return (<div className="form-check">
+      <input
+        checked={switchValue}
+        type="checkbox"
+        className="form-check-input"
+        id={id}
+        name={name}
+        required={required}
+        onChange={(e) => {
+          const el = /** @type {HTMLInputElement} */ (e.currentTarget)
+          onChange(name, el.checked)
+        }}
+      />
+      <small className="form-text text-muted" style="padding-top:3px;">
+        <label className="form-check-label" htmlFor={id}>
+          {hint}
+        </label>
+      </small>
+    </div>)
+  }
+}
+
+const placeholder = `Новый торгово-гостиничный Комплекс «Воскресенский» в п. Воскресенское, который исполнен в стиле "современная классика", что придает проекту свою индивидуальность и привлекательность в целях инвестиций. В комплексе будут развиты свои сервисные службы, и он станет достойным торгово-гостиничным комплексом, который будет являться частью п.Воскресенское: д/о Воскресенское, ФГАО Оздоровительный Комплекс «Архангельское» (Управ делами Президента РФ), детская балетная школа, хореографическая школа, детский центр творчества, детский музыкальный театр, студия музыкального развития, п. Юрьев Сад (таунхаусы), п. Кронбург (квадрохаусы), дачи известных людей СССР и политических деятелей нашего времени. Выгодные инвестиции (сдача в аренду посуточно, месячно, годично).`
 
 
 // {addedId &&

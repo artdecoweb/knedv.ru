@@ -1,8 +1,8 @@
 import { getSeo, handleImage } from '../../../src/lib'
 
 /**
- * @param {import('koa').Context} ctx
- * @param {import('../../../src/database').default} database
+ * @param {import('../../../').Context} ctx
+ * @param {import('../../../').Database} database
  */
 const objects = async (ctx, database) => {
   const Obj = database.getModel('Object')
@@ -11,7 +11,7 @@ const objects = async (ctx, database) => {
     return ctx.query.id
   }
   const { description, title, seo: _seo, id, category,
-    article, price } = ctx.req.body
+    article, price, showing = false } = ctx.req.body
   const { file: {
     mimetype, path,
   } = {} } = ctx.req
@@ -28,6 +28,7 @@ const objects = async (ctx, database) => {
     ...img,
     category,
     article,
+    hidden: !showing,
   }
   if (id) {
     const res = await Obj.updateOne({ _id: id }, d)

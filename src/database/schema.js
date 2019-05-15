@@ -22,6 +22,8 @@ export const _Object = {
   title: String,
   seo: String,
   description: String,
+  /** Whether the listing is paused. */
+  hidden: Boolean,
   /** The price of the object. */
   price: String,
   image: String,

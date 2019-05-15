@@ -1,8 +1,7 @@
 import { createBlobService, BlobUtilities } from 'azure-storage'
 
-/** @type {import('koa').Middleware} */
+/** @type {import('../../').Middleware} */
 const getData = async (ctx) => {
-  /** @type {import('../../src/database').default} */
   const database = ctx.database
   const { query: { id } } = ctx
   if ('categories' in ctx.query) {

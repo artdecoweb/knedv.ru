@@ -4,7 +4,7 @@ import { Row, Col } from '../../frontend/components/Bootstrap'
 import { LeftMenu } from '../../frontend/LeftMenu'
 import Offer from '../../frontend/components/Offer'
 
-const Content = ({ offers, categories, selectedCategory, items, article }) => {
+const Content = ({ offers, categories, selectedCategory, items, article, admin }) => {
   return <div className="container-fluid">
     {offers.map(({ text }) => <Offer>{text}</Offer>)}
     <Row>
@@ -19,11 +19,12 @@ const Content = ({ offers, categories, selectedCategory, items, article }) => {
         <div className="ArticleContainer" dangerouslySetInnerHTML={{ __html: article }}/>
         <hr/>
         <Row>
-          {items.reduce((acc, { title, seo, description, cdnImage, price }, i) => {
+          {items.reduce((acc, { title, seo, description, cdnImage, price, hidden }, i) => {
+            if (hidden && !admin) return acc
             const third = (i + 1)%3 == 0
-            const c = <Col key={seo} className="GridItem">
+            const c = <Col key={seo} className="GridItem" style={hidden ? 'opacity: .5': ''}>
               <img alt={description} src={cdnImage} title={title} className="img-fluid"/>
-              <h3>{title}</h3>
+              <h3>{title}{hidden ? ' (выключено)' : ''}</h3>
               <p>{price}</p>
               <span>
                 <a className="btn btn-outline-danger" href={seo}>Подробнее</a>
@@ -42,7 +43,7 @@ const BugFix = () => {
   return (<div className="w-100" id="BugFix"></div>)
 }
 
-/** @type {import('koa').Middleware} */
+/** @type {import('../..').Middleware} */
 const route = async (ctx) => {
   if (!ctx.path.endsWith('/')) {
     return ctx.redirect(`${ctx.path}/`)
@@ -60,7 +61,15 @@ const route = async (ctx) => {
     items = await Objects.find({ category: selectedCategory.id })
   }
 
-  const content = <Content categories={categories} offers={[]} selectedCategory={selectedCategory} items={items} article={article}/>
+  const content = <Content
+    categories={categories}
+    offers={[]}
+    selectedCategory={selectedCategory}
+    items={items}
+    article={article}
+    admin={ctx.session.admin}
+  />
+
   const app = <App activeMenu="index" Content={content} />
   ctx.body = Layout({
     title: selectedCategory ? selectedCategory.title : 'Каталог',
