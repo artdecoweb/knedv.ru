@@ -147,6 +147,11 @@
   dependencies:
     vary "^1.1.2"
 
+"@lemuria/popup@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@lemuria/popup/-/popup-1.0.0.tgz#ba83eddfe8c14b41c736958f320a3a6d4db28f23"
+  integrity sha512-pW2D01uZmFznWy9VKRLyB4iRb7zBIvJ02i62mh6nil49ZwwrV6dg1Ce1OjbB+GUhd2bJrbSBZKjYjYNNU1iZlw==
+
 "@metadata/exif@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@metadata/exif/-/exif-1.0.0.tgz#a1c086c285daaa862be0f9d148ed3c7cd95ca137"

@@ -1,7 +1,7 @@
-import { popup } from "./Components"
+import popup from '@lemuria/popup'
 
 const ArticleEditor = ({ article, onSave, name }) => {
-  return <div className="form-group">
+  return (<div className="form-group">
     <label>Статья</label>
     <div className="mb-3 ArticleHolder" dangerouslySetInnerHTML={{ __html: article }}/>
     <a className="btn btn-outline-success" href="#" onClick={(e) => {
@@ -15,7 +15,7 @@ const ArticleEditor = ({ article, onSave, name }) => {
       return false
     }}>Редактировать</a>
     <input type="hidden" name={name} value={article} />
-  </div>
+  </div>)
 }
 
 export default ArticleEditor
