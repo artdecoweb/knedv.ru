@@ -60,7 +60,7 @@
     "erte": "1.2.0",
     "logarithm": "1.0.1",
     "mongodb": "3.2.4",
-    "mongoose": "5.5.7",
+    "mongoose": "5.7.5",
     "node-exiftool": "2.3.0",
     "parse-multipart": "1.0.4",
     "preact": "8.4.2",
