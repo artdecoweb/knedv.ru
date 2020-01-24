@@ -41,7 +41,15 @@ export default async (opts) => {
       directory: ['frontend', 'frontend-admin'],
     },
     session: { keys: [process.env.SESSION_KEY] },
-    bodyparser: {},
+    bodyparser: {
+      middlewareConstructor() {
+        return async (ctx, next) => {
+          const data = await collect(ctx.req)
+          ctx.req.body = JSON.parse(data)
+          await next()
+        }
+      },
+    },
     form: { dest: 'upload' },
     logarithm: {
       middlewareConstructor() {
@@ -67,7 +75,7 @@ export default async (opts) => {
     multerSingle: {
       middlewareConstructor() {
         return async (...args) => {
-          const mw = middleware.multer.single('image')
+          const mw = middleware.form.single('image')
           await mw(...args)
         }
       },
