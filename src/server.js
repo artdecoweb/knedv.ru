@@ -1,7 +1,8 @@
-import idio from '@idio/core'
+import idio from '@idio/idio'
 import initRoutes, { watchRoutes } from '@idio/router'
 import mailru from '@idio/mailru'
 import logarithm from 'logarithm'
+import { collect } from 'catchment'
 
 const maxage = PROD => PROD ? 1000 * 60 * 60 * 60 * 24 : 0
 
@@ -25,44 +26,33 @@ export default async (opts) => {
   const { router, middleware, app, url } = await idio({
     cors: { use: true,
       origin: PROD && [frontendUrl],
-      config: { credentials: true } },
+      credentials: true,
+    },
     compress: { use: true },
-    static: [{ use: true, root: 'static', config: {
-      maxage: maxage(),
-    } },
-    { use: true, root: 'build', config: {
-      maxage: maxage(),
-    } },
-    { use: true, root: 'node_modules/trumbowyg',
-      mount: '/trumbowyg', config: {
-        maxage: maxage(),
-      } },
-    { use: true, root: 'node_modules/preact/dist',
-      mount: '/preact', config: {
-        maxage: maxage(),
-      } },
+    static: [{ use: true, root: 'static', maxage: maxage() },
+      { use: true, root: 'build', maxage: maxage() },
+      { use: true, root: 'node_modules/trumbowyg',
+        mount: '/trumbowyg', maxage: maxage() },
+      { use: true, root: 'node_modules/preact/dist',
+        mount: '/preact', maxage: maxage() },
     ],
-    ...(!PROD ? {
-      frontend: {
-        directory: ['frontend', 'frontend-admin'],
-      },
-    } : {}),
+    frontend: {
+      use: !PROD,
+      directory: ['frontend', 'frontend-admin'],
+    },
     session: { keys: [process.env.SESSION_KEY] },
     bodyparser: {},
-    multer: { config: {
-      dest: 'upload',
-    } },
-    ...(elastic ? { logarithm: {
+    form: { dest: 'upload' },
+    logarithm: {
       middlewareConstructor() {
         const l = logarithm({
-          app: process.env.APP_NAME || '<unknown/>',
+          app: 'knedv.ru',
           url: elastic,
-          index: 'knedv.ru',
         })
         return l
       },
       use: true,
-    } } : {}),
+    },
     checkAdmin: {
       middlewareConstructor() {
         return async (ctx, next) => {
