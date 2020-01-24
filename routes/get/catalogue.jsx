@@ -79,4 +79,6 @@ const route = async (ctx) => {
 }
 export default route
 
+export const middleware = ['session']
+
 export const aliases = [`/${encodeURIComponent('каталог')}/:category/`]

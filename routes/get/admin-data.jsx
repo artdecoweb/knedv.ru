@@ -81,7 +81,7 @@ export const findPhotos = async (database, galleryId, fields) => {
 
 const mapDoc = ({ _doc }) => _doc
 
-export const middleware = r => ['session', 'checkAdmin', 'ajaxAdmin', r]
+export const middleware = ['session', 'checkAdmin', 'ajaxAdmin']
 
 export default getData
 

@@ -29,4 +29,4 @@ export const aliases = [
   '/admin/albums/:id*',
 ]
 
-export const middleware = r => ['session', r]
+export const middleware = ['session']

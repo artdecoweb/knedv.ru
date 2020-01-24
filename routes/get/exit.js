@@ -5,4 +5,4 @@ const route = (ctx) => {
 }
 export default route
 
-export const middleware = r => ['session', r]
+export const middleware = ['session']

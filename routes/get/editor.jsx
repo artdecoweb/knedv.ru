@@ -38,6 +38,6 @@ const route = async (ctx) => {
 }
 export default route
 
-export const middleware = r => ['session', 'checkAdmin', r]
+export const middleware = ['session', 'checkAdmin']
 
 export const aliases = ['/admin/editor']
