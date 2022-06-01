@@ -67,7 +67,7 @@
     "node-exiftool": "2.3.0",
     "parse-multipart": "1.0.4",
     "preact": "8.4.2",
-    "sharp": "0.22.1",
+    "sharp": "0.30.5",
     "shortid": "2.2.15",
     "spawncommand": "2.2.0",
     "trumbowyg": "2.21.0",
